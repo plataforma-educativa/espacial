@@ -24,8 +24,8 @@ public class NaveTest implements Prueba {
         
         return postcondicion("existe en la Base una Nave", () -> {
             
-            assertThat(batallaEspacial.obtenerNaves()).as("Naves de la BatallaEspacial").hasSize(1);
-            assertThat(batallaEspacial.obtenerNaves()[0]).as("Nave").isSameAs(unaNave);
+            assertThat(batallaEspacial.obtenerNaves()).as("naves de la BatallaEspacial").hasSize(1);
+            assertThat(batallaEspacial.obtenerNaves()[0]).as("primer Nave en la BatallaEspacial").isSameAs(unaNave);
         });
     }
     
