@@ -2,18 +2,25 @@
 import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-public class BatallaEspacialTest {
+import espacial.test.Postcondicion;
+import espacial.test.Prueba;
+
+public class BatallaEspacialTest implements Prueba {
 
     @Test
     public void crearUnObjetoDeTipoBatallaEspacialDejandolaRegistrada() {
 
         BatallaEspacial batallaEspacial = new BatallaEspacial();
         
-        comprobarQueQuedoRegistrada(batallaEspacial);
+        comprobarQue(quedoRegistrada(batallaEspacial));
     }
     
-    private void comprobarQueQuedoRegistrada(BatallaEspacial objeto) {
+    private Postcondicion quedoRegistrada(BatallaEspacial objeto) {
         
-        assertThat(BatallaEspacial.obtener()).isSameAs(objeto);
+        return postcondicion("quedó registrada la Batalla Espacial", () -> {
+
+            assertThat(BatallaEspacial.obtener()).isSameAs(objeto);
+        });
     }
+    
 }

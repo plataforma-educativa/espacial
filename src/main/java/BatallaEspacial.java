@@ -11,4 +11,9 @@ public class BatallaEspacial {
 
         return instancia;
     }
+
+    public Nave[] obtenerNaves() {
+        
+        return null;
+    }
 }
