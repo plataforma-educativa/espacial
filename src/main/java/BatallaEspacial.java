@@ -1,11 +1,15 @@
 import java.util.LinkedList;
 import java.util.List;
 
+import espacial.Tablero;
+
 public class BatallaEspacial {
 
     private static BatallaEspacial instancia = null;
     
     private List<Nave> naves = new LinkedList<>();
+    
+    private Tablero tablero = new Tablero();
     
     public BatallaEspacial() {
 
@@ -25,5 +29,10 @@ public class BatallaEspacial {
     public void agregar(Nave nave) {
         
         naves.add(nave);
+    }
+
+    public Tablero obtenerTablero() {
+
+        return tablero;
     }
 }

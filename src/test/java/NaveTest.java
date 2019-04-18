@@ -24,8 +24,9 @@ public class NaveTest implements Prueba {
         
         return postcondicion("existe en la Base una Nave", () -> {
             
-            assertThat(batallaEspacial.obtenerNaves()).as("naves de la BatallaEspacial").hasSize(1);
-            assertThat(batallaEspacial.obtenerNaves()[0]).as("primer Nave en la BatallaEspacial").isSameAs(unaNave);
+            assertThat(batallaEspacial.obtenerNaves()).as("naves de la BatallaEspacial")
+                .hasSize(1)
+                .containsExactly(unaNave);
         });
     }
     
@@ -34,6 +35,28 @@ public class NaveTest implements Prueba {
         return precondicion("fue creada la BatallaEspacial", () -> {
            
             batallaEspacial = new BatallaEspacial();
+        });
+    }
+    
+    @Test
+    public void crearTresObjetosDeTipoNaveDejandolosEnLaBase() {
+        
+        dadoQue(fueCreadaLaBatallaEspacial());
+        
+        Nave primerNave = new Nave();
+        Nave segundaNave = new Nave();
+        Nave tercerNave = new Nave();
+        
+        comprobarQue(existenEnLaBase(primerNave, segundaNave, tercerNave));
+    }
+
+    private Postcondicion existenEnLaBase(Nave primerNave, Nave segundaNave, Nave tercerNave) {
+
+        return postcondicion("existen en la Base tres Naves", () -> {
+          
+            assertThat(batallaEspacial.obtenerNaves()).as("naves de la BatallaEspacial")
+                .hasSize(3)
+                .containsExactly(primerNave, segundaNave, tercerNave);
         });
     }
     
