@@ -29,7 +29,8 @@ public abstract class Condicion {
         return new StringBuilder()
                     .append(describir())
                     .append('\n')
-                    .append("Detalle: ")
+                    .append(e.getClass().getSimpleName())
+                    .append(": ")
                     .append(e.getMessage())
                     .toString();
     }
