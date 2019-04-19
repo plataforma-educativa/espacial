@@ -41,7 +41,12 @@ public class BatallaEspacialTest implements Prueba {
         return postcondicion("fue inicializado el tablero", () -> {
           
             assertThat(tablero.contarFilas()).as("filas del Tablero").isEqualTo(21);
+            assertThat(tablero.obtenerFilaMaxima()).as("fila máxima").isEqualTo(10);
+            assertThat(tablero.obtenerFilaMinima()).as("fila mínima").isEqualTo(-10);
+
             assertThat(tablero.contarColumnas()).as("columnas del Tablero").isEqualTo(53);
+            assertThat(tablero.obtenerColumnaMaxima()).as("columna máxima").isEqualTo(26);
+            assertThat(tablero.obtenerColumnaMinima()).as("columna mínima").isEqualTo(-26);
             
             assertThat(tablero)
                 .tieneBase()
@@ -53,6 +58,7 @@ public class BatallaEspacialTest implements Prueba {
                 .tieneContenedor()
                     .en(-2,-2)
                     .en(4, 2)
+                    .en(2, -7)
                 .tieneAsteroide()
                     .en(1,-3)
                     .entre(7, -1, 7, 0)
@@ -60,7 +66,9 @@ public class BatallaEspacialTest implements Prueba {
                     .en(-6, 0)
                     .en(-9, 0)
                     .en(-2, 4)
-                    .en(2, 6);
+                    .en(2, 6)
+                    .en(2, -5)
+                .yTieneVacioEnElResto();
         });
     }
 
