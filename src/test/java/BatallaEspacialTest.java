@@ -1,5 +1,7 @@
 
-import static org.assertj.core.api.Assertions.*;
+import static espacial.test.Aserciones.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 
 import espacial.Tablero;
@@ -38,8 +40,19 @@ public class BatallaEspacialTest implements Prueba {
 
         return postcondicion("fue inicializado el tablero", () -> {
           
-            assertThat(tablero.contarColumnas()).as("columnas del Tablero").isEqualTo(53);
             assertThat(tablero.contarFilas()).as("filas del Tablero").isEqualTo(21);
+            assertThat(tablero.contarColumnas()).as("columnas del Tablero").isEqualTo(53);
+            
+            assertThat(tablero)
+                .tieneBase()
+                    .en(0,0)
+                .tieneVacio()
+                    .en(0,1).en( 0,-1)
+                    .en(1,0).en(-1,-0)
+                    .en(1,1).en(-1,-1).en(1, -1).en(-1, 1)
+                .tieneContenedor()
+                    .en(-2,-2)
+                    .en(4, 2);
         });
     }
 
