@@ -1,11 +1,13 @@
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import espacial.Tablero;
+import espacial.excepciones.ErrorPorqueNoExisteBatallaEspacial;
 
 public class BatallaEspacial {
 
-    private static BatallaEspacial instancia = null;
+    private static Optional<BatallaEspacial> instancia = Optional.empty();
     
     private List<Nave> naves = new LinkedList<>();
     
@@ -13,12 +15,12 @@ public class BatallaEspacial {
     
     public BatallaEspacial() {
 
-        instancia = this;
+        instancia = Optional.of(this);
     }
 
     public static BatallaEspacial obtener() {
 
-        return instancia;
+        return instancia.orElseThrow(ErrorPorqueNoExisteBatallaEspacial::new);
     }
 
     public Nave[] obtenerNaves() {
