@@ -27,11 +27,8 @@ public class Tablero {
                                          int filaFinal, int columnaFinal,
                                          EspectroEspacial espectro) {
         
-        for (int fila = filaInicial; fila <= filaFinal; fila++) {
-            for (int columna = columnaInicial; columna <= columnaFinal; columna++) {
-                colocarEnCoordenada(fila, columna, espectro);
-            }
-        }
+        conCadaCoordenadaEnRango(filaInicial, columnaInicial, filaFinal, columnaFinal,
+                                 (fila, columna) -> colocarEnCoordenada(fila, columna, espectro));
     }
 
     private void colocarEnCoordenada(int fila, int columna, EspectroEspacial espectro) {
@@ -77,5 +74,25 @@ public class Tablero {
     public int obtenerColumnaMinima() {
 
         return -26;
+    }
+
+    public void conCadaCoordenada(ConsumidorDeCoordenadas consumidor) {
+        
+        conCadaCoordenadaEnRango(obtenerFilaMinima(), obtenerColumnaMinima(),
+                                 obtenerFilaMaxima(), obtenerColumnaMaxima(),
+                                 consumidor);
+    }
+    
+    private void conCadaCoordenadaEnRango(int filaInicial, int columnaInicial,
+                                          int filaFinal, int columnaFinal,
+                                          ConsumidorDeCoordenadas consumidor) {
+        
+        for (int fila = filaInicial; fila <= filaFinal; fila++) {
+            
+            for (int columna = columnaInicial; columna <= columnaFinal; columna++) {
+
+                consumidor.aceptar(fila, columna);
+            }
+        }
     }
 }

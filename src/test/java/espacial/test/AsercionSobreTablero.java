@@ -9,6 +9,12 @@ import espacial.Coordenada;
 import espacial.EspectroEspacial;
 import espacial.Tablero;
 
+/**
+ * Aserción que permite comprobar el estado de un Tablero.
+ * 
+ * @author Mariano Tugnarelli
+ *
+ */
 public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, Tablero> {
 
     private EspectroEspacial espectroEsperado;
@@ -51,12 +57,14 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
 
         tieneVacio();
         
-        for (int fila = actual.obtenerFilaMinima(); fila <= actual.obtenerFilaMaxima(); fila++) {
-            for (int columna = actual.obtenerColumnaMinima(); columna <= actual.obtenerColumnaMaxima(); columna++) {
-                if (! coordenadasAsertadas.contains(new Coordenada(fila, columna))) {
-                    comprobarEspectroEsperadoEn(fila, columna);
-                }
-            }
+        actual.conCadaCoordenada((fila, columna) -> comprobarEspectroEsperadoSiNoFueAsertada(fila, columna));
+    }
+    
+    private void comprobarEspectroEsperadoSiNoFueAsertada(int fila, int columna) {
+        
+        if (! coordenadasAsertadas.contains(new Coordenada(fila, columna))) {
+            
+            comprobarEspectroEsperadoEn(fila, columna);
         }
     }
     
