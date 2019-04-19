@@ -34,6 +34,13 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
         return this;
     }
     
+    public AsercionSobreTablero tieneAsteroide() {
+
+        espectroEsperado = EspectroEspacial.ASTEROIDE;
+        
+        return this;
+    }
+    
     public AsercionSobreTablero en(int fila, int columna) {
         
         return comprobarEspectroEsperadoEn(fila, columna);

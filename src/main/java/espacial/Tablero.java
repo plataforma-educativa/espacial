@@ -12,6 +12,24 @@ public class Tablero {
         colocarEnCoordenada(0, 0, EspectroEspacial.BASE);
         colocarEnCoordenada(-2, -2, EspectroEspacial.CONTENEDOR);
         colocarEnCoordenada(4, 2, EspectroEspacial.CONTENEDOR);
+        colocarEnCoordenada(1, -3, EspectroEspacial.ASTEROIDE);
+        colocarEntreCoordenadas(7, -1, 7, 0, EspectroEspacial.ASTEROIDE);
+        colocarEntreCoordenadas(8, -3, 8, 3, EspectroEspacial.ASTEROIDE);
+        colocarEnCoordenada(-6, 0, EspectroEspacial.ASTEROIDE);
+        colocarEnCoordenada(-9, 0, EspectroEspacial.ASTEROIDE);
+        colocarEnCoordenada(-2, 4, EspectroEspacial.ASTEROIDE);
+        colocarEnCoordenada(2, 6, EspectroEspacial.ASTEROIDE);
+    }
+
+    private void colocarEntreCoordenadas(int filaInicial, int columnaInicial,
+                                         int filaFinal, int columnaFinal,
+                                         EspectroEspacial espectro) {
+        
+        for (int fila = filaInicial; fila <= filaFinal; fila++) {
+            for (int columna = columnaInicial; columna <= columnaFinal; columna++) {
+                colocarEnCoordenada(fila, columna, espectro);
+            }
+        }
     }
 
     private void colocarEnCoordenada(int fila, int columna, EspectroEspacial espectro) {

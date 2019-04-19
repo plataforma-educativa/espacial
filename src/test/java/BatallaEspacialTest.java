@@ -52,7 +52,15 @@ public class BatallaEspacialTest implements Prueba {
                     .en(1,1).en(-1,-1).en(1, -1).en(-1, 1)
                 .tieneContenedor()
                     .en(-2,-2)
-                    .en(4, 2);
+                    .en(4, 2)
+                .tieneAsteroide()
+                    .en(1,-3)
+                    .entre(7, -1, 7, 0)
+                    .entre(8, -3, 8, 3)
+                    .en(-6, 0)
+                    .en(-9, 0)
+                    .en(-2, 4)
+                    .en(2, 6);
         });
     }
 
