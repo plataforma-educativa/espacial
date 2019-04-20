@@ -1,41 +1,43 @@
 package espacial;
 
+import espacial.piezas.Asteroide;
+import espacial.piezas.BaseEspacial;
+import espacial.piezas.ContenedorDeAntimateria;
+import espacial.piezas.Pieza;
+
 public class Tablero {
 
-    private EspectroEspacial[][] casilleros;
+    private Pieza[][] casilleros;
     
     public Tablero() {
         
-        casilleros = new EspectroEspacial[contarFilas()][contarColumnas()];
+        casilleros = new Pieza[contarFilas()][contarColumnas()];
 
-        colocarEntreCoordenadas(obtenerFilaMinima(), obtenerColumnaMinima(), 
-                                obtenerFilaMaxima(), obtenerColumnaMaxima(), 
-                                EspectroEspacial.VACIO);
-        colocarEnCoordenada(0, 0, EspectroEspacial.BASE);
-        colocarEnCoordenada(-2, -2, EspectroEspacial.CONTENEDOR);
-        colocarEnCoordenada(4, 2, EspectroEspacial.CONTENEDOR);
-        colocarEnCoordenada(2, -7, EspectroEspacial.CONTENEDOR);
-        colocarEnCoordenada(1, -3, EspectroEspacial.ASTEROIDE);
-        colocarEntreCoordenadas(7, -1, 7, 0, EspectroEspacial.ASTEROIDE);
-        colocarEntreCoordenadas(8, -3, 8, 3, EspectroEspacial.ASTEROIDE);
-        colocarEnCoordenada(-6, 0, EspectroEspacial.ASTEROIDE);
-        colocarEnCoordenada(-9, 0, EspectroEspacial.ASTEROIDE);
-        colocarEnCoordenada(-2, 4, EspectroEspacial.ASTEROIDE);
-        colocarEnCoordenada(2, 6, EspectroEspacial.ASTEROIDE);
-        colocarEnCoordenada(2, -5, EspectroEspacial.ASTEROIDE);
+        colocarEnCoordenada(0, 0, BaseEspacial::new);
+        colocarEnCoordenada(-2, -2, ContenedorDeAntimateria::new);
+        colocarEnCoordenada(4, 2, ContenedorDeAntimateria::new);
+        colocarEnCoordenada(2, -7, ContenedorDeAntimateria::new);
+        colocarEnCoordenada(1, -3, Asteroide::new);
+        colocarEntreCoordenadas(7, -1, 7, 0, Asteroide::new);
+        colocarEntreCoordenadas(8, -3, 8, 3, Asteroide::new);
+        colocarEnCoordenada(-6, 0, Asteroide::new);
+        colocarEnCoordenada(-9, 0, Asteroide::new);
+        colocarEnCoordenada(-2, 4, Asteroide::new);
+        colocarEnCoordenada(2, 6, Asteroide::new);
+        colocarEnCoordenada(2, -5, Asteroide::new);
     }
 
     private void colocarEntreCoordenadas(int filaInicial, int columnaInicial,
                                          int filaFinal, int columnaFinal,
-                                         EspectroEspacial espectro) {
+                                         Proveedor<? extends Pieza> proveedorDePieza) {
         
         conCadaCoordenadaEnRango(filaInicial, columnaInicial, filaFinal, columnaFinal,
-                                 (fila, columna) -> colocarEnCoordenada(fila, columna, espectro));
+                                 (fila, columna) -> colocarEnCoordenada(fila, columna, proveedorDePieza));
     }
 
-    private void colocarEnCoordenada(int fila, int columna, EspectroEspacial espectro) {
+    private void colocarEnCoordenada(int fila, int columna, Proveedor<? extends Pieza> proveedorDePieza) {
 
-        casilleros[subindiceFila(fila)][subindiceColumna(columna)] = espectro;
+        casilleros[subindiceFila(fila)][subindiceColumna(columna)] = proveedorDePieza.obtener();
     }
 
     private int subindiceColumna(int columna) {
@@ -60,7 +62,8 @@ public class Tablero {
 
     public EspectroEspacial obtener(int fila, int columna) {
 
-        return casilleros[subindiceFila(fila)][subindiceColumna(columna)]; 
+        Pieza pieza = casilleros[subindiceFila(fila)][subindiceColumna(columna)];
+        return pieza != null? pieza.escanear() : EspectroEspacial.VACIO; 
     }
 
     public int obtenerFilaMaxima() {
