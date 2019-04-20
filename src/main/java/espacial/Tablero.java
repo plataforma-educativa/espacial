@@ -7,11 +7,11 @@ import espacial.piezas.Pieza;
 
 public class Tablero {
 
-    private Pieza[][] casilleros;
+    private Casillero[][] casilleros;
     
     public Tablero() {
         
-        casilleros = new Pieza[contarFilas()][contarColumnas()];
+        inicializarCasilleros();
 
         colocarEnCoordenada(0, 0, BaseEspacial::new);
         colocarEnCoordenada(-2, -2, ContenedorDeAntimateria::new);
@@ -27,6 +27,17 @@ public class Tablero {
         colocarEnCoordenada(2, -5, Asteroide::new);
     }
 
+    private void inicializarCasilleros() {
+
+        casilleros = new Casillero[contarFilas()][contarColumnas()];
+        
+        for (int i = 0; i < casilleros.length; i++) {
+            for (int j = 0; j < casilleros[i].length; j++) {
+                casilleros[i][j] = new Casillero();
+            }
+        }
+    }
+
     private void colocarEntreCoordenadas(int filaInicial, int columnaInicial,
                                          int filaFinal, int columnaFinal,
                                          Proveedor<? extends Pieza> proveedorDePieza) {
@@ -37,15 +48,15 @@ public class Tablero {
 
     private void colocarEnCoordenada(int fila, int columna, Proveedor<? extends Pieza> proveedorDePieza) {
 
-        casilleros[subindiceFila(fila)][subindiceColumna(columna)] = proveedorDePieza.obtener();
+        casilleros[indiceFila(fila)][indiceColumna(columna)].colocar(proveedorDePieza.obtener());
     }
 
-    private int subindiceColumna(int columna) {
+    private int indiceColumna(int columna) {
         
         return columna - obtenerColumnaMinima();
     }
 
-    private int subindiceFila(int fila) {
+    private int indiceFila(int fila) {
         
         return fila - obtenerFilaMinima();
     }
@@ -62,8 +73,7 @@ public class Tablero {
 
     public EspectroEspacial obtener(int fila, int columna) {
 
-        Pieza pieza = casilleros[subindiceFila(fila)][subindiceColumna(columna)];
-        return pieza != null? pieza.escanear() : EspectroEspacial.VACIO; 
+        return casilleros[indiceFila(fila)][indiceColumna(columna)].escanear(); 
     }
 
     public int obtenerFilaMaxima() {
