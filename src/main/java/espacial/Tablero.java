@@ -1,14 +1,16 @@
 package espacial;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Tablero {
 
-    private Map<Coordenada, EspectroEspacial> casilleros = new HashMap<>();
+    private EspectroEspacial[][] casilleros;
     
     public Tablero() {
         
+        casilleros = new EspectroEspacial[contarFilas()][contarColumnas()];
+
+        colocarEntreCoordenadas(obtenerFilaMinima(), obtenerColumnaMinima(), 
+                                obtenerFilaMaxima(), obtenerColumnaMaxima(), 
+                                EspectroEspacial.VACIO);
         colocarEnCoordenada(0, 0, EspectroEspacial.BASE);
         colocarEnCoordenada(-2, -2, EspectroEspacial.CONTENEDOR);
         colocarEnCoordenada(4, 2, EspectroEspacial.CONTENEDOR);
@@ -32,8 +34,18 @@ public class Tablero {
     }
 
     private void colocarEnCoordenada(int fila, int columna, EspectroEspacial espectro) {
+
+        casilleros[subindiceFila(fila)][subindiceColumna(columna)] = espectro;
+    }
+
+    private int subindiceColumna(int columna) {
         
-        casilleros.put(conCoordenada(fila, columna), espectro);
+        return columna - obtenerColumnaMinima();
+    }
+
+    private int subindiceFila(int fila) {
+        
+        return fila - obtenerFilaMinima();
     }
     
     public int contarColumnas() {
@@ -48,12 +60,7 @@ public class Tablero {
 
     public EspectroEspacial obtener(int fila, int columna) {
 
-        return casilleros.getOrDefault(conCoordenada(fila, columna), EspectroEspacial.VACIO); 
-    }
-
-    private Coordenada conCoordenada(int fila, int columna) {
-        
-        return new Coordenada(fila, columna);
+        return casilleros[subindiceFila(fila)][subindiceColumna(columna)]; 
     }
 
     public int obtenerFilaMaxima() {
