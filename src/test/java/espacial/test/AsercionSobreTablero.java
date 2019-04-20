@@ -97,7 +97,7 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
 
         isNotNull();
 
-        EspectroEspacial espectro = actual.obtener(fila, columna);
+        EspectroEspacial espectro = actual.escanearEn(fila, columna);
 
         if (!espectroEsperado.equals(espectro)) {
             failWithMessage("EspectroEspacial del Tablero en [%d, %d] se esperaba%n <%s> %n pero fue %n <%s>", 

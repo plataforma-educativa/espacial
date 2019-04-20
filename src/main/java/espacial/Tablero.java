@@ -5,6 +5,13 @@ import espacial.piezas.BaseEspacial;
 import espacial.piezas.ContenedorDeAntimateria;
 import espacial.piezas.Pieza;
 
+/**
+ * El Tablero mantiene el ordenamiento relativo de las Piezas en una Partida.
+ * Cada Casillero está ocupado exclusivamente por una Pieza.
+ * 
+ * @author Mariano Tugnarelli
+ *
+ */
 public class Tablero {
 
     private Casillero[][] casilleros;
@@ -71,7 +78,7 @@ public class Tablero {
         return obtenerFilaMaxima() - obtenerFilaMinima() + 1;
     }
 
-    public EspectroEspacial obtener(int fila, int columna) {
+    public EspectroEspacial escanearEn(int fila, int columna) {
 
         return casilleros[indiceFila(fila)][indiceColumna(columna)].escanear(); 
     }
