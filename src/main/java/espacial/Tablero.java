@@ -80,7 +80,7 @@ public class Tablero {
 
     public EspectroEspacial escanearEn(int fila, int columna) {
 
-        return casilleros[indiceFila(fila)][indiceColumna(columna)].escanear(); 
+        return obtenerCasillero(fila, columna).escanear(); 
     }
 
     public int obtenerFilaMaxima() {
@@ -121,5 +121,10 @@ public class Tablero {
                 consumidor.aceptar(fila, columna);
             }
         }
+    }
+
+    public Casillero obtenerCasillero(int fila, int columna) {
+        
+        return casilleros[indiceFila(fila)][indiceColumna(columna)];
     }
 }

@@ -36,4 +36,14 @@ public class TableroTest {
         assertThat(coordenadasIteradas).as("conjunto con las coordenadas iteradas")
             .hasSize(tablero.contarFilas() * tablero.contarColumnas());
     }
+    
+    @Test
+    public void obtenerCasillero() {
+        
+        Tablero tablero = new Tablero();
+        
+        Casillero casillero = tablero.obtenerCasillero(0,0);
+        
+        assertThat(casillero.escanear()).isEqualTo(EspectroEspacial.BASE);
+    }
 }

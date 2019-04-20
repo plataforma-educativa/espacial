@@ -5,6 +5,7 @@ import espacial.test.Precondicion;
 import espacial.test.Prueba;
 
 import static org.assertj.core.api.Assertions.*;
+import static espacial.test.Aserciones.assertThat;
 
 public class NaveTest implements Prueba {
 
@@ -27,6 +28,10 @@ public class NaveTest implements Prueba {
             assertThat(batallaEspacial.obtenerNaves()).as("naves de la BatallaEspacial")
                 .hasSize(1)
                 .containsExactly(unaNave);
+            
+            assertThat(batallaEspacial.obtenerTablero())
+                .tieneNave()
+                    .en(0,0);
         });
     }
     

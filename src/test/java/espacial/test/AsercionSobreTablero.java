@@ -27,28 +27,32 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
 
     public AsercionSobreTablero tieneBase() {
 
-        espectroEsperado = EspectroEspacial.BASE;
-        
-        return this;
+        return tiene(EspectroEspacial.BASE);
     }
     
     public AsercionSobreTablero tieneVacio() {
         
-        espectroEsperado = EspectroEspacial.VACIO;
-
-        return this;
+        return tiene(EspectroEspacial.VACIO);
     }
     
     public AsercionSobreTablero tieneContenedor() {
 
-        espectroEsperado = EspectroEspacial.CONTENEDOR;
-        
-        return this;
+        return tiene(EspectroEspacial.CONTENEDOR);
     }
     
     public AsercionSobreTablero tieneAsteroide() {
 
-        espectroEsperado = EspectroEspacial.ASTEROIDE;
+        return tiene(EspectroEspacial.ASTEROIDE);
+    }
+
+    public AsercionSobreTablero tieneNave() {
+
+        return tiene(EspectroEspacial.NAVE);
+    }
+
+    private AsercionSobreTablero tiene(EspectroEspacial espectro) {
+        
+        espectroEsperado = espectro;
         
         return this;
     }

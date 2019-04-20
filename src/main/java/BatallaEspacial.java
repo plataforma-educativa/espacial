@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import espacial.Tablero;
 import espacial.excepciones.ErrorPorqueNoExisteBatallaEspacial;
+import espacial.piezas.CazaEspacial;
+import espacial.piezas.Pieza;
 
 public class BatallaEspacial {
 
@@ -31,6 +33,10 @@ public class BatallaEspacial {
     public void agregar(Nave nave) {
         
         naves.add(nave);
+        
+        Pieza pieza = new CazaEspacial();
+        
+        tablero.obtenerCasillero(0, 0).colocar(pieza);
     }
 
     public Tablero obtenerTablero() {
