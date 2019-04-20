@@ -1,18 +1,18 @@
 package espacial.piezas;
 
-import static org.assertj.core.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
 import espacial.EspectroEspacial;
 
-public class CazaEspacialTest {
+public class CazaEspacialTest implements PruebaSobrePieza<CazaEspacial> {
 
-    @Test
-    public void escanear() {
-        
-        Pieza pieza = new CazaEspacial();
-        
-        assertThat(pieza.escanear()).as("espectro").isEqualTo(EspectroEspacial.NAVE);
+    @Override
+    public CazaEspacial piezaCreada() {
+
+        return new CazaEspacial();
+    }
+
+    @Override
+    public EspectroEspacial espectroEsperado() {
+
+        return EspectroEspacial.NAVE;
     }
 }

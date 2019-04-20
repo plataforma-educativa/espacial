@@ -1,18 +1,18 @@
 package espacial.piezas;
 
-import static org.assertj.core.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
 import espacial.EspectroEspacial;
 
-public class ContenedorDeAntimateriaTest {
+public class ContenedorDeAntimateriaTest implements PruebaSobrePieza<ContenedorDeAntimateria> {
 
-    @Test
-    public void escanear() {
-        
-        Pieza pieza = new ContenedorDeAntimateria();
-        
-        assertThat(pieza.escanear()).as("espectro").isEqualTo(EspectroEspacial.CONTENEDOR);
+    @Override
+    public ContenedorDeAntimateria piezaCreada() {
+
+        return new ContenedorDeAntimateria();
+    }
+
+    @Override
+    public EspectroEspacial espectroEsperado() {
+
+        return EspectroEspacial.CONTENEDOR;
     }
 }
