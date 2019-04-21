@@ -19,10 +19,8 @@ public class Nave {
         
         Casillero origen = tablero.obtenerCasillero(pieza.obtenerPosicion().obtenerFila(), 
                                                     pieza.obtenerPosicion().obtenerColumna());
-        origen.colocar(null);
-        
         Casillero destino = tablero.obtenerCasillero(pieza.obtenerPosicion().obtenerFila() + 1,
                                                      pieza.obtenerPosicion().obtenerColumna());
-        destino.colocar(pieza);
+        origen.moverPiezaA(destino);
     }
 }

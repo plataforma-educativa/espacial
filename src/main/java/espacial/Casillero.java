@@ -23,12 +23,28 @@ public class Casillero {
         return pieza != null ? pieza.escanear() : EspectroEspacial.VACIO;
     }
 
+    /**
+     * pre : el Casillero no está ocupado. 'pieza' no está 
+     *       colocada en otro Casillero.
+     *       
+     * @param pieza
+     */
     public void colocar(Pieza pieza) {
         
         this.pieza = pieza;
-        if (this.pieza != null) {
-            this.pieza.posicionar(coordenada);
-        }
+        this.pieza.posicionar(coordenada);
+    }
+
+    public void moverPiezaA(Casillero destino) {
+
+        Pieza piezaMovida = this.pieza;
+        desocupar();
+        destino.colocar(piezaMovida);
+    }
+
+    public void desocupar() {
+        
+        this.pieza = null;
     }
 
 }
