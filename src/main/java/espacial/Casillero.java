@@ -36,8 +36,8 @@ public class Casillero {
      */
     public void ocuparCon(Pieza unaPieza) {
 
-        this.pieza = unaPieza;
-        this.pieza.posicionar(coordenada);
+        pieza = unaPieza;
+        pieza.posicionar(coordenada);
     }
 
     /**
@@ -50,7 +50,7 @@ public class Casillero {
      */
     public void moverPiezaA(Casillero destino) {
 
-        Pieza piezaMovida = this.pieza;
+        Pieza piezaMovida = pieza;
         desocupar();
         destino.ocuparCon(piezaMovida);
     }
@@ -61,6 +61,22 @@ public class Casillero {
      */
     public void desocupar() {
 
-        this.pieza = null;
+        pieza = null;
+    }
+
+    /**
+     * @return si una Pieza está asociada a este Casillero.
+     */
+    public boolean estaOcupado() {
+        
+        return pieza != null;
+    }
+
+    /**
+     * @return si no hay una Pieza asociada a este Casillero.
+     */
+    public boolean estaDesocupado() {
+
+        return ! estaOcupado();
     }
 }

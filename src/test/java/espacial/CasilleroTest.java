@@ -109,4 +109,39 @@ public class CasilleroTest implements Prueba {
                 .isEqualTo(EspectroEspacial.VACIO);
         });
     }
+    
+    @Test
+    public void estaOcupado() {
+        
+        Casillero casillero = new Casillero(3, 4);
+        casillero.ocuparCon(ASTEROIDE);
+
+        comprobarQue(estaOcupado(casillero));
+    }
+
+    private Postcondicion estaOcupado(Casillero casillero) {
+
+        return postcondicion("el casillero esta ocupado", () -> {
+            
+            assertThat(casillero.estaOcupado()).as("estaOcupado").isTrue();
+            assertThat(casillero.estaDesocupado()).as("estaDesocupado").isFalse();
+        });
+    }
+    
+    @Test
+    public void estaDesocupado() {
+        
+        Casillero casillero = new Casillero(4, -6);
+        
+        comprobarQue(estaDesocupado(casillero));
+    }
+
+    private Postcondicion estaDesocupado(Casillero casillero) {
+        
+        return postcondicion("el casillero esta desocupado", () -> {
+          
+            assertThat(casillero.estaOcupado()).as("estaOcupado").isFalse();
+            assertThat(casillero.estaDesocupado()).as("estaDesocupado").isTrue();
+        });
+    }
 }
