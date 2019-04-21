@@ -49,7 +49,7 @@ public class CasilleroTest implements Prueba {
         
         Casillero casillero = new Casillero(-9, 0);
         
-        casillero.colocar(CONTENEDOR);
+        casillero.ocuparCon(CONTENEDOR);
 
         assertThat(casillero.escanear()).as("espectro escaneado")
             .isEqualTo(EspectroEspacial.CONTENEDOR);
@@ -60,7 +60,7 @@ public class CasilleroTest implements Prueba {
         
         Casillero casillero = new Casillero(3, 10);
         
-        casillero.colocar(ASTEROIDE);
+        casillero.ocuparCon(ASTEROIDE);
 
         assertThat(casillero.escanear()).as("espectro escaneado")
             .isEqualTo(EspectroEspacial.ASTEROIDE);
@@ -70,7 +70,7 @@ public class CasilleroTest implements Prueba {
     public void moverPiezaEntreCasilleros() {
         
         Casillero origen = new Casillero(0, 0);
-        origen.colocar(NAVE);
+        origen.ocuparCon(NAVE);
         
         Casillero destino = new Casillero(0, 1);
         
@@ -94,7 +94,7 @@ public class CasilleroTest implements Prueba {
     public void desocupar() {
         
         Casillero casillero = new Casillero(4, 9);
-        casillero.colocar(ASTEROIDE);
+        casillero.ocuparCon(ASTEROIDE);
         
         casillero.desocupar();
 

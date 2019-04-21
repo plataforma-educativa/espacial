@@ -53,7 +53,7 @@ public class Tablero {
 
     private void colocarEnCoordenada(int fila, int columna, Proveedor<? extends Pieza> proveedorDePieza) {
 
-        casilleros[indiceFila(fila)][indiceColumna(columna)].colocar(proveedorDePieza.obtener());
+        casilleros[indiceFila(fila)][indiceColumna(columna)].ocuparCon(proveedorDePieza.obtener());
     }
 
     private int indiceColumna(int columna) {

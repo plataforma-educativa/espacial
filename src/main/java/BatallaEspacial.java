@@ -36,7 +36,7 @@ public class BatallaEspacial {
         
         Pieza pieza = new CazaEspacial();
         
-        tablero.obtenerCasillero(0, 0).colocar(pieza);
+        tablero.obtenerCasillero(0, 0).ocuparCon(pieza);
         
         return pieza;
     }

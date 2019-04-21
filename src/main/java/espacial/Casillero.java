@@ -29,7 +29,7 @@ public class Casillero {
      *       
      * @param pieza
      */
-    public void colocar(Pieza pieza) {
+    public void ocuparCon(Pieza pieza) {
         
         this.pieza = pieza;
         this.pieza.posicionar(coordenada);
@@ -39,7 +39,7 @@ public class Casillero {
 
         Pieza piezaMovida = this.pieza;
         desocupar();
-        destino.colocar(piezaMovida);
+        destino.ocuparCon(piezaMovida);
     }
 
     public void desocupar() {
