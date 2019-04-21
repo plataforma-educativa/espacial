@@ -1,15 +1,16 @@
+import static espacial.test.Aserciones.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.Prueba;
 
-import static org.assertj.core.api.Assertions.*;
-import static espacial.test.Aserciones.assertThat;
-
 public class NaveTest implements Prueba {
 
     private BatallaEspacial batallaEspacial;
+    private Nave unaNave;
     
     @Test
     public void crearUnObjetoDeTipoNaveDejandoloEnLaBase() {
@@ -64,5 +65,59 @@ public class NaveTest implements Prueba {
                 .containsExactly(primerNave, segundaNave, tercerNave);
         });
     }
+ 
+    @Test
+    public void avanzarAlNorte() {
+        
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNave());
+
+        unaNave.avanzarAlNorte();
+        
+        comprobarQue(unaNaveEstaAlNorteDeLaBase());
+    }
+    
+    private Precondicion fueCreadaUnaNave() {
+
+        return precondicion("fue creada una Nave", () -> { 
+          
+            unaNave = new Nave();
+        });
+    }
+
+    private Postcondicion unaNaveEstaAlNorteDeLaBase() {
+        
+        return postcondicion("la Nave está al NORTE de la Base", () -> {
+        
+            assertThat(batallaEspacial.obtenerTablero())
+                .tieneNave().en(1, 0)
+                .tieneVacio().en(0, 0);
+        });
+    }
+    
+
+    @Test
+    public void avanzarAlNorteTresVeces() {
+        
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNave());
+
+        unaNave.avanzarAlNorte();
+        unaNave.avanzarAlNorte();
+        unaNave.avanzarAlNorte();
+
+        comprobarQue(unaNaveEstaDosCasillerosAlNorteDeLaBase());
+    }
+
+    private Postcondicion unaNaveEstaDosCasillerosAlNorteDeLaBase() {
+
+        return postcondicion("la Nave está a dos casilleros al NORTE de la Base", () -> {
+            
+            assertThat(batallaEspacial.obtenerTablero())
+                .tieneNave().en(3, 0)
+                .tieneVacio().en(0, 0).en(1, 0).en(2, 0);
+        });
+    }
+    
     
 }

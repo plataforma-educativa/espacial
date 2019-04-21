@@ -1,8 +1,11 @@
 package espacial.piezas;
 
+import espacial.Coordenada;
 import espacial.EspectroEspacial;
 
 public class CazaEspacial implements Pieza {
+
+    private Coordenada posicion;
 
     @Override
     public EspectroEspacial escanear() {
@@ -10,4 +13,15 @@ public class CazaEspacial implements Pieza {
         return EspectroEspacial.NAVE;
     }
 
+    @Override
+    public void posicionar(Coordenada coordenada) {
+        
+        this.posicion = coordenada;
+    }
+    
+    @Override
+    public Coordenada obtenerPosicion() {
+        
+        return posicion;
+    }
 }

@@ -30,13 +30,15 @@ public class BatallaEspacial {
         return naves.toArray(new Nave[naves.size()]);
     }
 
-    public void agregar(Nave nave) {
+    public Pieza agregar(Nave nave) {
         
         naves.add(nave);
         
         Pieza pieza = new CazaEspacial();
         
         tablero.obtenerCasillero(0, 0).colocar(pieza);
+        
+        return pieza;
     }
 
     public Tablero obtenerTablero() {

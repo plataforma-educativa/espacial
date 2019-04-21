@@ -11,7 +11,12 @@ import espacial.piezas.Pieza;
  */
 public class Casillero {
 
+    private final Coordenada coordenada;
     private Pieza pieza = null;
+    
+    public Casillero(int fila, int columna) {
+        coordenada = new Coordenada(fila, columna);
+    }
     
     public EspectroEspacial escanear() {
         
@@ -21,6 +26,9 @@ public class Casillero {
     public void colocar(Pieza pieza) {
         
         this.pieza = pieza;
+        if (this.pieza != null) {
+            this.pieza.posicionar(coordenada);
+        }
     }
 
 }

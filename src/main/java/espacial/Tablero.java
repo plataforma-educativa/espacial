@@ -38,11 +38,9 @@ public class Tablero {
 
         casilleros = new Casillero[contarFilas()][contarColumnas()];
         
-        for (int i = 0; i < casilleros.length; i++) {
-            for (int j = 0; j < casilleros[i].length; j++) {
-                casilleros[i][j] = new Casillero();
-            }
-        }
+        conCadaCoordenada((fila, columna) -> {
+            casilleros[indiceFila(fila)][indiceColumna(columna)] = new Casillero(fila, columna);
+        });
     }
 
     private void colocarEntreCoordenadas(int filaInicial, int columnaInicial,
