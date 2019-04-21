@@ -1,10 +1,10 @@
 package espacial.excepciones;
 
-public class ErrorPorqueLaOperacionNoEstaSoportada extends ErrorEnLaBatallaEspacial {
+public class LaOperacionNoEstaSoportada extends ErrorEnLaBatallaEspacial {
 
     private static final long serialVersionUID = 2570110283419323752L;
 
-    public ErrorPorqueLaOperacionNoEstaSoportada(String operacion) {
+    public LaOperacionNoEstaSoportada(String operacion) {
         
         super("La operación no está soportada: " + operacion);
     }

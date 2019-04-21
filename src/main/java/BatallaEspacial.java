@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Optional;
 
 import espacial.Tablero;
-import espacial.excepciones.ErrorPorqueNoExisteBatallaEspacial;
+import espacial.excepciones.NoExisteBatallaEspacial;
 import espacial.piezas.CazaEspacial;
 import espacial.piezas.Pieza;
 
@@ -22,7 +22,7 @@ public class BatallaEspacial {
 
     public static BatallaEspacial obtener() {
 
-        return instancia.orElseThrow(ErrorPorqueNoExisteBatallaEspacial::new);
+        return instancia.orElseThrow(NoExisteBatallaEspacial::new);
     }
 
     public Nave[] obtenerNaves() {

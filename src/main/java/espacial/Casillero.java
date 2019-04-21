@@ -1,6 +1,6 @@
 package espacial;
 
-import espacial.excepciones.ErrorPorqueLaOperacionNoEstaSoportada;
+import espacial.excepciones.LaOperacionNoEstaSoportada;
 import espacial.piezas.Pieza;
 
 /**
@@ -114,13 +114,13 @@ public class Casillero {
         @Override
         public void moverPiezaA(Casillero destino) {
             
-            throw new ErrorPorqueLaOperacionNoEstaSoportada("Margen.moverPiezaA(Casillero)");
+            throw new LaOperacionNoEstaSoportada("Margen.moverPiezaA(Casillero)");
         }
         
         @Override
         public void ocuparCon(Pieza unaPieza) {
             
-            throw new ErrorPorqueLaOperacionNoEstaSoportada("Margen.ocuparCon(Pieza)");
+            throw new LaOperacionNoEstaSoportada("Margen.ocuparCon(Pieza)");
         }
     }
 }
