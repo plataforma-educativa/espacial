@@ -82,10 +82,12 @@ public class Casillero {
         return ! estaOcupado();
     }
 
+    /**
+     * @param direccion
+     * @return Casillero contiguo en Dirección {@code direccion} al Casillero
+     */
     public Casillero obtenerContiguoAl(Direccion direccion) {
         
-        Coordenada contiguo = direccion.trasladar(coordenada);
-        
-        return tablero.obtenerCasillero(contiguo.obtenerFila(), contiguo.obtenerColumna());
+        return tablero.obtenerCasillero(direccion.trasladar(coordenada));
     }
 }
