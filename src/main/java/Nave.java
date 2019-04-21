@@ -4,18 +4,18 @@ import espacial.piezas.Pieza;
 
 public class Nave {
 
+    private final BatallaEspacial partida;
     private final Pieza pieza;
     
     public Nave() {
 
-        pieza = BatallaEspacial.obtener().agregar(this);
+        partida = BatallaEspacial.obtener();
+        pieza = partida.agregar(this);
     }
 
     public void avanzarAlNorte() {
         
-        BatallaEspacial batalla = BatallaEspacial.obtener();
-        
-        Tablero tablero = batalla.obtenerTablero();
+        Tablero tablero = partida.obtenerTablero();
         
         Casillero origen = tablero.obtenerCasillero(pieza.obtenerPosicion().obtenerFila(), 
                                                     pieza.obtenerPosicion().obtenerColumna());

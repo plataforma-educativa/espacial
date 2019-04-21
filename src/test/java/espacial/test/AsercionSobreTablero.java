@@ -66,7 +66,7 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
     
     private void comprobarEspectroEsperadoSiNoFueAsertada(int fila, int columna) {
         
-        if (! coordenadasAsertadas.contains(new Coordenada(fila, columna))) {
+        if (! coordenadasAsertadas.contains(Coordenada.en(fila, columna))) {
             
             comprobarEspectroEsperadoEn(fila, columna);
         }
@@ -81,7 +81,7 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
 
     private void registrarCoordenadaAsertada(int fila, int columna) {
         
-        coordenadasAsertadas.add(new Coordenada(fila, columna));
+        coordenadasAsertadas.add(Coordenada.en(fila, columna));
     }
     
     public AsercionSobreTablero entre(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal) {

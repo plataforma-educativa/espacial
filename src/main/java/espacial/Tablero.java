@@ -39,7 +39,7 @@ public class Tablero {
         casilleros = new Casillero[contarFilas()][contarColumnas()];
         
         conCadaCoordenada((fila, columna) -> {
-            casilleros[indiceFila(fila)][indiceColumna(columna)] = new Casillero(fila, columna);
+            casilleros[indiceFila(fila)][indiceColumna(columna)] = new Casillero(this, fila, columna);
         });
     }
 
@@ -124,5 +124,10 @@ public class Tablero {
     public Casillero obtenerCasillero(int fila, int columna) {
         
         return casilleros[indiceFila(fila)][indiceColumna(columna)];
+    }
+
+    public Casillero obtenerCasillero(Coordenada coordenada) {
+
+        return obtenerCasillero(coordenada.obtenerFila(), coordenada.obtenerColumna());
     }
 }

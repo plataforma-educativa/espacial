@@ -12,12 +12,14 @@ import espacial.piezas.Pieza;
 public class Casillero {
 
     private final Coordenada coordenada;
+    private Tablero tablero;
     private Pieza pieza = null;
 
-    public Casillero(int fila, int columna) {
-        coordenada = new Coordenada(fila, columna);
+    public Casillero(Tablero contenedor, int fila, int columna) {
+        coordenada = Coordenada.en(fila, columna);
+        tablero = contenedor;
     }
-
+    
     /**
      * @return EspectroEspacial de la Pieza que ocupa el Casillero, o
      *         EspectroEspacial.VACIO en caso de estar desocupado.
@@ -78,5 +80,12 @@ public class Casillero {
     public boolean estaDesocupado() {
 
         return ! estaOcupado();
+    }
+
+    public Casillero obtenerContiguoAl(Direccion direccion) {
+        
+        Coordenada contiguo = direccion.trasladar(coordenada);
+        
+        return tablero.obtenerCasillero(contiguo.obtenerFila(), contiguo.obtenerColumna());
     }
 }

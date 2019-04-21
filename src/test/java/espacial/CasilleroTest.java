@@ -2,6 +2,7 @@ package espacial;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import espacial.piezas.Pieza;
@@ -10,6 +11,8 @@ import espacial.test.Prueba;
 
 public class CasilleroTest implements Prueba {
 
+    private Tablero tablero;
+    
     private final Pieza CONTENEDOR = new Pieza() {
 
         @Override
@@ -34,11 +37,17 @@ public class CasilleroTest implements Prueba {
             return EspectroEspacial.NAVE;
         }
     };
+  
+    @BeforeEach
+    public void crearTablero() {
+        
+        tablero = new Tablero();
+    }
     
     @Test
     public void escanearCuandoNoTienePieza() {
         
-        Casillero casillero = new Casillero(5, 2);
+        Casillero casillero = tablero.obtenerCasillero(5, 2);
         
         assertThat(casillero.escanear()).as("espectro escaneado")
             .isEqualTo(EspectroEspacial.VACIO);
@@ -47,7 +56,7 @@ public class CasilleroTest implements Prueba {
     @Test
     public void escanearCuandoTieneUnaPiezaQueEsUnContenedor() {
         
-        Casillero casillero = new Casillero(-9, 0);
+        Casillero casillero = tablero.obtenerCasillero(-9, 0);
         
         casillero.ocuparCon(CONTENEDOR);
 
@@ -58,7 +67,7 @@ public class CasilleroTest implements Prueba {
     @Test
     public void escanearCuandoTieneUnaPiezaQueEsUnAsteroide() {
         
-        Casillero casillero = new Casillero(3, 10);
+        Casillero casillero = tablero.obtenerCasillero(3, 10);
         
         casillero.ocuparCon(ASTEROIDE);
 
@@ -69,10 +78,10 @@ public class CasilleroTest implements Prueba {
     @Test
     public void moverPiezaEntreCasilleros() {
         
-        Casillero origen = new Casillero(0, 0);
+        Casillero origen = tablero.obtenerCasillero(0, 0);
         origen.ocuparCon(NAVE);
         
-        Casillero destino = new Casillero(0, 1);
+        Casillero destino = tablero.obtenerCasillero(0, 1);
         
         origen.moverPiezaA(destino);
         
@@ -93,7 +102,7 @@ public class CasilleroTest implements Prueba {
     @Test
     public void desocupar() {
         
-        Casillero casillero = new Casillero(4, 9);
+        Casillero casillero = tablero.obtenerCasillero(4, 9);
         casillero.ocuparCon(ASTEROIDE);
         
         casillero.desocupar();
@@ -113,7 +122,7 @@ public class CasilleroTest implements Prueba {
     @Test
     public void estaOcupado() {
         
-        Casillero casillero = new Casillero(3, 4);
+        Casillero casillero = tablero.obtenerCasillero(3, 4);
         casillero.ocuparCon(ASTEROIDE);
 
         comprobarQue(estaOcupado(casillero));
@@ -131,7 +140,7 @@ public class CasilleroTest implements Prueba {
     @Test
     public void estaDesocupado() {
         
-        Casillero casillero = new Casillero(4, -6);
+        Casillero casillero = tablero.obtenerCasillero(4, -6);
         
         comprobarQue(estaDesocupado(casillero));
     }
@@ -144,4 +153,34 @@ public class CasilleroTest implements Prueba {
             assertThat(casillero.estaDesocupado()).as("estaDesocupado").isTrue();
         });
     }
+    
+    @Test
+    public void obtenerContiguoAlNorte() {
+        
+        Casillero casillero = tablero.obtenerCasillero(0, 0);
+        
+        Casillero contiguo = casillero.obtenerContiguoAl(Direccion.NORTE);
+        
+        comprobarQue(elCasilleroEsEl(1, 0, contiguo));
+    }
+
+    @Test
+    public void obtenerContiguoAlSur() {
+        
+        Casillero casillero = tablero.obtenerCasillero(0, 0);
+        
+        Casillero contiguo = casillero.obtenerContiguoAl(Direccion.SUR);
+        
+        comprobarQue(elCasilleroEsEl(-1, 0, contiguo));
+    }
+
+    private Postcondicion elCasilleroEsEl(int fila, int columna, Casillero casillero) {
+
+        return postcondicion("el Casillero es el esperado", () -> {
+         
+            assertThat(casillero).as("casillero en [%d, %d]", fila, columna)
+                .isSameAs(tablero.obtenerCasillero(fila, columna));
+        });
+    }
+    
 }
