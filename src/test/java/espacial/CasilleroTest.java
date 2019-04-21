@@ -1,9 +1,15 @@
 package espacial;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.params.provider.Arguments.*;
+
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import espacial.piezas.Pieza;
 import espacial.test.Postcondicion;
@@ -154,24 +160,29 @@ public class CasilleroTest implements Prueba {
         });
     }
     
-    @Test
-    public void obtenerContiguoAlNorte() {
+    @ParameterizedTest
+    @MethodSource("contiguosPorDireccion")
+    public void obtenerContiguo(int fila, int columna, Direccion direccion, int filaEsperada, int columnaEsperada) {
         
-        Casillero casillero = tablero.obtenerCasillero(0, 0);
+        Casillero casillero = tablero.obtenerCasillero(fila, columna);
         
-        Casillero contiguo = casillero.obtenerContiguoAl(Direccion.NORTE);
+        Casillero contiguo = casillero.obtenerContiguoAl(direccion);
         
-        comprobarQue(elCasilleroEsEl(1, 0, contiguo));
+        comprobarQue(elCasilleroEsEl(filaEsperada, columnaEsperada, contiguo));
     }
-
-    @Test
-    public void obtenerContiguoAlSur() {
+    
+    public static Stream<Arguments> contiguosPorDireccion() {
         
-        Casillero casillero = tablero.obtenerCasillero(0, 0);
-        
-        Casillero contiguo = casillero.obtenerContiguoAl(Direccion.SUR);
-        
-        comprobarQue(elCasilleroEsEl(-1, 0, contiguo));
+        return Stream.of(
+                arguments(  0,  0, Direccion.NORTE,  1,  0 ),
+                arguments(  0,  0, Direccion.SUR,   -1,  0 ),
+                arguments(  0,  0, Direccion.ESTE,   0,  1 ),
+                arguments(  0,  0, Direccion.OESTE,  0, -1 ),
+                arguments(  5, 10, Direccion.OESTE,  5,  9 ),
+                arguments(  1, -6, Direccion.SUR,    0, -6 ),
+                arguments( -8, -7, Direccion.NORTE, -7, -7 ),
+                arguments(  2,  6, Direccion.ESTE,   2,  7 )
+        );
     }
 
     private Postcondicion elCasilleroEsEl(int fila, int columna, Casillero casillero) {
