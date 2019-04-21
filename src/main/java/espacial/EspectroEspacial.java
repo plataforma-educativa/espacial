@@ -2,5 +2,5 @@ package espacial;
 
 public enum EspectroEspacial {
 
-    BASE, VACIO, CONTENEDOR, ASTEROIDE, NAVE
+    BASE, VACIO, CONTENEDOR, ASTEROIDE, NAVE, DESCONOCIDO
 }

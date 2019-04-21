@@ -14,6 +14,7 @@ import espacial.piezas.Pieza;
  */
 public class Tablero {
 
+    private Casillero margen;
     private Casillero[][] casilleros;
     
     public Tablero() {
@@ -36,6 +37,7 @@ public class Tablero {
 
     private void inicializarCasilleros() {
 
+        margen = new Casillero.Margen(this);
         casilleros = new Casillero[contarFilas()][contarColumnas()];
         
         conCadaCoordenada((fila, columna) -> {
@@ -123,7 +125,16 @@ public class Tablero {
 
     public Casillero obtenerCasillero(int fila, int columna) {
         
-        return casilleros[indiceFila(fila)][indiceColumna(columna)];
+        return estaEnElMargen(fila, columna) ? 
+                margen : casilleros[indiceFila(fila)][indiceColumna(columna)];
+    }
+    
+    private boolean estaEnElMargen(int fila, int columna) {
+        
+        return (fila < obtenerFilaMinima()) || 
+               (fila > obtenerFilaMaxima()) ||
+               (columna < obtenerColumnaMinima()) || 
+               (columna > obtenerColumnaMaxima());
     }
 
     public Casillero obtenerCasillero(Coordenada coordenada) {

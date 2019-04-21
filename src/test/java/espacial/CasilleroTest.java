@@ -184,14 +184,51 @@ public class CasilleroTest implements Prueba {
                 arguments(  2,  6, Direccion.ESTE,   2,  7 )
         );
     }
-
+    
     private Postcondicion elCasilleroEsEl(int fila, int columna, Casillero casillero) {
-
+        
         return postcondicion("el Casillero es el esperado", () -> {
-         
+            
             assertThat(casillero).as("casillero en [%d, %d]", fila, columna)
                 .isSameAs(tablero.obtenerCasillero(fila, columna));
         });
     }
+
+    @ParameterizedTest
+    @MethodSource("contiguosPorDireccionEnElLimiteDelTablero")
+    public void obtenerContiguoCuandoEstaEnElLimiteDelTablero(int fila, int columna, Direccion direccion) {
+        
+        Casillero casillero = tablero.obtenerCasillero(fila, columna);
+        
+        Casillero contiguo = casillero.obtenerContiguoAl(direccion);
+        
+        comprobarQue(elCasilleroEsMargen(contiguo));
+    }
     
+    public static Stream<Arguments> contiguosPorDireccionEnElLimiteDelTablero() {
+        
+        return Stream.of(
+                arguments( 10,  0, Direccion.NORTE),
+                arguments( 10,-26, Direccion.NORTE),
+                arguments( 10, 26, Direccion.NORTE),
+                arguments(-10,  0, Direccion.SUR),
+                arguments(-10,-26, Direccion.SUR),
+                arguments(-10, 26, Direccion.SUR),
+                arguments(  0, 26, Direccion.ESTE),
+                arguments( 10, 26, Direccion.ESTE),
+                arguments(-10, 26, Direccion.ESTE),
+                arguments(  0,-26, Direccion.OESTE),
+                arguments( 10,-26, Direccion.OESTE),
+                arguments(-10,-26, Direccion.OESTE)
+        );
+    }
+
+    private Postcondicion elCasilleroEsMargen(Casillero contiguo) {
+
+        return postcondicion("el casillero esperado está en el margen", () -> {
+            
+            assertThat(contiguo.escanear()).isEqualTo(EspectroEspacial.DESCONOCIDO);
+        });
+    }
+
 }
