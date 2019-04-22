@@ -1,5 +1,12 @@
 package espacial;
 
+/**
+ * El Tablero del Juego está compuesto por un conjunto de Casilleros. Cada
+ * Casillero podrá estar ocupado por una Pieza del Juego.
+ * 
+ * @author Mariano Tugnarelli
+ *
+ */
 public interface Casillero {
 
     /**

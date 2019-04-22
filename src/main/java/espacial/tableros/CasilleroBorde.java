@@ -1,5 +1,10 @@
-package espacial;
+package espacial.tableros;
 
+import espacial.Casillero;
+import espacial.Direccion;
+import espacial.EspectroEspacial;
+import espacial.Pieza;
+import espacial.Tablero;
 import espacial.excepciones.LaOperacionNoEstaSoportada;
 
 public class CasilleroBorde implements Casillero {

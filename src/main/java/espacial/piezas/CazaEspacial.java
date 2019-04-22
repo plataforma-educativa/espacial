@@ -1,10 +1,10 @@
 package espacial.piezas;
 
 import espacial.Casillero;
-import espacial.CasilleroInterior;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.PiezaMovil;
+import espacial.tableros.CasilleroInterior;
 
 public class CazaEspacial implements PiezaMovil {
 

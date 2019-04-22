@@ -1,5 +1,7 @@
 package espacial;
 
+import espacial.tableros.CasilleroInterior;
+
 /**
  * Una Pieza es un elemento que participa de una Partida.
  * 

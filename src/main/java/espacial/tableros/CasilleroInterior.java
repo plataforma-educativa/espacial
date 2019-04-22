@@ -1,12 +1,12 @@
-package espacial;
+package espacial.tableros;
 
-/**
- * El Tablero del Juego está compuesto por un conjunto de Casilleros. Cada
- * Casillero podrá estar ocupado por una Pieza del Juego.
- * 
- * @author Mariano Tugnarelli
- *
- */
+import espacial.Casillero;
+import espacial.Coordenada;
+import espacial.Direccion;
+import espacial.EspectroEspacial;
+import espacial.Pieza;
+import espacial.Tablero;
+
 public class CasilleroInterior implements Casillero {
 
     private final Coordenada coordenada;
@@ -14,6 +14,7 @@ public class CasilleroInterior implements Casillero {
     private Pieza pieza = null;
 
     public CasilleroInterior(Tablero contenedor, int fila, int columna) {
+        
         coordenada = Coordenada.con(fila, columna);
         tablero = contenedor;
     }
@@ -50,10 +51,7 @@ public class CasilleroInterior implements Casillero {
         return pieza != null;
     }
 
-    /**
-     * @param direccionElegida
-     * @return Casillero contiguo en Dirección {@code direccion} al Casillero
-     */
+    @Override
     public Casillero obtenerContiguoEn(Direccion direccionElegida) {
         
         return tablero.obtenerCasilleroEn(direccionElegida.trasladar(coordenada));
