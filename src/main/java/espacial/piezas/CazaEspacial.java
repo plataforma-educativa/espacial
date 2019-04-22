@@ -3,9 +3,9 @@ package espacial.piezas;
 import espacial.Casillero;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
-import espacial.Pieza;
+import espacial.PiezaMovil;
 
-public class CazaEspacial implements Pieza {
+public class CazaEspacial implements PiezaMovil {
 
     private Casillero casillero;
     
