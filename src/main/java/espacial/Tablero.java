@@ -36,11 +36,11 @@ public class Tablero {
 
     private void inicializarCasilleros() {
 
-        borde = new Borde(this);
-        casilleros = new Casillero[contarFilas()][contarColumnas()];
+        borde = new CasilleroBorde(this);
+        casilleros = new CasilleroInterior[contarFilas()][contarColumnas()];
         
         conCadaCoordenada((fila, columna) -> {
-            casilleros[indiceFila(fila)][indiceColumna(columna)] = new Casillero(this, fila, columna);
+            casilleros[indiceFila(fila)][indiceColumna(columna)] = new CasilleroInterior(this, fila, columna);
         });
     }
 

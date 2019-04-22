@@ -19,7 +19,7 @@ public interface Pieza {
      *      {@code casillero} de un Tablero.
      * @param casillero
      */
-    default void fueColocadaEn(Casillero casillero) {
+    default void fueColocadaEn(CasilleroInterior casillero) {
 
     }
 }

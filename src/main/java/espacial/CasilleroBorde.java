@@ -2,11 +2,10 @@ package espacial;
 
 import espacial.excepciones.LaOperacionNoEstaSoportada;
 
-public class Borde extends Casillero {
+public class CasilleroBorde implements Casillero {
 
-    public Borde(Tablero contenedor) {
+    public CasilleroBorde(Tablero contenedor) {
         
-        super(contenedor, Integer.MAX_VALUE, Integer.MAX_VALUE);
     }
     
     @Override
@@ -24,12 +23,24 @@ public class Borde extends Casillero {
     @Override
     public void moverPiezaA(Casillero destino) {
         
-        throw new LaOperacionNoEstaSoportada("Borde.moverPiezaA(Casillero)");
+        throw new LaOperacionNoEstaSoportada("CasilleroBorde.moverPiezaA(Casillero)");
     }
     
     @Override
     public void ocuparCon(Pieza unaPieza) {
         
-        throw new LaOperacionNoEstaSoportada("Borde.ocuparCon(Pieza)");
+        throw new LaOperacionNoEstaSoportada("CasilleroBorde.ocuparCon(Pieza)");
+    }
+
+    @Override
+    public void desocupar() {
+
+        throw new LaOperacionNoEstaSoportada("CasilleroBorde.desocupar()");
+    }
+
+    @Override
+    public boolean estaOcupado() {
+    
+        return false;
     }
 }

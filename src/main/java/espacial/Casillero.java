@@ -1,32 +1,13 @@
 package espacial;
 
-/**
- * El Tablero del Juego está compuesto por un conjunto de Casilleros. Cada
- * Casillero podrá estar ocupado por una Pieza del Juego.
- * 
- * @author Mariano Tugnarelli
- *
- */
-public class Casillero {
+public interface Casillero {
 
-    private final Coordenada coordenada;
-    private Tablero tablero;
-    private Pieza pieza = null;
-
-    public Casillero(Tablero contenedor, int fila, int columna) {
-        coordenada = Coordenada.con(fila, columna);
-        tablero = contenedor;
-    }
-    
     /**
      * @return EspectroEspacial de la Pieza que ocupa el Casillero, o
      *         EspectroEspacial.VACIO en caso de estar desocupado.
      */
-    public EspectroEspacial escanear() {
-
-        return pieza != null ? pieza.escanear() : EspectroEspacial.VACIO;
-    }
-
+    EspectroEspacial escanear();
+    
     /**
      * @pre el Casillero no está ocupado.
      * @pre {@code unaPieza} no está asociada a otro Casillero.
@@ -34,11 +15,7 @@ public class Casillero {
      * 
      * @param unaPieza
      */
-    public void ocuparCon(Pieza unaPieza) {
-
-        pieza = unaPieza;
-        pieza.fueColocadaEn(this);
-    }
+    void ocuparCon(Pieza unaPieza);
 
     /**
      * @pre el Casillero está ocupado.
@@ -48,44 +25,29 @@ public class Casillero {
      * 
      * @param destino
      */
-    public void moverPiezaA(Casillero destino) {
-
-        Pieza piezaMovida = pieza;
-        desocupar();
-        destino.ocuparCon(piezaMovida);
-    }
+    void moverPiezaA(Casillero destino);
 
     /**
      * @pre el Casillero está ocupado por una Pieza.
      * @post remueve la Pieza del Casillero.
      */
-    public void desocupar() {
-
-        pieza = null;
-    }
+    void desocupar();
 
     /**
      * @return si una Pieza está asociada a este Casillero.
      */
-    public boolean estaOcupado() {
-        
-        return pieza != null;
-    }
+    boolean estaOcupado();
 
     /**
      * @return si no hay una Pieza asociada a este Casillero.
      */
-    public boolean estaDesocupado() {
-
+    default boolean estaDesocupado() {
         return ! estaOcupado();
     }
-
+    
     /**
      * @param direccionElegida
      * @return Casillero contiguo en Dirección {@code direccion} al Casillero
      */
-    public Casillero obtenerContiguoEn(Direccion direccionElegida) {
-        
-        return tablero.obtenerCasilleroEn(direccionElegida.trasladar(coordenada));
-    }
+    Casillero obtenerContiguoEn(Direccion direccionElegida);
 }
