@@ -1,6 +1,5 @@
 package espacial;
 
-import espacial.excepciones.LaOperacionNoEstaSoportada;
 import espacial.piezas.Pieza;
 
 /**
@@ -90,37 +89,5 @@ public class Casillero {
     public Casillero obtenerContiguoAl(Direccion direccion) {
         
         return tablero.obtenerCasillero(direccion.trasladar(coordenada));
-    }
-    
-    protected static class Margen extends Casillero {
-
-        public Margen(Tablero contenedor) {
-            
-            super(contenedor, Integer.MAX_VALUE, Integer.MAX_VALUE);
-        }
-        
-        @Override
-        public EspectroEspacial escanear() {
-            
-            return EspectroEspacial.DESCONOCIDO;
-        }
-        
-        @Override
-        public Casillero obtenerContiguoAl(Direccion direccion) {
-            
-            return this;
-        }
-        
-        @Override
-        public void moverPiezaA(Casillero destino) {
-            
-            throw new LaOperacionNoEstaSoportada("Margen.moverPiezaA(Casillero)");
-        }
-        
-        @Override
-        public void ocuparCon(Pieza unaPieza) {
-            
-            throw new LaOperacionNoEstaSoportada("Margen.ocuparCon(Pieza)");
-        }
     }
 }

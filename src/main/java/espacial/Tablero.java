@@ -37,7 +37,7 @@ public class Tablero {
 
     private void inicializarCasilleros() {
 
-        margen = new Casillero.Margen(this);
+        margen = new Borde(this);
         casilleros = new Casillero[contarFilas()][contarColumnas()];
         
         conCadaCoordenada((fila, columna) -> {
