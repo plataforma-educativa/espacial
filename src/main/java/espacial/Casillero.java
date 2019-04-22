@@ -86,6 +86,6 @@ public class Casillero {
      */
     public Casillero obtenerContiguoEn(Direccion direccionElegida) {
         
-        return tablero.obtenerCasillero(direccionElegida.trasladar(coordenada));
+        return tablero.obtenerCasilleroEn(direccionElegida.trasladar(coordenada));
     }
 }

@@ -52,7 +52,7 @@ public class CasilleroTest implements Prueba {
     @Test
     public void escanearCuandoNoTienePieza() {
         
-        Casillero casillero = tablero.obtenerCasillero(5, 2);
+        Casillero casillero = tablero.obtenerCasilleroEn(5, 2);
         
         assertThat(casillero.escanear()).as("espectro escaneado")
             .isEqualTo(EspectroEspacial.VACIO);
@@ -61,7 +61,7 @@ public class CasilleroTest implements Prueba {
     @Test
     public void escanearCuandoTieneUnaPiezaQueEsUnContenedor() {
         
-        Casillero casillero = tablero.obtenerCasillero(-9, 0);
+        Casillero casillero = tablero.obtenerCasilleroEn(-9, 0);
         
         casillero.ocuparCon(CONTENEDOR);
 
@@ -72,7 +72,7 @@ public class CasilleroTest implements Prueba {
     @Test
     public void escanearCuandoTieneUnaPiezaQueEsUnAsteroide() {
         
-        Casillero casillero = tablero.obtenerCasillero(3, 10);
+        Casillero casillero = tablero.obtenerCasilleroEn(3, 10);
         
         casillero.ocuparCon(ASTEROIDE);
 
@@ -83,10 +83,10 @@ public class CasilleroTest implements Prueba {
     @Test
     public void moverPiezaEntreCasilleros() {
         
-        Casillero origen = tablero.obtenerCasillero(0, 0);
+        Casillero origen = tablero.obtenerCasilleroEn(0, 0);
         origen.ocuparCon(NAVE);
         
-        Casillero destino = tablero.obtenerCasillero(0, 1);
+        Casillero destino = tablero.obtenerCasilleroEn(0, 1);
         
         origen.moverPiezaA(destino);
         
@@ -107,7 +107,7 @@ public class CasilleroTest implements Prueba {
     @Test
     public void desocupar() {
         
-        Casillero casillero = tablero.obtenerCasillero(4, 9);
+        Casillero casillero = tablero.obtenerCasilleroEn(4, 9);
         casillero.ocuparCon(ASTEROIDE);
         
         casillero.desocupar();
@@ -127,7 +127,7 @@ public class CasilleroTest implements Prueba {
     @Test
     public void estaOcupado() {
         
-        Casillero casillero = tablero.obtenerCasillero(3, 4);
+        Casillero casillero = tablero.obtenerCasilleroEn(3, 4);
         casillero.ocuparCon(ASTEROIDE);
 
         comprobarQue(estaOcupado(casillero));
@@ -145,7 +145,7 @@ public class CasilleroTest implements Prueba {
     @Test
     public void estaDesocupado() {
         
-        Casillero casillero = tablero.obtenerCasillero(4, -6);
+        Casillero casillero = tablero.obtenerCasilleroEn(4, -6);
         
         comprobarQue(estaDesocupado(casillero));
     }
@@ -164,7 +164,7 @@ public class CasilleroTest implements Prueba {
     public void obtenerContiguo(int fila, int columna, Direccion direccionElegida, 
                                 int filaEsperada, int columnaEsperada) {
         
-        Casillero casillero = tablero.obtenerCasillero(fila, columna);
+        Casillero casillero = tablero.obtenerCasilleroEn(fila, columna);
         
         Casillero contiguo = casillero.obtenerContiguoEn(direccionElegida);
         
@@ -190,7 +190,7 @@ public class CasilleroTest implements Prueba {
         return postcondicion("el Casillero es el esperado", () -> {
             
             assertThat(casillero).as("casillero en [%d, %d]", fila, columna)
-                .isSameAs(tablero.obtenerCasillero(fila, columna));
+                .isSameAs(tablero.obtenerCasilleroEn(fila, columna));
         });
     }
 
@@ -198,7 +198,7 @@ public class CasilleroTest implements Prueba {
     @MethodSource("contiguosPorDireccionEnElLimiteDelTablero")
     public void obtenerContiguoCuandoEstaEnElLimiteDelTablero(int fila, int columna, Direccion direccionElegida) {
         
-        Casillero casillero = tablero.obtenerCasillero(fila, columna);
+        Casillero casillero = tablero.obtenerCasilleroEn(fila, columna);
         
         Casillero contiguo = casillero.obtenerContiguoEn(direccionElegida);
         

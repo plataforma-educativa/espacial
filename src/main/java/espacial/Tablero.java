@@ -79,7 +79,7 @@ public class Tablero {
 
     public EspectroEspacial escanearEn(int fila, int columna) {
 
-        return obtenerCasillero(fila, columna).escanear(); 
+        return obtenerCasilleroEn(fila, columna).escanear(); 
     }
 
     public int obtenerFilaMaxima() {
@@ -122,7 +122,7 @@ public class Tablero {
         }
     }
 
-    public Casillero obtenerCasillero(int fila, int columna) {
+    public Casillero obtenerCasilleroEn(int fila, int columna) {
         
         return estaEnElMargen(fila, columna) ? 
                 margen : casilleros[indiceFila(fila)][indiceColumna(columna)];
@@ -136,8 +136,8 @@ public class Tablero {
                (columna > obtenerColumnaMaxima());
     }
 
-    public Casillero obtenerCasillero(Coordenada coordenada) {
+    public Casillero obtenerCasilleroEn(Coordenada coordenada) {
 
-        return obtenerCasillero(coordenada.obtenerFila(), coordenada.obtenerColumna());
+        return obtenerCasilleroEn(coordenada.obtenerFila(), coordenada.obtenerColumna());
     }
 }

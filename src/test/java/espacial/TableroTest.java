@@ -38,23 +38,23 @@ public class TableroTest {
     }
     
     @Test
-    public void obtenerCasillero() {
+    public void obtenerCasilleroEnFilaColumna() {
         
         Tablero tablero = new Tablero();
         
-        Casillero casillero = tablero.obtenerCasillero(0,0);
+        Casillero casillero = tablero.obtenerCasilleroEn(0,0);
         
         assertThat(casillero.escanear()).isEqualTo(EspectroEspacial.BASE);
     }
     
     @Test
-    public void obtenerCasilleroConCoordenada() {
+    public void obtenerCasilleroEnCoordenada() {
         
         Tablero tablero = new Tablero();
         
-        Casillero casillero = tablero.obtenerCasillero(Coordenada.en(0, 0));
+        Casillero casillero = tablero.obtenerCasilleroEn(Coordenada.en(0, 0));
         
-        assertThat(casillero).isEqualTo(tablero.obtenerCasillero(0,0));
+        assertThat(casillero).isEqualTo(tablero.obtenerCasilleroEn(0,0));
         assertThat(casillero.escanear()).isEqualTo(EspectroEspacial.BASE);
     }
 }
