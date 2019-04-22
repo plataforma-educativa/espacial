@@ -11,13 +11,4 @@ public interface Pieza {
     default void moverEn(Direccion direccion) {
         
     }
-    
-    default void posicionar(Coordenada coordenada) {
-        
-    }
-    
-    default Coordenada obtenerPosicion() {
-        
-        return null;
-    }
 }

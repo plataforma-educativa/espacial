@@ -37,7 +37,6 @@ public class Casillero {
     public void ocuparCon(Pieza unaPieza) {
 
         pieza = unaPieza;
-        pieza.posicionar(coordenada);
         pieza.fueColocadaEn(this);
     }
 
