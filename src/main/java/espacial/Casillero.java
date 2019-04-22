@@ -14,7 +14,7 @@ public class Casillero {
     private Pieza pieza = null;
 
     public Casillero(Tablero contenedor, int fila, int columna) {
-        coordenada = Coordenada.en(fila, columna);
+        coordenada = Coordenada.con(fila, columna);
         tablero = contenedor;
     }
     

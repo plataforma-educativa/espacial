@@ -19,7 +19,7 @@ public enum Direccion {
     
     public Coordenada trasladar(Coordenada coordenada) {
         
-        return Coordenada.en(coordenada.obtenerFila()    + versorFila,
+        return Coordenada.con(coordenada.obtenerFila()    + versorFila,
                              coordenada.obtenerColumna() + versorColumna);
     }
 }

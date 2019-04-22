@@ -30,7 +30,7 @@ public class TableroTest {
         
         tablero.conCadaCoordenada( (fila, columna) -> {
            
-            coordenadasIteradas.add(Coordenada.en(fila, columna));
+            coordenadasIteradas.add(Coordenada.con(fila, columna));
         });
         
         assertThat(coordenadasIteradas).as("conjunto con las coordenadas iteradas")
@@ -52,7 +52,7 @@ public class TableroTest {
         
         Tablero tablero = new Tablero();
         
-        Casillero casillero = tablero.obtenerCasilleroEn(Coordenada.en(0, 0));
+        Casillero casillero = tablero.obtenerCasilleroEn(Coordenada.con(0, 0));
         
         assertThat(casillero).isEqualTo(tablero.obtenerCasilleroEn(0,0));
         assertThat(casillero.escanear()).isEqualTo(EspectroEspacial.BASE);

@@ -12,7 +12,7 @@ public class CoordenadaTest implements Prueba {
     @Test
     public void crearConFilaColumna() {
         
-        Coordenada coordenada = Coordenada.en(5, 3);
+        Coordenada coordenada = Coordenada.con(5, 3);
         
         comprobarQue(fueInicializada(coordenada, 5, 3));
     }
@@ -29,7 +29,7 @@ public class CoordenadaTest implements Prueba {
     @Test
     public void sonIgualesSiSonElMismoObjeto() {
         
-        Coordenada coordenada = Coordenada.en(2, 4);
+        Coordenada coordenada = Coordenada.con(2, 4);
         
         assertThat(coordenada.equals(coordenada)).isTrue();
     }
@@ -37,8 +37,8 @@ public class CoordenadaTest implements Prueba {
     @Test
     public void sonIgualesSiCoincideFilaColumna() {
         
-        Coordenada unaCoordenada = Coordenada.en(3, 9);
-        Coordenada otraCoordenada = Coordenada.en(3, 9);
+        Coordenada unaCoordenada = Coordenada.con(3, 9);
+        Coordenada otraCoordenada = Coordenada.con(3, 9);
         
         assertThat(unaCoordenada.equals(otraCoordenada)).isTrue();
         assertThat(otraCoordenada.equals(unaCoordenada)).isTrue();
@@ -47,8 +47,8 @@ public class CoordenadaTest implements Prueba {
     @Test
     public void noSonIgualesSiSoloCoincideFila() {
         
-        Coordenada unaCoordenada = Coordenada.en(5, 8);
-        Coordenada otraCoordenada = Coordenada.en(5, -6);
+        Coordenada unaCoordenada = Coordenada.con(5, 8);
+        Coordenada otraCoordenada = Coordenada.con(5, -6);
         
         assertThat(unaCoordenada.equals(otraCoordenada)).isFalse();
         assertThat(otraCoordenada.equals(unaCoordenada)).isFalse();
@@ -57,8 +57,8 @@ public class CoordenadaTest implements Prueba {
     @Test
     public void noSonIgualesSiSoloCoincideLaColumna() {
         
-        Coordenada unaCoordenada = Coordenada.en(2, 5);
-        Coordenada otraCoordenada = Coordenada.en(-1, 5);
+        Coordenada unaCoordenada = Coordenada.con(2, 5);
+        Coordenada otraCoordenada = Coordenada.con(-1, 5);
         
         assertThat(unaCoordenada.equals(otraCoordenada)).isFalse();
         assertThat(otraCoordenada.equals(unaCoordenada)).isFalse();
@@ -67,8 +67,8 @@ public class CoordenadaTest implements Prueba {
     @Test
     public void siSonIgualesTieneElMismoHash() {
         
-        Coordenada unaCoordenada = Coordenada.en(2, 5);
-        Coordenada otraCoordenada = Coordenada.en(2, 5);
+        Coordenada unaCoordenada = Coordenada.con(2, 5);
+        Coordenada otraCoordenada = Coordenada.con(2, 5);
 
         assertThat(unaCoordenada).hasSameHashCodeAs(otraCoordenada);
     }

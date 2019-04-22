@@ -7,7 +7,7 @@ public class Coordenada {
     private final int fila;
     private final int columna;
     
-    public static Coordenada en(int fila, int columna) {
+    public static Coordenada con(int fila, int columna) {
 
         return new Coordenada(fila, columna);
     }
