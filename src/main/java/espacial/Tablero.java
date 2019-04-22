@@ -13,7 +13,7 @@ import espacial.piezas.ContenedorDeAntimateria;
  */
 public class Tablero {
 
-    private Casillero margen;
+    private Casillero borde;
     private Casillero[][] casilleros;
     
     public Tablero() {
@@ -36,7 +36,7 @@ public class Tablero {
 
     private void inicializarCasilleros() {
 
-        margen = new Borde(this);
+        borde = new Borde(this);
         casilleros = new Casillero[contarFilas()][contarColumnas()];
         
         conCadaCoordenada((fila, columna) -> {
@@ -124,11 +124,11 @@ public class Tablero {
 
     public Casillero obtenerCasilleroEn(int fila, int columna) {
         
-        return estaEnElMargen(fila, columna) ? 
-                margen : casilleros[indiceFila(fila)][indiceColumna(columna)];
+        return estaEnElBorde(fila, columna) ? 
+                borde : casilleros[indiceFila(fila)][indiceColumna(columna)];
     }
     
-    private boolean estaEnElMargen(int fila, int columna) {
+    private boolean estaEnElBorde(int fila, int columna) {
         
         return (fila < obtenerFilaMinima()) || 
                (fila > obtenerFilaMaxima()) ||
