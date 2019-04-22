@@ -1,7 +1,6 @@
 package espacial;
 
 import espacial.excepciones.LaOperacionNoEstaSoportada;
-import espacial.piezas.Pieza;
 
 public class Borde extends Casillero {
 

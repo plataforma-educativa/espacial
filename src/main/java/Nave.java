@@ -1,6 +1,6 @@
 import espacial.Casillero;
+import espacial.Pieza;
 import espacial.Tablero;
-import espacial.piezas.Pieza;
 
 public class Nave {
 

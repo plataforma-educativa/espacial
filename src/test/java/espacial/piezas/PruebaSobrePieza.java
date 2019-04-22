@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import espacial.EspectroEspacial;
+import espacial.Pieza;
 import espacial.test.Postcondicion;
 import espacial.test.Prueba;
 

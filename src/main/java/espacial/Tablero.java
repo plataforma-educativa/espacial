@@ -3,7 +3,6 @@ package espacial;
 import espacial.piezas.Asteroide;
 import espacial.piezas.BaseEspacial;
 import espacial.piezas.ContenedorDeAntimateria;
-import espacial.piezas.Pieza;
 
 /**
  * El Tablero mantiene el ordenamiento relativo de las Piezas en una Partida.

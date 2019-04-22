@@ -11,7 +11,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import espacial.piezas.Pieza;
 import espacial.test.Postcondicion;
 import espacial.test.Prueba;
 

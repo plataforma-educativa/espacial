@@ -1,7 +1,4 @@
-package espacial.piezas;
-
-import espacial.Coordenada;
-import espacial.EspectroEspacial;
+package espacial;
 
 public interface Pieza {
     

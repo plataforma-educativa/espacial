@@ -2,6 +2,7 @@ package espacial.piezas;
 
 import espacial.Coordenada;
 import espacial.EspectroEspacial;
+import espacial.Pieza;
 
 public class CazaEspacial implements Pieza {
 

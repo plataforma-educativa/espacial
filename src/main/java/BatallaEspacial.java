@@ -2,10 +2,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import espacial.Pieza;
 import espacial.Tablero;
 import espacial.excepciones.NoExisteBatallaEspacial;
 import espacial.piezas.CazaEspacial;
-import espacial.piezas.Pieza;
 
 public class BatallaEspacial {
 
