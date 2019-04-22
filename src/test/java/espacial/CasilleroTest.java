@@ -161,11 +161,12 @@ public class CasilleroTest implements Prueba {
     
     @ParameterizedTest
     @MethodSource("contiguosPorDireccion")
-    public void obtenerContiguo(int fila, int columna, Direccion direccion, int filaEsperada, int columnaEsperada) {
+    public void obtenerContiguo(int fila, int columna, Direccion direccionElegida, 
+                                int filaEsperada, int columnaEsperada) {
         
         Casillero casillero = tablero.obtenerCasillero(fila, columna);
         
-        Casillero contiguo = casillero.obtenerContiguoAl(direccion);
+        Casillero contiguo = casillero.obtenerContiguoEn(direccionElegida);
         
         comprobarQue(elCasilleroEsEl(filaEsperada, columnaEsperada, contiguo));
     }
@@ -195,11 +196,11 @@ public class CasilleroTest implements Prueba {
 
     @ParameterizedTest
     @MethodSource("contiguosPorDireccionEnElLimiteDelTablero")
-    public void obtenerContiguoCuandoEstaEnElLimiteDelTablero(int fila, int columna, Direccion direccion) {
+    public void obtenerContiguoCuandoEstaEnElLimiteDelTablero(int fila, int columna, Direccion direccionElegida) {
         
         Casillero casillero = tablero.obtenerCasillero(fila, columna);
         
-        Casillero contiguo = casillero.obtenerContiguoAl(direccion);
+        Casillero contiguo = casillero.obtenerContiguoEn(direccionElegida);
         
         comprobarQue(elCasilleroEsMargen(contiguo));
     }

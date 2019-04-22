@@ -22,9 +22,9 @@ public class CazaEspacial implements Pieza {
     }
 
     @Override
-    public void moverEn(Direccion direccion) {
+    public void moverEn(Direccion direccionElegida) {
         
-        Casillero destino = casillero.obtenerContiguoAl(direccion);
+        Casillero destino = casillero.obtenerContiguoEn(direccionElegida);
         
         casillero.moverPiezaA(destino);
     }

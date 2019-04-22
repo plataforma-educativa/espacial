@@ -16,7 +16,7 @@ public class Borde extends Casillero {
     }
     
     @Override
-    public Casillero obtenerContiguoAl(Direccion direccion) {
+    public Casillero obtenerContiguoEn(Direccion direccion) {
         
         return this;
     }

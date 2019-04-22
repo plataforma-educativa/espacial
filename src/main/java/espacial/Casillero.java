@@ -81,11 +81,11 @@ public class Casillero {
     }
 
     /**
-     * @param direccion
+     * @param direccionElegida
      * @return Casillero contiguo en Dirección {@code direccion} al Casillero
      */
-    public Casillero obtenerContiguoAl(Direccion direccion) {
+    public Casillero obtenerContiguoEn(Direccion direccionElegida) {
         
-        return tablero.obtenerCasillero(direccion.trasladar(coordenada));
+        return tablero.obtenerCasillero(direccionElegida.trasladar(coordenada));
     }
 }
