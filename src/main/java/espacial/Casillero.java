@@ -38,6 +38,7 @@ public class Casillero {
 
         pieza = unaPieza;
         pieza.posicionar(coordenada);
+        pieza.fueColocadaEn(this);
     }
 
     /**

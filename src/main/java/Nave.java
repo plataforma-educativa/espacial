@@ -1,6 +1,5 @@
-import espacial.Casillero;
+import espacial.Direccion;
 import espacial.Pieza;
-import espacial.Tablero;
 
 public class Nave {
 
@@ -15,12 +14,6 @@ public class Nave {
 
     public void avanzarAlNorte() {
         
-        Tablero tablero = partida.obtenerTablero();
-        
-        Casillero origen = tablero.obtenerCasillero(pieza.obtenerPosicion().obtenerFila(), 
-                                                    pieza.obtenerPosicion().obtenerColumna());
-        Casillero destino = tablero.obtenerCasillero(pieza.obtenerPosicion().obtenerFila() + 1,
-                                                     pieza.obtenerPosicion().obtenerColumna());
-        origen.moverPiezaA(destino);
+        pieza.moverEn(Direccion.NORTE);
     }
 }
