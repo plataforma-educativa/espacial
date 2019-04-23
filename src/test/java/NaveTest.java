@@ -180,4 +180,37 @@ public class NaveTest implements Prueba {
                 .tieneVacio().en(0, 0);
         });
     }
+    
+    @Test
+    public void noPuedeAvanzarSiExisteUnAsteroideEnElCasilleroDestino() {
+        
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(unaNaveEstaAlEsteDeUnAsteroide());
+        
+        unaNave.avanzarAlOeste();
+        
+        comprobarQue(unaNaveNoSeMovioDeCasillero());
+    }
+
+    private Precondicion unaNaveEstaAlEsteDeUnAsteroide() {
+
+        return precondicion("unNave está al ESTE de un ASTEROIDE", () -> {
+          
+            unaNave = new Nave();
+            unaNave.avanzarAlNorte();
+            unaNave.avanzarAlOeste();
+            unaNave.avanzarAlOeste();
+        });
+    }
+    
+    private Postcondicion unaNaveNoSeMovioDeCasillero() {
+
+        return postcondicion("unaNave no se movio de casillero", () -> {
+          
+            assertThat(batallaEspacial.obtenerTablero())
+                .tieneNave().en(1, -2)
+                .tieneAsteroide().en(1, -3);
+        });
+    }
+    
 }

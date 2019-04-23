@@ -27,6 +27,9 @@ public class CazaEspacial implements PiezaMovil {
         
         Casillero destino = casillero.obtenerContiguoEn(direccionElegida);
         
-        casillero.moverPiezaA(destino);
+        if (destino.estaDesocupado()) {
+            
+            casillero.moverPiezaA(destino);
+        }
     }
 }
