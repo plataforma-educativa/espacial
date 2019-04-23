@@ -31,4 +31,9 @@ public class Nave {
 
         pieza.moverEn(Direccion.OESTE);
     }
+
+    public int consultarNivelDeEscudos() {
+
+        return pieza.obtenerNivelDeEscudos();
+    }
 }

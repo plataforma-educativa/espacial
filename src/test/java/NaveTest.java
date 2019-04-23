@@ -190,6 +190,7 @@ public class NaveTest implements Prueba {
         unaNave.avanzarAlOeste();
         
         comprobarQue(unaNaveNoSeMovioDeCasillero());
+        comprobarQue(unaNaveSufrioElChoqueContraElAsteroide());
     }
 
     private Precondicion unaNaveEstaAlEsteDeUnAsteroide() {
@@ -212,5 +213,33 @@ public class NaveTest implements Prueba {
                 .tieneAsteroide().en(1, -3);
         });
     }
+
+    @Test
+    private Postcondicion unaNaveSufrioElChoqueContraElAsteroide() {
+
+        return postcondicion("unaNave sufrió el choque contra el ASTEROIDE", () -> {
+          
+            assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos")
+                .isEqualTo(75);
+        });
+    }
     
+    @Test
+    public void consultarNivelDeEscudos() {
+        
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNave());
+        
+        int escudos = unaNave.consultarNivelDeEscudos();
+
+        comprobarQue(estaAlMaximoElNivel(escudos));
+    }
+
+    private Postcondicion estaAlMaximoElNivel(int escudos) {
+
+        return postcondicion("esta al maximo su nivel de escudos", () -> {
+          
+            assertThat(escudos).isEqualTo(100);
+        });
+    }
 }

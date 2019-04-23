@@ -8,6 +8,7 @@ import espacial.tableros.CasilleroInterior;
 
 public class CazaEspacial implements PiezaMovil {
 
+    private int nivelDeEscudos = 100;
     private CasilleroInterior casillero;
     
     @Override
@@ -30,6 +31,16 @@ public class CazaEspacial implements PiezaMovil {
         if (destino.estaDesocupado()) {
             
             casillero.moverPiezaA(destino);
+
+        } else {
+        
+            nivelDeEscudos -= 25;
         }
+    }
+
+    @Override
+    public int obtenerNivelDeEscudos() {
+        
+        return nivelDeEscudos;
     }
 }
