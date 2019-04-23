@@ -16,4 +16,19 @@ public class Nave {
         
         pieza.moverEn(Direccion.NORTE);
     }
+
+    public void avanzarAlSur() {
+
+        pieza.moverEn(Direccion.SUR);
+    }
+
+    public void avanzarAlEste() {
+
+        pieza.moverEn(Direccion.ESTE);
+    }
+
+    public void avanzarAlOeste() {
+
+        pieza.moverEn(Direccion.OESTE);
+    }
 }

@@ -95,7 +95,6 @@ public class NaveTest implements Prueba {
         });
     }
     
-
     @Test
     public void avanzarAlNorteTresVeces() {
         
@@ -119,5 +118,66 @@ public class NaveTest implements Prueba {
         });
     }
     
+    @Test
+    public void avanzarAlSur() {
+        
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNave());
+
+        unaNave.avanzarAlSur();
+        
+        comprobarQue(unaNaveEstaAlSurDeLaBase());
+    }
     
+    private Postcondicion unaNaveEstaAlSurDeLaBase() {
+        
+        return postcondicion("la Nave está al SUR de la Base", () -> {
+        
+            assertThat(batallaEspacial.obtenerTablero())
+                .tieneNave().en(-1, 0)
+                .tieneVacio().en(0, 0);
+        });
+    }
+
+    @Test
+    public void avanzarAlEste() {
+        
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNave());
+
+        unaNave.avanzarAlEste();
+        
+        comprobarQue(unaNaveEstaAlEsteDeLaBase());
+    }
+    
+    private Postcondicion unaNaveEstaAlEsteDeLaBase() {
+        
+        return postcondicion("la Nave está al ESTE de la Base", () -> {
+        
+            assertThat(batallaEspacial.obtenerTablero())
+                .tieneNave().en(0, 1)
+                .tieneVacio().en(0, 0);
+        });
+    }
+
+    @Test
+    public void avanzarAlOeste() {
+        
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNave());
+
+        unaNave.avanzarAlOeste();
+        
+        comprobarQue(unaNaveEstaAlOesteDeLaBase());
+    }
+    
+    private Postcondicion unaNaveEstaAlOesteDeLaBase() {
+        
+        return postcondicion("la Nave está al OESTE de la Base", () -> {
+        
+            assertThat(batallaEspacial.obtenerTablero())
+                .tieneNave().en(0, -1)
+                .tieneVacio().en(0, 0);
+        });
+    }
 }
