@@ -3,6 +3,7 @@ package espacial.piezas;
 import espacial.Casillero;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
+import espacial.Pieza;
 import espacial.PiezaMovil;
 import espacial.tableros.CasilleroInterior;
 
@@ -28,14 +29,7 @@ public class CazaEspacial implements PiezaMovil {
         
         Casillero destino = casillero.obtenerContiguoEn(direccionElegida);
         
-        if (destino.estaDesocupado()) {
-            
-            casillero.moverPiezaA(destino);
-
-        } else {
-
-            destino.obtener().fueChocadaPor(this);
-        }
+        casillero.moverPiezaA(destino);
     }
 
     @Override
@@ -54,5 +48,11 @@ public class CazaEspacial implements PiezaMovil {
     public void chocoContraUnContenedor() {
 
         nivelDeEscudos -= 10;
+    }
+    
+    @Override
+    public void chocarCon(Pieza pieza) {
+        
+        pieza.fueChocadaPor(this);
     }
 }

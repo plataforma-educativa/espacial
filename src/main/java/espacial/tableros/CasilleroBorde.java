@@ -38,12 +38,6 @@ public class CasilleroBorde implements Casillero {
     }
 
     @Override
-    public Pieza obtener() {
-
-        throw new LaOperacionNoEstaSoportada("CasilleroBorde.obtener()");
-    }
-    
-    @Override
     public void desocupar() {
 
         throw new LaOperacionNoEstaSoportada("CasilleroBorde.desocupar()");
@@ -53,5 +47,10 @@ public class CasilleroBorde implements Casillero {
     public boolean estaOcupado() {
     
         return false;
+    }
+
+    @Override
+    public void chocarPiezaCon(Pieza otraPieza) {
+        
     }
 }

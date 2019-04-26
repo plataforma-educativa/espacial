@@ -1,5 +1,6 @@
 package espacial;
 
+import espacial.excepciones.LaOperacionNoEstaSoportada;
 import espacial.tableros.CasilleroInterior;
 
 /**
@@ -31,5 +32,11 @@ public interface Pieza {
      */
     default void fueChocadaPor(PiezaMovil otraPieza) {
         
+        throw new LaOperacionNoEstaSoportada("Pieza.fueChocadaPor(PiezaMovil)");
+    }
+
+    default void chocarCon(Pieza pieza) {
+        
+        throw new LaOperacionNoEstaSoportada("Pieza.chocoCon(Pieza)");
     }
 }

@@ -33,17 +33,19 @@ public class CasilleroInterior implements Casillero {
     }
 
     @Override
-    public Pieza obtener() {
-
-        return pieza;
-    }
-    
-    @Override
     public void moverPiezaA(Casillero destino) {
 
         Pieza piezaMovida = pieza;
-        desocupar();
-        destino.ocuparCon(piezaMovida);
+        
+        if (destino.estaDesocupado()) {
+            
+            desocupar();
+            destino.ocuparCon(piezaMovida);
+
+        } else {
+        
+            destino.chocarPiezaCon(piezaMovida);
+        }
     }
 
     @Override
@@ -62,5 +64,11 @@ public class CasilleroInterior implements Casillero {
     public Casillero obtenerContiguoEn(Direccion direccionElegida) {
         
         return tablero.obtenerCasilleroEn(direccionElegida.trasladar(coordenada));
+    }
+
+    @Override
+    public void chocarPiezaCon(Pieza otraPieza) {
+
+        otraPieza.chocarCon(pieza);
     }
 }

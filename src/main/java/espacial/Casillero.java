@@ -25,11 +25,6 @@ public interface Casillero {
     void ocuparCon(Pieza unaPieza);
 
     /**
-     * @return la Pieza que está ocupando el Casillero o null.
-     */
-    Pieza obtener();
-
-    /**
      * @pre el Casillero está ocupado.
      * @pre {@code destino} no está ocupado.
      * @post desocupa el Casillero y utiliza esa Pieza para ocupar el Casillero
@@ -62,4 +57,10 @@ public interface Casillero {
      * @return Casillero contiguo en Dirección {@code direccion} al Casillero
      */
     Casillero obtenerContiguoEn(Direccion direccionElegida);
+
+    /**
+     * @pre el Casillero está ocupado y sufio un choque con {@code piezaMovida}
+     * @param piezaMovida
+     */
+    void chocarPiezaCon(Pieza piezaMovida);
 }
