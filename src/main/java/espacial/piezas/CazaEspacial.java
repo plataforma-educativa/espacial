@@ -33,8 +33,8 @@ public class CazaEspacial implements PiezaMovil {
             casillero.moverPiezaA(destino);
 
         } else {
-        
-            nivelDeEscudos -= 25;
+
+            destino.obtener().fueChocadaPor(this);
         }
     }
 
@@ -42,5 +42,17 @@ public class CazaEspacial implements PiezaMovil {
     public int obtenerNivelDeEscudos() {
         
         return nivelDeEscudos;
+    }
+
+    @Override
+    public void chocoContraUnAsteroide() {
+
+        nivelDeEscudos -= 25;
+    }
+
+    @Override
+    public void chocoContraUnContenedor() {
+
+        nivelDeEscudos -= 10;
     }
 }

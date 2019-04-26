@@ -25,6 +25,11 @@ public interface Casillero {
     void ocuparCon(Pieza unaPieza);
 
     /**
+     * @return la Pieza que está ocupando el Casillero o null.
+     */
+    Pieza obtener();
+
+    /**
      * @pre el Casillero está ocupado.
      * @pre {@code destino} no está ocupado.
      * @post desocupa el Casillero y utiliza esa Pieza para ocupar el Casillero

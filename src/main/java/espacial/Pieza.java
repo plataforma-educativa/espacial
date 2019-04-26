@@ -24,4 +24,12 @@ public interface Pieza {
     default void fueColocadaEn(CasilleroInterior casillero) {
 
     }
+    
+    /**
+     * @pre la Pieza fue chocada por {@code otrPieza}.
+     * @param otraPieza
+     */
+    default void fueChocadaPor(PiezaMovil otraPieza) {
+        
+    }
 }

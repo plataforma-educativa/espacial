@@ -2,6 +2,7 @@ package espacial.piezas;
 
 import espacial.EspectroEspacial;
 import espacial.Pieza;
+import espacial.PiezaMovil;
 
 public class Asteroide implements Pieza {
 
@@ -9,5 +10,11 @@ public class Asteroide implements Pieza {
     public EspectroEspacial escanear() {
         
         return EspectroEspacial.ASTEROIDE;
+    }
+    
+    @Override
+    public void fueChocadaPor(PiezaMovil otraPieza) {
+
+        otraPieza.chocoContraUnAsteroide();
     }
 }

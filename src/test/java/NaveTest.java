@@ -189,7 +189,7 @@ public class NaveTest implements Prueba {
         
         unaNave.avanzarAlOeste();
         
-        comprobarQue(unaNaveNoSeMovioDeCasillero());
+        comprobarQue(unaNaveQuedoEnElCasillero(1,-2));
         comprobarQue(unaNaveSufrioElChoqueContraElAsteroide());
     }
 
@@ -204,17 +204,6 @@ public class NaveTest implements Prueba {
         });
     }
     
-    private Postcondicion unaNaveNoSeMovioDeCasillero() {
-
-        return postcondicion("unaNave no se movio de casillero", () -> {
-          
-            assertThat(batallaEspacial.obtenerTablero())
-                .tieneNave().en(1, -2)
-                .tieneAsteroide().en(1, -3);
-        });
-    }
-
-    @Test
     private Postcondicion unaNaveSufrioElChoqueContraElAsteroide() {
 
         return postcondicion("unaNave sufrió el choque contra el ASTEROIDE", () -> {
@@ -240,6 +229,49 @@ public class NaveTest implements Prueba {
         return postcondicion("esta al maximo su nivel de escudos", () -> {
           
             assertThat(escudos).isEqualTo(100);
+        });
+    }
+    
+    @Test
+    public void noPuedeAvanzarSiExisteUnContenedorEnElCasilleroDestino() {
+        
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(unaNaveEstaAlSurDeUnAsteroide());
+        
+        unaNave.avanzarAlNorte();
+        
+        comprobarQue(unaNaveQuedoEnElCasillero(3,2));
+        comprobarQue(unaNaveSufrioElChoqueContraElContenedor());
+    }
+
+    private Precondicion unaNaveEstaAlSurDeUnAsteroide() {
+
+        return precondicion("unaNave está al SUR de un ASTEROIDE", () -> {
+          
+            unaNave = new Nave();
+            unaNave.avanzarAlEste();
+            unaNave.avanzarAlEste();
+            unaNave.avanzarAlNorte();
+            unaNave.avanzarAlNorte();
+            unaNave.avanzarAlNorte();
+        });
+    }
+
+    private Postcondicion unaNaveQuedoEnElCasillero(int fila, int columna) {
+
+        return postcondicion("unaNave quedó en el casillero [" + fila + "," + columna+ "]", () -> {
+          
+            assertThat(batallaEspacial.obtenerTablero())
+                .tieneNave().en(fila, columna);
+        });
+    }
+    
+    private Postcondicion unaNaveSufrioElChoqueContraElContenedor() {
+
+        return postcondicion("unaNave sufrió el choque contra el CONTENEDOR", () -> {
+          
+            assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos")
+                .isEqualTo(90);
         });
     }
 }

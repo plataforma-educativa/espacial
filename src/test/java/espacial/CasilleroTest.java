@@ -231,4 +231,15 @@ public class CasilleroTest implements Prueba {
         });
     }
 
+    
+    @Test
+    public void obtener() {
+        
+        Casillero casillero = tablero.obtenerCasilleroEn(1, 1);
+        casillero.ocuparCon(NAVE);
+        
+        Pieza pieza = casillero.obtener();
+        
+        assertThat(pieza).isSameAs(NAVE);
+    }
 }

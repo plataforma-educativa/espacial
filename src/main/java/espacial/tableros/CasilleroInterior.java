@@ -25,12 +25,19 @@ public class CasilleroInterior implements Casillero {
         return pieza != null ? pieza.escanear() : EspectroEspacial.VACIO;
     }
 
+    @Override
     public void ocuparCon(Pieza unaPieza) {
 
         pieza = unaPieza;
         pieza.fueColocadaEn(this);
     }
 
+    @Override
+    public Pieza obtener() {
+
+        return pieza;
+    }
+    
     @Override
     public void moverPiezaA(Casillero destino) {
 
