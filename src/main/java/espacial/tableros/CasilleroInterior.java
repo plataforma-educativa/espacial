@@ -10,54 +10,46 @@ import espacial.Tablero;
 public class CasilleroInterior implements Casillero {
 
     private final Coordenada coordenada;
-    private Tablero tablero;
-    private Pieza pieza = null;
+    private final Tablero tablero;
+    private EstadoDelCasillero estado;
 
     public CasilleroInterior(Tablero contenedor, int fila, int columna) {
         
         coordenada = Coordenada.con(fila, columna);
         tablero = contenedor;
+        estado = new Vacio();
     }
 
     @Override
     public EspectroEspacial escanear() {
 
-        return pieza != null ? pieza.escanear() : EspectroEspacial.VACIO;
+        return estado.escanear();
     }
 
     @Override
     public void ocuparCon(Pieza unaPieza) {
 
-        pieza = unaPieza;
-        pieza.fueColocadaEn(this);
+        estado = estado.ocuparCon(unaPieza);
+        unaPieza.fueColocadaEn(this);
     }
 
     @Override
     public void moverPiezaA(Casillero destino) {
 
-        Pieza piezaMovida = pieza;
-        
-        if (destino.estaDesocupado()) {
-            
-            desocupar();
-            destino.ocuparCon(piezaMovida);
-
-        } else {
-        
-            destino.chocarPiezaCon(piezaMovida);
-        }
+        estado = estado.moverPiezaA(destino);
     }
+    
+    @Override
+    public void recibir(Pieza unaPieza, Casillero origen) {
 
+        estado = estado.recibir(unaPieza, origen);
+        unaPieza.fueColocadaEn(this);
+    }
+    
     @Override
     public void desocupar() {
 
-        pieza = null;
-    }
-
-    @Override
-    public boolean estaOcupado() {
-        
-        return pieza != null;
+        estado = estado.desocupar();
     }
 
     @Override
@@ -65,10 +57,86 @@ public class CasilleroInterior implements Casillero {
         
         return tablero.obtenerCasilleroEn(direccionElegida.trasladar(coordenada));
     }
+    
+    private class Vacio implements EstadoDelCasillero {
 
-    @Override
-    public void chocarPiezaCon(Pieza otraPieza) {
+        @Override
+        public EspectroEspacial escanear() {
+            
+            return EspectroEspacial.VACIO;
+        }
 
-        otraPieza.chocarCon(pieza);
+        @Override
+        public EstadoDelCasillero ocuparCon(Pieza unaPieza) {
+            
+            return new Ocupado(unaPieza);
+        }
+
+        @Override
+        public EstadoDelCasillero desocupar() {
+            
+            return estado;
+        }
+
+        @Override
+        public EstadoDelCasillero moverPiezaA(Casillero destino) {
+            
+            return estado;
+        }
+
+        @Override
+        public EstadoDelCasillero recibir(Pieza pieza, Casillero origen) {
+            
+            origen.desocupar();
+            
+            return new Ocupado(pieza);
+        }
+
     }
+    
+    private class Ocupado implements EstadoDelCasillero {
+
+        private Pieza pieza;
+        
+        public Ocupado(Pieza porPieza) {
+            
+            pieza = porPieza;
+        }
+        
+        @Override
+        public EspectroEspacial escanear() {
+            
+            return pieza.escanear();
+        }
+
+        @Override
+        public EstadoDelCasillero ocuparCon(Pieza unaPieza) {
+
+            return new Ocupado(unaPieza);
+        }
+
+        @Override
+        public EstadoDelCasillero desocupar() {
+            
+            return new Vacio();
+        }
+
+        @Override
+        public EstadoDelCasillero moverPiezaA(Casillero destino) {
+            
+            destino.recibir(pieza, CasilleroInterior.this);
+            
+            return estado;
+        }
+
+        @Override
+        public EstadoDelCasillero recibir(Pieza otraPieza, Casillero origen) {
+            
+            otraPieza.chocarCon(pieza);
+
+            return estado;
+        }
+
+    }
+
 }

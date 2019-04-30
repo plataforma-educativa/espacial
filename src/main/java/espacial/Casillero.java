@@ -34,33 +34,18 @@ public interface Casillero {
      */
     void moverPiezaA(Casillero destino);
 
+    
+    void recibir(Pieza unaPiza, Casillero origen);
+    
     /**
      * @pre el Casillero está ocupado por una Pieza.
      * @post remueve la Pieza del Casillero.
      */
     void desocupar();
-
-    /**
-     * @return si una Pieza está asociada a este Casillero.
-     */
-    boolean estaOcupado();
-
-    /**
-     * @return si no hay una Pieza asociada a este Casillero.
-     */
-    default boolean estaDesocupado() {
-        return ! estaOcupado();
-    }
     
     /**
      * @param direccionElegida
      * @return Casillero contiguo en Dirección {@code direccion} al Casillero
      */
     Casillero obtenerContiguoEn(Direccion direccionElegida);
-
-    /**
-     * @pre el Casillero está ocupado y sufio un choque con {@code piezaMovida}
-     * @param piezaMovida
-     */
-    void chocarPiezaCon(Pieza piezaMovida);
 }

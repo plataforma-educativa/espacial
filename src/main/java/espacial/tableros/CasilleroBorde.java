@@ -44,13 +44,7 @@ public class CasilleroBorde implements Casillero {
     }
 
     @Override
-    public boolean estaOcupado() {
-    
-        return false;
-    }
-
-    @Override
-    public void chocarPiezaCon(Pieza otraPieza) {
+    public void recibir(Pieza unaPiza, Casillero origen) {
         
     }
 }
