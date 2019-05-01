@@ -10,12 +10,12 @@ public interface EstadoDelCasillero {
  
     Pieza obtenerPieza();
 
-    EstadoDelCasillero ocuparCon(Pieza unaPieza);
+    void ocuparCon(Pieza unaPieza);
     
-    EstadoDelCasillero desocupar();
+    void desocupar();
     
-    EstadoDelCasillero moverPiezaA(Casillero destino);
+    void moverPiezaA(Casillero destino);
     
-    EstadoDelCasillero recibirPiezaDesde(Casillero origen);
+    void recibirPiezaDesde(Casillero origen);
 
 }
