@@ -20,7 +20,7 @@ public class CasilleroInterior implements Casillero {
         estado = new Vacio();
     }
     
-    void cambiar(EstadoDelCasillero nuevoEstado) {
+    void cambiarA(EstadoDelCasillero nuevoEstado) {
         
         estado = nuevoEstado;
     }
@@ -79,7 +79,7 @@ public class CasilleroInterior implements Casillero {
         @Override
         public void alOcuparCon(Pieza unaPieza) {
 
-            cambiar(new Ocupado(unaPieza));
+            cambiarA(new Ocupado(unaPieza));
         }
 
         @Override
@@ -126,13 +126,13 @@ public class CasilleroInterior implements Casillero {
         @Override
         public void alOcuparCon(Pieza unaPieza) {
 
-            cambiar(new Ocupado(unaPieza));
+            cambiarA(new Ocupado(unaPieza));
         }
 
         @Override
         public void alDesocupar() {
             
-            cambiar(new Vacio());
+            cambiarA(new Vacio());
         }
 
         @Override
