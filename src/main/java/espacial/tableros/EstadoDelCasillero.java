@@ -4,18 +4,30 @@ import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 
-public interface EstadoDelCasillero {
+public abstract class EstadoDelCasillero {
+    
+    protected CasilleroInterior contexto;
+    
+    public EstadoDelCasillero(CasilleroInterior casillero) {
 
-    EspectroEspacial alEscanear();
+        contexto = casillero;
+    }
+
+    protected void cambiarPor(EstadoDelCasillero nuevoEstado) {
+
+        contexto.cambiarA(nuevoEstado);
+    }
+    
+    public abstract EspectroEspacial alEscanear();
  
-    Pieza alObtenerPieza();
+    public abstract Pieza alObtenerPieza();
 
-    void alOcuparCon(Pieza unaPieza);
+    public abstract void alOcuparCon(Pieza unaPieza);
     
-    void alDesocupar();
+    public abstract void alDesocupar();
     
-    void alMoverPiezaA(Casillero destino);
+    public abstract void alMoverPiezaA(Casillero destino);
     
-    void alRecibirPiezaDesde(Casillero origen);
+    public abstract void alRecibirPiezaDesde(Casillero origen);
 
 }

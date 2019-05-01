@@ -17,7 +17,7 @@ public class CasilleroInterior implements Casillero {
         
         coordenada = Coordenada.con(fila, columna);
         tablero = contenedor;
-        estado = new Vacio();
+        estado = new Vacio(this);
     }
     
     void cambiarA(EstadoDelCasillero nuevoEstado) {
@@ -67,91 +67,5 @@ public class CasilleroInterior implements Casillero {
         
         return estado.alObtenerPieza();
     }
-    
-    private class Vacio implements EstadoDelCasillero {
-
-        @Override
-        public EspectroEspacial alEscanear() {
-            
-            return EspectroEspacial.VACIO;
-        }
-
-        @Override
-        public void alOcuparCon(Pieza unaPieza) {
-
-            cambiarA(new Ocupado(unaPieza));
-        }
-
-        @Override
-        public void alDesocupar() {
-            
-        }
-
-        @Override
-        public void alMoverPiezaA(Casillero destino) {
-            
-        }
-
-        @Override
-        public void alRecibirPiezaDesde(Casillero origen) {
-
-            Pieza pieza = origen.obtenerPieza();
-            origen.desocupar();
-            ocuparCon(pieza);
-        }
-
-        @Override
-        public Pieza alObtenerPieza() {
-
-            return null;
-        }
-
-    }
-    
-    private class Ocupado implements EstadoDelCasillero {
-
-        private Pieza pieza;
         
-        public Ocupado(Pieza porPieza) {
-            
-            pieza = porPieza;
-        }
-        
-        @Override
-        public EspectroEspacial alEscanear() {
-            
-            return pieza.escanear();
-        }
-
-        @Override
-        public void alOcuparCon(Pieza unaPieza) {
-
-            cambiarA(new Ocupado(unaPieza));
-        }
-
-        @Override
-        public void alDesocupar() {
-            
-            cambiarA(new Vacio());
-        }
-
-        @Override
-        public void alMoverPiezaA(Casillero destino) {
-            
-            destino.recibirPiezaDesde(CasilleroInterior.this);
-        }
-
-        @Override
-        public void alRecibirPiezaDesde(Casillero origen) {
-
-            origen.obtenerPieza().chocarCon(pieza);
-        }
-
-        @Override
-        public Pieza alObtenerPieza() {
-
-            return pieza;
-        }
-
-    }
 }
