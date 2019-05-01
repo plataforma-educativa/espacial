@@ -44,7 +44,13 @@ public class CasilleroBorde implements Casillero {
     }
 
     @Override
-    public void recibir(Pieza unaPiza, Casillero origen) {
+    public Pieza obtenerPieza() {
+
+        return null;
+    }
+
+    @Override
+    public void recibirPiezaDesde(Casillero origen) {
         
     }
 }

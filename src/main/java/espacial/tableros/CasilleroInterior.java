@@ -40,10 +40,9 @@ public class CasilleroInterior implements Casillero {
     }
     
     @Override
-    public void recibir(Pieza unaPieza, Casillero origen) {
-
-        estado = estado.recibir(unaPieza, origen);
-        unaPieza.fueColocadaEn(this);
+    public void recibirPiezaDesde(Casillero origen) {
+        
+        estado = estado.recibirPiezaDesde(origen);
     }
     
     @Override
@@ -56,6 +55,12 @@ public class CasilleroInterior implements Casillero {
     public Casillero obtenerContiguoEn(Direccion direccionElegida) {
         
         return tablero.obtenerCasilleroEn(direccionElegida.trasladar(coordenada));
+    }
+    
+    @Override
+    public Pieza obtenerPieza() {
+        
+        return estado.obtenerPieza();
     }
     
     private class Vacio implements EstadoDelCasillero {
@@ -85,11 +90,20 @@ public class CasilleroInterior implements Casillero {
         }
 
         @Override
-        public EstadoDelCasillero recibir(Pieza pieza, Casillero origen) {
+        public EstadoDelCasillero recibirPiezaDesde(Casillero origen) {
+
+            Pieza pieza = origen.obtenerPieza();
             
             origen.desocupar();
+            CasilleroInterior.this.ocuparCon(pieza);
             
-            return new Ocupado(pieza);
+            return estado;
+        }
+
+        @Override
+        public Pieza obtenerPieza() {
+
+            return null;
         }
 
     }
@@ -124,19 +138,24 @@ public class CasilleroInterior implements Casillero {
         @Override
         public EstadoDelCasillero moverPiezaA(Casillero destino) {
             
-            destino.recibir(pieza, CasilleroInterior.this);
+            destino.recibirPiezaDesde(CasilleroInterior.this);
             
             return estado;
         }
 
         @Override
-        public EstadoDelCasillero recibir(Pieza otraPieza, Casillero origen) {
-            
-            otraPieza.chocarCon(pieza);
+        public EstadoDelCasillero recibirPiezaDesde(Casillero origen) {
 
+            origen.obtenerPieza().chocarCon(pieza);
+            
             return estado;
         }
 
-    }
+        @Override
+        public Pieza obtenerPieza() {
 
+            return pieza;
+        }
+
+    }
 }

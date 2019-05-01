@@ -16,6 +16,12 @@ public interface Casillero {
     EspectroEspacial escanear();
     
     /**
+     * @post devuelve la Pieza que ocupa el Casillero o null está desocupado.
+     * @return
+     */
+    Pieza obtenerPieza();
+    
+    /**
      * @pre el Casillero no está ocupado.
      * @pre {@code unaPieza} no está asociada a otro Casillero.
      * @post {@code unPieza} queda asociada al Casillero actual.
@@ -33,9 +39,15 @@ public interface Casillero {
      * @param destino
      */
     void moverPiezaA(Casillero destino);
-
     
-    void recibir(Pieza unaPiza, Casillero origen);
+    /**
+     * @pre {@code origen} está ocupado.
+     * @post si está desocupado toma la Pieza del Casillero {@code origen}, lo desocupa y ocupa el Casillero;
+     *       si está ocupado hace chocar la Pieza del Casillero con la Pieza del Casillero {@code origen}.
+     * 
+     * @param destino
+     */
+    void recibirPiezaDesde(Casillero origen);
     
     /**
      * @pre el Casillero está ocupado por una Pieza.

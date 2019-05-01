@@ -8,11 +8,14 @@ public interface EstadoDelCasillero {
 
     EspectroEspacial escanear();
  
+    Pieza obtenerPieza();
+
     EstadoDelCasillero ocuparCon(Pieza unaPieza);
     
     EstadoDelCasillero desocupar();
     
     EstadoDelCasillero moverPiezaA(Casillero destino);
     
-    EstadoDelCasillero recibir(Pieza pieza, Casillero origen);
+    EstadoDelCasillero recibirPiezaDesde(Casillero origen);
+
 }
