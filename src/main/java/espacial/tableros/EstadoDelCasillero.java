@@ -6,16 +6,16 @@ import espacial.Pieza;
 
 public interface EstadoDelCasillero {
 
-    EspectroEspacial escanear();
+    EspectroEspacial alEscanear();
  
-    Pieza obtenerPieza();
+    Pieza alObtenerPieza();
 
-    void ocuparCon(Pieza unaPieza);
+    void alOcuparCon(Pieza unaPieza);
     
-    void desocupar();
+    void alDesocupar();
     
-    void moverPiezaA(Casillero destino);
+    void alMoverPiezaA(Casillero destino);
     
-    void recibirPiezaDesde(Casillero origen);
+    void alRecibirPiezaDesde(Casillero origen);
 
 }

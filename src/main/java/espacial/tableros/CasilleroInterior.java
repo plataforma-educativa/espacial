@@ -28,32 +28,32 @@ public class CasilleroInterior implements Casillero {
     @Override
     public EspectroEspacial escanear() {
 
-        return estado.escanear();
+        return estado.alEscanear();
     }
 
     @Override
     public void ocuparCon(Pieza unaPieza) {
 
-        estado.ocuparCon(unaPieza);
+        estado.alOcuparCon(unaPieza);
         unaPieza.fueColocadaEn(this);
     }
 
     @Override
     public void moverPiezaA(Casillero destino) {
 
-        estado.moverPiezaA(destino);
+        estado.alMoverPiezaA(destino);
     }
     
     @Override
     public void recibirPiezaDesde(Casillero origen) {
         
-        estado.recibirPiezaDesde(origen);
+        estado.alRecibirPiezaDesde(origen);
     }
     
     @Override
     public void desocupar() {
 
-        estado.desocupar();
+        estado.alDesocupar();
     }
 
     @Override
@@ -65,44 +65,43 @@ public class CasilleroInterior implements Casillero {
     @Override
     public Pieza obtenerPieza() {
         
-        return estado.obtenerPieza();
+        return estado.alObtenerPieza();
     }
     
     private class Vacio implements EstadoDelCasillero {
 
         @Override
-        public EspectroEspacial escanear() {
+        public EspectroEspacial alEscanear() {
             
             return EspectroEspacial.VACIO;
         }
 
         @Override
-        public void ocuparCon(Pieza unaPieza) {
+        public void alOcuparCon(Pieza unaPieza) {
 
             cambiar(new Ocupado(unaPieza));
         }
 
         @Override
-        public void desocupar() {
+        public void alDesocupar() {
             
         }
 
         @Override
-        public void moverPiezaA(Casillero destino) {
+        public void alMoverPiezaA(Casillero destino) {
             
         }
 
         @Override
-        public void recibirPiezaDesde(Casillero origen) {
+        public void alRecibirPiezaDesde(Casillero origen) {
 
             Pieza pieza = origen.obtenerPieza();
-            
             origen.desocupar();
-            CasilleroInterior.this.ocuparCon(pieza);
+            ocuparCon(pieza);
         }
 
         @Override
-        public Pieza obtenerPieza() {
+        public Pieza alObtenerPieza() {
 
             return null;
         }
@@ -119,37 +118,37 @@ public class CasilleroInterior implements Casillero {
         }
         
         @Override
-        public EspectroEspacial escanear() {
+        public EspectroEspacial alEscanear() {
             
             return pieza.escanear();
         }
 
         @Override
-        public void ocuparCon(Pieza unaPieza) {
+        public void alOcuparCon(Pieza unaPieza) {
 
             cambiar(new Ocupado(unaPieza));
         }
 
         @Override
-        public void desocupar() {
+        public void alDesocupar() {
             
             cambiar(new Vacio());
         }
 
         @Override
-        public void moverPiezaA(Casillero destino) {
+        public void alMoverPiezaA(Casillero destino) {
             
             destino.recibirPiezaDesde(CasilleroInterior.this);
         }
 
         @Override
-        public void recibirPiezaDesde(Casillero origen) {
+        public void alRecibirPiezaDesde(Casillero origen) {
 
             origen.obtenerPieza().chocarCon(pieza);
         }
 
         @Override
-        public Pieza obtenerPieza() {
+        public Pieza alObtenerPieza() {
 
             return pieza;
         }
