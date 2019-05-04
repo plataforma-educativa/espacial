@@ -11,5 +11,6 @@ public interface PiezaMovil extends Pieza {
     void chocoContraUnContenedor();
 
     void chocoContraElBordeDelTablero();
-
+    
+    void chocoContraUnAgujeroNegro();
 }

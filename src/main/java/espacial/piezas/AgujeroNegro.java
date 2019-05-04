@@ -2,6 +2,7 @@ package espacial.piezas;
 
 import espacial.EspectroEspacial;
 import espacial.Pieza;
+import espacial.PiezaMovil;
 
 public class AgujeroNegro implements Pieza {
 
@@ -11,4 +12,9 @@ public class AgujeroNegro implements Pieza {
         return EspectroEspacial.DESCONOCIDO;
     }
 
+    @Override
+    public void fueChocadaPor(PiezaMovil piezaMovil) {
+        
+        piezaMovil.chocoContraUnAgujeroNegro();
+    }
 }

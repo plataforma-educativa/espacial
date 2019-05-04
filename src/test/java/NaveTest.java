@@ -306,4 +306,35 @@ public class NaveTest implements Prueba {
         });
     }
 
+    @Test
+    public void noPuedeAvanzarSiExisteUnAgujeroNegroEnElCasilleroDestino() {
+        
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(unaNaveEstaAlEsteDeUnAgujeroNegro());
+        
+        unaNave.avanzarAlOeste();
+        
+        comprobarQue(unaNaveQuedoEnElCasillero(1, -5));
+        comprobarQue(unaNaveSufrioElChoqueContraElAgujeroNegro());
+    }
+    
+    private Precondicion unaNaveEstaAlEsteDeUnAgujeroNegro() {
+
+        return precondicion("unaNave está al ESTE de un AgujeroNegro (DESCONOCIDO)", () -> {
+          
+            unaNave = new Nave();
+            IntStream.range(0, 5).forEach(n -> unaNave.avanzarAlOeste());
+            unaNave.avanzarAlNorte();
+        });
+    }
+
+    private Postcondicion unaNaveSufrioElChoqueContraElAgujeroNegro() {
+    
+        return postcondicion("unaNave sufrió el choque contra el AgujeroNegro", () -> {
+
+            assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos")
+                .isEqualTo(25);
+        });
+    }
+    
 }
