@@ -56,6 +56,14 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
         
         return this;
     }
+
+
+    public AsercionSobreTablero tieneAgujeroNegro() {
+        
+        espectroEsperado = EspectroEspacial.DESCONOCIDO;
+        
+        return this;
+    }
     
     public void yTieneVacioEnElResto() {
 
@@ -110,5 +118,4 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
         
         return this;
     }
-
 }

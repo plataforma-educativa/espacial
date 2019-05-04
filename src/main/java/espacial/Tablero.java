@@ -1,5 +1,6 @@
 package espacial;
 
+import espacial.piezas.AgujeroNegro;
 import espacial.piezas.Asteroide;
 import espacial.piezas.BaseEspacial;
 import espacial.piezas.ContenedorDeAntimateria;
@@ -34,6 +35,10 @@ public class Tablero {
         colocarEnCoordenada(-2, 4, Asteroide::new);
         colocarEnCoordenada(2, 6, Asteroide::new);
         colocarEnCoordenada(2, -5, Asteroide::new);
+        colocarEnCoordenada(3, -6, AgujeroNegro::new);
+        colocarEnCoordenada(2, -6, AgujeroNegro::new);
+        colocarEnCoordenada(1, -6, AgujeroNegro::new);
+        colocarEnCoordenada(1, -5, AgujeroNegro::new);
     }
 
     private void inicializarCasilleros() {

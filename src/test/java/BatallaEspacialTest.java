@@ -68,6 +68,11 @@ public class BatallaEspacialTest implements Prueba {
                     .en(-2, 4)
                     .en(2, 6)
                     .en(2, -5)
+                .tieneAgujeroNegro()
+                    .en(3, -6)
+                    .en(2, -6)
+                    .en(1, -6)
+                    .en(1, -5)
                 .yTieneVacioEnElResto();
         });
     }
