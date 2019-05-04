@@ -2,16 +2,10 @@ package espacial.piezas;
 
 import static org.mockito.Mockito.*;
 
-import org.junit.jupiter.api.Test;
-
 import espacial.EspectroEspacial;
-import espacial.Pieza;
-import espacial.PiezaMovil;
 import espacial.test.Postcondicion;
 
-public class AgujeroNegroTest implements PruebaSobrePieza<AgujeroNegro> {
-
-    private final PiezaMovil PIEZA_MOVIL = mock(PiezaMovil.class);
+public class AgujeroNegroTest extends PruebaSobrePieza<AgujeroNegro> {
 
     @Override
     public AgujeroNegro piezaCreada() {
@@ -24,18 +18,9 @@ public class AgujeroNegroTest implements PruebaSobrePieza<AgujeroNegro> {
 
         return EspectroEspacial.DESCONOCIDO;
     }
-    
-    @Test
-    public void fueChocadaPor() {
-        
-        Pieza pieza = piezaCreada();
 
-        pieza.fueChocadaPor(PIEZA_MOVIL);
-        
-        comprobarQue(notificoALaPiezaMovilQueChocoContraUnAgujeroNegro());
-    }
-
-    private Postcondicion notificoALaPiezaMovilQueChocoContraUnAgujeroNegro() {
+    @Override
+    public Postcondicion laPiezaMovilFueNotificadaDelChoque() {
 
         return postcondicion("notificó a la PiezaMovil que chocó contra un AgujeroNegro", () -> {
             

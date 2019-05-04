@@ -2,13 +2,14 @@ package espacial.piezas;
 
 import static org.assertj.core.api.Assertions.*;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import espacial.EspectroEspacial;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 
-public class CazaEspacialTest implements PruebaSobrePieza<CazaEspacial> {
+public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
     private CazaEspacial unCasaEspacial;
     
@@ -22,6 +23,18 @@ public class CazaEspacialTest implements PruebaSobrePieza<CazaEspacial> {
     public EspectroEspacial espectroEsperado() {
 
         return EspectroEspacial.NAVE;
+    }
+    
+    @Override
+    public Postcondicion laPiezaMovilFueNotificadaDelChoque() {
+
+        return null;
+    }
+    
+    @Test
+    @Disabled
+    public void fueChocadaPor() {
+
     }
     
     @Test

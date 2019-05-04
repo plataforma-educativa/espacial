@@ -1,22 +1,28 @@
 package espacial.piezas;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.Test;
 
 import espacial.EspectroEspacial;
 import espacial.Pieza;
+import espacial.PiezaMovil;
 import espacial.test.Postcondicion;
 import espacial.test.Prueba;
 
-public interface PruebaSobrePieza<T extends Pieza> extends Prueba {
+public abstract class PruebaSobrePieza<T extends Pieza> implements Prueba {
 
-    T piezaCreada();
+    protected final PiezaMovil PIEZA_MOVIL = mock(PiezaMovil.class);
     
-    EspectroEspacial espectroEsperado();
+    protected abstract T piezaCreada();
+    
+    protected abstract EspectroEspacial espectroEsperado();
+    
+    protected abstract Postcondicion laPiezaMovilFueNotificadaDelChoque();
 
     @Test
-    default void escanear() {
+    public void escanear() {
         
         Pieza pieza = piezaCreada();
         
@@ -25,12 +31,21 @@ public interface PruebaSobrePieza<T extends Pieza> extends Prueba {
         comprobarQue(elEspectroEscaneadoEsElEsperado(espectro));
     }
 
-    default Postcondicion elEspectroEscaneadoEsElEsperado(EspectroEspacial espectro) {
+    private Postcondicion elEspectroEscaneadoEsElEsperado(EspectroEspacial espectro) {
         
         return postcondicion("el EspectroEspacial escaneado", () -> {
            
             assertThat(espectro).isEqualTo(espectroEsperado());
         });
     }
+    
+    @Test
+    public void fueChocadaPor() {
+        
+        Pieza pieza = piezaCreada();
 
+        pieza.fueChocadaPor(PIEZA_MOVIL);
+        
+        comprobarQue(laPiezaMovilFueNotificadaDelChoque());
+    }
 }

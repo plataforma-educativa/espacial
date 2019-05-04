@@ -1,8 +1,12 @@
 package espacial.piezas;
 
-import espacial.EspectroEspacial;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
-public class BaseEspacialTest implements PruebaSobrePieza<BaseEspacial> {
+import espacial.EspectroEspacial;
+import espacial.test.Postcondicion;
+
+public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
 
     @Override
     public BaseEspacial piezaCreada() {
@@ -15,4 +19,19 @@ public class BaseEspacialTest implements PruebaSobrePieza<BaseEspacial> {
 
         return EspectroEspacial.BASE;
     }
+
+    @Test
+    @Disabled
+    public void fueChocadaPor() {
+
+    }
+    
+    @Override
+    public Postcondicion laPiezaMovilFueNotificadaDelChoque() {
+
+        return postcondicion("notificó a la PiezaMovil que chocó contra una Base", () -> {
+            
+        });
+    }
+    
 }
