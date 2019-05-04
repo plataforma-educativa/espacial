@@ -38,7 +38,7 @@ public class Tablero {
         colocarEnCoordenada(3, -6, AgujeroNegro::new);
         colocarEnCoordenada(2, -6, AgujeroNegro::new);
         colocarEnCoordenada(1, -6, AgujeroNegro::new);
-        colocarEnCoordenada(1, -5, AgujeroNegro::new);
+        colocarEnCoordenada(1, -7, AgujeroNegro::new);
     }
 
     private void inicializarCasilleros() {

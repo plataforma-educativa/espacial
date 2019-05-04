@@ -72,7 +72,7 @@ public class BatallaEspacialTest implements Prueba {
                     .en(3, -6)
                     .en(2, -6)
                     .en(1, -6)
-                    .en(1, -5)
+                    .en(1, -7)
                 .yTieneVacioEnElResto();
         });
     }
