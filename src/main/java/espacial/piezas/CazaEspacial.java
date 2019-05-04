@@ -3,7 +3,7 @@ package espacial.piezas;
 import espacial.Casillero;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
-import espacial.Pieza;
+import espacial.Obstaculo;
 import espacial.PiezaMovil;
 import espacial.tableros.CasilleroInterior;
 
@@ -51,8 +51,14 @@ public class CazaEspacial implements PiezaMovil {
     }
     
     @Override
-    public void chocarCon(Pieza pieza) {
+    public void chocoContraElBordeDelTablero() {
         
-        pieza.fueChocadaPor(this);
+        nivelDeEscudos -= 50;
+    }
+    
+    @Override
+    public void chocarCon(Obstaculo obstaculo) {
+        
+        obstaculo.fueChocadaPor(this);
     }
 }

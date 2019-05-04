@@ -9,7 +9,7 @@ import espacial.tableros.CasilleroInterior;
  * @author Mariano Tugnarelli
  *
  */
-public interface Pieza {
+public interface Pieza extends Obstaculo {
 
     /**
      * @return el EspectroEspacial que la Pieza refleja en el Radar de los
@@ -26,17 +26,14 @@ public interface Pieza {
 
     }
     
-    /**
-     * @pre la Pieza fue chocada por {@code otrPieza}.
-     * @param otraPieza
-     */
-    default void fueChocadaPor(PiezaMovil otraPieza) {
+    @Override
+    default void fueChocadaPor(PiezaMovil piezaMovil) {
         
-        throw new LaOperacionNoEstaSoportada("Pieza.fueChocadaPor(PiezaMovil)");
+        throw new LaOperacionNoEstaSoportada("Obstaculo.fueChocadaPor(PiezaMovil)");
     }
 
-    default void chocarCon(Pieza pieza) {
+    default void chocarCon(Obstaculo obstaculo) {
         
-        throw new LaOperacionNoEstaSoportada("Pieza.chocoCon(Pieza)");
+        throw new LaOperacionNoEstaSoportada("Pieza.chocoCon(Obstaculo)");
     }
 }

@@ -274,4 +274,46 @@ public class NaveTest implements Prueba {
                 .isEqualTo(90);
         });
     }
+    
+    @Test
+    public void noPuedeAvanzarSiElCasilleroDestinoEsElBordeDelTablero() {
+        
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(unaNaveEstaEnElBordeSurDelTablero());
+        
+        unaNave.avanzarAlSur();
+        
+        comprobarQue(unaNaveQuedoEnElCasillero(-10, 0));
+        comprobarQue(unaNaveSufrioElChoqueContraElBorde());
+    }
+
+    private Precondicion unaNaveEstaEnElBordeSurDelTablero() {
+
+        return precondicion("una Nave en el borde SUR del Tablero", () -> {
+          
+            unaNave = new Nave();
+            unaNave.avanzarAlOeste();
+            unaNave.avanzarAlSur();
+            unaNave.avanzarAlSur();
+            unaNave.avanzarAlSur();
+            unaNave.avanzarAlSur();
+            unaNave.avanzarAlSur();
+            unaNave.avanzarAlSur();
+            unaNave.avanzarAlSur();
+            unaNave.avanzarAlSur();
+            unaNave.avanzarAlSur();
+            unaNave.avanzarAlSur();
+            unaNave.avanzarAlEste();
+        });
+    }
+
+    private Postcondicion unaNaveSufrioElChoqueContraElBorde() {
+
+        return postcondicion("unaNave sufrió el choque contra el Borde", () -> {
+            
+            assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos")
+                .isEqualTo(50);
+        });
+    }
+
 }

@@ -60,4 +60,14 @@ public class CazaEspacialTest implements PruebaSobrePieza<CazaEspacial> {
         
         comprobarQue(elNivelDeEscudosBajoA(90));
     }
+    
+    @Test
+    public void chochoContraElBordeDelTablero() {
+        
+        dadoQue(fueCreadoUnCazaEspacial());
+        
+        unCasaEspacial.chocoContraElBordeDelTablero();
+        
+        comprobarQue(elNivelDeEscudosBajoA(50));
+    }
 }
