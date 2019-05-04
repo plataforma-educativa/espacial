@@ -1,6 +1,8 @@
 import static espacial.test.Aserciones.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.stream.IntStream;
+
 import org.junit.jupiter.api.Test;
 
 import espacial.test.Postcondicion;
@@ -249,11 +251,8 @@ public class NaveTest implements Prueba {
         return precondicion("unaNave está al SUR de un ASTEROIDE", () -> {
           
             unaNave = new Nave();
-            unaNave.avanzarAlEste();
-            unaNave.avanzarAlEste();
-            unaNave.avanzarAlNorte();
-            unaNave.avanzarAlNorte();
-            unaNave.avanzarAlNorte();
+            IntStream.range(0, 2).forEach(n -> unaNave.avanzarAlEste());
+            IntStream.range(0, 3).forEach(n -> unaNave.avanzarAlNorte());
         });
     }
 
@@ -293,16 +292,7 @@ public class NaveTest implements Prueba {
           
             unaNave = new Nave();
             unaNave.avanzarAlOeste();
-            unaNave.avanzarAlSur();
-            unaNave.avanzarAlSur();
-            unaNave.avanzarAlSur();
-            unaNave.avanzarAlSur();
-            unaNave.avanzarAlSur();
-            unaNave.avanzarAlSur();
-            unaNave.avanzarAlSur();
-            unaNave.avanzarAlSur();
-            unaNave.avanzarAlSur();
-            unaNave.avanzarAlSur();
+            IntStream.range(0, 10).forEach(n -> unaNave.avanzarAlSur());
             unaNave.avanzarAlEste();
         });
     }
