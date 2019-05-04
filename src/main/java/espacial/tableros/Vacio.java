@@ -3,6 +3,7 @@ package espacial.tableros;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
+import espacial.excepciones.Defecto;
 
 public class Vacio extends EstadoDelCasillero {
 
@@ -26,11 +27,13 @@ public class Vacio extends EstadoDelCasillero {
     @Override
     public void alDesocupar() {
         
+        throw new Defecto("No se puede desocupar un Casillero Vacío");
     }
 
     @Override
     public void alMoverPiezaA(Casillero destino) {
         
+        throw new Defecto("No se puede mover una Pieza desde un Casillero Vacío");
     }
 
     @Override
@@ -44,7 +47,6 @@ public class Vacio extends EstadoDelCasillero {
     @Override
     public Pieza alObtenerPieza() {
 
-        return null;
+        throw new Defecto("No se puede obtener Pieza en un Casillero Vacío");
     }
-
 }

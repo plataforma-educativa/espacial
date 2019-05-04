@@ -2,6 +2,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
+import espacial.Casillero;
 import espacial.PiezaMovil;
 import espacial.Tablero;
 import espacial.excepciones.NoExisteBatallaEspacial;
@@ -36,7 +37,9 @@ public class BatallaEspacial {
         
         PiezaMovil pieza = new CazaEspacial();
         
-        tablero.obtenerCasilleroEn(0, 0).ocuparCon(pieza);
+        Casillero casilleroOrigen = tablero.obtenerCasilleroEn(0, 0);
+        casilleroOrigen.desocupar();
+        casilleroOrigen.ocuparCon(pieza);
         
         return pieza;
     }

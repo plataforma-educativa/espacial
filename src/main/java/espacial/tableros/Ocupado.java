@@ -3,6 +3,7 @@ package espacial.tableros;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
+import espacial.excepciones.Defecto;
 
 public class Ocupado extends EstadoDelCasillero {
 
@@ -23,7 +24,7 @@ public class Ocupado extends EstadoDelCasillero {
     @Override
     public void alOcuparCon(Pieza unaPieza) {
 
-        cambiarPor(new Ocupado(contexto, unaPieza));
+        throw new Defecto("No se pude ocupar un Casillero ocupado");
     }
 
     @Override

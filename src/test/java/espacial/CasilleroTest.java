@@ -61,7 +61,7 @@ public class CasilleroTest implements Prueba {
     @Test
     public void escanearCuandoTieneUnaPiezaQueEsUnContenedor() {
         
-        Casillero casillero = tablero.obtenerCasilleroEn(-9, 0);
+        Casillero casillero = tablero.obtenerCasilleroEn(-9, 1);
         
         casillero.ocuparCon(CONTENEDOR);
 
@@ -83,7 +83,7 @@ public class CasilleroTest implements Prueba {
     @Test
     public void moverPiezaEntreCasilleros() {
         
-        Casillero origen = tablero.obtenerCasilleroEn(0, 0);
+        Casillero origen = tablero.obtenerCasilleroEn(1, 1);
         origen.ocuparCon(NAVE);
         
         Casillero destino = tablero.obtenerCasilleroEn(0, 1);
