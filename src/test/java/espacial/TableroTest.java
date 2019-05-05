@@ -7,6 +7,8 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import espacial.piezas.BaseEspacial;
+
 public class TableroTest {
 
     @Test
@@ -56,5 +58,16 @@ public class TableroTest {
         
         assertThat(casillero).isEqualTo(tablero.obtenerCasilleroEn(0,0));
         assertThat(casillero.escanear()).isEqualTo(EspectroEspacial.BASE);
+    }
+    
+    @Test
+    public void colocarEnCasilleroUnaBase() {
+        
+        final BaseEspacial base = new BaseEspacial();
+        Tablero tablero = new Tablero();
+        
+        tablero.colocarEnCasillero(1, 4, base);
+        
+        assertThat(tablero.obtenerCasilleroEn(1, 4).obtenerPieza()).isSameAs(base);
     }
 }

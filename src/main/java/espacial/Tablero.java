@@ -147,4 +147,9 @@ public class Tablero {
 
         return obtenerCasilleroEn(coordenada.obtenerFila(), coordenada.obtenerColumna());
     }
+
+    public void colocarEnCasillero(int fila, int columna, BaseEspacial baseEspacial) {
+
+        obtenerCasilleroEn(fila, columna).ocuparCon(baseEspacial);
+    }
 }
