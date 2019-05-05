@@ -9,7 +9,7 @@ import espacial.PiezaMovil;
 
 public class BaseEspacial implements Pieza {
 
-    private final List<PiezaMovil> amarres;
+    private final List<Amarre> amarres;
     
     public BaseEspacial() {
 
@@ -24,11 +24,26 @@ public class BaseEspacial implements Pieza {
 
     public void amarrar(PiezaMovil pieza) {
         
-        amarres.add(pieza);
+        amarres.add(new Amarre(pieza));
     }
 
-    public PiezaMovil[] obtenerAmarres() {
+    public Amarre[] obtenerAmarres() {
 
-        return amarres.toArray(new PiezaMovil[amarres.size()]);
+        return amarres.toArray(new Amarre[amarres.size()]);
+    }
+    
+    public class Amarre {
+        
+        private final PiezaMovil pieza;
+        
+        private Amarre(PiezaMovil unaPieza) {
+            
+            pieza = unaPieza;
+        }
+        
+        public PiezaMovil obtenerPieza() {
+            
+            return pieza;
+        }
     }
 }
