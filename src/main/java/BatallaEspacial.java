@@ -6,6 +6,7 @@ import espacial.Casillero;
 import espacial.PiezaMovil;
 import espacial.Tablero;
 import espacial.excepciones.NoExisteBatallaEspacial;
+import espacial.piezas.BaseEspacial;
 import espacial.piezas.CazaEspacial;
 
 public class BatallaEspacial {
@@ -19,6 +20,7 @@ public class BatallaEspacial {
     public BatallaEspacial() {
 
         instancia = Optional.of(this);
+        tablero.colocarEnCasillero(0, 0, new BaseEspacial());
     }
 
     public static BatallaEspacial obtener() {

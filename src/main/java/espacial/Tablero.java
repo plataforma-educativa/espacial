@@ -23,7 +23,6 @@ public class Tablero {
         
         inicializarCasilleros();
 
-        colocarEnCoordenada(0, 0, BaseEspacial::new);
         colocarEnCoordenada(-2, -2, ContenedorDeAntimateria::new);
         colocarEnCoordenada(4, 2, ContenedorDeAntimateria::new);
         colocarEnCoordenada(2, -7, ContenedorDeAntimateria::new);
