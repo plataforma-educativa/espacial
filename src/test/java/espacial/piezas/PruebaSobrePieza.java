@@ -13,7 +13,7 @@ import espacial.test.Prueba;
 
 public abstract class PruebaSobrePieza<T extends Pieza> implements Prueba {
 
-    protected final PiezaMovil PIEZA_MOVIL = mock(PiezaMovil.class);
+    protected final PiezaMovil PIEZA_MOVIL = mock(PiezaMovil.class, "PIEZA_MOVIL");
     
     protected abstract T piezaCreada();
     
