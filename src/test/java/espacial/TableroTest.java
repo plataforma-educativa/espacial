@@ -44,9 +44,9 @@ public class TableroTest {
         
         Tablero tablero = new Tablero();
         
-        Casillero casillero = tablero.obtenerCasilleroEn(0,0);
+        Casillero casillero = tablero.obtenerCasilleroEn(4,2);
         
-        assertThat(casillero.escanear()).isEqualTo(EspectroEspacial.BASE);
+        assertThat(casillero.escanear()).isEqualTo(EspectroEspacial.CONTENEDOR);
     }
     
     @Test
@@ -54,10 +54,10 @@ public class TableroTest {
         
         Tablero tablero = new Tablero();
         
-        Casillero casillero = tablero.obtenerCasilleroEn(Coordenada.con(0, 0));
+        Casillero casillero = tablero.obtenerCasilleroEn(Coordenada.con(4, 2));
         
-        assertThat(casillero).isEqualTo(tablero.obtenerCasilleroEn(0,0));
-        assertThat(casillero.escanear()).isEqualTo(EspectroEspacial.BASE);
+        assertThat(casillero).isEqualTo(tablero.obtenerCasilleroEn(4,2));
+        assertThat(casillero.escanear()).isEqualTo(EspectroEspacial.CONTENEDOR);
     }
     
     @Test
