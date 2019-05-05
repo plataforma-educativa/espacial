@@ -5,15 +5,14 @@ import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Obstaculo;
 import espacial.PiezaMovil;
-import espacial.tableros.CasilleroInterior;
 
 public class CazaEspacial implements PiezaMovil {
 
     private int nivelDeEscudos = 100;
-    private CasilleroInterior casillero;
+    private Casillero casillero;
     
     @Override
-    public void fueColocadaEn(CasilleroInterior casillero) {
+    public void fueColocadaEn(Casillero casillero) {
         
         this.casillero = casillero;
     }

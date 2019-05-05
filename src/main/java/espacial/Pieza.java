@@ -1,7 +1,6 @@
 package espacial;
 
 import espacial.excepciones.LaOperacionNoEstaSoportada;
-import espacial.tableros.CasilleroInterior;
 
 /**
  * Una Pieza es un elemento que participa de una Partida.
@@ -22,7 +21,7 @@ public interface Pieza extends Obstaculo {
      *      {@code casillero} de un Tablero.
      * @param casillero
      */
-    default void fueColocadaEn(CasilleroInterior casillero) {
+    default void fueColocadaEn(Casillero casillero) {
 
     }
     
