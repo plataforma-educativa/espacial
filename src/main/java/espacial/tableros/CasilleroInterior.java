@@ -1,22 +1,17 @@
 package espacial.tableros;
 
 import espacial.Casillero;
-import espacial.Coordenada;
-import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.Tablero;
 
-public class CasilleroInterior implements Casillero {
+public class CasilleroInterior extends CasilleroDelTablero {
 
-    private final Coordenada coordenada;
-    private final Tablero tablero;
     private EstadoDelCasillero estado;
 
     public CasilleroInterior(Tablero contenedor, int fila, int columna) {
         
-        coordenada = Coordenada.con(fila, columna);
-        tablero = contenedor;
+        super(contenedor, fila, columna);
         estado = new Vacio(this);
     }
     
@@ -56,12 +51,6 @@ public class CasilleroInterior implements Casillero {
         estado.alDesocupar();
     }
 
-    @Override
-    public Casillero obtenerContiguoEn(Direccion direccionElegida) {
-        
-        return tablero.obtenerCasilleroEn(direccionElegida.trasladar(coordenada));
-    }
-    
     @Override
     public Pieza obtenerPieza() {
         

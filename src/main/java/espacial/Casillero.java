@@ -57,7 +57,7 @@ public interface Casillero {
     
     /**
      * @param direccionElegida
-     * @return Casillero contiguo en Dirección {@code direccion} al Casillero
+     * @return Casillero contiguo en Dirección {@code direccion} al Casillero.
      */
     Casillero obtenerContiguoEn(Direccion direccionElegida);
 }

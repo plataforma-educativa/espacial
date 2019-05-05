@@ -10,9 +10,8 @@ import espacial.Tablero;
 import espacial.excepciones.LaOperacionNoEstaSoportada;
 
 public class CasilleroBorde implements Casillero, Obstaculo {
-
+    
     public CasilleroBorde(Tablero contenedor) {
-        
     }
     
     @Override
