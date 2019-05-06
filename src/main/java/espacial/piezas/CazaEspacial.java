@@ -1,5 +1,6 @@
 package espacial.piezas;
 
+import espacial.Amarre;
 import espacial.Casillero;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
@@ -15,6 +16,12 @@ public class CazaEspacial implements PiezaMovil {
     public void fueColocadaEn(Casillero casillero) {
         
         this.casillero = casillero;
+    }
+    
+    @Override
+    public void fueAmarradaCon(Amarre amarre) {
+    
+        
     }
     
     @Override

@@ -71,10 +71,14 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
 
         return postcondicion("unaBase tiene amarrada la NAVE", () -> {
           
+            Amarre amarre = unaBase.obtenerAmarres()[0];
+            
             assertThat(unaBase.obtenerAmarres())
                 .as("amarres")
                 .extracting(Amarre::obtenerPieza)
                 .containsExactly(NAVE);
+            
+            verify(NAVE).fueAmarradaCon(amarre);
         });
     }
     

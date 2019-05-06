@@ -33,7 +33,9 @@ public class BaseEspacial implements Pieza {
 
     public void amarrar(PiezaMovil pieza) {
         
-        amarres.add(new AmarreConBaseEspacial(pieza));
+        Amarre amarre = new AmarreConBaseEspacial(pieza);
+        amarres.add(amarre);
+        pieza.fueAmarradaCon(amarre);
     }
 
     public Amarre[] obtenerAmarres() {
@@ -41,7 +43,7 @@ public class BaseEspacial implements Pieza {
         return amarres.toArray(new Amarre[amarres.size()]);
     }
     
-    public class AmarreConBaseEspacial implements Amarre {
+    private class AmarreConBaseEspacial implements Amarre {
         
         private final PiezaMovil pieza;
         
