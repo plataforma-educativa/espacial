@@ -4,17 +4,25 @@ import java.util.LinkedList;
 import java.util.List;
 
 import espacial.Amarre;
+import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.PiezaMovil;
 
 public class BaseEspacial implements Pieza {
 
+    private Casillero casillero;
     private final List<Amarre> amarres;
     
     public BaseEspacial() {
 
         amarres = new LinkedList<>();
+    }
+    
+    @Override
+    public void fueColocadaEn(Casillero casillero) {
+     
+        this.casillero = casillero;
     }
     
     @Override
@@ -50,7 +58,10 @@ public class BaseEspacial implements Pieza {
         @Override
         public void soltar() {
 
-            amarres.remove(this);
+            if (amarres.remove(this)) {
+                
+                pieza.fueColocadaEn(casillero);
+            }
         }
     }
 }

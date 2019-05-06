@@ -110,6 +110,7 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
         unaBase.obtenerAmarres()[1].soltar();
         
         comprobarQue(unaBaseYaNoTieneMasAmarradaLaNaveBeta());
+        comprobarQue(naveBetaFueColocadaEnElCasilleroDeLaBase());
     }
 
     private Precondicion lasNavesAlfaBetaGammaEstanAmarradasAUnaBase() {
@@ -130,6 +131,15 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
                 .as("amarres")
                 .extracting(Amarre::obtenerPieza)
                 .containsExactly(NAVE_ALFA, NAVE_GAMMA);
+            
+        });
+    }
+    
+    private Postcondicion naveBetaFueColocadaEnElCasilleroDeLaBase() {
+
+        return postcondicion("NAVE_BETA fue colocada en el CASILLERO", () -> {
+            
+            verify(NAVE_BETA).fueColocadaEn(CASILLERO);
         });
     }
     
