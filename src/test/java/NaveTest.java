@@ -31,10 +31,6 @@ public class NaveTest implements Prueba {
             assertThat(batallaEspacial.obtenerNaves()).as("naves de la BatallaEspacial")
                 .hasSize(1)
                 .containsExactly(unaNave);
-            
-            assertThat(batallaEspacial.obtenerTablero())
-                .tieneNave()
-                    .en(0,0);
         });
     }
     
