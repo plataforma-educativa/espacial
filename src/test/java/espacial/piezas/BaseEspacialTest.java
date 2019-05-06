@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.PiezaMovil;
-import espacial.piezas.BaseEspacial.Amarre;
+import espacial.Amarre;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 
@@ -98,6 +98,38 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
                 .as("amarres")
                 .extracting(Amarre::obtenerPieza)
                 .containsExactly(NAVE_ALFA, NAVE_BETA, NAVE_GAMMA);
+        });
+    }
+    
+    @Test
+    public void soltarAmarreDeUnaNave() {
+        
+        dadoQue(unaBaseFueCreadaYColocadaEnCasillero());
+        dadoQue(lasNavesAlfaBetaGammaEstanAmarradasAUnaBase());
+        
+        unaBase.obtenerAmarres()[1].soltar();
+        
+        comprobarQue(unaBaseYaNoTieneMasAmarradaLaNaveBeta());
+    }
+
+    private Precondicion lasNavesAlfaBetaGammaEstanAmarradasAUnaBase() {
+        
+        return precondicion("las Naves NAVE_ALFA, NAVE_BETA, NAVE_GAMMA están amarradas a unaBase", () -> {
+          
+            unaBase.amarrar(NAVE_ALFA);
+            unaBase.amarrar(NAVE_BETA);
+            unaBase.amarrar(NAVE_GAMMA);
+        });
+    }
+
+    private Postcondicion unaBaseYaNoTieneMasAmarradaLaNaveBeta() {
+    
+        return postcondicion("unaBase ya no tiene más amarrada la Nave NAVE_BETA", () -> {
+            
+            assertThat(unaBase.obtenerAmarres())
+                .as("amarres")
+                .extracting(Amarre::obtenerPieza)
+                .containsExactly(NAVE_ALFA, NAVE_GAMMA);
         });
     }
     
