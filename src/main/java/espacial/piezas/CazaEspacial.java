@@ -11,17 +11,24 @@ public class CazaEspacial implements PiezaMovil {
 
     private int nivelDeEscudos = 100;
     private Casillero casillero;
-    
+    private Amarre amarre;
+
     @Override
-    public void fueColocadaEn(Casillero casillero) {
+    public void despegar() {
+
+        amarre.soltar();
+    }
+
+    @Override
+    public void fueColocadaEn(Casillero unCasillero) {
         
-        this.casillero = casillero;
+        casillero = unCasillero;
     }
     
     @Override
-    public void fueAmarradaCon(Amarre amarre) {
+    public void fueAmarradaCon(Amarre unAmarre) {
     
-        
+        amarre = unAmarre;
     }
     
     @Override

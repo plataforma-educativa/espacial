@@ -13,6 +13,8 @@ public class BatallaEspacial {
 
     private static Optional<BatallaEspacial> instancia = Optional.empty();
     
+    private BaseEspacial base;
+    
     private List<Nave> naves = new LinkedList<>();
     
     private Tablero tablero = new Tablero();
@@ -20,7 +22,8 @@ public class BatallaEspacial {
     public BatallaEspacial() {
 
         instancia = Optional.of(this);
-        tablero.colocarEnCasillero(0, 0, new BaseEspacial());
+        base = new BaseEspacial();
+        tablero.colocarEnCasillero(0, 0, base);
     }
 
     public static BatallaEspacial obtener() {

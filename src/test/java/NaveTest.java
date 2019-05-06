@@ -1,10 +1,13 @@
 import static espacial.test.Aserciones.assertThat;
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 import java.util.stream.IntStream;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import espacial.excepciones.LaNaveNoDespego;
+import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.Prueba;
@@ -64,6 +67,24 @@ public class NaveTest implements Prueba {
         });
     }
  
+    @Test
+    @Disabled
+    public void noPuedeAvanzarAlNorteSiNoDespegoAntes() {
+        
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNave());
+        
+        comprobarQue(generaElErrorLaNaveNoDespego(() -> unaNave.avanzarAlNorte()));
+    }
+    
+    private Postcondicion generaElErrorLaNaveNoDespego(Ejecutable ejecutable) {
+
+        return postcondicion("genera el error LaNaveNoDespego", () -> {
+            
+            assertThatThrownBy(ejecutable::ejecutar).isInstanceOf(LaNaveNoDespego.class);
+        });
+    }
+
     @Test
     public void avanzarAlNorte() {
         

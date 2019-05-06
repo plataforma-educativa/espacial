@@ -1,17 +1,20 @@
 package espacial.piezas;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import espacial.Amarre;
 import espacial.EspectroEspacial;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 
 public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
-    private CazaEspacial unCasaEspacial;
+    private final Amarre AMARRE = mock(Amarre.class, "AMARRE");
+    private CazaEspacial unCazaEspacial;
     
     @Override
     public CazaEspacial piezaCreada() {
@@ -30,7 +33,7 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
         return null;
     }
-    
+
     @Test
     @Disabled
     public void fueChocadaPor() {
@@ -42,7 +45,7 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
         
         dadoQue(fueCreadoUnCazaEspacial());
         
-        unCasaEspacial.chocoContraUnAsteroide();
+        unCazaEspacial.chocoContraUnAsteroide();
         
         comprobarQue(elNivelDeEscudosBajoA(75));
     }
@@ -51,7 +54,7 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
         
         return precondicion("fue creado unCasaEspacial", () -> {
             
-            unCasaEspacial = new CazaEspacial();
+            unCazaEspacial = new CazaEspacial();
         });
     }
 
@@ -59,7 +62,7 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
         return postcondicion("el nivel de escudos bajó a " + nivelDeEscudoEsperado, () -> {
             
-            assertThat(unCasaEspacial.obtenerNivelDeEscudos()).as("nivel de escudos")
+            assertThat(unCazaEspacial.obtenerNivelDeEscudos()).as("nivel de escudos")
                 .isEqualTo(nivelDeEscudoEsperado);
         });
     }
@@ -69,7 +72,7 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
         
         dadoQue(fueCreadoUnCazaEspacial());
         
-        unCasaEspacial.chocoContraUnContenedor();
+        unCazaEspacial.chocoContraUnContenedor();
         
         comprobarQue(elNivelDeEscudosBajoA(90));
     }
@@ -79,7 +82,7 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
         
         dadoQue(fueCreadoUnCazaEspacial());
         
-        unCasaEspacial.chocoContraElBordeDelTablero();
+        unCazaEspacial.chocoContraElBordeDelTablero();
         
         comprobarQue(elNivelDeEscudosBajoA(50));
     }
@@ -89,8 +92,36 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
         
         dadoQue(fueCreadoUnCazaEspacial());
         
-        unCasaEspacial.chocoContraUnAgujeroNegro();
+        unCazaEspacial.chocoContraUnAgujeroNegro();
 
         comprobarQue(elNivelDeEscudosBajoA(25));
     }
+    
+    @Test
+    public void despegar() {
+    
+        dadoQue(fueCreadoUnCazaEspacial());
+        dadoQue(unCazaEspacialFueAmarrado());
+
+        unCazaEspacial.despegar();
+        
+        comprobarQue(unCazaEspacialSoltoElAmarre());
+    }
+
+    private Precondicion unCazaEspacialFueAmarrado() {
+
+        return precondicion("unCazaEspacial fue amarrado", () -> {
+           
+            unCazaEspacial.fueAmarradaCon(AMARRE);
+        });
+    }
+
+    private Postcondicion unCazaEspacialSoltoElAmarre() {
+
+        return postcondicion("unCazaEspacial soltó el AMARRE", () -> { 
+          
+            verify(AMARRE).soltar();
+        });
+    }
+    
 }
