@@ -6,7 +6,7 @@ import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Obstaculo;
 import espacial.PiezaMovil;
-import espacial.excepciones.LaNaveNoDespego;
+import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 
 public class CazaEspacial implements PiezaMovil {
 
@@ -43,7 +43,7 @@ public class CazaEspacial implements PiezaMovil {
         
         if (casillero == null) {
             
-            throw new LaNaveNoDespego();
+            throw new LaNaveNoEstaEnUnCasillero();
         }
         
         Casillero destino = casillero.obtenerContiguoEn(direccionElegida);

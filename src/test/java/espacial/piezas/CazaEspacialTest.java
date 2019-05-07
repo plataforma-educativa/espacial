@@ -11,7 +11,7 @@ import espacial.Amarre;
 import espacial.Casillero;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
-import espacial.excepciones.LaNaveNoDespego;
+import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
@@ -65,15 +65,15 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
         
         dadoQue(fueCreadoUnCazaEspacial());
         
-        comprobarQue(generaExcepcionLaNaveNoDespego(() -> unCazaEspacial.moverEn(Direccion.NORTE) ));
+        comprobarQue(generaExcepcionLaNaveNoEstaEnUnCasillero(() -> unCazaEspacial.moverEn(Direccion.NORTE) ));
     }
     
-    private Postcondicion generaExcepcionLaNaveNoDespego(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionLaNaveNoEstaEnUnCasillero(Ejecutable ejecutable) {
 
-        return postcondicion("genera excepción LaNaveNoDespego", () -> {
+        return postcondicion("genera excepción LaNaveNoEstaEnUnCasillero", () -> {
             
             assertThatThrownBy(ejecutable::ejecutar)
-                .isInstanceOf(LaNaveNoDespego.class);
+                .isInstanceOf(LaNaveNoEstaEnUnCasillero.class);
         });
     }
 

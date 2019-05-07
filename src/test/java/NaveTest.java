@@ -6,7 +6,7 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import espacial.excepciones.LaNaveNoDespego;
+import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
@@ -81,7 +81,7 @@ public class NaveTest implements Prueba {
 
         return postcondicion("genera el error LaNaveNoDespego", () -> {
             
-            assertThatThrownBy(ejecutable::ejecutar).isInstanceOf(LaNaveNoDespego.class);
+            assertThatThrownBy(ejecutable::ejecutar).isInstanceOf(LaNaveNoEstaEnUnCasillero.class);
         });
     }
 
