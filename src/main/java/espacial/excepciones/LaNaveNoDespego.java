@@ -6,6 +6,6 @@ public class LaNaveNoDespego extends ErrorEnLaBatallaEspacial {
 
     public LaNaveNoDespego() {
         
-        super("La Nave no Despegó");
+        super("La Nave no despegó");
     }
 }

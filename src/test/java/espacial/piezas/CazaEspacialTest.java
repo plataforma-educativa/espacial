@@ -7,7 +7,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import espacial.Amarre;
+import espacial.Direccion;
 import espacial.EspectroEspacial;
+import espacial.excepciones.LaNaveNoDespego;
+import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 
@@ -40,6 +43,23 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
     }
     
+    @Test
+    public void moverEnDireccionCuandoNoDespego() {
+        
+        dadoQue(fueCreadoUnCazaEspacial());
+        
+        comprobarQue(generaExcepcionLaNaveNoDespego(() -> unCazaEspacial.moverEn(Direccion.NORTE) ));
+    }
+    
+    private Postcondicion generaExcepcionLaNaveNoDespego(Ejecutable ejecutable) {
+
+        return postcondicion("genera excepción LaNaveNoDespego", () -> {
+            
+            assertThatThrownBy(ejecutable::ejecutar)
+                .isInstanceOf(LaNaveNoDespego.class);
+        });
+    }
+
     @Test
     public void chocoContraUnAsteroide() {
         
