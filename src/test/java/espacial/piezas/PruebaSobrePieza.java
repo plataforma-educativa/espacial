@@ -5,6 +5,8 @@ import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.Test;
 
+import espacial.Casillero;
+import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.PiezaMovil;
@@ -47,5 +49,16 @@ public abstract class PruebaSobrePieza<T extends Pieza> implements Prueba {
         pieza.fueChocadaPor(PIEZA_MOVIL);
         
         comprobarQue(laPiezaMovilFueNotificadaDelChoque());
+    }
+    
+    protected Casillero mockCasillero() {
+        
+        Casillero casillero = mock(Casillero.class);
+        when(casillero.obtenerContiguoEn(Direccion.NORTE)).thenReturn(mock(Casillero.class, "CASILLERO_NORTE"));
+        when(casillero.obtenerContiguoEn(Direccion.SUR)).thenReturn(mock(Casillero.class, "CASILLERO_SUR"));
+        when(casillero.obtenerContiguoEn(Direccion.OESTE)).thenReturn(mock(Casillero.class, "CASILLERO_OESTE"));
+        when(casillero.obtenerContiguoEn(Direccion.ESTE)).thenReturn(mock(Casillero.class, "CASILLERO_ESTE"));
+        
+        return casillero;
     }
 }
