@@ -1,5 +1,7 @@
 package espacial.piezas;
 
+import java.util.Optional;
+
 import espacial.Amarre;
 import espacial.Casillero;
 import espacial.Direccion;
@@ -11,7 +13,7 @@ import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 public class CazaEspacial implements PiezaMovil {
 
     private int nivelDeEscudos = 100;
-    private Casillero casillero;
+    private Optional<Casillero> casillero = Optional.empty();
     private Amarre amarre;
 
     @Override
@@ -23,7 +25,7 @@ public class CazaEspacial implements PiezaMovil {
     @Override
     public void fueColocadaEn(Casillero unCasillero) {
         
-        casillero = unCasillero;
+        casillero = Optional.of(unCasillero);
     }
     
     @Override
@@ -41,14 +43,11 @@ public class CazaEspacial implements PiezaMovil {
     @Override
     public void moverEn(Direccion direccionElegida) {
         
-        if (casillero == null) {
-            
-            throw new LaNaveNoEstaEnUnCasillero();
-        }
+        Casillero origen = casillero.orElseThrow(LaNaveNoEstaEnUnCasillero::new);
         
-        Casillero destino = casillero.obtenerContiguoEn(direccionElegida);
+        Casillero destino = origen.obtenerContiguoEn(direccionElegida);
         
-        casillero.moverPiezaA(destino);
+        origen.moverPiezaA(destino);
     }
 
     @Override
