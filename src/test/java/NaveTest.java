@@ -1,5 +1,6 @@
 import static espacial.test.Aserciones.assertThat;
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.IntStream;
 
@@ -33,7 +34,7 @@ public class NaveTest implements Prueba {
             
             assertThat(batallaEspacial.obtenerNaves()).as("naves de la BatallaEspacial")
                 .hasSize(1)
-                .containsExactly(unaNave);
+                .containsExactly(unaNave);            
         });
     }
     
