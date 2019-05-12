@@ -8,18 +8,21 @@ import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Obstaculo;
 import espacial.PiezaMovil;
+import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 
 public class CazaEspacial implements PiezaMovil {
 
     private int nivelDeEscudos = 100;
     private Optional<Casillero> casillero = Optional.empty();
-    private Amarre amarre;
+    private Optional<Amarre> amarre = Optional.empty();
 
     @Override
     public void despegar() {
 
-        amarre.soltar();
+        Amarre amarreActual = amarre.orElseThrow(LaNaveNoEstaEnLaBase::new);
+
+        amarreActual.soltar();
     }
 
     @Override
@@ -31,7 +34,7 @@ public class CazaEspacial implements PiezaMovil {
     @Override
     public void fueAmarradaCon(Amarre unAmarre) {
     
-        amarre = unAmarre;
+        amarre = Optional.of(unAmarre);
     }
     
     @Override

@@ -3,6 +3,7 @@ package espacial.piezas;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -187,5 +188,21 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
             verify(AMARRE).soltar();
         });
     }
-    
+
+    @Test
+    public void despegarCuandoNoEstaAmarrada() {
+
+        dadoQue(fueCreadoUnCazaEspacial());
+
+        comprobarQue(generaExcepcionLaNaveNoEstaEnLaBase(() -> unCazaEspacial.despegar()));
+    }
+
+    private Postcondicion generaExcepcionLaNaveNoEstaEnLaBase(Ejecutable ejecutable) {
+
+        return postcondicion("genera excepción LaNaveNoEstaEnLaBase", () -> {
+
+            assertThatThrownBy(ejecutable::ejecutar)
+                    .isInstanceOf(LaNaveNoEstaEnLaBase.class);
+        });
+    }
 }
