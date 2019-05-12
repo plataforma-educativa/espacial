@@ -36,19 +36,6 @@ public class BatallaEspacial {
         return naves.toArray(new Nave[naves.size()]);
     }
 
-    public PiezaMovil agregar(Nave nave) {
-        
-        naves.add(nave);
-
-        PiezaMovil pieza = new CazaEspacial();
-        
-        Casillero casilleroOrigen = tablero.obtenerCasilleroEn(0, 0);
-        casilleroOrigen.desocupar();
-        casilleroOrigen.ocuparCon(pieza);
-        
-        return pieza;
-    }
-
     public Tablero obtenerTablero() {
 
         return tablero;

@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.IntStream;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
@@ -36,7 +35,7 @@ public class NaveTest implements Prueba {
                 .hasSize(1)
                 .containsExactly(unaNave);
 
-//            assertThat(batallaEspacial.obtenerTablero()).tieneBase().en(0, 0);
+            assertThat(batallaEspacial.obtenerTablero()).tieneBase().en(0, 0);
         });
     }
     
@@ -47,7 +46,7 @@ public class NaveTest implements Prueba {
             batallaEspacial = new BatallaEspacial();
         });
     }
-    
+
     @Test
     public void crearTresObjetosDeTipoNaveDejandolosEnLaBase() {
         
@@ -71,7 +70,6 @@ public class NaveTest implements Prueba {
     }
  
     @Test
-    @Disabled
     public void noPuedeAvanzarAlNorteSiNoDespegoAntes() {
         
         dadoQue(fueCreadaLaBatallaEspacial());
@@ -94,6 +92,7 @@ public class NaveTest implements Prueba {
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNave());
 
+        unaNave.despegar();
         unaNave.avanzarAlNorte();
         
         comprobarQue(unaNaveEstaAlNorteDeLaBase());
@@ -113,7 +112,7 @@ public class NaveTest implements Prueba {
         
             assertThat(batallaEspacial.obtenerTablero())
                 .tieneNave().en(1, 0)
-                .tieneVacio().en(0, 0);
+                .tieneBase().en(0, 0);
         });
     }
     
@@ -123,6 +122,7 @@ public class NaveTest implements Prueba {
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNave());
 
+        unaNave.despegar();
         unaNave.avanzarAlNorte();
         unaNave.avanzarAlNorte();
         unaNave.avanzarAlNorte();
@@ -136,7 +136,8 @@ public class NaveTest implements Prueba {
             
             assertThat(batallaEspacial.obtenerTablero())
                 .tieneNave().en(3, 0)
-                .tieneVacio().en(0, 0).en(1, 0).en(2, 0);
+                .tieneBase().en(0, 0)
+                .tieneVacio().en(1, 0).en(2, 0);
         });
     }
     
@@ -146,6 +147,7 @@ public class NaveTest implements Prueba {
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNave());
 
+        unaNave.despegar();
         unaNave.avanzarAlSur();
         
         comprobarQue(unaNaveEstaAlSurDeLaBase());
@@ -157,7 +159,7 @@ public class NaveTest implements Prueba {
         
             assertThat(batallaEspacial.obtenerTablero())
                 .tieneNave().en(-1, 0)
-                .tieneVacio().en(0, 0);
+                .tieneBase().en(0, 0);
         });
     }
 
@@ -167,6 +169,7 @@ public class NaveTest implements Prueba {
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNave());
 
+        unaNave.despegar();
         unaNave.avanzarAlEste();
         
         comprobarQue(unaNaveEstaAlEsteDeLaBase());
@@ -178,7 +181,7 @@ public class NaveTest implements Prueba {
         
             assertThat(batallaEspacial.obtenerTablero())
                 .tieneNave().en(0, 1)
-                .tieneVacio().en(0, 0);
+                .tieneBase().en(0, 0);
         });
     }
 
@@ -188,6 +191,7 @@ public class NaveTest implements Prueba {
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNave());
 
+        unaNave.despegar();
         unaNave.avanzarAlOeste();
         
         comprobarQue(unaNaveEstaAlOesteDeLaBase());
@@ -199,7 +203,7 @@ public class NaveTest implements Prueba {
         
             assertThat(batallaEspacial.obtenerTablero())
                 .tieneNave().en(0, -1)
-                .tieneVacio().en(0, 0);
+                .tieneBase().en(0, 0);
         });
     }
     
@@ -220,6 +224,7 @@ public class NaveTest implements Prueba {
         return precondicion("unNave está al ESTE de un ASTEROIDE", () -> {
           
             unaNave = new Nave();
+            unaNave.despegar();
             unaNave.avanzarAlNorte();
             unaNave.avanzarAlOeste();
             unaNave.avanzarAlOeste();
@@ -271,6 +276,7 @@ public class NaveTest implements Prueba {
         return precondicion("unaNave está al SUR de un ASTEROIDE", () -> {
           
             unaNave = new Nave();
+            unaNave.despegar();
             IntStream.range(0, 2).forEach(n -> unaNave.avanzarAlEste());
             IntStream.range(0, 3).forEach(n -> unaNave.avanzarAlNorte());
         });
@@ -311,6 +317,7 @@ public class NaveTest implements Prueba {
         return precondicion("una Nave en el borde SUR del Tablero", () -> {
           
             unaNave = new Nave();
+            unaNave.despegar();
             unaNave.avanzarAlOeste();
             IntStream.range(0, 10).forEach(n -> unaNave.avanzarAlSur());
             unaNave.avanzarAlEste();
@@ -343,6 +350,7 @@ public class NaveTest implements Prueba {
         return precondicion("unaNave está al ESTE de un AgujeroNegro (DESCONOCIDO)", () -> {
           
             unaNave = new Nave();
+            unaNave.despegar();
             IntStream.range(0, 5).forEach(n -> unaNave.avanzarAlOeste());
             unaNave.avanzarAlNorte();
         });

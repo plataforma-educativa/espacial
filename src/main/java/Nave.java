@@ -9,7 +9,12 @@ public class Nave {
     public Nave() {
 
         partida = BatallaEspacial.obtener();
-        pieza = partida.agregar(this);
+        pieza = partida.intervenirCon(this);
+    }
+
+    public void despegar() {
+
+        pieza.despegar();
     }
 
     public void avanzarAlNorte() {
