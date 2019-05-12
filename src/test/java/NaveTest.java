@@ -77,32 +77,40 @@ public class NaveTest implements Prueba {
         
         comprobarQue(generaElErrorLaNaveNoDespego(() -> unaNave.avanzarAlNorte()));
     }
-    
+
+    private Precondicion fueCreadaUnaNave() {
+
+        return precondicion("fue creada una Nave", () -> {
+
+            unaNave = new Nave();
+        });
+    }
+
     private Postcondicion generaElErrorLaNaveNoDespego(Ejecutable ejecutable) {
 
         return postcondicion("genera el error LaNaveNoDespego", () -> {
-            
+
             assertThatThrownBy(ejecutable::ejecutar).isInstanceOf(LaNaveNoEstaEnUnCasillero.class);
         });
     }
 
     @Test
     public void avanzarAlNorte() {
-        
-        dadoQue(fueCreadaLaBatallaEspacial());
-        dadoQue(fueCreadaUnaNave());
 
-        unaNave.despegar();
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
+
         unaNave.avanzarAlNorte();
-        
+
         comprobarQue(unaNaveEstaAlNorteDeLaBase());
     }
-    
-    private Precondicion fueCreadaUnaNave() {
 
-        return precondicion("fue creada una Nave", () -> { 
-          
+    private Precondicion fueCreadaUnaNaveQueDespegoDeLaBase() {
+
+        return precondicion("fue creada una Nave que despegó de la Base", () -> {
+
             unaNave = new Nave();
+            unaNave.despegar();
         });
     }
 
@@ -120,9 +128,8 @@ public class NaveTest implements Prueba {
     public void avanzarAlNorteTresVeces() {
         
         dadoQue(fueCreadaLaBatallaEspacial());
-        dadoQue(fueCreadaUnaNave());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
 
-        unaNave.despegar();
         unaNave.avanzarAlNorte();
         unaNave.avanzarAlNorte();
         unaNave.avanzarAlNorte();
@@ -145,9 +152,8 @@ public class NaveTest implements Prueba {
     public void avanzarAlSur() {
         
         dadoQue(fueCreadaLaBatallaEspacial());
-        dadoQue(fueCreadaUnaNave());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
 
-        unaNave.despegar();
         unaNave.avanzarAlSur();
         
         comprobarQue(unaNaveEstaAlSurDeLaBase());
@@ -167,9 +173,8 @@ public class NaveTest implements Prueba {
     public void avanzarAlEste() {
         
         dadoQue(fueCreadaLaBatallaEspacial());
-        dadoQue(fueCreadaUnaNave());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
 
-        unaNave.despegar();
         unaNave.avanzarAlEste();
         
         comprobarQue(unaNaveEstaAlEsteDeLaBase());
@@ -189,9 +194,8 @@ public class NaveTest implements Prueba {
     public void avanzarAlOeste() {
         
         dadoQue(fueCreadaLaBatallaEspacial());
-        dadoQue(fueCreadaUnaNave());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
 
-        unaNave.despegar();
         unaNave.avanzarAlOeste();
         
         comprobarQue(unaNaveEstaAlOesteDeLaBase());
