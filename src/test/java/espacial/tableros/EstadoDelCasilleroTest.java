@@ -5,29 +5,23 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 import espacial.Casillero;
-import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.excepciones.Defecto;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Prueba;
 
-public abstract class EstadoDelCasilleroTest<T extends EstadoDelCasillero> implements Prueba {
+public abstract class EstadoDelCasilleroTest implements Prueba {
 
-    protected final CasilleroInterior CASILLERO = mock(CasilleroInterior.class);
-    protected final Casillero CASILLERO_ORIGEN = mock(Casillero.class);
-    protected final Casillero CASILLERO_DESTINO = mock(Casillero.class);
-    protected final Pieza OTRA_PIEZA = mock(Pieza.class);
+    protected final CasilleroInterior CASILLERO = mock(CasilleroInterior.class, "CASILLERO");
+    protected final Casillero CASILLERO_ORIGEN = mock(Casillero.class, "CASILLERO_ORIGEN");
+    protected final Casillero CASILLERO_DESTINO = mock(Casillero.class, "CASILLERO_DESTINO");
+    protected final Pieza PIEZA = mock(Pieza.class, "PIEZA");
+    protected final Pieza NAVE = mock(Pieza.class, "NAVE");
+    protected final Pieza OTRA_PIEZA = mock(Pieza.class, "OTRA_PIEZA");
+    protected final Pieza PIEZA_EN_ORIGEN = mock(Pieza.class, "PIEZA_EN_ORIGEN");
     
-    protected T estado;
-
-    protected Postcondicion alEscanearDevuelve(EspectroEspacial espectro) {
-
-        return postcondicion("al escanear devuelve " + espectro, () -> {
-          
-            assertThat(estado.alEscanear()).isEqualTo(espectro);
-        });
-    }
+    protected EstadoDelCasillero estado;
 
     protected Postcondicion noCambioElEstadoDelCasillero() {
 
@@ -47,6 +41,16 @@ public abstract class EstadoDelCasilleroTest<T extends EstadoDelCasillero> imple
         return cambioElEstadoDelCasilleroPor(Ocupado.class);
     }
     
+    protected Postcondicion cambioElEstadoDelCasilleroPorOcupadoPorUnaBase() {
+
+        return cambioElEstadoDelCasilleroPor(OcupadoPorUnaBase.class);
+    }
+    
+    protected Postcondicion cambioElEstadoDelCasilleroPorOcupadoPorUnaBaseConNaveEnManiobras() {
+
+        return cambioElEstadoDelCasilleroPor(OcupadoPorUnaBaseConNaveEnManiobras.class);
+    }
+
     protected Postcondicion cambioElEstadoDelCasilleroPor(Class<? extends EstadoDelCasillero> estado) {
 
         return postcondicion("cambió el estado del casillero por " + estado.getSimpleName(), () -> {
@@ -62,4 +66,17 @@ public abstract class EstadoDelCasilleroTest<T extends EstadoDelCasillero> imple
             assertThatThrownBy(ejecutable::ejecutar).isInstanceOf(Defecto.class);
         });
     }
+
+    protected Postcondicion generaUnChoqueEntre(Pieza unaPieza, Pieza otraPieza) {
+        
+        return postcondicion("genera un choque entre " + unaPieza + " y " + otraPieza, () -> {
+
+            verify(unaPieza).chocarCon(otraPieza);
+        });
+    }
+    
+    public abstract void siEstaVacio();
+    public abstract void siEstaOcupado();
+    public abstract void siEstaOcupadoPorUnaBase();
+    public abstract void siEstaOcupadoPorUnaBaseConNaveEnManiobras();
 }

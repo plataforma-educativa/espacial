@@ -39,7 +39,7 @@ public class BatallaEspacial {
     public PiezaMovil agregar(Nave nave) {
         
         naves.add(nave);
-        
+
         PiezaMovil pieza = new CazaEspacial();
         
         Casillero casilleroOrigen = tablero.obtenerCasilleroEn(0, 0);
@@ -52,5 +52,16 @@ public class BatallaEspacial {
     public Tablero obtenerTablero() {
 
         return tablero;
+    }
+
+    public PiezaMovil intervenirCon(Nave unaNave) {
+
+        naves.add(unaNave);
+
+        CazaEspacial cazaEspacial = new CazaEspacial();
+
+        base.amarrar(cazaEspacial);
+
+        return cazaEspacial;
     }
 }

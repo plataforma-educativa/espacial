@@ -4,6 +4,7 @@ import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.excepciones.Defecto;
+import espacial.piezas.BaseEspacial;
 
 public class Vacio extends EstadoDelCasillero {
 
@@ -21,7 +22,9 @@ public class Vacio extends EstadoDelCasillero {
     @Override
     public void alOcuparCon(Pieza unaPieza) {
 
-        cambiarPor(new Ocupado(contexto, unaPieza));
+        EstadoDelCasillero ocupado = unaPieza instanceof BaseEspacial ? 
+                new OcupadoPorUnaBase(contexto, unaPieza) : new Ocupado(contexto, unaPieza);
+        cambiarPor(ocupado);
     }
 
     @Override

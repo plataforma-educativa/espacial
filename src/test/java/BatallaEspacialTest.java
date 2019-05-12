@@ -1,7 +1,11 @@
 
 import static espacial.test.Aserciones.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
+import espacial.Direccion;
+import espacial.PiezaMovil;
+import espacial.test.Precondicion;
 import org.junit.jupiter.api.Test;
 
 import espacial.Tablero;
@@ -9,6 +13,10 @@ import espacial.test.Postcondicion;
 import espacial.test.Prueba;
 
 public class BatallaEspacialTest implements Prueba {
+
+    private final Nave UNA_NAVE = mock(Nave.class, "UNA_NAVE");
+
+    private BatallaEspacial batalla;
 
     @Test
     public void crearUnObjetoDeTipoBatallaEspacialDejandolaRegistrada() {
@@ -90,9 +98,50 @@ public class BatallaEspacialTest implements Prueba {
     private Postcondicion devuelveElMismo(BatallaEspacial batalla, Tablero tablero) {
 
         return postcondicion("devuelve el mismo tablero", () -> {
-         
+
             assertThat(tablero).isSameAs(batalla.obtenerTablero());
             assertThat(tablero).isSameAs(batalla.obtenerTablero());
         });
     }
+
+    @Test
+    public void intervenirConNave() {
+
+        dadoQue(fueCreadaLaBatalla());
+
+        PiezaMovil piezaResultante = batalla.intervenirCon(UNA_NAVE);
+
+        comprobarQue(entreLasNavesDeLaBatallaEsta(UNA_NAVE));
+        comprobarQue(enLaBaseEsta(piezaResultante));
+    }
+
+    private Precondicion fueCreadaLaBatalla() {
+
+        return precondicion("fue creada la batalla", () -> {
+
+            batalla = new BatallaEspacial();
+        });
+    }
+
+    private Postcondicion entreLasNavesDeLaBatallaEsta(Nave unaNave) {
+
+        return postcondicion("entre las Naves de la batalla está " + unaNave, () -> {
+
+            assertThat(batalla.obtenerNaves()).as("naves en la batalla")
+                    .contains(unaNave);
+        });
+    }
+
+    private Postcondicion enLaBaseEsta(PiezaMovil pieza) {
+
+        return postcondicion("en la base está la pieza", () -> {
+
+            assertThat(pieza).as("pieza").isNotNull();
+
+            pieza.despegar();
+            pieza.moverEn(Direccion.NORTE);
+        });
+    }
+
+
 }

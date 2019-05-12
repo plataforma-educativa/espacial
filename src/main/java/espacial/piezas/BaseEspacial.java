@@ -61,8 +61,8 @@ public class BaseEspacial implements Pieza {
         public void soltar() {
 
             if (amarres.remove(this)) {
-                
-                pieza.fueColocadaEn(casillero);
+
+                casillero.ocuparCon(pieza);
             }
         }
     }

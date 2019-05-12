@@ -128,7 +128,7 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
     }
 
     private Postcondicion unaBaseYaNoTieneMasAmarradaLaNaveBeta() {
-    
+
         return postcondicion("unaBase ya no tiene más amarrada la Nave NAVE_BETA", () -> {
             
             assertThat(unaBase.obtenerAmarres())
@@ -142,8 +142,8 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
     private Postcondicion naveBetaFueColocadaEnElCasilleroDeLaBase() {
 
         return postcondicion("NAVE_BETA fue colocada en el CASILLERO", () -> {
-            
-            verify(NAVE_BETA).fueColocadaEn(CASILLERO);
+
+            verify(CASILLERO).ocuparCon(NAVE_BETA);
         });
     }
     
