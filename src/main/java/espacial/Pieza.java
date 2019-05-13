@@ -35,5 +35,6 @@ public interface Pieza extends Obstaculo {
         
         throw new LaOperacionNoEstaSoportada("Pieza.chocoCon(Obstaculo)");
     }
-    
+
+    void aceptar(Visitante visitante);
 }

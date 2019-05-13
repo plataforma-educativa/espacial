@@ -2,12 +2,7 @@ package espacial.piezas;
 
 import java.util.Optional;
 
-import espacial.Amarre;
-import espacial.Casillero;
-import espacial.Direccion;
-import espacial.EspectroEspacial;
-import espacial.Obstaculo;
-import espacial.PiezaMovil;
+import espacial.*;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 
@@ -87,6 +82,12 @@ public class CazaEspacial implements PiezaMovil {
     public void chocarCon(Obstaculo obstaculo) {
         
         obstaculo.fueChocadaPor(this);
+    }
+
+    @Override
+    public void aceptar(Visitante visitante) {
+
+        visitante.siEsNave(this);
     }
 
 }

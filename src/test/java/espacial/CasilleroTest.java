@@ -22,16 +22,31 @@ public class CasilleroTest implements Prueba {
 
         @Override
         public EspectroEspacial escanear() {
+
             return EspectroEspacial.CONTENEDOR;
         }
+
+        @Override
+        public void aceptar(Visitante visitante) {
+
+            visitante.siEsContenedor(this);
+        }
+
     };
     
     private final Pieza ASTEROIDE = new Pieza() {
 
         @Override
         public EspectroEspacial escanear() {
+
             return EspectroEspacial.ASTEROIDE;
 
+        }
+
+        @Override
+        public void aceptar(Visitante visitante) {
+
+            visitante.siEsAsteroide(this);
         }
     };
     
@@ -39,7 +54,14 @@ public class CasilleroTest implements Prueba {
 
         @Override
         public EspectroEspacial escanear() {
+
             return EspectroEspacial.NAVE;
+        }
+
+        @Override
+        public void aceptar(Visitante visitante) {
+
+            visitante.siEsNave(this);
         }
     };
   

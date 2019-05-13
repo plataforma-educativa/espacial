@@ -4,7 +4,6 @@ import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.excepciones.Defecto;
-import espacial.piezas.BaseEspacial;
 
 public class Vacio extends EstadoDelCasillero {
 
@@ -22,9 +21,11 @@ public class Vacio extends EstadoDelCasillero {
     @Override
     public void alOcuparCon(Pieza unaPieza) {
 
-        EstadoDelCasillero ocupado = unaPieza instanceof BaseEspacial ? 
-                new OcupadoPorUnaBase(contexto, unaPieza) : new Ocupado(contexto, unaPieza);
-        cambiarPor(ocupado);
+        OcuparCasilleroVacio ocuparCasilleroVacio = new OcuparCasilleroVacio(contexto);
+
+        unaPieza.aceptar(ocuparCasilleroVacio);
+
+        cambiarPor(ocuparCasilleroVacio.obtenerEstadoResultante());
     }
 
     @Override
@@ -50,6 +51,6 @@ public class Vacio extends EstadoDelCasillero {
     @Override
     public Pieza alObtenerPieza() {
 
-        throw new Defecto("No se puede obtener Pieza en un Casillero Vacío");
+        throw new Defecto("No se puede obtenerEstadoResultante Pieza en un Casillero Vacío");
     }
 }

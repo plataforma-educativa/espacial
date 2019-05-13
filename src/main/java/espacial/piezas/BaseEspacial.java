@@ -3,11 +3,7 @@ package espacial.piezas;
 import java.util.LinkedList;
 import java.util.List;
 
-import espacial.Amarre;
-import espacial.Casillero;
-import espacial.EspectroEspacial;
-import espacial.Pieza;
-import espacial.PiezaMovil;
+import espacial.*;
 
 public class BaseEspacial implements Pieza {
 
@@ -24,7 +20,7 @@ public class BaseEspacial implements Pieza {
      
         this.casillero = casillero;
     }
-    
+
     @Override
     public EspectroEspacial escanear() {
         
@@ -42,7 +38,13 @@ public class BaseEspacial implements Pieza {
 
         return amarres.toArray(new Amarre[amarres.size()]);
     }
-    
+
+    @Override
+    public void aceptar(Visitante visitante) {
+
+        visitante.siEsBase(this);
+    }
+
     private class AmarreConBaseEspacial implements Amarre {
         
         private final PiezaMovil pieza;
