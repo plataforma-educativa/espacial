@@ -45,7 +45,7 @@ public interface Casillero {
      * @post si está desocupado toma la Pieza del Casillero {@code origen}, lo desocupa y ocupa el Casillero;
      *       si está ocupado hace chocar la Pieza del Casillero con la Pieza del Casillero {@code origen}.
      * 
-     * @param destino
+     * @param origen
      */
     void recibirPiezaDesde(Casillero origen);
     
