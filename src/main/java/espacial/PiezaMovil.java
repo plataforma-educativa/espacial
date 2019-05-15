@@ -18,5 +18,7 @@ public interface PiezaMovil extends Pieza {
 
     void chocoContraUnaNave();
 
+    void chocoContraUnaBase();
+
     void fueAmarradaCon(Amarre amarre);
 }

@@ -5,6 +5,9 @@ import static org.junit.jupiter.params.provider.Arguments.*;
 
 import java.util.stream.Stream;
 
+import espacial.piezas.Asteroide;
+import espacial.piezas.CazaEspacial;
+import espacial.piezas.ContenedorDeAntimateria;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -18,52 +21,11 @@ public class CasilleroTest implements Prueba {
 
     private Tablero tablero;
     
-    private final Pieza CONTENEDOR = new Pieza() {
-
-        @Override
-        public EspectroEspacial escanear() {
-
-            return EspectroEspacial.CONTENEDOR;
-        }
-
-        @Override
-        public void aceptar(Visitante visitante) {
-
-            visitante.siEsContenedor(this);
-        }
-
-    };
+    private final Pieza CONTENEDOR = new ContenedorDeAntimateria();
     
-    private final Pieza ASTEROIDE = new Pieza() {
-
-        @Override
-        public EspectroEspacial escanear() {
-
-            return EspectroEspacial.ASTEROIDE;
-
-        }
-
-        @Override
-        public void aceptar(Visitante visitante) {
-
-            visitante.siEsAsteroide(this);
-        }
-    };
+    private final Pieza ASTEROIDE = new Asteroide();
     
-    private final Pieza NAVE = new Pieza() {
-
-        @Override
-        public EspectroEspacial escanear() {
-
-            return EspectroEspacial.NAVE;
-        }
-
-        @Override
-        public void aceptar(Visitante visitante) {
-
-            visitante.siEsNave(this);
-        }
-    };
+    private final Pieza NAVE = new CazaEspacial();
   
     @BeforeEach
     public void crearTablero() {

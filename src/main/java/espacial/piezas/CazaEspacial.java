@@ -87,12 +87,18 @@ public class CazaEspacial implements PiezaMovil {
     @Override
     public void chocoContraUnaNave() {
 
-        nivelDeEscudos -= 20;
+        nivelDeEscudos -= 25;
+    }
+
+    @Override
+    public void chocoContraUnaBase() {
+
+        nivelDeEscudos -= 5;
     }
 
     @Override
     public void chocarCon(Obstaculo obstaculo) {
-        
+
         obstaculo.fueChocadaPor(this);
     }
 
@@ -101,5 +107,4 @@ public class CazaEspacial implements PiezaMovil {
 
         visitante.siEsNave(this);
     }
-
 }

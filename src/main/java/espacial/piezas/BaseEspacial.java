@@ -45,6 +45,12 @@ public class BaseEspacial implements Pieza {
         visitante.siEsBase(this);
     }
 
+    @Override
+    public void fueChocadaPor(PiezaMovil piezaMovil) {
+
+        piezaMovil.chocoContraUnaBase();
+    }
+
     private class AmarreConBaseEspacial implements Amarre {
         
         private final PiezaMovil pieza;

@@ -166,7 +166,17 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
         unCazaEspacial.chocoContraUnaNave();
 
-        comprobarQue(elNivelDeEscudosBajoA(80));
+        comprobarQue(elNivelDeEscudosBajoA(75));
+    }
+
+    @Test
+    public void chocoContraUnaBase() {
+
+        dadoQue(fueCreadoUnCazaEspacial());
+
+        unCazaEspacial.chocoContraUnaBase();
+
+        comprobarQue(elNivelDeEscudosBajoA(95));
     }
     
     @Test

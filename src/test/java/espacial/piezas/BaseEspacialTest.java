@@ -34,17 +34,12 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
         return EspectroEspacial.BASE;
     }
 
-    @Test
-    @Disabled
-    public void fueChocadaPor() {
-
-    }
-    
     @Override
     public Postcondicion laPiezaMovilFueNotificadaDelChoque() {
 
         return postcondicion("notificó a la PiezaMovil que chocó contra una Base", () -> {
-            
+
+            verify(PIEZA_MOVIL).chocoContraUnaBase();
         });
     }
     

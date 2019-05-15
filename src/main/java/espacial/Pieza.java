@@ -24,12 +24,6 @@ public interface Pieza extends Obstaculo {
     default void fueColocadaEn(Casillero casillero) {
 
     }
-    
-    @Override
-    default void fueChocadaPor(PiezaMovil piezaMovil) {
-
-        throw new LaOperacionNoEstaSoportada("Obstaculo.fueChocadaPor(PiezaMovil)");
-    }
 
     default void chocarCon(Obstaculo obstaculo) {
         
