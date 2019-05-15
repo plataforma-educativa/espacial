@@ -52,15 +52,12 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
     @Override
     public Postcondicion laPiezaMovilFueNotificadaDelChoque() {
 
-        return null;
+        return postcondicion("notificó a la PiezaMovil que chocó contra una Nave", () -> {
+
+            verify(PIEZA_MOVIL).chocoContraUnaNave();
+        });
     }
 
-    @Test
-    @Disabled
-    public void fueChocadaPor() {
-
-    }
-    
     @Test
     public void moverEnDireccionCuandoNoDespego() {
         
@@ -161,6 +158,16 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
         comprobarQue(elNivelDeEscudosBajoA(25));
     }
+
+    @Test
+    public void chocoContraUnaNave() {
+
+        dadoQue(fueCreadoUnCazaEspacial());
+
+        unCazaEspacial.chocoContraUnaNave();
+
+        comprobarQue(elNivelDeEscudosBajoA(80));
+    }
     
     @Test
     public void despegar() {
@@ -183,8 +190,8 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
     private Postcondicion unCazaEspacialSoltoElAmarre() {
 
-        return postcondicion("unCazaEspacial soltó el AMARRE", () -> { 
-          
+        return postcondicion("unCazaEspacial soltó el AMARRE", () -> {
+
             verify(AMARRE).soltar();
         });
     }

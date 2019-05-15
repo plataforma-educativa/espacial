@@ -27,7 +27,7 @@ public interface Pieza extends Obstaculo {
     
     @Override
     default void fueChocadaPor(PiezaMovil piezaMovil) {
-        
+
         throw new LaOperacionNoEstaSoportada("Obstaculo.fueChocadaPor(PiezaMovil)");
     }
 

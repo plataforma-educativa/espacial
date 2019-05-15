@@ -55,6 +55,12 @@ public class CazaEspacial implements PiezaMovil {
     }
 
     @Override
+    public void fueChocadaPor(PiezaMovil piezaMovil) {
+
+        piezaMovil.chocoContraUnaNave();
+    }
+
+    @Override
     public void chocoContraUnAsteroide() {
 
         nivelDeEscudos -= 25;
@@ -76,6 +82,12 @@ public class CazaEspacial implements PiezaMovil {
     public void chocoContraUnAgujeroNegro() {
         
         nivelDeEscudos -= 75;
+    }
+
+    @Override
+    public void chocoContraUnaNave() {
+
+        nivelDeEscudos -= 20;
     }
 
     @Override
