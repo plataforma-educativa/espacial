@@ -1,5 +1,7 @@
 package espacial;
 
+import espacial.excepciones.LaOperacionNoEstaSoportada;
+
 public interface PiezaMovil extends Pieza {
     
     void despegar();
@@ -21,4 +23,9 @@ public interface PiezaMovil extends Pieza {
     void chocoContraUnaBase();
 
     void fueAmarradaCon(Amarre amarre);
+
+    default void chocarCon(Obstaculo obstaculo) {
+
+        obstaculo.fueChocadaPor(this);
+    }
 }

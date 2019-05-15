@@ -97,12 +97,6 @@ public class CazaEspacial implements PiezaMovil {
     }
 
     @Override
-    public void chocarCon(Obstaculo obstaculo) {
-
-        obstaculo.fueChocadaPor(this);
-    }
-
-    @Override
     public void aceptar(Visitante visitante) {
 
         visitante.siEsNave(this);
