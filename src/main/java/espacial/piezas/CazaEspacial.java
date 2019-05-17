@@ -58,6 +58,7 @@ public class CazaEspacial implements PiezaMovil {
     public void fueChocadaPor(PiezaMovil piezaMovil) {
 
         piezaMovil.chocoContraUnaNave();
+        nivelDeEscudos -= 5;
     }
 
     @Override

@@ -3,15 +3,12 @@ package espacial.piezas;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import espacial.*;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import espacial.Amarre;
-import espacial.Casillero;
-import espacial.Direccion;
-import espacial.EspectroEspacial;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
@@ -56,6 +53,16 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
             verify(PIEZA_MOVIL).chocoContraUnaNave();
         });
+    }
+
+    @Test
+    public void fueChocadaPorOtraPiezaMovil() {
+
+        dadoQue(fueCreadoUnCazaEspacial());
+
+        unCazaEspacial.fueChocadaPor(PIEZA_MOVIL);
+
+        comprobarQue(elNivelDeEscudosBajoA(95));
     }
 
     @Test
