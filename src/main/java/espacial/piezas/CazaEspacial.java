@@ -5,8 +5,9 @@ import java.util.Optional;
 import espacial.*;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
+import espacial.piezas.rasgos.NaveChocable;
 
-public class CazaEspacial implements PiezaMovil {
+public class CazaEspacial implements PiezaMovil, NaveChocable {
 
     private int nivelDeEscudos = 100;
     private Optional<Casillero> casillero = Optional.empty();
@@ -61,46 +62,9 @@ public class CazaEspacial implements PiezaMovil {
     }
 
     @Override
-    public void fueChocadaPor(PiezaMovil piezaMovil) {
+    public void disminuirNivelDeEscudosEn(int diferencia) {
 
-        piezaMovil.chocoContraUnaNave();
-        nivelDeEscudos -= 5;
-    }
-
-    @Override
-    public void chocoContraUnAsteroide() {
-
-        nivelDeEscudos -= 25;
-    }
-
-    @Override
-    public void chocoContraUnContenedor() {
-
-        nivelDeEscudos -= 10;
-    }
-    
-    @Override
-    public void chocoContraElBordeDelTablero() {
-        
-        nivelDeEscudos -= 50;
-    }
-    
-    @Override
-    public void chocoContraUnAgujeroNegro() {
-        
-        nivelDeEscudos -= 75;
-    }
-
-    @Override
-    public void chocoContraUnaNave() {
-
-        nivelDeEscudos -= 25;
-    }
-
-    @Override
-    public void chocoContraUnaBase() {
-
-        nivelDeEscudos -= 5;
+        nivelDeEscudos -= diferencia;
     }
 
     @Override

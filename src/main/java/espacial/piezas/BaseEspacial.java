@@ -46,9 +46,9 @@ public class BaseEspacial implements Pieza {
     }
 
     @Override
-    public void fueChocadaPor(PiezaMovil piezaMovil) {
+    public void fueChocadaPor(Chocable chocable) {
 
-        piezaMovil.chocoContraUnaBase();
+        chocable.chocoContraUnaBase();
     }
 
     @Override

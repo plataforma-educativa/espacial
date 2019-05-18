@@ -3,8 +3,8 @@ package espacial;
 public interface Obstaculo {
 
     /**
-     * @pre el Obstáculo fue chocado por {@code piezaMovil}.
-     * @param piezaMovil
+     * @pre el Obstáculo fue chocado por {@code chocable}.
+     * @param chocable
      */
-    void fueChocadaPor(PiezaMovil piezaMovil);
+    void fueChocadaPor(Chocable chocable);
 }

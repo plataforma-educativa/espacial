@@ -1,11 +1,11 @@
 package espacial.tableros;
 
 import espacial.Casillero;
+import espacial.Chocable;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Obstaculo;
 import espacial.Pieza;
-import espacial.PiezaMovil;
 import espacial.Tablero;
 import espacial.excepciones.LaOperacionNoEstaSoportada;
 
@@ -57,8 +57,8 @@ public class CasilleroBorde implements Casillero, Obstaculo {
     }
 
     @Override
-    public void fueChocadaPor(PiezaMovil piezaMovil) {
+    public void fueChocadaPor(Chocable chocable) {
         
-        piezaMovil.chocoContraElBordeDelTablero();
+        chocable.chocoContraElBordeDelTablero();
     }
 }

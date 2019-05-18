@@ -1,8 +1,8 @@
 package espacial.piezas;
 
+import espacial.Chocable;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
-import espacial.PiezaMovil;
 import espacial.Visitante;
 
 public class Asteroide implements Pieza {
@@ -14,9 +14,9 @@ public class Asteroide implements Pieza {
     }
     
     @Override
-    public void fueChocadaPor(PiezaMovil otraPieza) {
+    public void fueChocadaPor(Chocable chocable) {
 
-        otraPieza.chocoContraUnAsteroide();
+        chocable.chocoContraUnAsteroide();
     }
 
     @Override

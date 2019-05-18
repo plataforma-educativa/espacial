@@ -1,8 +1,6 @@
 package espacial;
 
-import espacial.excepciones.LaOperacionNoEstaSoportada;
-
-public interface PiezaMovil extends Pieza {
+public interface PiezaMovil extends Pieza, Chocable {
     
     void despegar();
     
@@ -10,20 +8,9 @@ public interface PiezaMovil extends Pieza {
 
     int obtenerNivelDeEscudos();
     
-    void chocoContraUnAsteroide();
-
-    void chocoContraUnContenedor();
-
-    void chocoContraElBordeDelTablero();
-    
-    void chocoContraUnAgujeroNegro();
-
-    void chocoContraUnaNave();
-
-    void chocoContraUnaBase();
-
     void fueAmarradaCon(Amarre amarre);
 
+    @Override
     default void chocarCon(Obstaculo obstaculo) {
 
         obstaculo.fueChocadaPor(this);
