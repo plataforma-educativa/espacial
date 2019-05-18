@@ -10,6 +10,9 @@ import espacial.excepciones.LaOperacionNoEstaSoportada;
  */
 public interface Pieza extends Obstaculo {
 
+    int PUNTOS_MINIMOS = 1;
+    int PUNTOS_MAXIMOS = 1000;
+
     /**
      * @return el EspectroEspacial que la Pieza refleja en el Radar de los
      *         participantes.
@@ -31,4 +34,9 @@ public interface Pieza extends Obstaculo {
     }
 
     void aceptar(Visitante visitante);
+
+    /**
+     * @return la cantidad de puntos que le permiten a la Pieza continuar en la Partida.
+     */
+    int obtenerPuntos();
 }

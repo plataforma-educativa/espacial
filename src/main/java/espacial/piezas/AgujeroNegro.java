@@ -24,4 +24,10 @@ public class AgujeroNegro implements Pieza {
 
         visitante.siEsAgujeroNegro(this);
     }
+
+    @Override
+    public int obtenerPuntos() {
+
+        return PUNTOS_MAXIMOS;
+    }
 }

@@ -24,4 +24,10 @@ public class ContenedorDeAntimateria implements Pieza {
 
         visitante.siEsContenedor(this);
     }
+
+    @Override
+    public int obtenerPuntos() {
+
+        return 50;
+    }
 }

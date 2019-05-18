@@ -6,7 +6,6 @@ import static org.mockito.Mockito.*;
 import espacial.*;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
@@ -227,6 +226,23 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
             assertThatThrownBy(ejecutable::ejecutar)
                     .isInstanceOf(LaNaveNoEstaEnLaBase.class);
+        });
+    }
+
+    @Test
+    public void obtenerPuntos() {
+
+        dadoQue(fueCreadoUnCazaEspacial());
+
+        comprobarQue(losPuntosInicialesDeUnCazaEspacialSonCorrectos());
+    }
+
+    private Postcondicion losPuntosInicialesDeUnCazaEspacialSonCorrectos() {
+
+        return postcondicion("los puntos iniciales de unCazaEspacial son correctos", () -> {
+
+            assertThat(unCazaEspacial.obtenerPuntos()).as("puntos")
+                    .isEqualTo(100);
         });
     }
 }

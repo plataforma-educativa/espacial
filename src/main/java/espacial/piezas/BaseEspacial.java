@@ -51,6 +51,12 @@ public class BaseEspacial implements Pieza {
         piezaMovil.chocoContraUnaBase();
     }
 
+    @Override
+    public int obtenerPuntos() {
+
+        return 200;
+    }
+
     private class AmarreConBaseEspacial implements Amarre {
         
         private final PiezaMovil pieza;

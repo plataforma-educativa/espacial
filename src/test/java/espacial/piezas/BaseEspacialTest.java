@@ -2,6 +2,8 @@ package espacial.piezas;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
+
+import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +23,7 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
     private final Casillero CASILLERO = mock(Casillero.class, "CASILLERO");
 
     private BaseEspacial unaBase;
-    
+
     @Override
     public BaseEspacial piezaCreada() {
 
@@ -42,7 +44,7 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
             verify(PIEZA_MOVIL).chocoContraUnaBase();
         });
     }
-    
+
     @Test
     public void amarrarUnaNave() {
         
@@ -141,5 +143,30 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
             verify(CASILLERO).ocuparCon(NAVE_BETA);
         });
     }
-    
+
+    @Test
+    public void obtenerPuntos() {
+
+        dadoQue(fueCreadaUnaBase());
+
+        comprobarQue(losPuntosInicialesDeUnaBaseSonCorrectos());
+    }
+
+    private Precondicion fueCreadaUnaBase() {
+
+        return precondicion("fue creada unaBase", () -> {
+
+            unaBase = new BaseEspacial();
+        });
+    }
+
+    private Postcondicion losPuntosInicialesDeUnaBaseSonCorrectos() {
+
+        return postcondicion("los puntos iniciales de unaBase", () -> {
+
+            assertThat(unaBase.obtenerPuntos()).as("puntos")
+                    .isEqualTo(200);
+        });
+    }
+
 }

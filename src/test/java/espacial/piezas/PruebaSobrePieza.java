@@ -3,6 +3,7 @@ package espacial.piezas;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
 import espacial.Casillero;
@@ -61,4 +62,24 @@ public abstract class PruebaSobrePieza<T extends Pieza> implements Prueba {
         
         return casillero;
     }
+
+    @Test
+    public void obtenerPuntosParaCualquierPieza() {
+
+        Pieza unaPieza = piezaCreada();
+
+        comprobarQue(sePuedenObtenerLosPuntosDe(unaPieza));
+
+    }
+
+    private Postcondicion sePuedenObtenerLosPuntosDe(Pieza unaPieza) {
+
+        return postcondicion("se pueden obtener los puntos de la Pieza", () -> {
+
+            assertThat(unaPieza.obtenerPuntos()).as("puntos")
+                    .isBetween(Pieza.PUNTOS_MINIMOS, Pieza.PUNTOS_MAXIMOS);
+
+        });
+    }
+
 }

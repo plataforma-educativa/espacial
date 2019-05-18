@@ -24,4 +24,10 @@ public class Asteroide implements Pieza {
 
         visitante.siEsAsteroide(this);
     }
+
+    @Override
+    public int obtenerPuntos() {
+
+        return 90;
+    }
 }

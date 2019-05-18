@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.IntStream;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
@@ -267,7 +268,7 @@ public class NaveTest implements Prueba {
     public void noPuedeAvanzarSiExisteUnContenedorEnElCasilleroDestino() {
         
         dadoQue(fueCreadaLaBatallaEspacial());
-        dadoQue(unaNaveEstaAlSurDeUnAsteroide());
+        dadoQue(unaNaveEstaAlSurDeUnContenedor());
         
         unaNave.avanzarAlNorte();
         
@@ -275,9 +276,9 @@ public class NaveTest implements Prueba {
         comprobarQue(unaNaveSufrioElChoqueContraElContenedor());
     }
 
-    private Precondicion unaNaveEstaAlSurDeUnAsteroide() {
+    private Precondicion unaNaveEstaAlSurDeUnContenedor() {
 
-        return precondicion("unaNave está al SUR de un ASTEROIDE", () -> {
+        return precondicion("unaNave está al SUR de un CONTENEDOR", () -> {
           
             unaNave = new Nave();
             unaNave.despegar();
@@ -368,5 +369,23 @@ public class NaveTest implements Prueba {
                 .isEqualTo(25);
         });
     }
-    
+
+    @Test
+    @Disabled
+    public void atacarAlSur() {
+
+        dadoQue(unaNaveEstaAlNorteDeUnAsteroide());
+
+
+    }
+
+    private Precondicion unaNaveEstaAlNorteDeUnAsteroide() {
+
+        return precondicion("unaNave está al NORTE de un Asteroide", () -> {
+
+            unaNave = new Nave();
+            unaNave.despegar();
+            IntStream.range(0, 5).forEach(n -> unaNave.avanzarAlSur());
+        });
+    }
 }
