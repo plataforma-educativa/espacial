@@ -26,11 +26,11 @@ public class AgujeroNegroTest extends PruebaSobrePieza<AgujeroNegro> {
     }
 
     @Override
-    public Postcondicion laPiezaMovilFueNotificadaDelChoque() {
+    public Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
-        return postcondicion("notificó a la PiezaMovil que chocó contra un AgujeroNegro", () -> {
+        return postcondicion("notificó a la NaveEspacial que chocó contra un AgujeroNegro", () -> {
             
-            verify(PIEZA_MOVIL).chocoContraUnAgujeroNegro();
+            verify(NAVE_ESPACIAL).chocoContraUnAgujeroNegro();
         });
     }
 

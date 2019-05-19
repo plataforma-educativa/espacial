@@ -376,7 +376,7 @@ public class NaveTest implements Prueba {
     }
 
     @Test
-    public void atacarAlSur() {
+    public void atacarAlSurUnAsteroide() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(unaNaveEstaAlNorteDeUnAsteroide());

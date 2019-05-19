@@ -34,7 +34,7 @@ public class BaseEspacial implements Pieza, PiezaAtacable {
         return EspectroEspacial.BASE;
     }
 
-    public void amarrar(PiezaMovil pieza) {
+    public void amarrar(NaveEspacial pieza) {
         
         Amarre amarre = new AmarreConBaseEspacial(pieza);
         amarres.add(amarre);
@@ -72,14 +72,14 @@ public class BaseEspacial implements Pieza, PiezaAtacable {
 
     private class AmarreConBaseEspacial implements Amarre {
         
-        private final PiezaMovil pieza;
+        private final NaveEspacial pieza;
         
-        private AmarreConBaseEspacial(PiezaMovil unaPieza) {
+        private AmarreConBaseEspacial(NaveEspacial unaPieza) {
             
             pieza = unaPieza;
         }
         
-        public PiezaMovil obtenerPieza() {
+        public NaveEspacial obtenerPieza() {
             
             return pieza;
         }

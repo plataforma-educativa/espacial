@@ -1,6 +1,6 @@
 package espacial;
 
-public interface PiezaMovil extends Pieza, Chocable {
+public interface NaveEspacial extends Pieza, Chocable {
 
     void despegar();
 

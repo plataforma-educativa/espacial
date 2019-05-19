@@ -16,5 +16,5 @@ public interface Amarre {
     /**
      * @return Pieza que ha sido amarrada.
      */
-    PiezaMovil obtenerPieza();
+    NaveEspacial obtenerPieza();
 }

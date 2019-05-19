@@ -25,11 +25,11 @@ public class ContenedorDeAntimateriaTest extends PruebaSobrePieza<ContenedorDeAn
     }
 
     @Override
-    public Postcondicion laPiezaMovilFueNotificadaDelChoque() {
+    public Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
-        return postcondicion("notificó a la PiezaMovil que chocó contra un Contenedor", () -> {
+        return postcondicion("notificó a la NaveEspacial que chocó contra un Contenedor", () -> {
             
-            verify(PIEZA_MOVIL).chocoContraUnContenedor();
+            verify(NAVE_ESPACIAL).chocoContraUnContenedor();
         });
     }
 

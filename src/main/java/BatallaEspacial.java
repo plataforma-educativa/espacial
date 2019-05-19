@@ -2,8 +2,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
-import espacial.Casillero;
-import espacial.PiezaMovil;
+import espacial.NaveEspacial;
 import espacial.Tablero;
 import espacial.excepciones.NoExisteBatallaEspacial;
 import espacial.piezas.BaseEspacial;
@@ -41,7 +40,7 @@ public class BatallaEspacial {
         return tablero;
     }
 
-    public PiezaMovil intervenirCon(Nave unaNave) {
+    public NaveEspacial intervenirCon(Nave unaNave) {
 
         naves.add(unaNave);
 

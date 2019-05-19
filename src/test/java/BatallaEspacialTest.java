@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 import espacial.Direccion;
-import espacial.PiezaMovil;
+import espacial.NaveEspacial;
 import espacial.test.Precondicion;
 import org.junit.jupiter.api.Test;
 
@@ -109,7 +109,7 @@ public class BatallaEspacialTest implements Prueba {
 
         dadoQue(fueCreadaLaBatalla());
 
-        PiezaMovil piezaResultante = batalla.intervenirCon(UNA_NAVE);
+        NaveEspacial piezaResultante = batalla.intervenirCon(UNA_NAVE);
 
         comprobarQue(entreLasNavesDeLaBatallaEsta(UNA_NAVE));
         comprobarQue(enLaBaseEsta(piezaResultante));
@@ -132,7 +132,7 @@ public class BatallaEspacialTest implements Prueba {
         });
     }
 
-    private Postcondicion enLaBaseEsta(PiezaMovil pieza) {
+    private Postcondicion enLaBaseEsta(NaveEspacial pieza) {
 
         return postcondicion("en la base está la pieza", () -> {
 

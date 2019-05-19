@@ -3,23 +3,21 @@ package espacial.piezas;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import org.assertj.core.api.Condition;
-import org.junit.jupiter.api.Disabled;
+import espacial.NaveEspacial;
 import org.junit.jupiter.api.Test;
 
 import espacial.Casillero;
 import espacial.EspectroEspacial;
-import espacial.PiezaMovil;
 import espacial.Amarre;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 
 public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
     
-    private final PiezaMovil NAVE = mock(PiezaMovil.class, "NAVE");
-    private final PiezaMovil NAVE_ALFA = mock(PiezaMovil.class, "NAVE_ALFA");
-    private final PiezaMovil NAVE_BETA = mock(PiezaMovil.class, "NAVE_BETA");
-    private final PiezaMovil NAVE_GAMMA = mock(PiezaMovil.class, "NAVE_GAMMA");
+    private final NaveEspacial NAVE = mock(NaveEspacial.class, "NAVE");
+    private final NaveEspacial NAVE_ALFA = mock(NaveEspacial.class, "NAVE_ALFA");
+    private final NaveEspacial NAVE_BETA = mock(NaveEspacial.class, "NAVE_BETA");
+    private final NaveEspacial NAVE_GAMMA = mock(NaveEspacial.class, "NAVE_GAMMA");
     private final Casillero CASILLERO = mock(Casillero.class, "CASILLERO");
 
     private BaseEspacial unaBase;
@@ -37,11 +35,11 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
     }
 
     @Override
-    public Postcondicion laPiezaMovilFueNotificadaDelChoque() {
+    public Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
-        return postcondicion("notificó a la PiezaMovil que chocó contra una Base", () -> {
+        return postcondicion("notificó a la NaveEspacial que chocó contra una Base", () -> {
 
-            verify(PIEZA_MOVIL).chocoContraUnaBase();
+            verify(NAVE_ESPACIAL).chocoContraUnaBase();
         });
     }
 

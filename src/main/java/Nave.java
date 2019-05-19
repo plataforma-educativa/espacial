@@ -1,10 +1,10 @@
 import espacial.Direccion;
-import espacial.PiezaMovil;
+import espacial.NaveEspacial;
 
 public class Nave {
 
     private final BatallaEspacial partida;
-    private final PiezaMovil pieza;
+    private final NaveEspacial pieza;
     
     public Nave() {
 

@@ -11,7 +11,7 @@ import espacial.test.Prueba;
 
 public abstract class PruebaSobrePieza<T extends Pieza> implements Prueba {
 
-    protected final PiezaMovil PIEZA_MOVIL = mock(PiezaMovil.class, "PIEZA_MOVIL");
+    protected final NaveEspacial NAVE_ESPACIAL = mock(NaveEspacial.class, "NAVE_ESPACIAL");
     protected final Ataque UN_ATAQUE = mock(Ataque.class, "UN_ATAQUE");
 
 
@@ -19,7 +19,7 @@ public abstract class PruebaSobrePieza<T extends Pieza> implements Prueba {
     
     protected abstract EspectroEspacial espectroEsperado();
     
-    protected abstract Postcondicion laPiezaMovilFueNotificadaDelChoque();
+    protected abstract Postcondicion laNaveEspacialFueNotificadaDelChoque();
 
     @Test
     public void escanear() {
@@ -44,9 +44,9 @@ public abstract class PruebaSobrePieza<T extends Pieza> implements Prueba {
         
         Pieza pieza = piezaCreada();
 
-        pieza.fueChocadaPor(PIEZA_MOVIL);
+        pieza.fueChocadaPor(NAVE_ESPACIAL);
         
-        comprobarQue(laPiezaMovilFueNotificadaDelChoque());
+        comprobarQue(laNaveEspacialFueNotificadaDelChoque());
     }
     
     protected Casillero mockCasillero() {

@@ -25,11 +25,11 @@ public class AsteroideTest extends PruebaSobrePieza<Asteroide> {
     }
 
     @Override
-    public Postcondicion laPiezaMovilFueNotificadaDelChoque() {
+    public Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
-        return postcondicion("notificó a la PiezaMovil que chocó contra un Asteroide", () -> {
+        return postcondicion("notificó a la NaveEspacial que chocó contra un Asteroide", () -> {
             
-            verify(PIEZA_MOVIL).chocoContraUnAsteroide();
+            verify(NAVE_ESPACIAL).chocoContraUnAsteroide();
         });
     }
 

@@ -8,7 +8,7 @@ import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.piezas.rasgos.NaveChocable;
 import espacial.piezas.rasgos.PiezaAtacable;
 
-public class CazaEspacial implements PiezaMovil, NaveChocable, PiezaAtacable {
+public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
 
     private int nivelDeEscudos = 100;
     private Optional<Casillero> casillero = Optional.empty();
