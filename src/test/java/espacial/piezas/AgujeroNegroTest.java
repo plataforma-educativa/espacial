@@ -60,4 +60,22 @@ public class AgujeroNegroTest extends PruebaSobrePieza<AgujeroNegro> {
 
         });
     }
+
+    @Test
+    public void fuf() {
+
+        dadoQue(fueCreadoUnAgujeroNegro());
+
+        unAgujeroNegro.fueAtacadoCon(UN_ATAQUE);
+
+        comprobarQue(unAtaqueNoTuvoEfectoSobreUnAgujeroNegro());
+    }
+
+    private Postcondicion unAtaqueNoTuvoEfectoSobreUnAgujeroNegro() {
+
+        return postcondicion("UN_ATAQUE no tuvo efecto sobre unAgujeroNegro", () -> {
+
+            verifyZeroInteractions(UN_ATAQUE);
+        });
+    }
 }
