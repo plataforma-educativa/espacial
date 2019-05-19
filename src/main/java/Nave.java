@@ -42,18 +42,23 @@ public class Nave {
         return pieza.obtenerNivelDeEscudos();
     }
 
+    public void atacarAlNorte() {
+
+        pieza.atacarEn(Direccion.NORTE);
+    }
+
     public void atacarAlSur() {
 
         pieza.atacarEn(Direccion.SUR);
     }
 
+    public void atacarAlEste() {
+
+        pieza.atacarEn(Direccion.ESTE);
+    }
+
     public void atacarAlOeste() {
 
         pieza.atacarEn(Direccion.OESTE);
-    }
-
-    public void atacarAlNorte() {
-
-        pieza.atacarEn(Direccion.NORTE);
     }
 }

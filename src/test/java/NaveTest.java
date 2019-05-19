@@ -25,6 +25,8 @@ public class NaveTest implements Prueba {
     private int puntosInicialesDelContenedor;
     private Pieza baseAlNorte;
     private int puntosInicialesDeLaBase;
+    private Pieza naveAlEste;
+    private int puntosInicialesDeOtraNave;
 
     @Test
     public void crearUnObjetoDeTipoNaveDejandoloEnLaBase() {
@@ -507,5 +509,50 @@ public class NaveTest implements Prueba {
         });
     }
 
+    @Test
+    public void atacarAlEsteOtraNave() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(unaNaveEstaAlOesteDeOtraNave());
+        dadoQue(seConoceLaCantidadDePuntosQueTieneLaNaveAlEste());
+
+        unaNave.atacarAlEste();
+
+        comprobarQue(disminuyoLaCantidadDePuntosQueTieneLaNaveAlEste());
+
+    }
+
+    private Precondicion unaNaveEstaAlOesteDeOtraNave() {
+
+        return precondicion("unaNave está al OESTE de otra Nave", () -> {
+
+            Nave otraNave = new Nave();
+            otraNave.despegar();
+            IntStream.range(0, 2).forEach(n -> otraNave.avanzarAlEste());
+
+            unaNave = new Nave();
+            unaNave.despegar();
+            unaNave.avanzarAlEste();
+        });
+    }
+
+    private Precondicion seConoceLaCantidadDePuntosQueTieneLaNaveAlEste() {
+
+        return precondicion("se conoce la cantidad de puntos que tiene la naveAlEste", () -> {
+
+            Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenada.con(0, 2));
+            naveAlEste = casillero.obtenerPieza();
+            puntosInicialesDeOtraNave = naveAlEste.obtenerPuntos();
+        });
+    }
+
+    private Postcondicion disminuyoLaCantidadDePuntosQueTieneLaNaveAlEste() {
+
+        return postcondicion("disminuyó la cantidad de puntos que tiene la naveAlEste", () -> {
+
+            assertThat(naveAlEste.obtenerPuntos()).as("puntos")
+                    .isLessThan(puntosInicialesDeOtraNave);
+        });
+    }
 
 }

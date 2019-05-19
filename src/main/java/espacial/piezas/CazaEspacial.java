@@ -93,6 +93,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
     @Override
     public void fueAtacadoCon(Ataque ataque) {
 
+        ataque.aplicarSobre(this);
     }
 
 }
