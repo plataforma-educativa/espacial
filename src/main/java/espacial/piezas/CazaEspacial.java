@@ -87,7 +87,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
 
         Casillero destino = origen.obtenerContiguoEn(direccionElegida);
 
-        destino.obtenerPieza().fueAtacadoCon(new AtaqueConTorpedoDeFotones());
+        destino.fueAtacadoCon(new AtaqueConTorpedoDeFotones());
     }
 
     @Override

@@ -1,5 +1,6 @@
 package espacial.tableros;
 
+import espacial.Ataque;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
@@ -50,5 +51,11 @@ public class OcupadoPorUnaBase extends EstadoDelCasillero {
         Pieza pieza = origen.obtenerPieza();
         origen.desocupar();
         cambiarPor(new OcupadoPorUnaBaseConNaveEnManiobras(contexto, base, pieza));
+    }
+
+    @Override
+    public void alSerAtacadoCon(Ataque unAtaque) {
+
+        base.fueAtacadoCon(unAtaque);
     }
 }

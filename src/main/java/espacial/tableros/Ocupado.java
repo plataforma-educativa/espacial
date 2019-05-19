@@ -1,5 +1,6 @@
 package espacial.tableros;
 
+import espacial.Ataque;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
@@ -43,6 +44,12 @@ public class Ocupado extends EstadoDelCasillero {
     public void alRecibirPiezaDesde(Casillero origen) {
 
         origen.obtenerPieza().chocarCon(pieza);
+    }
+
+    @Override
+    public void alSerAtacadoCon(Ataque unAtaque) {
+
+        pieza.fueAtacadoCon(unAtaque);
     }
 
     @Override

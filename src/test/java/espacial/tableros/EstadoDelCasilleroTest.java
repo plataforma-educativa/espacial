@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
+import espacial.Ataque;
 import espacial.Casillero;
 import espacial.Pieza;
 import espacial.excepciones.Defecto;
@@ -20,6 +21,7 @@ public abstract class EstadoDelCasilleroTest implements Prueba {
     protected final Pieza NAVE = mock(Pieza.class, "NAVE");
     protected final Pieza OTRA_PIEZA = mock(Pieza.class, "OTRA_PIEZA");
     protected final Pieza PIEZA_EN_ORIGEN = mock(Pieza.class, "PIEZA_EN_ORIGEN");
+    protected final Ataque UN_ATAQUE = mock(Ataque.class, "UN_ATAQUE");
     
     protected EstadoDelCasillero estado;
 

@@ -256,7 +256,7 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
         unCazaEspacial.atacarEn(Direccion.OESTE);
 
-        comprobarQue(otraPiezaFueAtacada());
+        comprobarQue(elCasilleroEnDireccionOesteFueAtacado());
     }
 
     private Precondicion fueCreadoUnCazaEspacialColocadoEnUnCasilleroConOtraPiezaAlOeste() {
@@ -270,13 +270,13 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
         });
     }
 
-    private Postcondicion otraPiezaFueAtacada() {
+    private Postcondicion elCasilleroEnDireccionOesteFueAtacado() {
 
-        return postcondicion("OTRA_PIEZA fue atacada", () -> {
+        return postcondicion("CASILLERO_OESTE fue atacado", () -> {
 
             ArgumentCaptor<Ataque> ataqueCapturado = ArgumentCaptor.forClass(Ataque.class);
 
-            verify(OTRA_PIEZA).fueAtacadoCon(ataqueCapturado.capture());
+            verify(CASILLERO_OESTE).fueAtacadoCon(ataqueCapturado.capture());
 
         });
     }

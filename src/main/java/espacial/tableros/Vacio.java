@@ -1,5 +1,6 @@
 package espacial.tableros;
 
+import espacial.Ataque;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
@@ -46,6 +47,11 @@ public class Vacio extends EstadoDelCasillero {
         Pieza pieza = origen.obtenerPieza();
         origen.desocupar();
         contexto.ocuparCon(pieza);
+    }
+
+    @Override
+    public void alSerAtacadoCon(Ataque unAtaque) {
+
     }
 
     @Override

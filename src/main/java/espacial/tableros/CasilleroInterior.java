@@ -1,9 +1,6 @@
 package espacial.tableros;
 
-import espacial.Casillero;
-import espacial.EspectroEspacial;
-import espacial.Pieza;
-import espacial.Tablero;
+import espacial.*;
 
 public class CasilleroInterior extends CasilleroDelTablero {
 
@@ -56,5 +53,10 @@ public class CasilleroInterior extends CasilleroDelTablero {
         
         return estado.alObtenerPieza();
     }
-        
+
+    @Override
+    public void fueAtacadoCon(Ataque unAtaque) {
+
+        estado.alSerAtacadoCon(unAtaque);
+    }
 }

@@ -1,5 +1,6 @@
 package espacial.tableros;
 
+import espacial.Ataque;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
@@ -30,4 +31,5 @@ public abstract class EstadoDelCasillero {
     
     public abstract void alRecibirPiezaDesde(Casillero origen);
 
+    public abstract void alSerAtacadoCon(Ataque unAtaque);
 }

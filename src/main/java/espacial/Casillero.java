@@ -7,7 +7,7 @@ package espacial;
  * @author Mariano Tugnarelli
  *
  */
-public interface Casillero {
+public interface Casillero extends Objetivo {
 
     /**
      * @return EspectroEspacial de la Pieza que ocupa el Casillero, o
