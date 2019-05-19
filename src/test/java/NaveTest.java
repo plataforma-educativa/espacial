@@ -22,6 +22,8 @@ public class NaveTest implements Prueba {
     private Nave unaNave;
     private Pieza asteroideAlNorte;
     private int puntosInicialesDelAsteroide;
+    private Pieza contenedorAlOeste;
+    private int puntosInicialesDelContenedor;
 
     @Test
     public void crearUnObjetoDeTipoNaveDejandoloEnLaBase() {
@@ -411,12 +413,54 @@ public class NaveTest implements Prueba {
 
     private Postcondicion disminuyoLaCantidadDePuntosQueTieneElAsteroide() {
 
-        return postcondicion("disminuyó la cantidad de puntos que tiene el Asteroide", () -> {
+        return postcondicion("disminuyó la cantidad de puntos que tiene el asteroideAlNorte", () -> {
 
             assertThat(asteroideAlNorte.obtenerPuntos()).as("puntos")
                     .isLessThan(puntosInicialesDelAsteroide);
         });
+    }
+
+    @Test
+    public void atacarAlOesteUnContenedor() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(unaNaveEstaAlEsteDeUnContenedor());
+        dadoQue(seConoceLaCantidadDePuntosQueTieneElContenedor());
+
+        unaNave.atacarAlOeste();
+
+        comprobarQue(disminuyoLaCantidadDePuntosQueTieneElContenedor());
 
     }
 
+    private Precondicion unaNaveEstaAlEsteDeUnContenedor() {
+
+        return precondicion("unaNave está al ESTE de un Contenedor", () -> {
+
+            unaNave = new Nave();
+            unaNave.despegar();
+            IntStream.range(0, 2).forEach(n -> unaNave.avanzarAlSur());
+            unaNave.avanzarAlOeste();
+        });
+    }
+
+    private Precondicion seConoceLaCantidadDePuntosQueTieneElContenedor() {
+
+        return precondicion("se conoce la cantidad de puntos que tiene el Contenedor", () -> {
+
+            Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenada.con(-2, -2));
+            contenedorAlOeste = casillero.obtenerPieza();
+            puntosInicialesDelContenedor = contenedorAlOeste.obtenerPuntos();
+        });
+
+    }
+
+    private Postcondicion disminuyoLaCantidadDePuntosQueTieneElContenedor() {
+
+        return postcondicion("disminuyó la cantidad de puntos que tiene el contenedorAlOeste", () -> {
+
+            assertThat(contenedorAlOeste.obtenerPuntos()).as("puntos")
+                    .isLessThan(puntosInicialesDelContenedor);
+        });
+    }
 }

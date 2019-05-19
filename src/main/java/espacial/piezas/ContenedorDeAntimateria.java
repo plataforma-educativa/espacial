@@ -5,7 +5,7 @@ import espacial.piezas.rasgos.PiezaAtacable;
 
 public class ContenedorDeAntimateria implements Pieza, PiezaAtacable {
 
-    private int puntos;
+    private int puntos = 50;
 
     @Override
     public EspectroEspacial escanear() {
@@ -28,6 +28,7 @@ public class ContenedorDeAntimateria implements Pieza, PiezaAtacable {
     @Override
     public void fueAtacadoCon(Ataque ataque) {
 
+        ataque.aplicarSobre(this);
     }
 
     @Override
@@ -39,6 +40,6 @@ public class ContenedorDeAntimateria implements Pieza, PiezaAtacable {
     @Override
     public int obtenerPuntos() {
 
-        return 50;
+        return puntos;
     }
 }
