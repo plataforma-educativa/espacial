@@ -45,7 +45,7 @@ public interface NaveChocable extends Obstaculo, Chocable {
     default void fueChocadaPor(Chocable chocable) {
 
         chocable.chocoContraUnaNave();
-        disminuirNivelDeEscudosEn(5);
+        disminuirNivelDeEscudosEn(30);
     }
 
     void disminuirNivelDeEscudosEn(int diferencia);
