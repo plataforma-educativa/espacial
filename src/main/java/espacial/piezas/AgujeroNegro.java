@@ -1,9 +1,6 @@
 package espacial.piezas;
 
-import espacial.Chocable;
-import espacial.EspectroEspacial;
-import espacial.Pieza;
-import espacial.Visitante;
+import espacial.*;
 
 public class AgujeroNegro implements Pieza {
 
@@ -17,6 +14,11 @@ public class AgujeroNegro implements Pieza {
     public void fueChocadaPor(Chocable chocable) {
         
         chocable.chocoContraUnAgujeroNegro();
+    }
+
+    @Override
+    public void fueAtacadoCon(Ataque ataque) {
+
     }
 
     @Override

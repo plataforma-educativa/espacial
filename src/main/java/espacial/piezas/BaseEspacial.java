@@ -4,12 +4,14 @@ import java.util.LinkedList;
 import java.util.List;
 
 import espacial.*;
+import espacial.piezas.rasgos.PiezaAtacable;
 
-public class BaseEspacial implements Pieza {
+public class BaseEspacial implements Pieza, PiezaAtacable {
 
+    private int puntos = 200;
     private Casillero casillero;
     private final List<Amarre> amarres;
-    
+
     public BaseEspacial() {
 
         amarres = new LinkedList<>();
@@ -19,6 +21,11 @@ public class BaseEspacial implements Pieza {
     public void fueColocadaEn(Casillero casillero) {
      
         this.casillero = casillero;
+    }
+
+    @Override
+    public void fueAtacadoCon(Ataque ataque) {
+
     }
 
     @Override
@@ -54,7 +61,13 @@ public class BaseEspacial implements Pieza {
     @Override
     public int obtenerPuntos() {
 
-        return 200;
+        return puntos;
+    }
+
+    @Override
+    public void decrementarPuntosEn(int decremento) {
+
+        puntos -= decremento;
     }
 
     private class AmarreConBaseEspacial implements Amarre {

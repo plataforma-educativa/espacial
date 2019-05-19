@@ -8,7 +8,7 @@ import espacial.excepciones.LaOperacionNoEstaSoportada;
  * @author Mariano Tugnarelli
  *
  */
-public interface Pieza extends Obstaculo {
+public interface Pieza extends Obstaculo, Objetivo {
 
     int PUNTOS_MINIMOS = 1;
     int PUNTOS_MAXIMOS = 1000;
@@ -29,8 +29,17 @@ public interface Pieza extends Obstaculo {
     }
 
     default void chocarCon(Obstaculo obstaculo) {
-        
+
         throw new LaOperacionNoEstaSoportada("Pieza.chocoCon(Obstaculo)");
+    }
+
+    /**
+     * @pre la Pieza fue atacada con {@code unAtaque}.
+     * @param unAtaque
+     */
+    default void fueAtacadoCon(Ataque unAtaque) {
+
+        throw new LaOperacionNoEstaSoportada("Pieza.fueAtacadoCon(Ataque)");
     }
 
     void aceptar(Visitante visitante);

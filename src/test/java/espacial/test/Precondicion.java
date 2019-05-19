@@ -10,7 +10,7 @@ public class Precondicion extends Condicion {
     @Override
     protected String describir() {
 
-        return "No se fue posible establecer que " + super.describir();
+        return "No fue posible establecer que " + super.describir();
     }
 
 }

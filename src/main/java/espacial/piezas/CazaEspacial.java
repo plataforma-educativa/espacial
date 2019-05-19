@@ -6,8 +6,9 @@ import espacial.*;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.piezas.rasgos.NaveChocable;
+import espacial.piezas.rasgos.PiezaAtacable;
 
-public class CazaEspacial implements PiezaMovil, NaveChocable {
+public class CazaEspacial implements PiezaMovil, NaveChocable, PiezaAtacable {
 
     private int nivelDeEscudos = 100;
     private Optional<Casillero> casillero = Optional.empty();
@@ -68,8 +69,30 @@ public class CazaEspacial implements PiezaMovil, NaveChocable {
     }
 
     @Override
+    public void decrementarPuntosEn(int decremento) {
+
+        disminuirNivelDeEscudosEn(decremento);
+    }
+
+    @Override
     public void aceptar(Visitante visitante) {
 
         visitante.siEsNave(this);
     }
+
+    @Override
+    public void atacarEn(Direccion direccionElegida) {
+
+        Casillero origen = casillero.get();
+
+        Casillero destino = origen.obtenerContiguoEn(direccionElegida);
+
+        destino.obtenerPieza().fueAtacadoCon(new AtaqueConTorpedoDeFotones());
+    }
+
+    @Override
+    public void fueAtacadoCon(Ataque ataque) {
+
+    }
+
 }

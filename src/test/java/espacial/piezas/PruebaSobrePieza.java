@@ -3,21 +3,18 @@ package espacial.piezas;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import org.assertj.core.api.Condition;
+import espacial.*;
 import org.junit.jupiter.api.Test;
 
-import espacial.Casillero;
-import espacial.Direccion;
-import espacial.EspectroEspacial;
-import espacial.Pieza;
-import espacial.PiezaMovil;
 import espacial.test.Postcondicion;
 import espacial.test.Prueba;
 
 public abstract class PruebaSobrePieza<T extends Pieza> implements Prueba {
 
     protected final PiezaMovil PIEZA_MOVIL = mock(PiezaMovil.class, "PIEZA_MOVIL");
-    
+    protected final Ataque UN_ATAQUE = mock(Ataque.class, "UN_ATAQUE");
+
+
     protected abstract T piezaCreada();
     
     protected abstract EspectroEspacial espectroEsperado();
@@ -80,6 +77,14 @@ public abstract class PruebaSobrePieza<T extends Pieza> implements Prueba {
                     .isBetween(Pieza.PUNTOS_MINIMOS, Pieza.PUNTOS_MAXIMOS);
 
         });
+    }
+
+    @Test
+    public void fueAtacadoCon() {
+
+        Pieza unaPieza = piezaCreada();
+
+        unaPieza.fueAtacadoCon(UN_ATAQUE);
     }
 
 }

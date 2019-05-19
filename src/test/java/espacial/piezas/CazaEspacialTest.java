@@ -12,6 +12,7 @@ import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
+import org.mockito.ArgumentCaptor;
 
 public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
@@ -21,7 +22,9 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
     private final Casillero CASILLERO_SUR = mock(Casillero.class, "CASILLERO_SUR");
     private final Casillero CASILLERO_ESTE = mock(Casillero.class, "CASILLERO_ESTE");
     private final Casillero CASILLERO_OESTE = mock(Casillero.class, "CASILLERO_OESTE");
-            
+
+    private final Pieza OTRA_PIEZA = mock(Pieza.class, "OTRA_PIEZA");
+
     private CazaEspacial unCazaEspacial;
 
     @BeforeEach
@@ -102,7 +105,7 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
     private Postcondicion unCazaEspacialSeMovioUnCasilleroEnDireccionNorte() {
 
-        return postcondicion("unCazaEspacial se movió un Casillero en Dirección NORTE", () -> {
+        return postcondicion("unCazaEspacial se movió UN_CASILLERO en Dirección NORTE", () -> {
           
             verify(UN_CASILLERO).moverPiezaA(CASILLERO_NORTE);
         });
@@ -243,6 +246,38 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
             assertThat(unCazaEspacial.obtenerPuntos()).as("puntos")
                     .isEqualTo(100);
+        });
+    }
+
+    @Test
+    public void atacarEnDireccion() {
+
+        dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasilleroConOtraPiezaAlOeste());
+
+        unCazaEspacial.atacarEn(Direccion.OESTE);
+
+        comprobarQue(otraPiezaFueAtacada());
+    }
+
+    private Precondicion fueCreadoUnCazaEspacialColocadoEnUnCasilleroConOtraPiezaAlOeste() {
+
+        return precondicion("fue creado unCazaEspacial coloca en UN_CASILLERO con OTRA_PIEZA al OESTE", () -> {
+
+            unCazaEspacial = new CazaEspacial();
+            unCazaEspacial.fueColocadaEn(UN_CASILLERO);
+
+            when(CASILLERO_OESTE.obtenerPieza()).thenReturn(OTRA_PIEZA);
+        });
+    }
+
+    private Postcondicion otraPiezaFueAtacada() {
+
+        return postcondicion("OTRA_PIEZA fue atacada", () -> {
+
+            ArgumentCaptor<Ataque> ataqueCapturado = ArgumentCaptor.forClass(Ataque.class);
+
+            verify(OTRA_PIEZA).fueAtacadoCon(ataqueCapturado.capture());
+
         });
     }
 }

@@ -41,4 +41,9 @@ public class Nave {
 
         return pieza.obtenerNivelDeEscudos();
     }
+
+    public void atacarAlSur() {
+
+        pieza.atacarEn(Direccion.SUR);
+    }
 }

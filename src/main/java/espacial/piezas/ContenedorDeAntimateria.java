@@ -1,11 +1,11 @@
 package espacial.piezas;
 
-import espacial.Chocable;
-import espacial.EspectroEspacial;
-import espacial.Pieza;
-import espacial.Visitante;
+import espacial.*;
+import espacial.piezas.rasgos.PiezaAtacable;
 
-public class ContenedorDeAntimateria implements Pieza {
+public class ContenedorDeAntimateria implements Pieza, PiezaAtacable {
+
+    private int puntos;
 
     @Override
     public EspectroEspacial escanear() {
@@ -17,6 +17,17 @@ public class ContenedorDeAntimateria implements Pieza {
     public void fueChocadaPor(Chocable chocable) {
 
         chocable.chocoContraUnContenedor();
+    }
+
+    @Override
+    public void decrementarPuntosEn(int decremento) {
+
+        puntos -= decremento;
+    }
+
+    @Override
+    public void fueAtacadoCon(Ataque ataque) {
+
     }
 
     @Override

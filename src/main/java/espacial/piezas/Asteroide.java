@@ -1,11 +1,11 @@
 package espacial.piezas;
 
-import espacial.Chocable;
-import espacial.EspectroEspacial;
-import espacial.Pieza;
-import espacial.Visitante;
+import espacial.*;
+import espacial.piezas.rasgos.PiezaAtacable;
 
-public class Asteroide implements Pieza {
+public class Asteroide implements Pieza, PiezaAtacable {
+
+    private int puntos = 90;
 
     @Override
     public EspectroEspacial escanear() {
@@ -20,6 +20,12 @@ public class Asteroide implements Pieza {
     }
 
     @Override
+    public void fueAtacadoCon(Ataque ataque) {
+
+        ataque.aplicarSobre(this);
+    }
+
+    @Override
     public void aceptar(Visitante visitante) {
 
         visitante.siEsAsteroide(this);
@@ -28,6 +34,12 @@ public class Asteroide implements Pieza {
     @Override
     public int obtenerPuntos() {
 
-        return 90;
+        return puntos;
+    }
+
+    @Override
+    public void decrementarPuntosEn(int decremento) {
+
+        puntos -= decremento;
     }
 }

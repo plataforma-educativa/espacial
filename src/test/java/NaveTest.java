@@ -4,6 +4,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.stream.IntStream;
 
+import espacial.Casillero;
+import espacial.Coordenada;
+import espacial.Pieza;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -17,14 +20,16 @@ public class NaveTest implements Prueba {
 
     private BatallaEspacial batallaEspacial;
     private Nave unaNave;
-    
+    private Pieza asteroideAlNorte;
+    private int puntosInicialesDelAsteroide;
+
     @Test
     public void crearUnObjetoDeTipoNaveDejandoloEnLaBase() {
-        
+
         dadoQue(fueCreadaLaBatallaEspacial());
-        
+
         Nave unaNave = new Nave();
-        
+
         comprobarQue(existeEnLaBase(unaNave));
     }
 
@@ -371,11 +376,15 @@ public class NaveTest implements Prueba {
     }
 
     @Test
-    @Disabled
     public void atacarAlSur() {
 
+        dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(unaNaveEstaAlNorteDeUnAsteroide());
+        dadoQue(seConoceLaCantidadDePuntosQueTieneElAsteroide());
 
+        unaNave.atacarAlSur();
+
+        comprobarQue(disminuyoLaCantidadDePuntosQueTieneElAsteroide());
 
     }
 
@@ -388,4 +397,26 @@ public class NaveTest implements Prueba {
             IntStream.range(0, 5).forEach(n -> unaNave.avanzarAlSur());
         });
     }
+
+    private Precondicion seConoceLaCantidadDePuntosQueTieneElAsteroide() {
+        
+        return precondicion("se conoce la cantidad de puntos que tiene el Asteroide", () -> {
+
+            Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenada.con(-6, 0));
+            asteroideAlNorte = casillero.obtenerPieza();
+            puntosInicialesDelAsteroide = asteroideAlNorte.obtenerPuntos();
+        });
+        
+    }
+
+    private Postcondicion disminuyoLaCantidadDePuntosQueTieneElAsteroide() {
+
+        return postcondicion("disminuyó la cantidad de puntos que tiene el Asteroide", () -> {
+
+            assertThat(asteroideAlNorte.obtenerPuntos()).as("puntos")
+                    .isLessThan(puntosInicialesDelAsteroide);
+        });
+
+    }
+
 }
