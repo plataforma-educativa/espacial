@@ -11,6 +11,7 @@ import espacial.piezas.rasgos.PiezaAtacable;
 public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
 
     private int nivelDeEscudos = 100;
+    private int torpedos = 100;
     private Optional<Casillero> casillero = Optional.empty();
     private Optional<Amarre> amarre = Optional.empty();
 
@@ -87,7 +88,15 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
 
         Casillero destino = origen.obtenerContiguoEn(direccionElegida);
 
-        destino.fueAtacadoCon(new AtaqueConTorpedoDeFotones());
+        if (torpedos > 0) {
+
+            destino.fueAtacadoCon(new AtaqueConTorpedoDeFotones());
+            torpedos--;
+
+        } else {
+
+            destino.fueAtacadoCon(new AtaqueConLaser());
+        }
     }
 
     @Override

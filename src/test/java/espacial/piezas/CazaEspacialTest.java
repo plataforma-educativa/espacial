@@ -13,6 +13,10 @@ import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InOrder;
+
+import java.util.List;
+import java.util.stream.IntStream;
 
 public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
@@ -64,7 +68,7 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
         unCazaEspacial.fueChocadaPor(NAVE_ESPACIAL);
 
-        comprobarQue(elNivelDeEscudosBajoA(95));
+        comprobarQue(elNivelDeEscudosBajoA(70));
     }
 
     @Test
@@ -278,6 +282,49 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
             verify(CASILLERO_OESTE).fueAtacadoCon(ataqueCapturado.capture());
 
+        });
+    }
+
+    @Test
+    public void atacarEnUnaDireccionUtilizaTorpedosDeFotonesHasta100VecesLuegoUsaLaser() {
+
+        final int TORPEDOS_DE_FOTONES = 100;
+        final int LASER = 45;
+
+        dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasilleroConOtraPiezaAlNorte());
+
+        IntStream.rangeClosed(1, TORPEDOS_DE_FOTONES + LASER)
+                .forEach(n -> unCazaEspacial.atacarEn(Direccion.NORTE));
+
+        comprobarQue(otraPiezaFueAtacadaCon(TORPEDOS_DE_FOTONES, LASER));
+    }
+
+    private Precondicion fueCreadoUnCazaEspacialColocadoEnUnCasilleroConOtraPiezaAlNorte() {
+
+        return precondicion("fue creado unCazaEspacial colocado en UN_CASILLERO con OTRA_PIEZA al NORTE", () -> {
+
+            unCazaEspacial = new CazaEspacial();
+            unCazaEspacial.fueColocadaEn(UN_CASILLERO);
+        });
+    }
+
+    private Postcondicion otraPiezaFueAtacadaCon(int torpedos, int laser) {
+
+        return postcondicion("OTRA_PIEZA fue atacada con " +
+                                            torpedos + " veces torpedo de fotones y " +
+                                            laser + " veces laser", () -> {
+
+            ArgumentCaptor<Ataque> captorDeAtaques = ArgumentCaptor.forClass(Ataque.class);
+            verify(CASILLERO_NORTE, atLeastOnce()).fueAtacadoCon(captorDeAtaques.capture());
+
+            Atacable atacable = mock(Atacable.class);
+            captorDeAtaques.getAllValues().forEach(ataque -> ataque.aplicarSobre(atacable));
+
+            InOrder secuencia = inOrder(atacable);
+
+            secuencia.verify(atacable, times(torpedos)).atacadoConTorpedoDeFotones();
+            secuencia.verify(atacable, times(laser)).atacadoConLaser();
+            secuencia.verifyNoMoreInteractions();
         });
     }
 }
