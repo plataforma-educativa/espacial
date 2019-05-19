@@ -7,7 +7,6 @@ import java.util.stream.IntStream;
 import espacial.Casillero;
 import espacial.Coordenada;
 import espacial.Pieza;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
@@ -24,6 +23,8 @@ public class NaveTest implements Prueba {
     private int puntosInicialesDelAsteroide;
     private Pieza contenedorAlOeste;
     private int puntosInicialesDelContenedor;
+    private Pieza baseAlNorte;
+    private int puntosInicialesDeLaBase;
 
     @Test
     public void crearUnObjetoDeTipoNaveDejandoloEnLaBase() {
@@ -463,4 +464,48 @@ public class NaveTest implements Prueba {
                     .isLessThan(puntosInicialesDelContenedor);
         });
     }
+
+    @Test
+    public void atacarAlNorteUnaBase() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(unaNaveEstaAlSurDeUnaBase());
+        dadoQue(seConoceLaCantidadDePuntosQueTieneLaBaseAlNorte());
+
+        unaNave.atacarAlNorte();
+
+        comprobarQue(disminuyoLaCantidadDePuntosQueTieneLaBaseAlNorte());
+
+    }
+
+    private Precondicion unaNaveEstaAlSurDeUnaBase() {
+
+        return precondicion("unaNave está al SUR de una Base", () -> {
+
+            unaNave = new Nave();
+            unaNave.despegar();
+            unaNave.avanzarAlSur();
+        });
+    }
+
+    private Precondicion seConoceLaCantidadDePuntosQueTieneLaBaseAlNorte() {
+
+        return precondicion("se conoce la cantidad de puntos que tiene la baseAlNorte", () -> {
+
+            Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenada.con(0, 0));
+            baseAlNorte = casillero.obtenerPieza();
+            puntosInicialesDeLaBase = baseAlNorte.obtenerPuntos();
+        });
+    }
+
+    private Postcondicion disminuyoLaCantidadDePuntosQueTieneLaBaseAlNorte() {
+
+        return postcondicion("disminuyó la cantidad de puntos que tiene la baseAlNorte", () -> {
+
+            assertThat(baseAlNorte.obtenerPuntos()).as("puntos")
+                    .isLessThan(puntosInicialesDeLaBase);
+        });
+    }
+
+
 }

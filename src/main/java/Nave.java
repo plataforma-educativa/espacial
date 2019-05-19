@@ -51,4 +51,9 @@ public class Nave {
 
         pieza.atacarEn(Direccion.OESTE);
     }
+
+    public void atacarAlNorte() {
+
+        pieza.atacarEn(Direccion.NORTE);
+    }
 }

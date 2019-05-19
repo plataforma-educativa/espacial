@@ -26,6 +26,7 @@ public class BaseEspacial implements Pieza, PiezaAtacable {
     @Override
     public void fueAtacadoCon(Ataque ataque) {
 
+        ataque.aplicarSobre(this);
     }
 
     @Override
