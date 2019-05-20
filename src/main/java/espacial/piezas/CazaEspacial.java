@@ -44,7 +44,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
     @Override
     public void moverEn(Direccion direccionElegida) {
         
-        Casillero origen = casillero.orElseThrow(LaNaveNoEstaEnUnCasillero::new);
+        Casillero origen = obtenerCasillero();
         
         Casillero destino = origen.obtenerContiguoEn(direccionElegida);
         
@@ -94,7 +94,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
     @Override
     public EspectroEspacial escanearEn(Direccion direccionElegida) {
 
-        return casillero.get().obtenerContiguoEn(direccionElegida).escanear();
+        return obtenerCasillero().obtenerContiguoEn(direccionElegida).escanear();
     }
 
     @Override
@@ -103,4 +103,8 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
         ataque.aplicarSobre(this);
     }
 
+    private Casillero obtenerCasillero() {
+
+        return casillero.orElseThrow(LaNaveNoEstaEnUnCasillero::new);
+    }
 }

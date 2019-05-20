@@ -359,4 +359,23 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
             assertThat(unCazaEspacial.escanearEn(Direccion.OESTE)).as("al OESTE").isEqualTo(esperado);
         });
     }
+
+    @Test
+    public void escanearEnDireccionCuandoNoEstaEnUnCasillero() {
+
+        dadoQue(fueCreadoUnCazaEspacialQueNoSeColocoEnNingunCasillero());
+
+        comprobarQue(generaExcepcionLaNaveNoEstaEnUnCasillero(() -> unCazaEspacial.escanearEn(Direccion.NORTE)));
+        comprobarQue(generaExcepcionLaNaveNoEstaEnUnCasillero(() -> unCazaEspacial.escanearEn(Direccion.SUR)));
+        comprobarQue(generaExcepcionLaNaveNoEstaEnUnCasillero(() -> unCazaEspacial.escanearEn(Direccion.ESTE)));
+        comprobarQue(generaExcepcionLaNaveNoEstaEnUnCasillero(() -> unCazaEspacial.escanearEn(Direccion.OESTE)));
+    }
+
+    private Precondicion fueCreadoUnCazaEspacialQueNoSeColocoEnNingunCasillero() {
+
+        return precondicion("fue creado unCazaEspacial que no se colocó en ningún Casillero", () -> {
+
+            unCazaEspacial = new CazaEspacial();
+        });
+    }
 }
