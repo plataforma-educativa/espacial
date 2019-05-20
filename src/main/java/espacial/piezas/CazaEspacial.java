@@ -92,6 +92,12 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
     }
 
     @Override
+    public EspectroEspacial escanearEn(Direccion direccionElegida) {
+
+        return casillero.get().obtenerContiguoEn(direccionElegida).escanear();
+    }
+
+    @Override
     public void fueAtacadoCon(Ataque ataque) {
 
         ataque.aplicarSobre(this);

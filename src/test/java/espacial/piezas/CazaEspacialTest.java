@@ -327,4 +327,37 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
             secuencia.verifyNoMoreInteractions();
         });
     }
+
+    @Test
+    public void escanearEnDireccion() {
+
+        dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasilleroRodeadoDeAsteroides());
+
+        comprobarQue(alEscanearAlrededorEncuentra(EspectroEspacial.ASTEROIDE));
+    }
+
+    private Precondicion fueCreadoUnCazaEspacialColocadoEnUnCasilleroRodeadoDeAsteroides() {
+
+        return precondicion("fue creado unCazaEspacial colocado en UN_CASILLERO rodeado de Asteroides", () -> {
+
+            unCazaEspacial = new CazaEspacial();
+            unCazaEspacial.fueColocadaEn(UN_CASILLERO);
+
+            when(CASILLERO_NORTE.escanear()).thenReturn(EspectroEspacial.ASTEROIDE);
+            when(CASILLERO_SUR.escanear()).thenReturn(EspectroEspacial.ASTEROIDE);
+            when(CASILLERO_ESTE.escanear()).thenReturn(EspectroEspacial.ASTEROIDE);
+            when(CASILLERO_OESTE.escanear()).thenReturn(EspectroEspacial.ASTEROIDE);
+        });
+    }
+
+    private Postcondicion alEscanearAlrededorEncuentra(EspectroEspacial esperado) {
+
+        return postcondicion("al escanear alrededor encuentra " + esperado, () -> {
+
+            assertThat(unCazaEspacial.escanearEn(Direccion.NORTE)).as("al NORTE").isEqualTo(esperado);
+            assertThat(unCazaEspacial.escanearEn(Direccion.SUR  )).as("al SUR"  ).isEqualTo(esperado);
+            assertThat(unCazaEspacial.escanearEn(Direccion.ESTE )).as("al ESTE" ).isEqualTo(esperado);
+            assertThat(unCazaEspacial.escanearEn(Direccion.OESTE)).as("al OESTE").isEqualTo(esperado);
+        });
+    }
 }

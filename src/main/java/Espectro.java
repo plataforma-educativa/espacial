@@ -1,6 +1,5 @@
-package espacial;
 
-public enum EspectroEspacial {
+public enum Espectro {
 
     VACIO,
     ASTEROIDE,

@@ -5,11 +5,13 @@ public class Nave {
 
     private final BatallaEspacial partida;
     private final NaveEspacial pieza;
+    private final Radar radar;
     
     public Nave() {
 
         partida = BatallaEspacial.obtener();
         pieza = partida.intervenirCon(this);
+        radar = new Radar(pieza);
     }
 
     public void despegar() {
@@ -60,5 +62,10 @@ public class Nave {
     public void atacarAlOeste() {
 
         pieza.atacarEn(Direccion.OESTE);
+    }
+
+    public Radar obtenerRadar() {
+
+        return radar;
     }
 }

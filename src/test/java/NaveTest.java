@@ -19,6 +19,7 @@ public class NaveTest implements Prueba {
 
     private BatallaEspacial batallaEspacial;
     private Nave unaNave;
+    private Radar unRadar;
     private Pieza asteroideAlNorte;
     private int puntosInicialesDelAsteroide;
     private Pieza contenedorAlOeste;
@@ -555,4 +556,22 @@ public class NaveTest implements Prueba {
         });
     }
 
+    @Test
+    public void obtenerRadar() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNave());
+
+        unRadar = unaNave.obtenerRadar();
+
+        comprobarQue(unRadarEscaneaVacioAlrededorDeUnaNave());
+    }
+
+    private Postcondicion unRadarEscaneaVacioAlrededorDeUnaNave() {
+
+        return postcondicion("unRadar escanea VACIO alrededor de unaNave", () -> {
+
+            assertThat(unRadar).as("unRadar").isNotNull();
+        });
+    }
 }
