@@ -378,4 +378,16 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
             unCazaEspacial = new CazaEspacial();
         });
     }
+
+    @Test
+    public void atacarEnDireccionCuandoNoEstaEnUnCasillero() {
+
+        dadoQue(fueCreadoUnCazaEspacialQueNoSeColocoEnNingunCasillero());
+
+        comprobarQue(generaExcepcionLaNaveNoEstaEnUnCasillero(() -> unCazaEspacial.atacarEn(Direccion.NORTE)));
+        comprobarQue(generaExcepcionLaNaveNoEstaEnUnCasillero(() -> unCazaEspacial.atacarEn(Direccion.SUR)));
+        comprobarQue(generaExcepcionLaNaveNoEstaEnUnCasillero(() -> unCazaEspacial.atacarEn(Direccion.ESTE)));
+        comprobarQue(generaExcepcionLaNaveNoEstaEnUnCasillero(() -> unCazaEspacial.atacarEn(Direccion.OESTE)));
+    }
+
 }

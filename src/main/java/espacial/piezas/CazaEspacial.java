@@ -84,7 +84,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
     @Override
     public void atacarEn(Direccion direccionElegida) {
 
-        Casillero origen = casillero.get();
+        Casillero origen = obtenerCasillero();
 
         Casillero destino = origen.obtenerContiguoEn(direccionElegida);
 
