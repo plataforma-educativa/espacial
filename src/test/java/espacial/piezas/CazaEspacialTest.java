@@ -15,7 +15,6 @@ import espacial.test.Precondicion;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 
-import java.util.List;
 import java.util.stream.IntStream;
 
 public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {

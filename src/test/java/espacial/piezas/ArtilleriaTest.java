@@ -12,10 +12,28 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class ArsenalTest implements Prueba {
+public class ArtilleriaTest implements Prueba {
 
-    private Arsenal unArsenal;
+    private Artilleria unaArtilleria;
     private List<Ataque> ataquesRealizados = new LinkedList<>();
+
+    @Test
+    public void crearArsenalConLaCantidadDeTorpedosDeFotones() {
+
+        final int CANTIDAD = 40;
+        unaArtilleria = new Artilleria(CANTIDAD);
+
+        comprobarQue(unArsenalTieneTorpedosDeFotones(CANTIDAD));
+    }
+
+    private Postcondicion unArsenalTieneTorpedosDeFotones(int cantidad) {
+
+        return postcondicion("unaArtilleria tiene " + cantidad + " torpedos de fotones", () -> {
+
+            assertThat(unaArtilleria.contarTorpedosDeFotones()).as("cantidad de torpedos de fotones")
+                    .isEqualTo(cantidad);
+        });
+    }
 
     @Test
     public void lanzarAtaque() {
@@ -26,16 +44,16 @@ public class ArsenalTest implements Prueba {
         dadoQue(fueCreadoUnArsenalConTorpedosDeFotones(CANTIDAD_DE_TORPEDOS));
 
         IntStream.range(0, CANTIDAD_DE_TORPEDOS + CANTIDAD_DE_LASER)
-                 .forEach(n -> ataquesRealizados.add(unArsenal.lanzarAtaque()));
+                 .forEach(n -> ataquesRealizados.add(unaArtilleria.lanzarAtaque()));
 
         comprobarQue(losAtaquesSon(CANTIDAD_DE_TORPEDOS, CANTIDAD_DE_LASER));
     }
 
     private Precondicion fueCreadoUnArsenalConTorpedosDeFotones(int cantidad) {
 
-        return precondicion("fue creado unArsenal con " + cantidad + " torpedos de fotones", () -> {
+        return precondicion("fue creado unaArtilleria con " + cantidad + " torpedos de fotones", () -> {
 
-            unArsenal = new Arsenal(cantidad);
+            unaArtilleria = new Artilleria(cantidad);
         });
     }
 

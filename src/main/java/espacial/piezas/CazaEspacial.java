@@ -11,7 +11,7 @@ import espacial.piezas.rasgos.PiezaAtacable;
 public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
 
     private int nivelDeEscudos = 100;
-    private Arsenal arsenal = new Arsenal(100);
+    private Artilleria artilleria = new Artilleria(100);
     private Optional<Casillero> casillero = Optional.empty();
     private Optional<Amarre> amarre = Optional.empty();
 
@@ -88,7 +88,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
 
         Casillero destino = origen.obtenerContiguoEn(direccionElegida);
 
-        destino.fueAtacadoCon(arsenal.lanzarAtaque());
+        destino.fueAtacadoCon(artilleria.lanzarAtaque());
     }
 
     @Override
