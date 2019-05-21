@@ -10,10 +10,15 @@ import espacial.piezas.rasgos.PiezaAtacable;
 
 public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
 
-    private int nivelDeEscudos = 100;
+    private Indicador nivelDeEscudos = new Indicador(100);
     private Artilleria artilleria = new Artilleria(100);
     private Optional<Casillero> casillero = Optional.empty();
     private Optional<Amarre> amarre = Optional.empty();
+
+    public CazaEspacial() {
+
+        nivelDeEscudos.cuandoSeAgota(this::fueDestruido);
+    }
 
     @Override
     public void despegar() {
@@ -54,7 +59,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
     @Override
     public int obtenerNivelDeEscudos() {
         
-        return nivelDeEscudos;
+        return nivelDeEscudos.obtenerValor();
     }
 
     @Override
@@ -66,13 +71,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
     @Override
     public void disminuirNivelDeEscudosEn(int diferencia) {
 
-        nivelDeEscudos -= diferencia;
-
-        if (nivelDeEscudos < 1) {
-
-            nivelDeEscudos = 0;
-            obtenerCasillero().desocupar();
-        }
+        nivelDeEscudos.decrementarEn(diferencia);
     }
 
     @Override
@@ -107,6 +106,11 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
     public void fueAtacadoCon(Ataque ataque) {
 
         ataque.aplicarSobre(this);
+    }
+
+    private void fueDestruido() {
+
+        obtenerCasillero().desocupar();
     }
 
     private Casillero obtenerCasillero() {
