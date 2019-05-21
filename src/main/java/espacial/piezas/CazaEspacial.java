@@ -67,6 +67,12 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
     public void disminuirNivelDeEscudosEn(int diferencia) {
 
         nivelDeEscudos -= diferencia;
+
+        if (nivelDeEscudos < 1) {
+
+            nivelDeEscudos = 0;
+            obtenerCasillero().desocupar();
+        }
     }
 
     @Override

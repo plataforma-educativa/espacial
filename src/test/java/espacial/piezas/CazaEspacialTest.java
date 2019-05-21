@@ -5,6 +5,7 @@ import static org.mockito.Mockito.*;
 
 import espacial.*;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
+import org.assertj.core.util.VisibleForTesting;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -58,6 +59,42 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
             verify(NAVE_ESPACIAL).chocoContraUnaNave();
         });
+    }
+
+    @Test
+    public void obtenerNivelDeEscudosInicial() {
+
+        dadoQue(fueCreadoUnCazaEspacial());
+
+        comprobarQue(elNivelDeEscudosEs(100));
+    }
+
+    private Postcondicion elNivelDeEscudosEs(int nivelEsperado) {
+        
+        return postcondicion("el nivel del escudos es", () -> {
+           
+            assertThat(unCazaEspacial.obtenerNivelDeEscudos()).as("nivel de escudos").isEqualTo(nivelEsperado);
+        });
+    }
+
+    @Test
+    public void disminuirNivelDeEscudosEn() {
+
+        dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasillero());
+
+        unCazaEspacial.disminuirNivelDeEscudosEn(34);
+
+        comprobarQue(elNivelDeEscudosEs(66));
+    }
+
+    @Test
+    public void disminuirNivelDeEscudosEnUnValorMayorA100() {
+
+        dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasillero());
+
+        unCazaEspacial.disminuirNivelDeEscudosEn(101);
+
+        comprobarQue(elNivelDeEscudosEs(0));
     }
 
     @Test
