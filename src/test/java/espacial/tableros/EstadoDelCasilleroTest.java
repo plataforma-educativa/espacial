@@ -55,18 +55,12 @@ public abstract class EstadoDelCasilleroTest implements Prueba {
 
     protected Postcondicion cambioElEstadoDelCasilleroPor(Class<? extends EstadoDelCasillero> estado) {
 
-        return postcondicion("cambió el estado del casillero por " + estado.getSimpleName(), () -> {
-          
-            verify(CASILLERO).cambiarA(any(estado));
-        });
+        return postcondicion(() -> verify(CASILLERO).cambiarA(any(estado)));
     }
     
     protected Postcondicion generaUnDefecto(Ejecutable ejecutable) {
         
-        return postcondicion(() -> {
-          
-            assertThatThrownBy(ejecutable::ejecutar).isInstanceOf(Defecto.class);
-        });
+        return postcondicion(() -> assertThatThrownBy(ejecutable::ejecutar).isInstanceOf(Defecto.class));
     }
 
     protected Postcondicion generaUnChoqueEntre(Pieza unaPieza, Pieza otraPieza) {

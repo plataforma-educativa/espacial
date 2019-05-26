@@ -51,17 +51,11 @@ public class EstadoDelCasilleroAlSerAtacadoConTest extends EstadoDelCasilleroTes
 
     private Postcondicion fueAtacadaLaPieza() {
 
-        return postcondicion("fue atacada la PIEZA", () -> {
-
-            verify(PIEZA).fueAtacadoCon(UN_ATAQUE);
-        });
+        return postcondicion(() -> verify(PIEZA).fueAtacadoCon(UN_ATAQUE));
     }
 
     private Postcondicion fueAtacadaLaNave() {
 
-        return postcondicion("fue atacada la NAVE", () -> {
-
-            verify(NAVE).fueAtacadoCon(UN_ATAQUE);
-        });
+        return postcondicion(() -> verify(NAVE).fueAtacadoCon(UN_ATAQUE));
     }
 }
