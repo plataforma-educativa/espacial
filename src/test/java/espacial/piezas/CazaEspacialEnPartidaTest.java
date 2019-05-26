@@ -26,7 +26,7 @@ public class CazaEspacialEnPartidaTest implements Prueba {
 
     private Precondicion fueCreadoUnCazaEspacialColocandoloEnUnCasillero() {
 
-        return precondicion("fue creado unCazaEspacial, colocándolo en UN_CASILLERO", () -> {
+        return precondicion(() -> {
 
             unCazaEspacial = new CazaEspacial();
             unCazaEspacial.fueColocadaEn(UN_CASILLERO);
@@ -40,9 +40,6 @@ public class CazaEspacialEnPartidaTest implements Prueba {
 
     private Postcondicion seDesocupoElCasilleroQueOcupaba() {
 
-        return  postcondicion("se desocupó el casillero que ocupaba", () -> {
-
-            verify(UN_CASILLERO).desocupar();
-        });
+        return  postcondicion(() -> verify(UN_CASILLERO).desocupar());
     }
 }

@@ -33,10 +33,7 @@ public abstract class PruebaSobrePieza<T extends Pieza> implements Prueba {
 
     private Postcondicion elEspectroEscaneadoEsElEsperado(EspectroEspacial espectro) {
         
-        return postcondicion("el EspectroEspacial escaneado", () -> {
-           
-            assertThat(espectro).isEqualTo(espectroEsperado());
-        });
+        return postcondicion(() -> assertThat(espectro).isEqualTo(espectroEsperado()));
     }
     
     @Test
@@ -71,12 +68,8 @@ public abstract class PruebaSobrePieza<T extends Pieza> implements Prueba {
 
     private Postcondicion sePuedenObtenerLosPuntosDe(Pieza unaPieza) {
 
-        return postcondicion("se pueden obtener los puntos de la Pieza", () -> {
-
-            assertThat(unaPieza.obtenerPuntos()).as("puntos")
-                    .isBetween(Pieza.PUNTOS_MINIMOS, Pieza.PUNTOS_MAXIMOS);
-
-        });
+        return postcondicion(() -> assertThat(unaPieza.obtenerPuntos()).as("puntos")
+                                        .isBetween(Pieza.PUNTOS_MINIMOS, Pieza.PUNTOS_MAXIMOS));
     }
 
     @Test
@@ -86,5 +79,4 @@ public abstract class PruebaSobrePieza<T extends Pieza> implements Prueba {
 
         unaPieza.fueAtacadoCon(UN_ATAQUE);
     }
-
 }

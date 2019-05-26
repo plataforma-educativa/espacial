@@ -28,11 +28,9 @@ public class ArtilleriaTest implements Prueba {
 
     private Postcondicion unArsenalTieneTorpedosDeFotones(int cantidad) {
 
-        return postcondicion("unaArtilleria tiene " + cantidad + " torpedos de fotones", () -> {
-
-            assertThat(unaArtilleria.contarTorpedosDeFotones()).as("cantidad de torpedos de fotones")
-                    .isEqualTo(cantidad);
-        });
+        return postcondicion(() -> assertThat(unaArtilleria.contarTorpedosDeFotones())
+                                    .as("cantidad de torpedos de fotones")
+                                    .isEqualTo(cantidad));
     }
 
     @Test
@@ -51,10 +49,7 @@ public class ArtilleriaTest implements Prueba {
 
     private Precondicion fueCreadoUnArsenalConTorpedosDeFotones(int cantidad) {
 
-        return precondicion("fue creado unaArtilleria con " + cantidad + " torpedos de fotones", () -> {
-
-            unaArtilleria = new Artilleria(cantidad);
-        });
+        return precondicion(() -> unaArtilleria = new Artilleria(cantidad));
     }
 
     private Postcondicion losAtaquesSon(int cantidadDeTorpedos, int cantidadDeLaser) {

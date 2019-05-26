@@ -24,10 +24,7 @@ public class IndicadorTest implements Prueba {
 
     private Postcondicion elValorInicialDeUnIndicadorEs(int esperado) {
 
-        return postcondicion("el valor inicial de unIndicador es " + esperado, () -> {
-
-            assertThat(unIndicador.obtenerValor()).as("valor").isEqualTo(esperado);
-        });
+        return postcondicion(() -> assertThat(unIndicador.obtenerValor()).as("valor").isEqualTo(esperado));
     }
 
     @Test
@@ -42,18 +39,12 @@ public class IndicadorTest implements Prueba {
 
     private Precondicion fueCreadoUnIndicadorConValorInicial(int valor) {
 
-        return precondicion("fue creado un indicador con valor incial " + valor, () -> {
-
-            unIndicador = new Indicador(valor);
-        });
+        return precondicion(() -> unIndicador = new Indicador(valor));
     }
 
     private Postcondicion elValorDeUnIndicadorEs(int esperado) {
 
-        return postcondicion("el valor de unIndicador es " + esperado, () -> {
-
-            assertThat(unIndicador.obtenerValor()).as("valor").isEqualTo(esperado);
-        });
+        return postcondicion(() -> assertThat(unIndicador.obtenerValor()).as("valor").isEqualTo(esperado));
     }
 
     @Test
@@ -80,10 +71,7 @@ public class IndicadorTest implements Prueba {
 
     private Postcondicion ejecutoUnaAccionConfigurada() {
 
-        return postcondicion("ejecutó UNA_ACCION configurada", () -> {
-
-            verify(UNA_ACCION).ejecutar();
-        });
+        return postcondicion(() -> verify(UNA_ACCION).ejecutar());
     }
 
     @Test
@@ -108,10 +96,7 @@ public class IndicadorTest implements Prueba {
 
     private Postcondicion soloSeEjecutoUnaAccionUnaVez() {
 
-        return postcondicion("solo se ejecutó UNA_ACCION una vez", () -> {
-
-            verify(UNA_ACCION, times(1)).ejecutar();
-        });
+        return postcondicion(() -> verify(UNA_ACCION, times(1)).ejecutar());
     }
 
 }

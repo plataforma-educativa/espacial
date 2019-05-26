@@ -55,7 +55,7 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
 
     private Precondicion unaBaseFueCreadaYColocadaEnCasillero() {
         
-        return precondicion("unaBase fue creada", () -> {
+        return precondicion(() -> {
           
             unaBase = new BaseEspacial();
             unaBase.fueColocadaEn(CASILLERO);
@@ -64,7 +64,7 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
     
     private Postcondicion unaBaseTieneAmarradaLaNave() {
 
-        return postcondicion("unaBase tiene amarrada la NAVE", () -> {
+        return postcondicion(() -> {
           
             Amarre amarre = unaBase.obtenerAmarres()[0];
             
@@ -91,7 +91,7 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
 
     private Postcondicion unaBaseTieneAmarradasLasNavesAlfaBetaGamma() {
 
-        return postcondicion("unaBase tiene amarrada la NAVE", () -> {
+        return postcondicion(() -> {
             
             assertThat(unaBase.obtenerAmarres())
                 .as("amarres")
@@ -114,7 +114,7 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
 
     private Precondicion lasNavesAlfaBetaGammaEstanAmarradasAUnaBase() {
         
-        return precondicion("las Naves NAVE_ALFA, NAVE_BETA, NAVE_GAMMA están amarradas a unaBase", () -> {
+        return precondicion(() -> {
           
             unaBase.amarrar(NAVE_ALFA);
             unaBase.amarrar(NAVE_BETA);
@@ -124,7 +124,7 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
 
     private Postcondicion unaBaseYaNoTieneMasAmarradaLaNaveBeta() {
 
-        return postcondicion("unaBase ya no tiene más amarrada la Nave NAVE_BETA", () -> {
+        return postcondicion(() -> {
             
             assertThat(unaBase.obtenerAmarres())
                 .as("amarres")
@@ -152,19 +152,12 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
 
     private Precondicion fueCreadaUnaBase() {
 
-        return precondicion("fue creada unaBase", () -> {
-
-            unaBase = new BaseEspacial();
-        });
+        return precondicion(() -> unaBase = new BaseEspacial());
     }
 
     private Postcondicion losPuntosInicialesDeUnaBaseSonCorrectos() {
 
-        return postcondicion("los puntos iniciales de unaBase", () -> {
-
-            assertThat(unaBase.obtenerPuntos()).as("puntos")
-                    .isEqualTo(200);
-        });
+        return postcondicion(() -> assertThat(unaBase.obtenerPuntos()).as("puntos").isEqualTo(200));
     }
 
 }

@@ -27,10 +27,7 @@ public class ContenedorDeAntimateriaTest extends PruebaSobrePieza<ContenedorDeAn
     @Override
     public Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
-        return postcondicion("notificó a la NaveEspacial que chocó contra un Contenedor", () -> {
-            
-            verify(NAVE_ESPACIAL).chocoContraUnContenedor();
-        });
+        return postcondicion(() -> verify(NAVE_ESPACIAL).chocoContraUnContenedor());
     }
 
     @Test
@@ -43,19 +40,12 @@ public class ContenedorDeAntimateriaTest extends PruebaSobrePieza<ContenedorDeAn
 
     private Precondicion fueCreadoUnContenedorDeAntimateria() {
 
-        return precondicion("fue creado unContenedorDeAntimateria", () -> {
-
-            unContenedorDeAntimateria = new ContenedorDeAntimateria();
-        });
+        return precondicion(() -> unContenedorDeAntimateria = new ContenedorDeAntimateria());
     }
 
     private Postcondicion losPuntosInicialesDeUnContenedorDeAntimateriaSonCorrectos() {
 
-        return postcondicion("los puntos iniciales de unContenedorDeAntimateria son correctos", () -> {
-
-            assertThat(unContenedorDeAntimateria.obtenerPuntos()).as("puntos")
-                    .isEqualTo(50);
-        });
+        return postcondicion(() -> assertThat(unContenedorDeAntimateria.obtenerPuntos()).as("puntos").isEqualTo(50));
     }
 
 }
