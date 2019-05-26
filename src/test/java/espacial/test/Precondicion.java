@@ -2,15 +2,24 @@ package espacial.test;
 
 public class Precondicion extends Condicion {
 
-    protected Precondicion(String descripcion, Ejecutable ejecutable) {
+    protected Precondicion(Enunciado enunciado, Ejecutable ejecutable) {
         
-        super(descripcion, ejecutable);
+        super(enunciado, ejecutable);
     }
-    
+
     @Override
-    protected String describir() {
+    protected ErrorEnCondicion crearErrorEnCondicion(Throwable causa) {
 
-        return "No fue posible establecer que " + super.describir();
+        return new NoFuePosibleEstablecerQue(enunciado, causa);
     }
 
+    private static class NoFuePosibleEstablecerQue extends ErrorEnCondicion {
+
+        private static final long serialVersionUID = 4734265336999502233L;
+
+        public NoFuePosibleEstablecerQue(Enunciado enunciado, Throwable causa) {
+
+            super(enunciado, causa);
+        }
+    }
 }

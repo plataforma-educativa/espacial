@@ -27,7 +27,7 @@ public abstract class EstadoDelCasilleroTest implements Prueba {
 
     protected Postcondicion noCambioElEstadoDelCasillero() {
 
-        return postcondicion("no cambió el estado del casillero", () -> {
+        return postcondicion(() -> {
           
             verify(CASILLERO, never()).cambiarA(any());
         });
@@ -63,7 +63,7 @@ public abstract class EstadoDelCasilleroTest implements Prueba {
     
     protected Postcondicion generaUnDefecto(Ejecutable ejecutable) {
         
-        return postcondicion("genera un Defecto", () -> {
+        return postcondicion(() -> {
           
             assertThatThrownBy(ejecutable::ejecutar).isInstanceOf(Defecto.class);
         });

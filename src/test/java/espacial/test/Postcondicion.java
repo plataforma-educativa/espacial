@@ -2,15 +2,24 @@ package espacial.test;
 
 public class Postcondicion extends Condicion {
 
-    protected Postcondicion(String descripcion, Ejecutable ejecutable) {
+    protected Postcondicion(Enunciado enunciado, Ejecutable ejecutable) {
 
-        super(descripcion, ejecutable);
+        super(enunciado, ejecutable);
     }
 
     @Override
-    protected String describir() {
+    protected ErrorEnCondicion crearErrorEnCondicion(Throwable causa) {
 
-        return "No se pudo comprobar que " + super.describir();
+        return new NoFuePosibleComprobarQue(enunciado, causa);
     }
-    
+
+    private static class NoFuePosibleComprobarQue extends ErrorEnCondicion {
+
+        private static final long serialVersionUID = 4969223836927502213L;
+
+        public NoFuePosibleComprobarQue(Enunciado enunciado, Throwable causa) {
+
+            super(enunciado, causa);
+        }
+    }
 }

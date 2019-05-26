@@ -27,34 +27,23 @@ public class AsteroideTest extends PruebaSobrePieza<Asteroide> {
     @Override
     public Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
-        return postcondicion("notificó a la NaveEspacial que chocó contra un Asteroide", () -> {
-            
-            verify(NAVE_ESPACIAL).chocoContraUnAsteroide();
-        });
+        return postcondicion(() -> verify(NAVE_ESPACIAL).chocoContraUnAsteroide());
     }
 
     @Test
     public void obtenerPuntos() {
 
         dadoQue(fueCreadoUnAsteroide());
-
         comprobarQue(losPuntosInicialesDeUnAsteroideSonCorrectos());
     }
 
     private Precondicion fueCreadoUnAsteroide() {
 
-        return precondicion("fue creado unAsteroide", () -> {
-
-            unAsteroide = new Asteroide();
-        });
+        return precondicion(() -> unAsteroide = new Asteroide());
     }
 
     private Postcondicion losPuntosInicialesDeUnAsteroideSonCorrectos() {
 
-        return postcondicion("los puntos iniciales de unAsteroide son correctos", () -> {
-
-            assertThat(unAsteroide.obtenerPuntos()).as("puntos")
-                    .isEqualTo(90);
-        });
+        return postcondicion(() -> assertThat(unAsteroide.obtenerPuntos()).as("puntos").isEqualTo(90));
     }
 }
