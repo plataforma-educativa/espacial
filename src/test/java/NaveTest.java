@@ -1,19 +1,18 @@
-import static espacial.test.Aserciones.assertThat;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-
-import java.util.stream.IntStream;
-
 import espacial.Casillero;
 import espacial.Coordenada;
 import espacial.Pieza;
-import org.junit.jupiter.api.Test;
-
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.Prueba;
+import org.junit.jupiter.api.Test;
+
+import java.util.stream.IntStream;
+
+import static espacial.test.Aserciones.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class NaveTest implements Prueba {
 

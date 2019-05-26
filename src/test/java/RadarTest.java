@@ -1,12 +1,11 @@
-
-import static org.assertj.core.api.Assertions.*;
-
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.Prueba;
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.IntStream;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class RadarTest implements Prueba {
 
@@ -30,7 +29,7 @@ public class RadarTest implements Prueba {
 
         return precondicion(() -> {
 
-            BatallaEspacial batalla = new BatallaEspacial();
+            new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
 
@@ -77,7 +76,7 @@ public class RadarTest implements Prueba {
 
         return precondicion(() -> {
 
-            BatallaEspacial batalla = new BatallaEspacial();
+            new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
             IntStream.range(0, 4).forEach(n -> nave.avanzarAlNorte());
@@ -101,7 +100,7 @@ public class RadarTest implements Prueba {
 
         return precondicion(() -> {
 
-            BatallaEspacial batalla = new BatallaEspacial();
+            new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
             nave.avanzarAlNorte();
@@ -124,7 +123,7 @@ public class RadarTest implements Prueba {
 
         return precondicion(() -> {
 
-            BatallaEspacial batalla = new BatallaEspacial();
+            new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
             IntStream.range(0, 3).forEach(n -> nave.avanzarAlOeste());
@@ -147,7 +146,7 @@ public class RadarTest implements Prueba {
 
         return precondicion(() -> {
 
-            BatallaEspacial batalla = new BatallaEspacial();
+            new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
             IntStream.range(0, 5).forEach(n -> nave.avanzarAlOeste());
