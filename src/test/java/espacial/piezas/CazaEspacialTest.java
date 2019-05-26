@@ -32,13 +32,13 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
     @BeforeEach
     public void simularCasillero() {
-        
+
         when(UN_CASILLERO.obtenerContiguoEn(Direccion.NORTE)).thenReturn(CASILLERO_NORTE);
         when(UN_CASILLERO.obtenerContiguoEn(Direccion.SUR)).thenReturn(CASILLERO_SUR);
         when(UN_CASILLERO.obtenerContiguoEn(Direccion.ESTE)).thenReturn(CASILLERO_ESTE);
         when(UN_CASILLERO.obtenerContiguoEn(Direccion.OESTE)).thenReturn(CASILLERO_OESTE);
     }
-    
+
     @Override
     public CazaEspacial piezaCreada() {
 
@@ -50,7 +50,7 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
         return EspectroEspacial.NAVE;
     }
-    
+
     @Override
     public Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
@@ -66,9 +66,12 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
     }
 
     private Postcondicion elNivelDeEscudosEs(int nivelEsperado) {
-        
-        return postcondicion(() -> assertThat(unCazaEspacial.obtenerNivelDeEscudos()).as("nivel de escudos")
-                                        .isEqualTo(nivelEsperado));
+
+        return postcondicion(() ->
+
+                assertThat(unCazaEspacial.obtenerNivelDeEscudos())
+                        .as("nivel de escudos")
+                        .isEqualTo(nivelEsperado));
     }
 
     @Test
@@ -103,28 +106,31 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
     @Test
     public void moverEnDireccionCuandoNoDespego() {
-        
+
         dadoQue(fueCreadoUnCazaEspacial());
-        
-        comprobarQue(generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(() -> unCazaEspacial.moverEn(Direccion.NORTE) ));
+
+        comprobarQue(generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(() -> unCazaEspacial.moverEn(Direccion.NORTE)));
     }
-    
+
     private Postcondicion generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(Ejecutable ejecutable) {
 
-        return postcondicion(() -> assertThatThrownBy(ejecutable::ejecutar).as("excepción lanzada")
-                                        .isInstanceOf(LaNaveNoEstaEnUnCasillero.class));
+        return postcondicion(() ->
+
+                assertThatThrownBy(ejecutable::ejecutar)
+                        .as("excepción lanzada")
+                        .isInstanceOf(LaNaveNoEstaEnUnCasillero.class));
     }
 
     @Test
     public void moverEnDireccion() {
-        
+
         dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasillero());
-        
+
         unCazaEspacial.moverEn(Direccion.NORTE);
-        
+
         comprobarQue(unCazaEspacialSeMovioUnCasilleroEnDireccionNorte());
     }
-    
+
     private Precondicion fueCreadoUnCazaEspacialColocadoEnUnCasillero() {
 
         return precondicion(() -> {
@@ -137,53 +143,56 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
         return postcondicion(() -> verify(UN_CASILLERO).moverPiezaA(CASILLERO_NORTE));
     }
-    
+
     @Test
     public void chocoContraUnAsteroide() {
-        
+
         dadoQue(fueCreadoUnCazaEspacial());
-        
+
         unCazaEspacial.chocoContraUnAsteroide();
-        
+
         comprobarQue(elNivelDeEscudosBajoHasta(75));
     }
 
     private Precondicion fueCreadoUnCazaEspacial() {
-        
+
         return precondicion(() -> unCazaEspacial = new CazaEspacial());
     }
 
     private Postcondicion elNivelDeEscudosBajoHasta(int nivelDeEscudoEsperado) {
 
-        return postcondicion(() -> assertThat(unCazaEspacial.obtenerNivelDeEscudos()).as("nivel de escudos")
-                                        .isEqualTo(nivelDeEscudoEsperado));
+        return postcondicion(() ->
+
+                assertThat(unCazaEspacial.obtenerNivelDeEscudos())
+                        .as("nivel de escudos")
+                        .isEqualTo(nivelDeEscudoEsperado));
     }
-    
+
     @Test
     public void chocoContraUnContenedor() {
-        
+
         dadoQue(fueCreadoUnCazaEspacial());
-        
+
         unCazaEspacial.chocoContraUnContenedor();
-        
+
         comprobarQue(elNivelDeEscudosBajoHasta(90));
     }
-    
+
     @Test
     public void chocoContraElBordeDelTablero() {
-        
+
         dadoQue(fueCreadoUnCazaEspacial());
-        
+
         unCazaEspacial.chocoContraElBordeDelTablero();
-        
+
         comprobarQue(elNivelDeEscudosBajoHasta(50));
     }
-    
+
     @Test
     public void chocoContraUnAgujeroNegro() {
-        
+
         dadoQue(fueCreadoUnCazaEspacial());
-        
+
         unCazaEspacial.chocoContraUnAgujeroNegro();
 
         comprobarQue(elNivelDeEscudosBajoHasta(25));
@@ -208,15 +217,15 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
         comprobarQue(elNivelDeEscudosBajoHasta(95));
     }
-    
+
     @Test
     public void despegar() {
-    
+
         dadoQue(fueCreadoUnCazaEspacial());
         dadoQue(unCazaEspacialFueAmarrado());
 
         unCazaEspacial.despegar();
-        
+
         comprobarQue(unCazaEspacialSoltoElAmarre());
     }
 
@@ -296,8 +305,7 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
         dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasilleroConOtraPiezaAlNorte());
 
-        IntStream.rangeClosed(1, TORPEDOS_DE_FOTONES + LASER)
-                .forEach(n -> unCazaEspacial.atacarEn(Direccion.NORTE));
+        IntStream.rangeClosed(1, TORPEDOS_DE_FOTONES + LASER).forEach(n -> unCazaEspacial.atacarEn(Direccion.NORTE));
 
         comprobarQue(otraPiezaFueAtacadaCon(TORPEDOS_DE_FOTONES, LASER));
     }
@@ -313,9 +321,7 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
     private Postcondicion otraPiezaFueAtacadaCon(int torpedos, int laser) {
 
-        return postcondicion("OTRA_PIEZA fue atacada con " +
-                                            torpedos + " veces torpedo de fotones y " +
-                                            laser + " veces laser", () -> {
+        return postcondicion(() -> {
 
             ArgumentCaptor<Ataque> captorDeAtaques = ArgumentCaptor.forClass(Ataque.class);
             verify(CASILLERO_NORTE, atLeastOnce()).fueAtacadoCon(captorDeAtaques.capture());
@@ -358,8 +364,8 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
         return postcondicion(() -> {
 
             assertThat(unCazaEspacial.escanearEn(Direccion.NORTE)).as("al NORTE").isEqualTo(esperado);
-            assertThat(unCazaEspacial.escanearEn(Direccion.SUR  )).as("al SUR"  ).isEqualTo(esperado);
-            assertThat(unCazaEspacial.escanearEn(Direccion.ESTE )).as("al ESTE" ).isEqualTo(esperado);
+            assertThat(unCazaEspacial.escanearEn(Direccion.SUR)).as("al SUR").isEqualTo(esperado);
+            assertThat(unCazaEspacial.escanearEn(Direccion.ESTE)).as("al ESTE").isEqualTo(esperado);
             assertThat(unCazaEspacial.escanearEn(Direccion.OESTE)).as("al OESTE").isEqualTo(esperado);
         });
     }

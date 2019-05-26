@@ -36,25 +36,21 @@ public class PiezaAtacableTest implements Prueba {
 
     private Precondicion laPiezaAtacadaImplementaPiezaAtacable() {
 
-        return precondicion("la piezaAtacada implementa PiezaAtacable", () -> {
+        return precondicion(() -> piezaAtacada = new PiezaAtacable() {
 
-             piezaAtacada = new PiezaAtacable() {
+            @Override
+            public void decrementarPuntosEn(int decremento) {
 
-                @Override
-                public void decrementarPuntosEn(int decremento) {
-
-                    puntosDecrementados = decremento;
-                }
-            };
+                puntosDecrementados = decremento;
+            }
         });
     }
 
     private Postcondicion laPiezaAtacadaDecrementoSusPuntosEn(int decrementoEsperado) {
 
-        return postcondicion("la piezaAtacada decrementó sus puntos en " + decrementoEsperado, () -> {
-
-            assertThat(puntosDecrementados).as("puntos decrementados")
-                    .isEqualTo(decrementoEsperado);
-        });
+        return postcondicion(() ->
+                assertThat(puntosDecrementados)
+                        .as("puntos decrementados")
+                        .isEqualTo(decrementoEsperado));
     }
 }

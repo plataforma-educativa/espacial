@@ -88,7 +88,7 @@ public class NaveChocableTest implements Prueba {
 
     private Precondicion laNaveChocadaImplementaNaveChocable() {
 
-        return precondicion("la naveChocada implementa NaveChocable", () -> {
+        return precondicion(() -> {
 
             naveChocada = new NaveChocable() {
 
@@ -103,18 +103,14 @@ public class NaveChocableTest implements Prueba {
 
     private Postcondicion laNaveChocadaDisminuyoSuNivelDeEscudosEn(int disminucionEsperada) {
 
-        return postcondicion("la naveChocada disminuyó su nivel de escudos en " + disminucionEsperada, () -> {
-
-            assertThat(nivelDeEscudosDisminuido).as("nivel de escudos disminuído")
-                    .isEqualTo(disminucionEsperada);
-        });
+        return postcondicion(() ->
+                assertThat(nivelDeEscudosDisminuido)
+                        .as("nivel de escudos disminuído")
+                        .isEqualTo(disminucionEsperada));
     }
 
     private Postcondicion unChocableFueNotificadoDelChoqueContraUnaNave() {
 
-        return postcondicion("UN_CHOCABLE fue notificado del choque contre una Nave", () -> {
-
-            verify(UN_CHOCABLE).chocoContraUnaNave();
-        });
+        return postcondicion(() -> verify(UN_CHOCABLE).chocoContraUnaNave());
     }
 }

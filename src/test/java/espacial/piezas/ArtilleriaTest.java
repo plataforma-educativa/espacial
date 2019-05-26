@@ -28,9 +28,10 @@ public class ArtilleriaTest implements Prueba {
 
     private Postcondicion unArsenalTieneTorpedosDeFotones(int cantidad) {
 
-        return postcondicion(() -> assertThat(unaArtilleria.contarTorpedosDeFotones())
-                                    .as("cantidad de torpedos de fotones")
-                                    .isEqualTo(cantidad));
+        return postcondicion(() ->
+                assertThat(unaArtilleria.contarTorpedosDeFotones())
+                        .as("cantidad de torpedos de fotones")
+                        .isEqualTo(cantidad));
     }
 
     @Test
@@ -42,7 +43,7 @@ public class ArtilleriaTest implements Prueba {
         dadoQue(fueCreadoUnArsenalConTorpedosDeFotones(CANTIDAD_DE_TORPEDOS));
 
         IntStream.range(0, CANTIDAD_DE_TORPEDOS + CANTIDAD_DE_LASER)
-                 .forEach(n -> ataquesRealizados.add(unaArtilleria.lanzarAtaque()));
+                .forEach(n -> ataquesRealizados.add(unaArtilleria.lanzarAtaque()));
 
         comprobarQue(losAtaquesSon(CANTIDAD_DE_TORPEDOS, CANTIDAD_DE_LASER));
     }
@@ -54,15 +55,18 @@ public class ArtilleriaTest implements Prueba {
 
     private Postcondicion losAtaquesSon(int cantidadDeTorpedos, int cantidadDeLaser) {
 
-        return postcondicion("los ataque son " +
-                            cantidadDeTorpedos + " de torpedos de fotones y " +
-                            cantidadDeLaser + " de lase", () -> {
+        return postcondicion(() -> {
 
-            assertThat(ataquesRealizados).as("ataques lanzados")
+            assertThat(ataquesRealizados)
+                    .as("ataques lanzados")
                     .hasSize(cantidadDeTorpedos + cantidadDeLaser);
-            assertThat(ataquesRealizados.subList(0, cantidadDeTorpedos)).as("ataques con torpedos de fotones")
+
+            assertThat(ataquesRealizados.subList(0, cantidadDeTorpedos))
+                    .as("ataques con torpedos de fotones")
                     .hasOnlyElementsOfType(AtaqueConTorpedoDeFotones.class);
-            assertThat(ataquesRealizados.subList(cantidadDeTorpedos, cantidadDeLaser)).as("ataques con laser")
+
+            assertThat(ataquesRealizados.subList(cantidadDeTorpedos, cantidadDeLaser))
+                    .as("ataques con laser")
                     .hasOnlyElementsOfType(AtaqueConLaser.class);
         });
     }

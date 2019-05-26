@@ -28,10 +28,7 @@ public class AgujeroNegroTest extends PruebaSobrePieza<AgujeroNegro> {
     @Override
     public Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
-        return postcondicion("notificó a la NaveEspacial que chocó contra un AgujeroNegro", () -> {
-            
-            verify(NAVE_ESPACIAL).chocoContraUnAgujeroNegro();
-        });
+        return postcondicion(() -> verify(NAVE_ESPACIAL).chocoContraUnAgujeroNegro());
     }
 
     @Test
@@ -45,20 +42,15 @@ public class AgujeroNegroTest extends PruebaSobrePieza<AgujeroNegro> {
 
     private Precondicion fueCreadoUnAgujeroNegro() {
 
-        return precondicion("fue creado unAgujeroNegro", () -> {
-
-            unAgujeroNegro = new AgujeroNegro();
-        });
+        return precondicion(() -> unAgujeroNegro = new AgujeroNegro());
     }
 
     private Postcondicion losPuntosUnAgujeroNegroSonMaximos() {
 
-        return postcondicion("los puntos unAgujeroNegro son máximos", () -> {
-
-            assertThat(unAgujeroNegro.obtenerPuntos()).as("puntos")
-                    .isEqualTo(Pieza.PUNTOS_MAXIMOS);
-
-        });
+        return postcondicion(() ->
+                assertThat(unAgujeroNegro.obtenerPuntos())
+                        .as("puntos")
+                        .isEqualTo(Pieza.PUNTOS_MAXIMOS));
     }
 
     @Test
@@ -73,9 +65,6 @@ public class AgujeroNegroTest extends PruebaSobrePieza<AgujeroNegro> {
 
     private Postcondicion unAtaqueNoTuvoEfectoSobreUnAgujeroNegro() {
 
-        return postcondicion("UN_ATAQUE no tuvo efecto sobre unAgujeroNegro", () -> {
-
-            verifyZeroInteractions(UN_ATAQUE);
-        });
+        return postcondicion(() -> verifyZeroInteractions(UN_ATAQUE));
     }
 }

@@ -13,7 +13,7 @@ import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 
 public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
-    
+
     private final NaveEspacial NAVE = mock(NaveEspacial.class, "NAVE");
     private final NaveEspacial NAVE_ALFA = mock(NaveEspacial.class, "NAVE_ALFA");
     private final NaveEspacial NAVE_BETA = mock(NaveEspacial.class, "NAVE_BETA");
@@ -45,77 +45,77 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
 
     @Test
     public void amarrarUnaNave() {
-        
+
         dadoQue(unaBaseFueCreadaYColocadaEnCasillero());
-        
+
         unaBase.amarrar(NAVE);
-        
+
         comprobarQue(unaBaseTieneAmarradaLaNave());
     }
 
     private Precondicion unaBaseFueCreadaYColocadaEnCasillero() {
-        
+
         return precondicion(() -> {
-          
+
             unaBase = new BaseEspacial();
             unaBase.fueColocadaEn(CASILLERO);
         });
     }
-    
+
     private Postcondicion unaBaseTieneAmarradaLaNave() {
 
         return postcondicion(() -> {
-          
+
             Amarre amarre = unaBase.obtenerAmarres()[0];
-            
+
             assertThat(unaBase.obtenerAmarres())
-                .as("amarres")
-                .extracting(Amarre::obtenerPieza)
-                .containsExactly(NAVE);
-            
+                    .as("amarres")
+                    .extracting(Amarre::obtenerPieza)
+                    .containsExactly(NAVE);
+
             verify(NAVE).fueAmarradaCon(amarre);
         });
     }
-    
+
     @Test
     public void amarrarMultiplesNaves() {
-        
+
         dadoQue(unaBaseFueCreadaYColocadaEnCasillero());
-        
+
         unaBase.amarrar(NAVE_ALFA);
         unaBase.amarrar(NAVE_BETA);
         unaBase.amarrar(NAVE_GAMMA);
-        
+
         comprobarQue(unaBaseTieneAmarradasLasNavesAlfaBetaGamma());
     }
 
     private Postcondicion unaBaseTieneAmarradasLasNavesAlfaBetaGamma() {
 
         return postcondicion(() -> {
-            
+
             assertThat(unaBase.obtenerAmarres())
-                .as("amarres")
-                .extracting(Amarre::obtenerPieza)
-                .containsExactly(NAVE_ALFA, NAVE_BETA, NAVE_GAMMA);
+                    .as("amarres")
+                    .extracting(Amarre::obtenerPieza)
+                    .containsExactly(NAVE_ALFA, NAVE_BETA, NAVE_GAMMA);
         });
     }
-    
+
     @Test
     public void soltarAmarreDeUnaNave() {
-        
+
         dadoQue(unaBaseFueCreadaYColocadaEnCasillero());
         dadoQue(lasNavesAlfaBetaGammaEstanAmarradasAUnaBase());
-        
+
         unaBase.obtenerAmarres()[1].soltar();
-        
+
         comprobarQue(unaBaseYaNoTieneMasAmarradaLaNaveBeta());
         comprobarQue(naveBetaFueColocadaEnElCasilleroDeLaBase());
     }
 
     private Precondicion lasNavesAlfaBetaGammaEstanAmarradasAUnaBase() {
-        
+
         return precondicion(() -> {
-          
+
             unaBase.amarrar(NAVE_ALFA);
             unaBase.amarrar(NAVE_BETA);
             unaBase.amarrar(NAVE_GAMMA);
@@ -124,22 +124,17 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
 
     private Postcondicion unaBaseYaNoTieneMasAmarradaLaNaveBeta() {
 
-        return postcondicion(() -> {
-            
-            assertThat(unaBase.obtenerAmarres())
-                .as("amarres")
-                .extracting(Amarre::obtenerPieza)
-                .containsExactly(NAVE_ALFA, NAVE_GAMMA);
-            
-        });
+        return postcondicion(() ->
+
+                assertThat(unaBase.obtenerAmarres())
+                        .as("amarres")
+                        .extracting(Amarre::obtenerPieza)
+                        .containsExactly(NAVE_ALFA, NAVE_GAMMA));
     }
-    
+
     private Postcondicion naveBetaFueColocadaEnElCasilleroDeLaBase() {
 
-        return postcondicion("NAVE_BETA fue colocada en el CASILLERO", () -> {
-
-            verify(CASILLERO).ocuparCon(NAVE_BETA);
-        });
+        return postcondicion(() -> verify(CASILLERO).ocuparCon(NAVE_BETA));
     }
 
     @Test
