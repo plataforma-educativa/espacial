@@ -22,32 +22,29 @@ public abstract class EstadoDelCasilleroTest implements Prueba {
     protected final Pieza OTRA_PIEZA = mock(Pieza.class, "OTRA_PIEZA");
     protected final Pieza PIEZA_EN_ORIGEN = mock(Pieza.class, "PIEZA_EN_ORIGEN");
     protected final Ataque UN_ATAQUE = mock(Ataque.class, "UN_ATAQUE");
-    
+
     protected EstadoDelCasillero estado;
 
     protected Postcondicion noCambioElEstadoDelCasillero() {
 
-        return postcondicion(() -> {
-          
-            verify(CASILLERO, never()).cambiarA(any());
-        });
+        return postcondicion(() -> verify(CASILLERO, never()).cambiarA(any()));
     }
-    
+
     protected Postcondicion cambioElEstadoDelCasilleroPorVacio() {
 
         return cambioElEstadoDelCasilleroPor(Vacio.class);
     }
-    
+
     protected Postcondicion cambioElEstadoDelCasilleroPorOcupado() {
 
         return cambioElEstadoDelCasilleroPor(Ocupado.class);
     }
-    
+
     protected Postcondicion cambioElEstadoDelCasilleroPorOcupadoPorUnaBase() {
 
         return cambioElEstadoDelCasilleroPor(OcupadoPorUnaBase.class);
     }
-    
+
     protected Postcondicion cambioElEstadoDelCasilleroPorOcupadoPorUnaBaseConNaveEnManiobras() {
 
         return cambioElEstadoDelCasilleroPor(OcupadoPorUnaBaseConNaveEnManiobras.class);
@@ -57,22 +54,25 @@ public abstract class EstadoDelCasilleroTest implements Prueba {
 
         return postcondicion(() -> verify(CASILLERO).cambiarA(any(estado)));
     }
-    
+
     protected Postcondicion generaUnDefecto(Ejecutable ejecutable) {
-        
+
         return postcondicion(() -> assertThatThrownBy(ejecutable::ejecutar).isInstanceOf(Defecto.class));
     }
 
     protected Postcondicion generaUnChoqueEntre(Pieza unaPieza, Pieza otraPieza) {
-        
-        return postcondicion("genera un choque entre " + unaPieza + " y " + otraPieza, () -> {
 
-            verify(unaPieza).chocarCon(otraPieza);
-        });
+        return postcondicion("genera un choque entre " + unaPieza + " y " + otraPieza, () ->
+
+                verify(unaPieza).chocarCon(otraPieza)
+        );
     }
-    
+
     public abstract void siEstaVacio();
+
     public abstract void siEstaOcupado();
+
     public abstract void siEstaOcupadoPorUnaBase();
+
     public abstract void siEstaOcupadoPorUnaBaseConNaveEnManiobras();
 }

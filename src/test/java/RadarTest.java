@@ -23,14 +23,14 @@ public class RadarTest implements Prueba {
 
         escanearConUnRadarAlrededor();
 
-        comprobarQue(losEspectrosEscaneadosSon(Espectro.VACIO, Espectro.VACIO, Espectro.VACIO, Espectro.VACIO));
+        comprobarQue(losEspectrosEscaneadosSonLosEsperados(Espectro.VACIO, Espectro.VACIO, Espectro.VACIO, Espectro.VACIO));
     }
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveEnLaBase() {
 
-        return precondicion("fue obtenido unRadar de unaNave en la Base", () -> {
+        return precondicion(() -> {
 
-            BatallaEspacial batalla  = new BatallaEspacial();
+            BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
 
@@ -41,19 +41,19 @@ public class RadarTest implements Prueba {
     private void escanearConUnRadarAlrededor() {
 
         escaneadoAlNorte = unRadar.escanearNorte();
-        escaneadoAlSur   = unRadar.escanearSur();
-        escaneadoAlEste  = unRadar.escanearEste();
+        escaneadoAlSur = unRadar.escanearSur();
+        escaneadoAlEste = unRadar.escanearEste();
         escaneadoAlOeste = unRadar.escanearOeste();
     }
 
-    private Postcondicion losEspectrosEscaneadosSon(Espectro alNorte, Espectro alSur,
-                                                    Espectro alEste, Espectro alOeste) {
+    private Postcondicion losEspectrosEscaneadosSonLosEsperados(Espectro alNorte, Espectro alSur,
+                                                                Espectro alEste, Espectro alOeste) {
 
-        return postcondicion("los espectros escaneados son los esperados", () -> {
+        return postcondicion(() -> {
 
             assertThat(escaneadoAlNorte).as("espectro escaneado al NORTE").isEqualTo(alNorte);
-            assertThat(escaneadoAlSur  ).as("espectro escaneado al SUR"  ).isEqualTo(alSur);
-            assertThat(escaneadoAlEste ).as("espectro escaneado al ESTE" ).isEqualTo(alEste);
+            assertThat(escaneadoAlSur).as("espectro escaneado al SUR").isEqualTo(alSur);
+            assertThat(escaneadoAlEste).as("espectro escaneado al ESTE").isEqualTo(alEste);
             assertThat(escaneadoAlOeste).as("espectro escaneado al OESTE").isEqualTo(alOeste);
         });
     }
@@ -66,14 +66,18 @@ public class RadarTest implements Prueba {
 
         escanearConUnRadarAlrededor();
 
-        comprobarQue(losEspectrosEscaneadosSon(Espectro.VACIO, Espectro.VACIO, Espectro.CONTENEDOR, Espectro.VACIO));
+        comprobarQue(losEspectrosEscaneadosSonLosEsperados(
+                Espectro.VACIO,
+                Espectro.VACIO,
+                Espectro.CONTENEDOR,
+                Espectro.VACIO));
     }
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlOesteDeUnContenedor() {
 
-        return precondicion("fue obtenido unRadar de unaNave al OESTE de un CONTENEDOR", () -> {
+        return precondicion(() -> {
 
-            BatallaEspacial batalla  = new BatallaEspacial();
+            BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
             IntStream.range(0, 4).forEach(n -> nave.avanzarAlNorte());
@@ -90,14 +94,14 @@ public class RadarTest implements Prueba {
 
         escanearConUnRadarAlrededor();
 
-        comprobarQue(losEspectrosEscaneadosSon(Espectro.VACIO, Espectro.BASE, Espectro.VACIO, Espectro.VACIO));
+        comprobarQue(losEspectrosEscaneadosSonLosEsperados(Espectro.VACIO, Espectro.BASE, Espectro.VACIO, Espectro.VACIO));
     }
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlNorteDeUnaBase() {
 
-        return precondicion("fue obtenido unRadar de unaNave al NORTE de una BASE", () -> {
+        return precondicion(() -> {
 
-            BatallaEspacial batalla  = new BatallaEspacial();
+            BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
             nave.avanzarAlNorte();
@@ -113,14 +117,14 @@ public class RadarTest implements Prueba {
 
         escanearConUnRadarAlrededor();
 
-        comprobarQue(losEspectrosEscaneadosSon(Espectro.ASTEROIDE, Espectro.VACIO, Espectro.VACIO, Espectro.VACIO));
+        comprobarQue(losEspectrosEscaneadosSonLosEsperados(Espectro.ASTEROIDE, Espectro.VACIO, Espectro.VACIO, Espectro.VACIO));
     }
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlSurDeUnAsteroide() {
 
-        return precondicion("fue obtenido unRadar de unaNave al SUR de un ASTEROIDE", () -> {
+        return precondicion(() -> {
 
-            BatallaEspacial batalla  = new BatallaEspacial();
+            BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
             IntStream.range(0, 3).forEach(n -> nave.avanzarAlOeste());
@@ -136,14 +140,14 @@ public class RadarTest implements Prueba {
 
         escanearConUnRadarAlrededor();
 
-        comprobarQue(losEspectrosEscaneadosSon(Espectro.ASTEROIDE, Espectro.VACIO, Espectro.VACIO, Espectro.DESCONOCIDO));
+        comprobarQue(losEspectrosEscaneadosSonLosEsperados(Espectro.ASTEROIDE, Espectro.VACIO, Espectro.VACIO, Espectro.DESCONOCIDO));
     }
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlEsteDeDesconocido() {
 
-        return precondicion("fue obtenido unRadar de unaNave al ESTE de DESCONOCIDO", () -> {
+        return precondicion(() -> {
 
-            BatallaEspacial batalla  = new BatallaEspacial();
+            BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
             IntStream.range(0, 5).forEach(n -> nave.avanzarAlOeste());
@@ -152,5 +156,4 @@ public class RadarTest implements Prueba {
             unRadar = nave.obtenerRadar();
         });
     }
-
 }

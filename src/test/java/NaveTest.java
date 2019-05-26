@@ -40,70 +40,68 @@ public class NaveTest implements Prueba {
     }
 
     private Postcondicion existeEnLaBase(Nave unaNave) {
-        
-        return postcondicion("existe en la Base una Nave", () -> {
-            
-            assertThat(batallaEspacial.obtenerNaves()).as("naves de la BatallaEspacial")
-                .hasSize(1)
-                .containsExactly(unaNave);
+
+        return postcondicion("existe en la Base unaNave", () -> {
+
+            assertThat(batallaEspacial.obtenerNaves())
+                    .as("naves de la BatallaEspacial")
+                    .hasSize(1)
+                    .containsExactly(unaNave);
 
             assertThat(batallaEspacial.obtenerTablero()).tieneBase().en(0, 0);
         });
     }
-    
+
     private Precondicion fueCreadaLaBatallaEspacial() {
-        
-        return precondicion("fue creada la BatallaEspacial", () -> {
-           
-            batallaEspacial = new BatallaEspacial();
-        });
+
+        return precondicion(() -> batallaEspacial = new BatallaEspacial());
     }
 
     @Test
     public void crearTresObjetosDeTipoNaveDejandolosEnLaBase() {
-        
+
         dadoQue(fueCreadaLaBatallaEspacial());
-        
+
         Nave primerNave = new Nave();
         Nave segundaNave = new Nave();
         Nave tercerNave = new Nave();
-        
+
         comprobarQue(existenEnLaBase(primerNave, segundaNave, tercerNave));
     }
 
     private Postcondicion existenEnLaBase(Nave primerNave, Nave segundaNave, Nave tercerNave) {
 
-        return postcondicion("existen en la Base tres Naves", () -> {
-          
-            assertThat(batallaEspacial.obtenerNaves()).as("naves de la BatallaEspacial")
-                .hasSize(3)
-                .containsExactly(primerNave, segundaNave, tercerNave);
-        });
+        return postcondicion("existen en la Base tres Naves", () ->
+
+                assertThat(batallaEspacial.obtenerNaves())
+                        .as("naves de la BatallaEspacial")
+                        .hasSize(3)
+                        .containsExactly(primerNave, segundaNave, tercerNave)
+        );
     }
- 
+
     @Test
     public void noPuedeAvanzarAlNorteSiNoDespegoAntes() {
-        
+
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNave());
-        
-        comprobarQue(generaElErrorLaNaveNoDespego(() -> unaNave.avanzarAlNorte()));
+
+        comprobarQue(generaElErrorPorqueLaNaveNoDespego(() -> unaNave.avanzarAlNorte()));
     }
 
     private Precondicion fueCreadaUnaNave() {
 
-        return precondicion("fue creada una Nave", () -> {
-
-            unaNave = new Nave();
-        });
+        return precondicion(() -> unaNave = new Nave());
     }
 
-    private Postcondicion generaElErrorLaNaveNoDespego(Ejecutable ejecutable) {
+    private Postcondicion generaElErrorPorqueLaNaveNoDespego(Ejecutable ejecutable) {
 
-        return postcondicion("genera el error LaNaveNoDespego", () -> {
+        return postcondicion(() ->
 
-            assertThatThrownBy(ejecutable::ejecutar).isInstanceOf(LaNaveNoEstaEnUnCasillero.class);
-        });
+                assertThatThrownBy(ejecutable::ejecutar)
+                        .as("excepción lanzada")
+                        .isInstanceOf(LaNaveNoEstaEnUnCasillero.class)
+        );
     }
 
     @Test
@@ -119,7 +117,7 @@ public class NaveTest implements Prueba {
 
     private Precondicion fueCreadaUnaNaveQueDespegoDeLaBase() {
 
-        return precondicion("fue creada una Nave que despegó de la Base", () -> {
+        return precondicion(() -> {
 
             unaNave = new Nave();
             unaNave.despegar();
@@ -127,18 +125,17 @@ public class NaveTest implements Prueba {
     }
 
     private Postcondicion unaNaveEstaAlNorteDeLaBase() {
-        
-        return postcondicion("la Nave está al NORTE de la Base", () -> {
-        
-            assertThat(batallaEspacial.obtenerTablero())
-                .tieneNave().en(1, 0)
-                .tieneBase().en(0, 0);
-        });
+
+        return postcondicion(() ->
+
+                assertThat(batallaEspacial.obtenerTablero())
+                        .tieneNave().en(1, 0)
+                        .tieneBase().en(0, 0));
     }
-    
+
     @Test
     public void avanzarAlNorteTresVeces() {
-        
+
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
 
@@ -151,94 +148,94 @@ public class NaveTest implements Prueba {
 
     private Postcondicion unaNaveEstaDosCasillerosAlNorteDeLaBase() {
 
-        return postcondicion("la Nave está a dos casilleros al NORTE de la Base", () -> {
-            
-            assertThat(batallaEspacial.obtenerTablero())
-                .tieneNave().en(3, 0)
-                .tieneBase().en(0, 0)
-                .tieneVacio().en(1, 0).en(2, 0);
-        });
+        return postcondicion(() ->
+
+                assertThat(batallaEspacial.obtenerTablero())
+                        .tieneNave().en(3, 0)
+                        .tieneBase().en(0, 0)
+                        .tieneVacio().en(1, 0).en(2, 0)
+        );
     }
-    
+
     @Test
     public void avanzarAlSur() {
-        
+
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
 
         unaNave.avanzarAlSur();
-        
+
         comprobarQue(unaNaveEstaAlSurDeLaBase());
     }
-    
+
     private Postcondicion unaNaveEstaAlSurDeLaBase() {
-        
-        return postcondicion("la Nave está al SUR de la Base", () -> {
-        
-            assertThat(batallaEspacial.obtenerTablero())
-                .tieneNave().en(-1, 0)
-                .tieneBase().en(0, 0);
-        });
+
+        return postcondicion(() ->
+
+                assertThat(batallaEspacial.obtenerTablero())
+                        .tieneNave().en(-1, 0)
+                        .tieneBase().en(0, 0)
+        );
     }
 
     @Test
     public void avanzarAlEste() {
-        
+
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
 
         unaNave.avanzarAlEste();
-        
+
         comprobarQue(unaNaveEstaAlEsteDeLaBase());
     }
-    
+
     private Postcondicion unaNaveEstaAlEsteDeLaBase() {
-        
-        return postcondicion("la Nave está al ESTE de la Base", () -> {
-        
-            assertThat(batallaEspacial.obtenerTablero())
-                .tieneNave().en(0, 1)
-                .tieneBase().en(0, 0);
-        });
+
+        return postcondicion(() ->
+
+                assertThat(batallaEspacial.obtenerTablero())
+                        .tieneNave().en(0, 1)
+                        .tieneBase().en(0, 0)
+        );
     }
 
     @Test
     public void avanzarAlOeste() {
-        
+
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
 
         unaNave.avanzarAlOeste();
-        
+
         comprobarQue(unaNaveEstaAlOesteDeLaBase());
     }
-    
+
     private Postcondicion unaNaveEstaAlOesteDeLaBase() {
-        
-        return postcondicion("la Nave está al OESTE de la Base", () -> {
-        
-            assertThat(batallaEspacial.obtenerTablero())
-                .tieneNave().en(0, -1)
-                .tieneBase().en(0, 0);
-        });
+
+        return postcondicion(() ->
+
+                assertThat(batallaEspacial.obtenerTablero())
+                        .tieneNave().en(0, -1)
+                        .tieneBase().en(0, 0)
+        );
     }
-    
+
     @Test
     public void noPuedeAvanzarSiExisteUnAsteroideEnElCasilleroDestino() {
-        
+
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(unaNaveEstaAlEsteDeUnAsteroide());
-        
+
         unaNave.avanzarAlOeste();
-        
-        comprobarQue(unaNaveQuedoEnElCasillero(1,-2));
+
+        comprobarQue(unaNaveQuedoEnElCasillero(1, -2));
         comprobarQue(unaNaveSufrioElChoqueContraElAsteroide());
     }
 
     private Precondicion unaNaveEstaAlEsteDeUnAsteroide() {
 
-        return precondicion("unNave está al ESTE de un ASTEROIDE", () -> {
-          
+        return precondicion(() -> {
+
             unaNave = new Nave();
             unaNave.despegar();
             unaNave.avanzarAlNorte();
@@ -246,51 +243,52 @@ public class NaveTest implements Prueba {
             unaNave.avanzarAlOeste();
         });
     }
-    
+
     private Postcondicion unaNaveSufrioElChoqueContraElAsteroide() {
 
-        return postcondicion("unaNave sufrió el choque contra el ASTEROIDE", () -> {
-          
-            assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos")
-                .isEqualTo(75);
-        });
+        return postcondicion(() ->
+
+                assertThat(unaNave.consultarNivelDeEscudos())
+                        .as("nivel de escudos")
+                        .isEqualTo(75)
+        );
     }
-    
+
     @Test
     public void consultarNivelDeEscudos() {
-        
+
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNave());
-        
-        int escudos = unaNave.consultarNivelDeEscudos();
 
-        comprobarQue(estaAlMaximoElNivel(escudos));
+        comprobarQue(estaAlMaximoElNivelDeEscudos());
     }
 
-    private Postcondicion estaAlMaximoElNivel(int escudos) {
+    private Postcondicion estaAlMaximoElNivelDeEscudos() {
 
-        return postcondicion("esta al maximo su nivel de escudos", () -> {
-          
-            assertThat(escudos).isEqualTo(100);
-        });
+        return postcondicion(() ->
+
+                assertThat(unaNave.consultarNivelDeEscudos())
+                        .as("nivel de escudos")
+                        .isEqualTo(100)
+        );
     }
-    
+
     @Test
     public void noPuedeAvanzarSiExisteUnContenedorEnElCasilleroDestino() {
-        
+
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(unaNaveEstaAlSurDeUnContenedor());
-        
+
         unaNave.avanzarAlNorte();
-        
-        comprobarQue(unaNaveQuedoEnElCasillero(3,2));
+
+        comprobarQue(unaNaveQuedoEnElCasillero(3, 2));
         comprobarQue(unaNaveSufrioElChoqueContraElContenedor());
     }
 
     private Precondicion unaNaveEstaAlSurDeUnContenedor() {
 
-        return precondicion("unaNave está al SUR de un CONTENEDOR", () -> {
-          
+        return precondicion(() -> {
+
             unaNave = new Nave();
             unaNave.despegar();
             IntStream.range(0, 2).forEach(n -> unaNave.avanzarAlEste());
@@ -300,38 +298,30 @@ public class NaveTest implements Prueba {
 
     private Postcondicion unaNaveQuedoEnElCasillero(int fila, int columna) {
 
-        return postcondicion("unaNave quedó en el casillero [" + fila + "," + columna+ "]", () -> {
-          
-            assertThat(batallaEspacial.obtenerTablero())
-                .tieneNave().en(fila, columna);
-        });
+        return postcondicion(() -> assertThat(batallaEspacial.obtenerTablero()).tieneNave().en(fila, columna));
     }
-    
+
     private Postcondicion unaNaveSufrioElChoqueContraElContenedor() {
 
-        return postcondicion("unaNave sufrió el choque contra el CONTENEDOR", () -> {
-          
-            assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos")
-                .isEqualTo(90);
-        });
+        return postcondicion(() -> assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos").isEqualTo(90));
     }
-    
+
     @Test
     public void noPuedeAvanzarSiElCasilleroDestinoEsElBordeDelTablero() {
-        
+
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(unaNaveEstaEnElBordeSurDelTablero());
-        
+
         unaNave.avanzarAlSur();
-        
+
         comprobarQue(unaNaveQuedoEnElCasillero(-10, 0));
         comprobarQue(unaNaveSufrioElChoqueContraElBorde());
     }
 
     private Precondicion unaNaveEstaEnElBordeSurDelTablero() {
 
-        return precondicion("una Nave en el borde SUR del Tablero", () -> {
-          
+        return precondicion(() -> {
+
             unaNave = new Nave();
             unaNave.despegar();
             unaNave.avanzarAlOeste();
@@ -342,29 +332,30 @@ public class NaveTest implements Prueba {
 
     private Postcondicion unaNaveSufrioElChoqueContraElBorde() {
 
-        return postcondicion("unaNave sufrió el choque contra el Borde", () -> {
-            
-            assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos")
-                .isEqualTo(50);
-        });
+        return postcondicion(() ->
+
+                assertThat(unaNave.consultarNivelDeEscudos())
+                        .as("nivel de escudos")
+                        .isEqualTo(50)
+        );
     }
 
     @Test
     public void noPuedeAvanzarSiExisteUnAgujeroNegroEnElCasilleroDestino() {
-        
+
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(unaNaveEstaAlEsteDeUnAgujeroNegro());
-        
+
         unaNave.avanzarAlOeste();
-        
+
         comprobarQue(unaNaveQuedoEnElCasillero(1, -5));
         comprobarQue(unaNaveSufrioElChoqueContraElAgujeroNegro());
     }
-    
+
     private Precondicion unaNaveEstaAlEsteDeUnAgujeroNegro() {
 
-        return precondicion("unaNave está al ESTE de un AgujeroNegro (DESCONOCIDO)", () -> {
-          
+        return precondicion(() -> {
+
             unaNave = new Nave();
             unaNave.despegar();
             IntStream.range(0, 5).forEach(n -> unaNave.avanzarAlOeste());
@@ -373,12 +364,8 @@ public class NaveTest implements Prueba {
     }
 
     private Postcondicion unaNaveSufrioElChoqueContraElAgujeroNegro() {
-    
-        return postcondicion("unaNave sufrió el choque contra el AgujeroNegro", () -> {
 
-            assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos")
-                .isEqualTo(25);
-        });
+        return postcondicion(() -> assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos").isEqualTo(25));
     }
 
     @Test
@@ -396,7 +383,7 @@ public class NaveTest implements Prueba {
 
     private Precondicion unaNaveEstaAlNorteDeUnAsteroide() {
 
-        return precondicion("unaNave está al NORTE de un Asteroide", () -> {
+        return precondicion(() -> {
 
             unaNave = new Nave();
             unaNave.despegar();
@@ -405,23 +392,24 @@ public class NaveTest implements Prueba {
     }
 
     private Precondicion seConoceLaCantidadDePuntosQueTieneElAsteroide() {
-        
-        return precondicion("se conoce la cantidad de puntos que tiene el Asteroide", () -> {
+
+        return precondicion(() -> {
 
             Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenada.con(-6, 0));
             asteroideAlNorte = casillero.obtenerPieza();
             puntosInicialesDelAsteroide = asteroideAlNorte.obtenerPuntos();
         });
-        
+
     }
 
     private Postcondicion disminuyoLaCantidadDePuntosQueTieneElAsteroide() {
 
-        return postcondicion("disminuyó la cantidad de puntos que tiene el asteroideAlNorte", () -> {
+        return postcondicion(() ->
 
-            assertThat(asteroideAlNorte.obtenerPuntos()).as("puntos")
-                    .isLessThan(puntosInicialesDelAsteroide);
-        });
+                assertThat(asteroideAlNorte.obtenerPuntos())
+                        .as("puntos")
+                        .isLessThan(puntosInicialesDelAsteroide)
+        );
     }
 
     @Test
@@ -439,7 +427,7 @@ public class NaveTest implements Prueba {
 
     private Precondicion unaNaveEstaAlEsteDeUnContenedor() {
 
-        return precondicion("unaNave está al ESTE de un Contenedor", () -> {
+        return precondicion(() -> {
 
             unaNave = new Nave();
             unaNave.despegar();
@@ -450,7 +438,7 @@ public class NaveTest implements Prueba {
 
     private Precondicion seConoceLaCantidadDePuntosQueTieneElContenedor() {
 
-        return precondicion("se conoce la cantidad de puntos que tiene el Contenedor", () -> {
+        return precondicion(() -> {
 
             Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenada.con(-2, -2));
             contenedorAlOeste = casillero.obtenerPieza();
@@ -461,11 +449,12 @@ public class NaveTest implements Prueba {
 
     private Postcondicion disminuyoLaCantidadDePuntosQueTieneElContenedor() {
 
-        return postcondicion("disminuyó la cantidad de puntos que tiene el contenedorAlOeste", () -> {
+        return postcondicion(() ->
 
-            assertThat(contenedorAlOeste.obtenerPuntos()).as("puntos")
-                    .isLessThan(puntosInicialesDelContenedor);
-        });
+                assertThat(contenedorAlOeste.obtenerPuntos())
+                        .as("puntos")
+                        .isLessThan(puntosInicialesDelContenedor)
+        );
     }
 
     @Test
@@ -483,7 +472,7 @@ public class NaveTest implements Prueba {
 
     private Precondicion unaNaveEstaAlSurDeUnaBase() {
 
-        return precondicion("unaNave está al SUR de una Base", () -> {
+        return precondicion(() -> {
 
             unaNave = new Nave();
             unaNave.despegar();
@@ -493,7 +482,7 @@ public class NaveTest implements Prueba {
 
     private Precondicion seConoceLaCantidadDePuntosQueTieneLaBaseAlNorte() {
 
-        return precondicion("se conoce la cantidad de puntos que tiene la baseAlNorte", () -> {
+        return precondicion(() -> {
 
             Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenada.con(0, 0));
             baseAlNorte = casillero.obtenerPieza();
@@ -503,11 +492,12 @@ public class NaveTest implements Prueba {
 
     private Postcondicion disminuyoLaCantidadDePuntosQueTieneLaBaseAlNorte() {
 
-        return postcondicion("disminuyó la cantidad de puntos que tiene la baseAlNorte", () -> {
+        return postcondicion(() ->
 
-            assertThat(baseAlNorte.obtenerPuntos()).as("puntos")
-                    .isLessThan(puntosInicialesDeLaBase);
-        });
+                assertThat(baseAlNorte.obtenerPuntos())
+                        .as("puntos")
+                        .isLessThan(puntosInicialesDeLaBase)
+        );
     }
 
     @Test
@@ -525,7 +515,7 @@ public class NaveTest implements Prueba {
 
     private Precondicion unaNaveEstaAlOesteDeOtraNave() {
 
-        return precondicion("unaNave está al OESTE de otra Nave", () -> {
+        return precondicion(() -> {
 
             Nave otraNave = new Nave();
             otraNave.despegar();
@@ -539,7 +529,7 @@ public class NaveTest implements Prueba {
 
     private Precondicion seConoceLaCantidadDePuntosQueTieneLaNaveAlEste() {
 
-        return precondicion("se conoce la cantidad de puntos que tiene la naveAlEste", () -> {
+        return precondicion(() -> {
 
             Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenada.con(0, 2));
             naveAlEste = casillero.obtenerPieza();
@@ -549,11 +539,12 @@ public class NaveTest implements Prueba {
 
     private Postcondicion disminuyoLaCantidadDePuntosQueTieneLaNaveAlEste() {
 
-        return postcondicion("disminuyó la cantidad de puntos que tiene la naveAlEste", () -> {
+        return postcondicion(() ->
 
-            assertThat(naveAlEste.obtenerPuntos()).as("puntos")
-                    .isLessThan(puntosInicialesDeOtraNave);
-        });
+                assertThat(naveAlEste.obtenerPuntos())
+                        .as("puntos")
+                        .isLessThan(puntosInicialesDeOtraNave)
+        );
     }
 
     @Test
@@ -569,9 +560,6 @@ public class NaveTest implements Prueba {
 
     private Postcondicion unRadarEscaneaVacioAlrededorDeUnaNave() {
 
-        return postcondicion("unRadar escanea VACIO alrededor de unaNave", () -> {
-
-            assertThat(unRadar).as("unRadar").isNotNull();
-        });
+        return postcondicion(() -> assertThat(unRadar).as("unRadar").isNotNull());
     }
 }

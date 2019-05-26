@@ -19,7 +19,7 @@ public class CoordenadaTest implements Prueba {
 
     private Postcondicion fueInicializada(Coordenada coordenada, int fila, int columna) {
 
-        return postcondicion("fue inicializada", () -> {
+        return postcondicion(() -> {
           
             assertThat(coordenada.obtenerFila()).as("fila").isEqualTo(5);
             assertThat(coordenada.obtenerColumna()).as("columna").isEqualTo(3);
