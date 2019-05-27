@@ -18,4 +18,11 @@ public class Monitor {
 
         return pieza.obtenerCantidadDeTorpedosDeFotones();
     }
+
+    @Override
+    public String toString() {
+
+        /* Devuelve un mensaje descriptivo para que se use al evaluar una variable en el intérprete */
+        return "Monitor de la Nave";
+    }
 }

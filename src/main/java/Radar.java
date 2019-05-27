@@ -62,4 +62,11 @@ public class Radar {
 
         return ESPECTROS.getOrDefault(espectroEspacial, Espectro.DESCONOCIDO);
     }
+
+    @Override
+    public String toString() {
+
+        /* Devuelve un mensaje descriptivo para que se use al evaluar una variable en el intérprete */
+        return "Radar de la Nave";
+    }
 }

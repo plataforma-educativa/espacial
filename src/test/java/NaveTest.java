@@ -585,4 +585,19 @@ public class NaveTest implements Prueba {
 
         return postcondicion(() -> assertThat(unMonitor).as("unMonitor").isNotNull());
     }
+
+    @Test
+    public void evaluarVariable() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNave());
+
+        comprobarQue(alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro());
+    }
+
+    private Postcondicion alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro() {
+
+        return postcondicion(() -> assertThat(unaNave).hasToString("Nave a la espera de comandos"));
+    }
+
 }

@@ -50,4 +50,11 @@ public class BatallaEspacial {
 
         return cazaEspacial;
     }
+
+    @Override
+    public String toString() {
+
+        /* Devuelve un mensaje descriptivo para que se use al evaluar una variable en el intérprete */
+        return "Batalla Espacial";
+    }
 }

@@ -186,4 +186,18 @@ public class RadarTest implements Prueba {
             unRadar = nave.obtenerRadar();
         });
     }
+
+    @Test
+    public void evaluarVariable() {
+
+        dadoQue(fueObtenidoUnRadarDeUnaNaveEnLaBase());
+
+        comprobarQue(alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro());
+    }
+
+    private Postcondicion alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro() {
+
+        return postcondicion(() -> assertThat(unRadar).hasToString("Radar de la Nave"));
+    }
+
 }

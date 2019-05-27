@@ -128,4 +128,16 @@ public class MonitorTest implements Prueba {
         );
     }
 
+    @Test
+    public void evaluarVariable() {
+
+        dadoQue(fueObtenidoUnMonitorDeUnaNaveEnLaBase());
+
+        comprobarQue(alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro());
+    }
+
+    private Postcondicion alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro() {
+
+        return postcondicion(() -> assertThat(unMonitor).hasToString("Monitor de la Nave"));
+    }
 }

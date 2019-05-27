@@ -34,6 +34,19 @@ public class BatallaEspacialTest implements Prueba {
     }
 
     @Test
+    public void evaluarVariable() {
+
+        dadoQue(fueCreadaLaBatalla());
+
+        comprobarQue(alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro());
+    }
+
+    private Postcondicion alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro() {
+
+        return postcondicion(() -> assertThat(batalla).hasToString("Batalla Espacial"));
+    }
+
+    @Test
     public void obtenerTablero() {
 
         BatallaEspacial batalla = new BatallaEspacial();
@@ -139,6 +152,5 @@ public class BatallaEspacialTest implements Prueba {
             pieza.moverEn(Direccion.NORTE);
         });
     }
-
 
 }
