@@ -58,8 +58,14 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
 
     @Override
     public int obtenerNivelDeEscudos() {
-        
+
         return nivelDeEscudos.obtenerValor();
+    }
+
+    @Override
+    public int obtenerCantidadDeTorpedosDeFotones() {
+
+        return artilleria.contarTorpedosDeFotones();
     }
 
     @Override

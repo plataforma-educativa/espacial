@@ -6,6 +6,8 @@ public interface NaveEspacial extends Pieza, Chocable {
 
     void moverEn(Direccion direccionElegida);
 
+    int obtenerCantidadDeTorpedosDeFotones();
+
     void atacarEn(Direccion direccionElegida);
 
     EspectroEspacial escanearEn(Direccion direccionElegida);

@@ -397,4 +397,21 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
         comprobarQue(generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(() -> unCazaEspacial.atacarEn(Direccion.OESTE)));
     }
 
+    @Test
+    public void consultarCantidadDeTorpedosIniciales() {
+
+        dadoQue(fueCreadoUnCazaEspacial());
+
+        comprobarQue(laCantidadDeTorpedosDeFotonesEs(100));
+    }
+
+    private Postcondicion laCantidadDeTorpedosDeFotonesEs(int esperado) {
+
+        return postcondicion(() ->
+
+                assertThat(unCazaEspacial.obtenerCantidadDeTorpedosDeFotones())
+                        .as("cantidad de torpedos")
+                        .isEqualTo(100)
+        );
+    }
 }

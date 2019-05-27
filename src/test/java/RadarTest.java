@@ -1,3 +1,5 @@
+import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
+import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.Prueba;
@@ -14,6 +16,35 @@ public class RadarTest implements Prueba {
     private Espectro escaneadoAlSur;
     private Espectro escaneadoAlEste;
     private Espectro escaneadoAlOeste;
+
+    @Test
+    public void escanarSinHaberDespegado() {
+
+        dadoQue(fueObtenidoUnRadarDeUnaNaveQueNoDespego());
+
+        comprobarQue(generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(() -> unRadar.escanearNorte()));
+    }
+
+    private Precondicion fueObtenidoUnRadarDeUnaNaveQueNoDespego() {
+
+        return precondicion(() -> {
+
+            new BatallaEspacial();
+            Nave nave = new Nave();
+
+            unRadar = nave.obtenerRadar();
+        });
+    }
+
+    private Postcondicion generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(Ejecutable ejecutable) {
+
+        return postcondicion(() ->
+
+                assertThatThrownBy(ejecutable::ejecutar)
+                        .as("excepción lanzada")
+                        .isInstanceOf(LaNaveNoEstaEnUnCasillero.class)
+        );
+    }
 
     @Test
     public void escanearEnLaBase() {

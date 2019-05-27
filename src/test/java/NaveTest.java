@@ -19,6 +19,7 @@ public class NaveTest implements Prueba {
     private BatallaEspacial batallaEspacial;
     private Nave unaNave;
     private Radar unRadar;
+    private Monitor unMonitor;
     private Pieza asteroideAlNorte;
     private int puntosInicialesDelAsteroide;
     private Pieza contenedorAlOeste;
@@ -550,7 +551,7 @@ public class NaveTest implements Prueba {
     public void obtenerRadar() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
-        dadoQue(fueCreadaUnaNave());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
 
         unRadar = unaNave.obtenerRadar();
 
@@ -559,6 +560,29 @@ public class NaveTest implements Prueba {
 
     private Postcondicion unRadarEscaneaVacioAlrededorDeUnaNave() {
 
-        return postcondicion(() -> assertThat(unRadar).as("unRadar").isNotNull());
+        return postcondicion(() -> {
+
+            assertThat(unRadar).as("unRadar").isNotNull();
+            assertThat(unRadar.escanearNorte()).as("escanear al NORTE").isEqualTo(Espectro.VACIO);
+            assertThat(unRadar.escanearSur()).as("escanear al SUR").isEqualTo(Espectro.VACIO);
+            assertThat(unRadar.escanearEste()).as("escanear al ESTE").isEqualTo(Espectro.VACIO);
+            assertThat(unRadar.escanearOeste()).as("escanear al OESTE").isEqualTo(Espectro.VACIO);
+        });
+    }
+
+    @Test
+    public void obtenerMonitor() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNave());
+
+        unMonitor = unaNave.obtenerMonitor();
+
+        comprobarQue(unMonitorTieneElEstadoDeUnaNave());
+    }
+
+    private Postcondicion unMonitorTieneElEstadoDeUnaNave() {
+
+        return postcondicion(() -> assertThat(unMonitor).as("unMonitor").isNotNull());
     }
 }
