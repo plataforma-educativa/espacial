@@ -69,4 +69,24 @@ public class Radar {
         /* Devuelve un mensaje descriptivo para que se use al evaluar una variable en el intérprete */
         return "Radar de la Nave";
     }
+
+    public int buscarAlNorte(Sustancia sustancia) {
+
+        return 0;
+    }
+
+    public int buscarAlSur(Sustancia antimateria) {
+
+        return 0;
+    }
+
+    public int buscarAlEste(Sustancia sustancia) {
+
+        return 0;
+    }
+
+    public int buscarAlOeste(Sustancia sustancia) {
+
+        return 0;
+    }
 }

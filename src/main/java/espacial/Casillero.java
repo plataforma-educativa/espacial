@@ -5,7 +5,7 @@ package espacial;
  * Casillero podrá estar ocupado por una Pieza del Juego.
  * 
  * @author Mariano Tugnarelli
- *
+ * 
  */
 public interface Casillero extends Objetivo {
 

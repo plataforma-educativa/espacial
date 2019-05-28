@@ -3,6 +3,8 @@ import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.Prueba;
+import org.assertj.core.api.Condition;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.IntStream;
@@ -11,11 +13,20 @@ import static org.assertj.core.api.Assertions.*;
 
 public class RadarTest implements Prueba {
 
+    private static Condition<Integer> CERO = new Condition<Integer>(valor -> valor == 0, "igual a 0");
+    private static Condition<Integer> MAYOR_A_CERO = new Condition<Integer>(valor -> valor > 0, "mayor a 0");
+
+    private static final int NADA = 0;
+
     private Radar unRadar;
     private Espectro escaneadoAlNorte;
     private Espectro escaneadoAlSur;
     private Espectro escaneadoAlEste;
     private Espectro escaneadoAlOeste;
+    private int cantidadAlNorte;
+    private int cantidadAlSur;
+    private int cantidadAlEste;
+    private int cantidadAlOeste;
 
     @Test
     public void escanarSinHaberDespegado() {
@@ -198,6 +209,65 @@ public class RadarTest implements Prueba {
     private Postcondicion alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro() {
 
         return postcondicion(() -> assertThat(unRadar).hasToString("Radar de la Nave"));
+    }
+
+    @Test
+    @Disabled
+    public void buscarAlEsteAntimateriaLaEncuentra() {
+
+        dadoQue(fueObtenidoUnRadarDeUnaNaveAlEsteDeUnContenedor());
+
+        buscarAntimateriaConUnRadarAlrededor();
+
+        comprobarQue(lasCantidadesEncontradasSonLasEsperadas(CERO, CERO, CERO, MAYOR_A_CERO));
+    }
+
+    @Test
+    @Disabled
+    public void buscarAlOesteAntimateriaLaEncuentra() {
+
+        dadoQue(fueObtenidoUnRadarDeUnaNaveAlOesteDeUnContenedor());
+
+        buscarAntimateriaConUnRadarAlrededor();
+
+
+        comprobarQue(lasCantidadesEncontradasSonLasEsperadas(CERO, CERO, MAYOR_A_CERO, CERO));
+    }
+
+    private void buscarAntimateriaConUnRadarAlrededor() {
+
+        cantidadAlNorte = unRadar.buscarAlNorte(Sustancia.ANTIMATERIA);
+        cantidadAlSur = unRadar.buscarAlSur(Sustancia.ANTIMATERIA);
+        cantidadAlEste = unRadar.buscarAlEste(Sustancia.ANTIMATERIA);
+        cantidadAlOeste = unRadar.buscarAlOeste(Sustancia.ANTIMATERIA);
+    }
+
+    private Postcondicion lasCantidadesEncontradasSonLasEsperadas(Condition<Integer> esperadoAlNorte,
+                                                                  Condition<Integer> esperadoAlSur,
+                                                                  Condition<Integer> esperadoAlEste,
+                                                                  Condition<Integer> esperadoAlOeste) {
+
+        return postcondicion(() -> {
+
+            assertThat(cantidadAlNorte).as("cantidad al NORTE").is(esperadoAlNorte);
+            assertThat(cantidadAlSur).as("cantidad al SUR").is(esperadoAlSur);
+            assertThat(cantidadAlEste).as("cantidad al ESTE").is(esperadoAlEste);
+            assertThat(cantidadAlOeste).as("cantidad al OESTE").is(esperadoAlOeste);
+        });
+    }
+
+    private Precondicion fueObtenidoUnRadarDeUnaNaveAlEsteDeUnContenedor() {
+
+        return precondicion(() -> {
+
+            new BatallaEspacial();
+            Nave nave = new Nave();
+            nave.despegar();
+            IntStream.range(0, 2).forEach(n -> nave.avanzarAlSur());
+            nave.avanzarAlOeste();
+
+            unRadar = nave.obtenerRadar();
+        });
     }
 
 }
