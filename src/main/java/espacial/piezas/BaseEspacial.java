@@ -1,10 +1,17 @@
 package espacial.piezas;
 
+import espacial.Amarre;
+import espacial.Ataque;
+import espacial.Casillero;
+import espacial.Chocable;
+import espacial.EspectroEspacial;
+import espacial.NaveEspacial;
+import espacial.Pieza;
+import espacial.Visitante;
+import espacial.piezas.rasgos.PiezaAtacable;
+
 import java.util.LinkedList;
 import java.util.List;
-
-import espacial.*;
-import espacial.piezas.rasgos.PiezaAtacable;
 
 public class BaseEspacial implements Pieza, PiezaAtacable {
 
@@ -44,7 +51,7 @@ public class BaseEspacial implements Pieza, PiezaAtacable {
 
     public Amarre[] obtenerAmarres() {
 
-        return amarres.toArray(new Amarre[amarres.size()]);
+        return amarres.toArray(new Amarre[0]);
     }
 
     @Override

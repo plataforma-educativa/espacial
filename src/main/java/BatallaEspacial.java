@@ -32,7 +32,7 @@ public class BatallaEspacial {
 
     public Nave[] obtenerNaves() {
 
-        return naves.toArray(new Nave[naves.size()]);
+        return naves.toArray(new Nave[0]);
     }
 
     public Tablero obtenerTablero() {
