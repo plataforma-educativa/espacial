@@ -8,7 +8,7 @@ import espacial.excepciones.Defecto;
 
 public class Ocupado extends EstadoDelCasillero {
 
-    private Pieza pieza;
+    private final Pieza pieza;
 
     public Ocupado(CasilleroInterior contexto, Pieza porPieza) {
 

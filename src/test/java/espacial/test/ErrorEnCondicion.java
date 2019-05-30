@@ -1,13 +1,11 @@
 package espacial.test;
 
-import java.io.PrintStream;
-
 public class ErrorEnCondicion extends AssertionError {
 
     private static final long serialVersionUID = 4799228836923502253L;
 
-    private Condicion.Enunciado enunciado;
-    private Throwable origen;
+    private final Condicion.Enunciado enunciado;
+    private final Throwable origen;
 
     public ErrorEnCondicion(Condicion.Enunciado enunciado, Throwable origen) {
 

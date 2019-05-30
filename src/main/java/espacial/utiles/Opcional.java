@@ -12,7 +12,7 @@ public class Opcional<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> Opcional<T> vacio() {
+    public static <T> Opcional<T> sinValor() {
 
         return (Opcional<T>) VACIO;
     }

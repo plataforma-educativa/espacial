@@ -2,7 +2,7 @@ package espacial.test;
 
 public class EnunciadoExplicito implements Condicion.Enunciado {
 
-    private String texto;
+    private final String texto;
 
     public EnunciadoExplicito(String plantilla, Object... parametros) {
 

@@ -5,7 +5,7 @@ import espacial.Visitante;
 
 public class OcuparCasilleroVacio implements Visitante {
 
-    private CasilleroInterior casillero;
+    private final CasilleroInterior casillero;
     private EstadoDelCasillero estado;
 
     public OcuparCasilleroVacio(CasilleroInterior casillero) {

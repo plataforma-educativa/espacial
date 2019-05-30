@@ -15,10 +15,10 @@ import espacial.utiles.Opcional;
 
 public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
 
-    private Indicador nivelDeEscudos = new Indicador(100);
-    private Artilleria artilleria = new Artilleria(100);
-    private Opcional<Casillero> casillero = Opcional.vacio();
-    private Opcional<Amarre> amarre = Opcional.vacio();
+    private final Indicador nivelDeEscudos = new Indicador(100);
+    private final Artilleria artilleria = new Artilleria(100);
+    private Opcional<Casillero> casillero = Opcional.sinValor();
+    private Opcional<Amarre> amarre = Opcional.sinValor();
 
     public CazaEspacial() {
 

@@ -7,7 +7,7 @@ import espacial.Pieza;
 
 public abstract class EstadoDelCasillero {
     
-    protected CasilleroInterior contexto;
+    protected final CasilleroInterior contexto;
     
     public EstadoDelCasillero(CasilleroInterior casillero) {
 

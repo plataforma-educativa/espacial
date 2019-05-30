@@ -18,7 +18,7 @@ public class OpcionalTest {
     @Test
     public void vacio() {
 
-        Opcional<String> opcional = Opcional.vacio();
+        Opcional<String> opcional = Opcional.sinValor();
 
         assertThat(opcional).isNotNull();
     }

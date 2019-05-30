@@ -2,7 +2,7 @@ import espacial.NaveEspacial;
 
 public class Monitor {
 
-    private NaveEspacial pieza;
+    private final NaveEspacial pieza;
 
     protected Monitor(NaveEspacial nave) {
 

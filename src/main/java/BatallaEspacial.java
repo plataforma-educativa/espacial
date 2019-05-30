@@ -1,33 +1,33 @@
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-
 import espacial.NaveEspacial;
 import espacial.Tablero;
 import espacial.excepciones.NoExisteBatallaEspacial;
 import espacial.piezas.BaseEspacial;
 import espacial.piezas.CazaEspacial;
+import espacial.utiles.Opcional;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class BatallaEspacial {
 
-    private static Optional<BatallaEspacial> instancia = Optional.empty();
+    private static Opcional<BatallaEspacial> instancia = Opcional.sinValor();
     
-    private BaseEspacial base;
+    private final BaseEspacial base;
     
-    private List<Nave> naves = new LinkedList<>();
+    private final List<Nave> naves = new LinkedList<>();
     
-    private Tablero tablero = new Tablero();
+    private final Tablero tablero = new Tablero();
     
     public BatallaEspacial() {
 
-        instancia = Optional.of(this);
+        instancia = Opcional.con(this);
         base = new BaseEspacial();
         tablero.colocarEnCasillero(0, 0, base);
     }
 
     public static BatallaEspacial obtener() {
 
-        return instancia.orElseThrow(NoExisteBatallaEspacial::new);
+        return instancia.obtenerPeroSiNoExisteLanzar(NoExisteBatallaEspacial::new);
     }
 
     public Nave[] obtenerNaves() {

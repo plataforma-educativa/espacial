@@ -7,8 +7,8 @@ import espacial.Pieza;
 
 public class OcupadoPorUnaBaseConNaveEnManiobras extends EstadoDelCasillero {
 
-    private Pieza base;
-    private Pieza nave;
+    private final Pieza base;
+    private final Pieza nave;
     
     public OcupadoPorUnaBaseConNaveEnManiobras(CasilleroInterior casillero,
                                                Pieza base,

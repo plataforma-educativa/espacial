@@ -7,7 +7,7 @@ import espacial.Pieza;
 
 public class OcupadoPorUnaBase extends EstadoDelCasillero {
 
-    private Pieza base;
+    private final Pieza base;
     
     public OcupadoPorUnaBase(CasilleroInterior casillero, Pieza base) {
 
