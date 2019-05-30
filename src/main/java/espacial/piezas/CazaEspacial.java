@@ -1,19 +1,18 @@
 package espacial.piezas;
 
-import java.util.Optional;
-
 import espacial.*;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.piezas.rasgos.NaveChocable;
 import espacial.piezas.rasgos.PiezaAtacable;
+import espacial.util.Opcional;
 
 public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
 
     private Indicador nivelDeEscudos = new Indicador(100);
     private Artilleria artilleria = new Artilleria(100);
-    private Optional<Casillero> casillero = Optional.empty();
-    private Optional<Amarre> amarre = Optional.empty();
+    private Opcional<Casillero> casillero = Opcional.vacio();
+    private Opcional<Amarre> amarre = Opcional.vacio();
 
     public CazaEspacial() {
 
@@ -23,7 +22,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
     @Override
     public void despegar() {
 
-        Amarre amarreActual = amarre.orElseThrow(LaNaveNoEstaEnLaBase::new);
+        Amarre amarreActual = amarre.obtenerPeroSiNoExisteLanzar(LaNaveNoEstaEnLaBase::new);
 
         amarreActual.soltar();
     }
@@ -31,13 +30,13 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
     @Override
     public void fueColocadaEn(Casillero unCasillero) {
         
-        casillero = Optional.of(unCasillero);
+        casillero = Opcional.con(unCasillero);
     }
     
     @Override
     public void fueAmarradaCon(Amarre unAmarre) {
     
-        amarre = Optional.of(unAmarre);
+        amarre = Opcional.con(unAmarre);
     }
     
     @Override
@@ -121,6 +120,6 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
 
     private Casillero obtenerCasillero() {
 
-        return casillero.orElseThrow(LaNaveNoEstaEnUnCasillero::new);
+        return casillero.obtenerPeroSiNoExisteLanzar(LaNaveNoEstaEnUnCasillero::new);
     }
 }

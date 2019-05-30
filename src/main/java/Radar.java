@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class Radar {
 
-    private static final Map<EspectroEspacial, Espectro> ESPECTROS = new EnumMap(EspectroEspacial.class);
+    private static final Map<EspectroEspacial, Espectro> ESPECTROS = new EnumMap<>(EspectroEspacial.class);
 
     static {
 

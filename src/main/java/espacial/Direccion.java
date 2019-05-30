@@ -11,7 +11,7 @@ public enum Direccion {
     private final int versorFila;
     private final int versorColumna;
     
-    private Direccion(int versorFila, int versorColumna) {
+    Direccion(int versorFila, int versorColumna) {
      
         this.versorFila = versorFila;
         this.versorColumna = versorColumna;
