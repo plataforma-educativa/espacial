@@ -1,16 +1,15 @@
 package espacial.piezas;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
-import espacial.NaveEspacial;
-import org.junit.jupiter.api.Test;
-
+import espacial.Amarre;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
-import espacial.Amarre;
+import espacial.NaveEspacial;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
 
@@ -37,10 +36,7 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
     @Override
     public Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
-        return postcondicion("notificó a la NaveEspacial que chocó contra una Base", () -> {
-
-            verify(NAVE_ESPACIAL).chocoContraUnaBase();
-        });
+        return postcondicion(() -> verify(NAVE_ESPACIAL).chocoContraUnaBase());
     }
 
     @Test

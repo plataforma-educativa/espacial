@@ -13,8 +13,8 @@ import static org.assertj.core.api.Assertions.*;
 
 public class RadarTest implements Prueba {
 
-    private static Condition<Integer> CERO = new Condition<Integer>(valor -> valor == 0, "igual a 0");
-    private static Condition<Integer> MAYOR_A_CERO = new Condition<Integer>(valor -> valor > 0, "mayor a 0");
+    private static Condition<Integer> CERO = new Condition<>(valor -> valor == 0, "igual a 0");
+    private static Condition<Integer> MAYOR_A_CERO = new Condition<>(valor -> valor > 0, "mayor a 0");
 
     private static final int NADA = 0;
 

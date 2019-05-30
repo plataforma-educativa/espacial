@@ -46,9 +46,9 @@ public class Tablero {
         borde = new CasilleroBorde(this);
         casilleros = new CasilleroInterior[contarFilas()][contarColumnas()];
         
-        conCadaCoordenada((fila, columna) -> {
-            casilleros[indiceFila(fila)][indiceColumna(columna)] = new CasilleroInterior(this, fila, columna);
-        });
+        conCadaCoordenada((fila, columna) ->
+            casilleros[indiceFila(fila)][indiceColumna(columna)] = new CasilleroInterior(this, fila, columna)
+        );
     }
 
     private void colocarEntreCoordenadas(int filaInicial, int columnaInicial,
