@@ -6,6 +6,7 @@ import espacial.piezas.BaseEspacial;
 import espacial.piezas.ContenedorDeAntimateria;
 import espacial.tableros.CasilleroBorde;
 import espacial.tableros.CasilleroInterior;
+import espacial.utiles.Proveedor;
 
 /**
  * El Tablero mantiene el ordenamiento relativo de las Piezas en una Partida.

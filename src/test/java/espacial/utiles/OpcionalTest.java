@@ -1,10 +1,9 @@
-package espacial.util;
-
-import static org.assertj.core.api.Assertions.*;
+package espacial.utiles;
 
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
+
+import static org.assertj.core.api.Assertions.*;
 
 public class OpcionalTest {
 

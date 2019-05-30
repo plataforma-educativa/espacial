@@ -1,4 +1,4 @@
-package espacial;
+package espacial.utiles;
 
 @FunctionalInterface
 public interface Proveedor<T> {

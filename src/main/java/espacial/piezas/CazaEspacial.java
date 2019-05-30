@@ -1,11 +1,17 @@
 package espacial.piezas;
 
-import espacial.*;
+import espacial.Amarre;
+import espacial.Ataque;
+import espacial.Casillero;
+import espacial.Direccion;
+import espacial.EspectroEspacial;
+import espacial.NaveEspacial;
+import espacial.Visitante;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.piezas.rasgos.NaveChocable;
 import espacial.piezas.rasgos.PiezaAtacable;
-import espacial.util.Opcional;
+import espacial.utiles.Opcional;
 
 public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
 
