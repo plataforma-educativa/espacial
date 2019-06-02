@@ -4,6 +4,7 @@ import espacial.Ataque;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
+import espacial.SustanciaEspacial;
 import espacial.excepciones.Defecto;
 
 public class Vacio extends EstadoDelCasillero {
@@ -17,6 +18,12 @@ public class Vacio extends EstadoDelCasillero {
     public EspectroEspacial alEscanear() {
         
         return EspectroEspacial.VACIO;
+    }
+
+    @Override
+    public int alBuscar(SustanciaEspacial unaSustancia) {
+
+        return 0;
     }
 
     @Override

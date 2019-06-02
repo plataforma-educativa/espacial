@@ -1,6 +1,11 @@
 package espacial.tableros;
 
-import espacial.*;
+import espacial.Ataque;
+import espacial.Casillero;
+import espacial.EspectroEspacial;
+import espacial.Pieza;
+import espacial.SustanciaEspacial;
+import espacial.Tablero;
 
 public class CasilleroInterior extends CasilleroDelTablero {
 
@@ -24,6 +29,12 @@ public class CasilleroInterior extends CasilleroDelTablero {
     }
 
     @Override
+    public int buscar(SustanciaEspacial sustancia) {
+
+        return estado.alBuscar(sustancia);
+    }
+
+    @Override
     public void ocuparCon(Pieza unaPieza) {
 
         estado.alOcuparCon(unaPieza);
@@ -35,13 +46,13 @@ public class CasilleroInterior extends CasilleroDelTablero {
 
         estado.alMoverPiezaA(destino);
     }
-    
+
     @Override
     public void recibirPiezaDesde(Casillero origen) {
-        
+
         estado.alRecibirPiezaDesde(origen);
     }
-    
+
     @Override
     public void desocupar() {
 

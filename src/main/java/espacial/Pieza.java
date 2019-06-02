@@ -20,6 +20,15 @@ public interface Pieza extends Obstaculo, Objetivo {
     EspectroEspacial escanear();
 
     /**
+     * @param unaSustancia Sustancia buscada en la Pieza.
+     * @return cantidad de {@code unaSustancia} que existe dentro de la Pieza.
+     */
+    default int buscar(SustanciaEspacial unaSustancia) {
+
+        return 0;
+    }
+
+    /**
      * @pre la Pieza fue colocada (inicialmente o luego de ser movida) en el
      *      {@code casillero} de un Tablero.
      * @param casillero
@@ -48,4 +57,9 @@ public interface Pieza extends Obstaculo, Objetivo {
      * @return la cantidad de puntos que le permiten a la Pieza continuar en la Partida.
      */
     int obtenerPuntos();
+
+    default void recibir(Carga unaCarga) {
+
+        throw new LaOperacionNoEstaSoportada("Pieza.recibir(Carga)");
+    }
 }

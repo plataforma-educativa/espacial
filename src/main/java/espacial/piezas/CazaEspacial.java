@@ -6,6 +6,7 @@ import espacial.Casillero;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
+import espacial.SustanciaEspacial;
 import espacial.Visitante;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
@@ -111,6 +112,12 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
     public EspectroEspacial escanearEn(Direccion direccionElegida) {
 
         return obtenerCasillero().obtenerContiguoEn(direccionElegida).escanear();
+    }
+
+    @Override
+    public int buscarEn(Direccion direccionElegida, SustanciaEspacial unaSustancia) {
+
+        return obtenerCasillero().obtenerContiguoEn(direccionElegida).buscar(unaSustancia);
     }
 
     @Override

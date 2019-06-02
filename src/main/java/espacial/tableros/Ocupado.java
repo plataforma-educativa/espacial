@@ -4,6 +4,7 @@ import espacial.Ataque;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
+import espacial.SustanciaEspacial;
 import espacial.excepciones.Defecto;
 
 public class Ocupado extends EstadoDelCasillero {
@@ -20,6 +21,12 @@ public class Ocupado extends EstadoDelCasillero {
     public EspectroEspacial alEscanear() {
 
         return pieza.escanear();
+    }
+
+    @Override
+    public int alBuscar(SustanciaEspacial unaSustancia) {
+
+        return pieza.buscar(unaSustancia);
     }
 
     @Override

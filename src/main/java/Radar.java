@@ -1,6 +1,7 @@
 import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
+import espacial.SustanciaEspacial;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -15,6 +16,7 @@ import java.util.Map;
 public class Radar {
 
     private static final Map<EspectroEspacial, Espectro> ESPECTROS = new EnumMap<>(EspectroEspacial.class);
+    private static final Map<Sustancia, SustanciaEspacial> SUSTANCIAS = new EnumMap<>(Sustancia.class);
 
     static {
 
@@ -24,6 +26,8 @@ public class Radar {
         ESPECTROS.put(EspectroEspacial.BASE,        Espectro.BASE);
         ESPECTROS.put(EspectroEspacial.NAVE,        Espectro.NAVE);
         ESPECTROS.put(EspectroEspacial.DESCONOCIDO, Espectro.DESCONOCIDO);
+
+        SUSTANCIAS.put(Sustancia.ANTIMATERIA, SustanciaEspacial.ANTIMATERIA);
     }
 
     private NaveEspacial pieza;
@@ -63,30 +67,40 @@ public class Radar {
         return ESPECTROS.getOrDefault(espectroEspacial, Espectro.DESCONOCIDO);
     }
 
+    private SustanciaEspacial interpretar(Sustancia sustancia) {
+
+        return SUSTANCIAS.getOrDefault(sustancia, SustanciaEspacial.ANTIMATERIA);
+    }
+
+    public int buscarAlNorte(Sustancia sustancia) {
+
+        return buscarEn(Direccion.NORTE, sustancia);
+    }
+
+    public int buscarAlSur(Sustancia sustancia) {
+
+        return buscarEn(Direccion.SUR, sustancia);
+    }
+
+    public int buscarAlEste(Sustancia sustancia) {
+
+        return buscarEn(Direccion.ESTE, sustancia);
+    }
+
+    public int buscarAlOeste(Sustancia sustancia) {
+
+        return buscarEn(Direccion.OESTE, sustancia);
+    }
+
+    private int buscarEn(Direccion direccionElegida, Sustancia sustanciaBuscada) {
+
+        return pieza.buscarEn(direccionElegida, interpretar(sustanciaBuscada));
+    }
+
     @Override
     public String toString() {
 
         /* Devuelve un mensaje descriptivo para que se use al evaluar una variable en el intérprete */
         return "Radar de la Nave";
-    }
-
-    public int buscarAlNorte(Sustancia sustancia) {
-
-        return 0;
-    }
-
-    public int buscarAlSur(Sustancia antimateria) {
-
-        return 0;
-    }
-
-    public int buscarAlEste(Sustancia sustancia) {
-
-        return 0;
-    }
-
-    public int buscarAlOeste(Sustancia sustancia) {
-
-        return 0;
     }
 }

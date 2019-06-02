@@ -6,6 +6,7 @@ import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Obstaculo;
 import espacial.Pieza;
+import espacial.SustanciaEspacial;
 import espacial.Tablero;
 import espacial.excepciones.LaOperacionNoEstaSoportada;
 
@@ -19,13 +20,19 @@ public class CasilleroBorde implements Casillero, Obstaculo {
         
         return EspectroEspacial.DESCONOCIDO;
     }
-    
+
+    @Override
+    public int buscar(SustanciaEspacial antimateria) {
+
+        return 0;
+    }
+
     @Override
     public Casillero obtenerContiguoEn(Direccion direccion) {
-        
+
         return this;
     }
-    
+
     @Override
     public void moverPiezaA(Casillero destino) {
         

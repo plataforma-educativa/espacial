@@ -1,10 +1,10 @@
+import espacial.SustanciaEspacial;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.Prueba;
 import org.assertj.core.api.Condition;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.IntStream;
@@ -103,7 +103,7 @@ public class RadarTest implements Prueba {
     @Test
     public void escanearAlOesteDeUnContenedor() {
 
-        dadoQue(fueObtenidoUnRadarDeUnaNaveAlOesteDeUnContenedor());
+        dadoQue(fueObtenidoUnRadarDeUnaNaveAlOesteDeUnContenedorConAntimateria());
 
         escanearConUnRadarAlrededor();
 
@@ -114,15 +114,20 @@ public class RadarTest implements Prueba {
                 Espectro.VACIO));
     }
 
-    private Precondicion fueObtenidoUnRadarDeUnaNaveAlOesteDeUnContenedor() {
+    private Precondicion fueObtenidoUnRadarDeUnaNaveAlOesteDeUnContenedorConAntimateria() {
 
         return precondicion(() -> {
 
-            new BatallaEspacial();
+            BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
             IntStream.range(0, 4).forEach(n -> nave.avanzarAlNorte());
             nave.avanzarAlEste();
+
+            batalla.obtenerTablero()
+                    .obtenerCasilleroEn(4, 2)
+                    .obtenerPieza()
+                    .recibir(SustanciaEspacial.ANTIMATERIA.por(100));
 
             unRadar = nave.obtenerRadar();
         });
@@ -212,26 +217,43 @@ public class RadarTest implements Prueba {
     }
 
     @Test
-    @Disabled
+    public void buscarAlNorteAntimateriaLaEncuentra() {
+
+        dadoQue(fueObtenidoUnRadarDeUnaNaveAlSurDeUnContenedorConAntimateria());
+
+        buscarAntimateriaConUnRadarAlrededor();
+
+        comprobarQue(lasCantidadesEncontradasSonLasEsperadas(MAYOR_A_CERO, CERO, CERO, CERO));
+    }
+
+    @Test
+    public void buscarAlSurAntimateriaLaEncuentra() {
+
+        dadoQue(fueObtenidoUnRadarDeUnaNaveAlNorteDeUnContenedorConAntimateria());
+
+        buscarAntimateriaConUnRadarAlrededor();
+
+        comprobarQue(lasCantidadesEncontradasSonLasEsperadas(CERO, MAYOR_A_CERO, CERO, CERO));
+    }
+
+    @Test
     public void buscarAlEsteAntimateriaLaEncuentra() {
 
-        dadoQue(fueObtenidoUnRadarDeUnaNaveAlEsteDeUnContenedor());
+        dadoQue(fueObtenidoUnRadarDeUnaNaveAlOesteDeUnContenedorConAntimateria());
+
+        buscarAntimateriaConUnRadarAlrededor();
+
+        comprobarQue(lasCantidadesEncontradasSonLasEsperadas(CERO, CERO, MAYOR_A_CERO, CERO));
+    }
+
+    @Test
+    public void buscarAlOesteAntimateriaLaEncuentra() {
+
+        dadoQue(fueObtenidoUnRadarDeUnaNaveAlEsteDeUnContenedorConAntimateria());
 
         buscarAntimateriaConUnRadarAlrededor();
 
         comprobarQue(lasCantidadesEncontradasSonLasEsperadas(CERO, CERO, CERO, MAYOR_A_CERO));
-    }
-
-    @Test
-    @Disabled
-    public void buscarAlOesteAntimateriaLaEncuentra() {
-
-        dadoQue(fueObtenidoUnRadarDeUnaNaveAlOesteDeUnContenedor());
-
-        buscarAntimateriaConUnRadarAlrededor();
-
-
-        comprobarQue(lasCantidadesEncontradasSonLasEsperadas(CERO, CERO, MAYOR_A_CERO, CERO));
     }
 
     private void buscarAntimateriaConUnRadarAlrededor() {
@@ -256,15 +278,58 @@ public class RadarTest implements Prueba {
         });
     }
 
-    private Precondicion fueObtenidoUnRadarDeUnaNaveAlEsteDeUnContenedor() {
+    private Precondicion fueObtenidoUnRadarDeUnaNaveAlEsteDeUnContenedorConAntimateria() {
 
         return precondicion(() -> {
 
-            new BatallaEspacial();
+            BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
             IntStream.range(0, 2).forEach(n -> nave.avanzarAlSur());
-            nave.avanzarAlOeste();
+            IntStream.range(0, 1).forEach(n -> nave.avanzarAlOeste());
+
+            batalla.obtenerTablero()
+                    .obtenerCasilleroEn(-2, -2)
+                    .obtenerPieza()
+                    .recibir(SustanciaEspacial.ANTIMATERIA.por(100));
+
+            unRadar = nave.obtenerRadar();
+        });
+    }
+
+    private Precondicion fueObtenidoUnRadarDeUnaNaveAlNorteDeUnContenedorConAntimateria() {
+
+        return precondicion(() -> {
+
+            BatallaEspacial batalla = new BatallaEspacial();
+            Nave nave = new Nave();
+            nave.despegar();
+            IntStream.range(0, 2).forEach(n -> nave.avanzarAlOeste());
+            IntStream.range(0, 1).forEach(n -> nave.avanzarAlSur());
+
+            batalla.obtenerTablero()
+                    .obtenerCasilleroEn(-2, -2)
+                    .obtenerPieza()
+                    .recibir(SustanciaEspacial.ANTIMATERIA.por(100));
+
+            unRadar = nave.obtenerRadar();
+        });
+    }
+
+    private Precondicion fueObtenidoUnRadarDeUnaNaveAlSurDeUnContenedorConAntimateria() {
+
+        return precondicion(() -> {
+
+            BatallaEspacial batalla = new BatallaEspacial();
+            Nave nave = new Nave();
+            nave.despegar();
+            IntStream.range(0, 2).forEach(n -> nave.avanzarAlEste());
+            IntStream.range(0, 3).forEach(n -> nave.avanzarAlNorte());
+
+            batalla.obtenerTablero()
+                    .obtenerCasilleroEn(4, 2)
+                    .obtenerPieza()
+                    .recibir(SustanciaEspacial.ANTIMATERIA.por(100));
 
             unRadar = nave.obtenerRadar();
         });

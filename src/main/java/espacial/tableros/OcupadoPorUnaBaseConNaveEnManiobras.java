@@ -4,6 +4,7 @@ import espacial.Ataque;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
+import espacial.SustanciaEspacial;
 
 public class OcupadoPorUnaBaseConNaveEnManiobras extends EstadoDelCasillero {
 
@@ -23,6 +24,12 @@ public class OcupadoPorUnaBaseConNaveEnManiobras extends EstadoDelCasillero {
     public EspectroEspacial alEscanear() {
         
         return base.escanear();
+    }
+
+    @Override
+    public int alBuscar(SustanciaEspacial unaSustancia) {
+
+        return base.buscar(unaSustancia);
     }
 
     @Override

@@ -4,6 +4,7 @@ import espacial.Ataque;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
+import espacial.SustanciaEspacial;
 
 public abstract class EstadoDelCasillero {
     
@@ -20,7 +21,9 @@ public abstract class EstadoDelCasillero {
     }
     
     public abstract EspectroEspacial alEscanear();
- 
+
+    public abstract int alBuscar(SustanciaEspacial unaSustancia);
+
     public abstract Pieza alObtenerPieza();
 
     public abstract void alOcuparCon(Pieza unaPieza);

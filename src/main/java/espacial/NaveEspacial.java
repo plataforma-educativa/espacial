@@ -12,6 +12,8 @@ public interface NaveEspacial extends Pieza, Chocable {
 
     EspectroEspacial escanearEn(Direccion direccionElegida);
 
+    int buscarEn(Direccion direccionElegida, SustanciaEspacial unaSustancia);
+
     int obtenerNivelDeEscudos();
 
     void fueAmarradaCon(Amarre amarre);

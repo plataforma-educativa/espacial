@@ -1,21 +1,27 @@
 package espacial.piezas;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
-import espacial.*;
+import espacial.Amarre;
+import espacial.Atacable;
+import espacial.Ataque;
+import espacial.Casillero;
+import espacial.Direccion;
+import espacial.EspectroEspacial;
+import espacial.Pieza;
+import espacial.SustanciaEspacial;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 
 import java.util.stream.IntStream;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
 
@@ -413,5 +419,42 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
                         .as("cantidad de torpedos")
                         .isEqualTo(100)
         );
+    }
+
+    @Test
+    public void buscarEnDireccionUnaSustanciaEspacial() {
+
+        dadoQue(fueCreadoUnCazaEspacialConAntimateriaAlrededor(10,0, 15, 30));
+
+        comprobarQue(alBuscarAlrededorAntimateriaEncuentra(10, 0, 15, 30));
+    }
+
+    private Precondicion fueCreadoUnCazaEspacialConAntimateriaAlrededor(int alNorte, int alSur, int alEste, int alOeste) {
+
+        return precondicion(() -> {
+
+            unCazaEspacial = new CazaEspacial();
+            unCazaEspacial.fueColocadaEn(UN_CASILLERO);
+
+            when(CASILLERO_NORTE.buscar(SustanciaEspacial.ANTIMATERIA)).thenReturn(alNorte);
+            when(CASILLERO_SUR.buscar(SustanciaEspacial.ANTIMATERIA)).thenReturn(alSur);
+            when(CASILLERO_ESTE.buscar(SustanciaEspacial.ANTIMATERIA)).thenReturn(alEste);
+            when(CASILLERO_OESTE.buscar(SustanciaEspacial.ANTIMATERIA)).thenReturn(alOeste);
+        });
+    }
+
+    private Postcondicion alBuscarAlrededorAntimateriaEncuentra(int alNorte, int alSur, int alEste, int alOeste) {
+
+        return postcondicion(() -> {
+
+            assertThat(unCazaEspacial.buscarEn(Direccion.NORTE, SustanciaEspacial.ANTIMATERIA))
+                    .as("ANTIMATERIA al NORTE").isEqualTo(alNorte);
+            assertThat(unCazaEspacial.buscarEn(Direccion.SUR, SustanciaEspacial.ANTIMATERIA))
+                    .as("ANTIMATERIA al SUR").isEqualTo(alSur);
+            assertThat(unCazaEspacial.buscarEn(Direccion.ESTE, SustanciaEspacial.ANTIMATERIA))
+                    .as("ANTIMATERIA al ESTE").isEqualTo(alEste);
+            assertThat(unCazaEspacial.buscarEn(Direccion.OESTE, SustanciaEspacial.ANTIMATERIA))
+                    .as("ANTIMATERIA al OESTE").isEqualTo(alOeste);
+        });
     }
 }

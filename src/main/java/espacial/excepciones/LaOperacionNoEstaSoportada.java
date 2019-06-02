@@ -6,6 +6,6 @@ public class LaOperacionNoEstaSoportada extends ErrorEnLaBatallaEspacial {
 
     public LaOperacionNoEstaSoportada(String operacion) {
         
-        super("La operación no está soportada: " + operacion);
+        super("La operación no está soportada: %s", operacion);
     }
 }
