@@ -58,8 +58,10 @@ public interface Pieza extends Obstaculo, Objetivo {
      */
     int obtenerPuntos();
 
-    default void recibir(Carga unaCarga) {
-
-        throw new LaOperacionNoEstaSoportada("Pieza.recibir(Carga)");
-    }
+    /**
+     * @pre  la Pieza es capaz de recibir una Carga de SustanciaEspacial.
+     * @post toma la Carga dada.
+     * @param unaCarga Carga de Sustancia Espacial
+     */
+    void recibir(Carga unaCarga);
 }

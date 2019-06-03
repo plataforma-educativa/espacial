@@ -21,4 +21,12 @@ public class CargaTest {
 
         assertThat(carga.obtenerCantidad()).as("cantidad").isEqualTo(230);
     }
+
+    @Test
+    public void tieneToString() {
+
+        Carga carga = SustanciaEspacial.ANTIMATERIA.por(42);
+
+        assertThat(carga).hasToString("42 ANTIMATERIA");
+    }
 }

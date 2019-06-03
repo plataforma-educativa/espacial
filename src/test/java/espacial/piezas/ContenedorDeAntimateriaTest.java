@@ -52,7 +52,7 @@ public class ContenedorDeAntimateriaTest extends PruebaSobrePieza<ContenedorDeAn
     }
 
     @Test
-    public void recibirCarga() {
+    public void recibirUnaCarga() {
 
         final int cantidad = 65;
 
@@ -114,13 +114,13 @@ public class ContenedorDeAntimateriaTest extends PruebaSobrePieza<ContenedorDeAn
 
         dadoQue(fueCreadoUnContenedorDeAntimateria());
 
-        comprobarQue(generaErrorPorqueExcedeLaCapacidadDeCarga(() ->
+        comprobarQue(generaExcepcionPorqueExcedeLaCapacidadDeCarga(() ->
 
                 unContenedorDeAntimateria.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidadExcedida)))
         );
     }
     
-    private Postcondicion generaErrorPorqueExcedeLaCapacidadDeCarga(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueExcedeLaCapacidadDeCarga(Ejecutable ejecutable) {
 
         return postcondicion(() ->
 

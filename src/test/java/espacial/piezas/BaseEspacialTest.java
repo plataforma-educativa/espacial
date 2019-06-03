@@ -4,6 +4,9 @@ import espacial.Amarre;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
+import espacial.SustanciaEspacial;
+import espacial.excepciones.ExcedeLaCapacidadDeCarga;
+import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import org.junit.jupiter.api.Test;
@@ -149,6 +152,85 @@ public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
     private Postcondicion losPuntosInicialesDeUnaBaseSonCorrectos() {
 
         return postcondicion(() -> assertThat(unaBase.obtenerPuntos()).as("puntos").isEqualTo(200));
+    }
+
+    @Test
+    public void recibirUnaCarga() {
+
+        final int cantidad = 40;
+
+        dadoQue(fueCreadaUnaBase());
+
+        unaBase.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidad));
+
+        comprobarQue(unaBaseTiene(SustanciaEspacial.ANTIMATERIA, cantidad));
+    }
+
+    private Postcondicion unaBaseTiene(SustanciaEspacial sustanciaEsperada, int cantidadEsperada) {
+
+        return postcondicion(() ->
+
+                assertThat(unaBase.buscar(sustanciaEsperada))
+                        .as("buscar(" + sustanciaEsperada + ")")
+                        .isEqualTo(cantidadEsperada)
+        );
+    }
+
+    @Test
+    public void recibirMultiplesCargas() {
+
+        final int cantidadInicial = 45;
+        final int cantidad = 20;
+
+        dadoQue(fueCreadoUnaBaseRecibiendo(cantidadInicial));
+
+        unaBase.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidad));
+
+        comprobarQue(unaBaseTiene(SustanciaEspacial.ANTIMATERIA, cantidadInicial + cantidad));
+    }
+
+    private Precondicion fueCreadoUnaBaseRecibiendo(int cantidadInicial) {
+
+        return precondicion(() -> {
+
+            unaBase = new BaseEspacial();
+            unaBase.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidadInicial));
+        });
+    }
+
+    @Test
+    public void recibirLaCargaMaxima() {
+
+        final int cantidadMaxima = 5000;
+
+        dadoQue(fueCreadaUnaBase());
+
+        unaBase.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidadMaxima));
+
+        comprobarQue(unaBaseTiene(SustanciaEspacial.ANTIMATERIA, cantidadMaxima));
+    }
+
+    @Test
+    public void recibirCargaExcediendoLaCapacidad() {
+
+        final int cantidadExcedida = 5001;
+
+        dadoQue(fueCreadaUnaBase());
+
+        comprobarQue(generaExcepcionPorqueExcedeLaCapacidadDeCarga(() ->
+
+                unaBase.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidadExcedida)))
+        );
+    }
+
+    private Postcondicion generaExcepcionPorqueExcedeLaCapacidadDeCarga(Ejecutable ejecutable) {
+
+        return postcondicion(() ->
+
+                assertThatThrownBy(ejecutable::ejecutar)
+                        .as("excepción generada")
+                        .isInstanceOf(ExcedeLaCapacidadDeCarga.class)
+        );
     }
 
 }

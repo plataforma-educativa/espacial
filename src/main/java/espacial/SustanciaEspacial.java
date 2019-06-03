@@ -6,6 +6,6 @@ public enum SustanciaEspacial {
 
     public Carga por(int cantidad) {
 
-        return new Carga(cantidad);
+        return new Carga(cantidad, this);
     }
 }

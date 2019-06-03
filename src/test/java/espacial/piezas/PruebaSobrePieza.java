@@ -1,13 +1,17 @@
 package espacial.piezas;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
-import espacial.*;
-import org.junit.jupiter.api.Test;
-
+import espacial.Ataque;
+import espacial.Casillero;
+import espacial.Direccion;
+import espacial.EspectroEspacial;
+import espacial.NaveEspacial;
+import espacial.Pieza;
 import espacial.test.Postcondicion;
 import espacial.test.Prueba;
+import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public abstract class PruebaSobrePieza<T extends Pieza> implements Prueba {
 
@@ -63,7 +67,6 @@ public abstract class PruebaSobrePieza<T extends Pieza> implements Prueba {
         Pieza unaPieza = piezaCreada();
 
         comprobarQue(sePuedenObtenerLosPuntosDe(unaPieza));
-
     }
 
     private Postcondicion sePuedenObtenerLosPuntosDe(Pieza unaPieza) {
@@ -73,13 +76,5 @@ public abstract class PruebaSobrePieza<T extends Pieza> implements Prueba {
                 assertThat(unaPieza.obtenerPuntos())
                         .as("puntos")
                         .isBetween(Pieza.PUNTOS_MINIMOS, Pieza.PUNTOS_MAXIMOS));
-    }
-
-    @Test
-    public void fueAtacadoCon() {
-
-        Pieza unaPieza = piezaCreada();
-
-        unaPieza.fueAtacadoCon(UN_ATAQUE);
     }
 }

@@ -8,6 +8,7 @@ import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
+import espacial.excepciones.ExcedeLaCapacidadDeCarga;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.test.Ejecutable;
@@ -457,4 +458,84 @@ public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
                     .as("ANTIMATERIA al OESTE").isEqualTo(alOeste);
         });
     }
+
+    @Test
+    public void recibirUnaCarga() {
+
+        final int cantidad = 40;
+
+        dadoQue(fueCreadoUnCazaEspacial());
+
+        unCazaEspacial.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidad));
+
+        comprobarQue(unCazaEspacialTiene(SustanciaEspacial.ANTIMATERIA, cantidad));
+    }
+
+    private Postcondicion unCazaEspacialTiene(SustanciaEspacial sustanciaEsperada, int cantidadEsperada) {
+
+        return postcondicion(() ->
+
+                assertThat(unCazaEspacial.buscar(sustanciaEsperada))
+                        .as("buscar(" + sustanciaEsperada + ")")
+                        .isEqualTo(cantidadEsperada)
+        );
+    }
+
+    @Test
+    public void recibirMultiplesCargas() {
+
+        final int cantidadInicial = 45;
+        final int cantidad = 20;
+
+        dadoQue(fueCreadoUnCazaEspacialRecibiendo(cantidadInicial));
+
+        unCazaEspacial.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidad));
+
+        comprobarQue(unCazaEspacialTiene(SustanciaEspacial.ANTIMATERIA, cantidadInicial + cantidad));
+    }
+
+    private Precondicion fueCreadoUnCazaEspacialRecibiendo(int cantidadInicial) {
+
+        return precondicion(() -> {
+
+            unCazaEspacial = new CazaEspacial();
+            unCazaEspacial.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidadInicial));
+        });
+    }
+
+    @Test
+    public void recibirLaCargaMaxima() {
+
+        final int cantidadMaxima = 100;
+
+        dadoQue(fueCreadoUnCazaEspacial());
+
+        unCazaEspacial.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidadMaxima));
+
+        comprobarQue(unCazaEspacialTiene(SustanciaEspacial.ANTIMATERIA, cantidadMaxima));
+    }
+
+    @Test
+    public void recibirCargaExcediendoLaCapacidad() {
+
+        final int cantidadExcedida = 101;
+
+        dadoQue(fueCreadoUnCazaEspacial());
+
+        comprobarQue(generaExcepcionPorqueExcedeLaCapacidadDeCarga(() ->
+
+                unCazaEspacial.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidadExcedida)))
+        );
+    }
+
+    private Postcondicion generaExcepcionPorqueExcedeLaCapacidadDeCarga(Ejecutable ejecutable) {
+
+        return postcondicion(() ->
+
+                assertThatThrownBy(ejecutable::ejecutar)
+                        .as("excepción generada")
+                        .isInstanceOf(ExcedeLaCapacidadDeCarga.class)
+        );
+    }
+
 }

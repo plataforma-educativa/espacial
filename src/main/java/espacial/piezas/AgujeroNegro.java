@@ -1,6 +1,11 @@
 package espacial.piezas;
 
-import espacial.*;
+import espacial.Ataque;
+import espacial.Carga;
+import espacial.Chocable;
+import espacial.EspectroEspacial;
+import espacial.Pieza;
+import espacial.Visitante;
 
 public class AgujeroNegro implements Pieza {
 
@@ -31,5 +36,10 @@ public class AgujeroNegro implements Pieza {
     public int obtenerPuntos() {
 
         return PUNTOS_MAXIMOS;
+    }
+
+    @Override
+    public void recibir(Carga unaCarga) {
+
     }
 }

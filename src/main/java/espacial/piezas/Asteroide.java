@@ -1,6 +1,12 @@
 package espacial.piezas;
 
-import espacial.*;
+import espacial.Ataque;
+import espacial.Carga;
+import espacial.Chocable;
+import espacial.EspectroEspacial;
+import espacial.Pieza;
+import espacial.Visitante;
+import espacial.excepciones.LaPiezaNoPuedeRecibirUnaCarga;
 import espacial.piezas.rasgos.PiezaAtacable;
 
 public class Asteroide implements Pieza, PiezaAtacable {
@@ -41,5 +47,11 @@ public class Asteroide implements Pieza, PiezaAtacable {
     public void decrementarPuntosEn(int decremento) {
 
         puntos -= decremento;
+    }
+
+    @Override
+    public void recibir(Carga unaCarga) {
+
+        throw new LaPiezaNoPuedeRecibirUnaCarga(this, unaCarga);
     }
 }

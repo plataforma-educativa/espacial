@@ -2,12 +2,14 @@ package espacial.piezas;
 
 import espacial.Amarre;
 import espacial.Ataque;
+import espacial.Carga;
 import espacial.Casillero;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
 import espacial.SustanciaEspacial;
 import espacial.Visitante;
+import espacial.excepciones.ExcedeLaCapacidadDeCarga;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.piezas.rasgos.NaveChocable;
@@ -16,10 +18,13 @@ import espacial.utiles.Opcional;
 
 public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
 
+    private final static int CAPACIDAD = 100;
+
     private final Indicador nivelDeEscudos = new Indicador(100);
     private final Artilleria artilleria = new Artilleria(100);
     private Opcional<Casillero> casillero = Opcional.sinValor();
     private Opcional<Amarre> amarre = Opcional.sinValor();
+    private int cargamento = 0;
 
     public CazaEspacial() {
 
@@ -50,6 +55,12 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
     public EspectroEspacial escanear() {
         
         return EspectroEspacial.NAVE;
+    }
+
+    @Override
+    public int buscar(SustanciaEspacial unaSustancia) {
+
+        return cargamento;
     }
 
     @Override
@@ -124,6 +135,19 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable {
     public void fueAtacadoCon(Ataque ataque) {
 
         ataque.aplicarSobre(this);
+    }
+
+    @Override
+    public void recibir(Carga unaCarga) {
+
+        int cargaTotal = cargamento + unaCarga.obtenerCantidad();
+
+        if (cargaTotal > CAPACIDAD) {
+
+            throw  new ExcedeLaCapacidadDeCarga(CAPACIDAD, cargaTotal);
+        }
+
+        cargamento = cargaTotal;
     }
 
     private void fueDestruido() {

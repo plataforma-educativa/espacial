@@ -2,12 +2,15 @@ package espacial.piezas;
 
 import espacial.Amarre;
 import espacial.Ataque;
+import espacial.Carga;
 import espacial.Casillero;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
 import espacial.Pieza;
+import espacial.SustanciaEspacial;
 import espacial.Visitante;
+import espacial.excepciones.ExcedeLaCapacidadDeCarga;
 import espacial.piezas.rasgos.PiezaAtacable;
 
 import java.util.LinkedList;
@@ -15,9 +18,11 @@ import java.util.List;
 
 public class BaseEspacial implements Pieza, PiezaAtacable {
 
+    private static final int CAPACIDAD = 5000;
     private int puntos = 200;
     private Casillero casillero;
     private final List<Amarre> amarres;
+    private int cargamento = 0;
 
     public BaseEspacial() {
 
@@ -40,6 +45,12 @@ public class BaseEspacial implements Pieza, PiezaAtacable {
     public EspectroEspacial escanear() {
         
         return EspectroEspacial.BASE;
+    }
+
+    @Override
+    public int buscar(SustanciaEspacial unaSustancia) {
+
+        return cargamento;
     }
 
     public void amarrar(NaveEspacial pieza) {
@@ -76,6 +87,19 @@ public class BaseEspacial implements Pieza, PiezaAtacable {
     public void decrementarPuntosEn(int decremento) {
 
         puntos -= decremento;
+    }
+
+    @Override
+    public void recibir(Carga unaCarga) {
+
+        int cargaTotal = cargamento + unaCarga.obtenerCantidad();
+
+        if (cargaTotal > CAPACIDAD) {
+
+            throw  new ExcedeLaCapacidadDeCarga(CAPACIDAD, cargaTotal);
+        }
+
+        cargamento = cargaTotal;
     }
 
     private class AmarreConBaseEspacial implements Amarre {

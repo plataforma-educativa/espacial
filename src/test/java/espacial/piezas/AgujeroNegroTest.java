@@ -1,13 +1,14 @@
 package espacial.piezas;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
 import espacial.EspectroEspacial;
 import espacial.Pieza;
+import espacial.SustanciaEspacial;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class AgujeroNegroTest extends PruebaSobrePieza<AgujeroNegro> {
 
@@ -54,7 +55,7 @@ public class AgujeroNegroTest extends PruebaSobrePieza<AgujeroNegro> {
     }
 
     @Test
-    public void fuf() {
+    public void fueAtacadoCon() {
 
         dadoQue(fueCreadoUnAgujeroNegro());
 
@@ -66,5 +67,20 @@ public class AgujeroNegroTest extends PruebaSobrePieza<AgujeroNegro> {
     private Postcondicion unAtaqueNoTuvoEfectoSobreUnAgujeroNegro() {
 
         return postcondicion(() -> verifyZeroInteractions(UN_ATAQUE));
+    }
+
+    @Test
+    public void recibirUnaCarga() {
+
+        dadoQue(fueCreadoUnAgujeroNegro());
+
+        unAgujeroNegro.recibir(SustanciaEspacial.ANTIMATERIA.por(20));
+
+        comprobarQue(noGeneraExcepcionPeroTampocoCambiaElEstadoDeLaPieza());
+    }
+
+    private Postcondicion noGeneraExcepcionPeroTampocoCambiaElEstadoDeLaPieza() {
+
+        return postcondicion(() -> {});
     }
 }
