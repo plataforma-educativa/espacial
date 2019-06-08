@@ -1,24 +1,10 @@
 package espacial;
 
-public class Carga {
+public interface Carga {
 
-    private final int cantidad;
-    private SustanciaEspacial sustancia;
+    int obtenerCantidad();
 
-    public Carga(int cantidad, SustanciaEspacial sustancia) {
+    void subirEn(Transporte unTransporte);
 
-        this.cantidad = cantidad;
-        this.sustancia = sustancia;
-    }
-
-    public int obtenerCantidad() {
-
-        return cantidad;
-    }
-
-    @Override
-    public String toString() {
-
-        return String.format("%d %s", cantidad, sustancia);
-    }
+    void bajarDe(Transporte unTransporte);
 }

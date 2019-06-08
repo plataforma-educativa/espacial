@@ -18,7 +18,7 @@ public class Asteroide implements Pieza, PiezaAtacable {
         
         return EspectroEspacial.ASTEROIDE;
     }
-    
+
     @Override
     public void fueChocadaPor(Chocable chocable) {
 
