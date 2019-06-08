@@ -1,5 +1,7 @@
 package espacial;
 
+import espacial.excepciones.ParametroInvalido;
+
 public enum SustanciaEspacial {
 
     ANTIMATERIA {
@@ -24,6 +26,11 @@ public enum SustanciaEspacial {
     };
 
     public Carga por(int cantidad) {
+
+        if (cantidad <= 0) {
+
+            throw new ParametroInvalido("La cantidad de Sustancia debe ser mayor a 0");
+        }
 
         return new CargaIndividual(cantidad, this);
     }
