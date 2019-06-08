@@ -5,11 +5,11 @@ import espacial.Cargamento;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
 import espacial.Visitante;
+import espacial.piezas.rasgos.DepositoDeAntimateria;
 import espacial.piezas.rasgos.PiezaAtacable;
-import espacial.piezas.rasgos.PiezaTransporte;
-import espacial.piezas.rasgos.TransporteDeAntimateria;
+import espacial.piezas.rasgos.PiezaDeposito;
 
-public class ContenedorDeAntimateria implements PiezaTransporte, PiezaAtacable, TransporteDeAntimateria {
+public class ContenedorDeAntimateria implements PiezaDeposito, PiezaAtacable, DepositoDeAntimateria {
 
     private static final int CAPACIDAD = 1000;
 

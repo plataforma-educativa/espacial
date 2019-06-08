@@ -4,7 +4,7 @@ public interface Carga {
 
     int obtenerCantidad();
 
-    void subirEn(Transporte unTransporte);
+    void subirEn(Deposito unDeposito);
 
-    void bajarDe(Transporte unTransporte);
+    void bajarDe(Deposito unDeposito);
 }

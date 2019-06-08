@@ -11,13 +11,13 @@ import espacial.SustanciaEspacial;
 import espacial.Visitante;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
+import espacial.piezas.rasgos.DepositoDeAntimateria;
 import espacial.piezas.rasgos.NaveChocable;
 import espacial.piezas.rasgos.PiezaAtacable;
-import espacial.piezas.rasgos.PiezaTransporte;
-import espacial.piezas.rasgos.TransporteDeAntimateria;
+import espacial.piezas.rasgos.PiezaDeposito;
 import espacial.utiles.Opcional;
 
-public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable, PiezaTransporte, TransporteDeAntimateria {
+public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable, PiezaDeposito, DepositoDeAntimateria {
 
     private final static int CAPACIDAD = 100;
 

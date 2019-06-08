@@ -1,6 +1,6 @@
 package espacial;
 
-public interface Transporte {
+public interface Deposito {
 
     default void cargarAntimateria(int cantidad) {
 

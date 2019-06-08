@@ -1,9 +1,9 @@
 package espacial.piezas.rasgos;
 
 import espacial.Cargamento;
-import espacial.Transporte;
+import espacial.Deposito;
 
-public interface TransporteDeAntimateria extends Transporte {
+public interface DepositoDeAntimateria extends Deposito {
 
     Cargamento obtenerAntimateria();
 

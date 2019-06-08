@@ -9,14 +9,14 @@ import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.Visitante;
+import espacial.piezas.rasgos.DepositoDeAntimateria;
 import espacial.piezas.rasgos.PiezaAtacable;
-import espacial.piezas.rasgos.PiezaTransporte;
-import espacial.piezas.rasgos.TransporteDeAntimateria;
+import espacial.piezas.rasgos.PiezaDeposito;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class BaseEspacial implements Pieza, PiezaAtacable, PiezaTransporte, TransporteDeAntimateria {
+public class BaseEspacial implements Pieza, PiezaAtacable, PiezaDeposito, DepositoDeAntimateria {
 
     private static final int CAPACIDAD = 5000;
     private final List<Amarre> amarres = new LinkedList<>();

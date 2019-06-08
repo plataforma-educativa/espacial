@@ -1,11 +1,11 @@
 package espacial.piezas.rasgos;
 
 import espacial.Carga;
+import espacial.Deposito;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
-import espacial.Transporte;
 
-public interface PiezaTransporte extends Pieza, Transporte {
+public interface PiezaDeposito extends Pieza, Deposito {
 
     @Override
     default int buscar(SustanciaEspacial unaSustancia) {

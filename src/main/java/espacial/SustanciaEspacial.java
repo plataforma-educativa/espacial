@@ -5,21 +5,21 @@ public enum SustanciaEspacial {
     ANTIMATERIA {
 
         @Override
-        public void cargar(int cantidad, Transporte transporte) {
+        public void cargar(int cantidad, Deposito deposito) {
 
-            transporte.cargarAntimateria(cantidad);
+            deposito.cargarAntimateria(cantidad);
         }
 
         @Override
-        public void descargar(int cantidad, Transporte transporte) {
+        public void descargar(int cantidad, Deposito deposito) {
 
-            transporte.descargarAntimateria(cantidad);
+            deposito.descargarAntimateria(cantidad);
         }
 
         @Override
-        public int buscar(Transporte transporte) {
+        public int buscar(Deposito deposito) {
 
-            return transporte.contarAntimateria();
+            return deposito.contarAntimateria();
         }
     };
 
@@ -28,9 +28,9 @@ public enum SustanciaEspacial {
         return new CargaIndividual(cantidad, this);
     }
 
-    public abstract void cargar(int cantidad, Transporte transporte);
+    public abstract void cargar(int cantidad, Deposito deposito);
 
-    public abstract void descargar(int cantidad, Transporte transporte);
+    public abstract void descargar(int cantidad, Deposito deposito);
 
-    public abstract int buscar(Transporte transporte);
+    public abstract int buscar(Deposito deposito);
 }

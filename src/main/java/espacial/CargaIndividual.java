@@ -17,15 +17,15 @@ public class CargaIndividual implements Carga {
     }
 
     @Override
-    public void subirEn(Transporte unTransporte) {
+    public void subirEn(Deposito unDeposito) {
 
-        sustancia.cargar(cantidad, unTransporte);
+        sustancia.cargar(cantidad, unDeposito);
     }
 
     @Override
-    public void bajarDe(Transporte unTransporte) {
+    public void bajarDe(Deposito unDeposito) {
 
-        sustancia.descargar(cantidad, unTransporte);
+        sustancia.descargar(cantidad, unDeposito);
     }
 
     @Override
