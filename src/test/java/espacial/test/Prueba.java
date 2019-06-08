@@ -1,5 +1,8 @@
 package espacial.test;
 
+import org.junit.jupiter.api.DisplayNameGeneration;
+
+@DisplayNameGeneration(EstrategiaParaNombrarPruebas.class)
 public interface Prueba {
 
     default void dadoQue(Precondicion precondicion) {
