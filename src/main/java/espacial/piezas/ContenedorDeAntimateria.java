@@ -13,8 +13,8 @@ public class ContenedorDeAntimateria implements PiezaTransporte, PiezaAtacable, 
 
     private static final int CAPACIDAD = 1000;
 
+    private final Cargamento antimateria = new Cargamento(CAPACIDAD);
     private int puntos = 50;
-    private Cargamento antimateria = new Cargamento(CAPACIDAD);
 
     @Override
     public EspectroEspacial escanear() {
