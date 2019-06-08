@@ -129,4 +129,17 @@ public class ContenedorDeAntimateriaTest extends PruebaSobrePieza<ContenedorDeAn
                         .isInstanceOf(ExcedeLaCapacidadDeCarga.class)
         );
     }
+
+    @Test
+    public void extraerUnaCarga() {
+
+        final int cantidadInicial = 90;
+        final int cantidadExtraida = 10;
+
+        dadoQue(fueCreadoUnContenedorDeAntimateriaRecibiendo(cantidadInicial));
+
+        unContenedorDeAntimateria.extraer(SustanciaEspacial.ANTIMATERIA.por(cantidadExtraida));
+
+        comprobarQue(elContenedorTiene(SustanciaEspacial.ANTIMATERIA, cantidadInicial - cantidadExtraida));
+    }
 }
