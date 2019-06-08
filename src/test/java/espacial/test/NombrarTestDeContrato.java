@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayNameGenerator;
 
 import java.lang.reflect.Method;
 
-public class EstrategiaParaNombrarTestDeContrato implements DisplayNameGenerator {
+public class NombrarTestDeContrato implements DisplayNameGenerator {
 
     private final Humanizador humanizador = new Humanizador();
 

@@ -2,7 +2,7 @@ package espacial.test;
 
 import org.junit.jupiter.api.DisplayNameGeneration;
 
-@DisplayNameGeneration(EstrategiaParaNombrarTestDeContrato.class)
+@DisplayNameGeneration(NombrarTestDeContrato.class)
 public interface TestDeContrato {
 
     default void dadoQue(Precondicion precondicion) {
