@@ -1,6 +1,7 @@
 package espacial;
 
 import espacial.excepciones.ExcedeLaCapacidadDeCarga;
+import espacial.excepciones.ExcedeLaCargaDisponible;
 
 public class Cargamento {
 
@@ -27,7 +28,14 @@ public class Cargamento {
 
     public void retirar(int cantidadRetirada) {
 
+        int total = cantidad - cantidadRetirada;
 
+        if (total < 0) {
+
+            throw new ExcedeLaCargaDisponible(cantidad, cantidadRetirada);
+        }
+
+        cantidad = total;
     }
 
     public int contar() {
