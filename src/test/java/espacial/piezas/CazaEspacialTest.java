@@ -24,7 +24,7 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class CazaEspacialTest extends PruebaSobrePieza<CazaEspacial> {
+public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private final Amarre AMARRE = mock(Amarre.class, "AMARRE");
     private final Casillero UN_CASILLERO = mock(Casillero.class, "UN_CASILLERO");

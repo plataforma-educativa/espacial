@@ -1,12 +1,12 @@
 package espacial;
 
 import espacial.excepciones.ParametroInvalido;
-import espacial.test.Prueba;
+import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class CargaTest implements Prueba {
+public class CargaTest implements TestDeContrato {
 
     @Test
     public void por() {

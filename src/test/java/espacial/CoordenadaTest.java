@@ -1,13 +1,12 @@
 package espacial;
 
-import static org.assertj.core.api.Assertions.*;
-
+import espacial.test.Postcondicion;
+import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
-import espacial.test.Postcondicion;
-import espacial.test.Prueba;
+import static org.assertj.core.api.Assertions.*;
 
-public class CoordenadaTest implements Prueba {
+public class CoordenadaTest implements TestDeContrato {
 
     @Test
     public void crearConFilaColumna() {

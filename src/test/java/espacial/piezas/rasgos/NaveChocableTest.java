@@ -1,15 +1,15 @@
 package espacial.piezas.rasgos;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
 import espacial.Chocable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
-import espacial.test.Prueba;
+import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
-public class NaveChocableTest implements Prueba {
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+public class NaveChocableTest implements TestDeContrato {
 
     private int nivelDeEscudosDisminuido;
     private NaveChocable naveChocada;

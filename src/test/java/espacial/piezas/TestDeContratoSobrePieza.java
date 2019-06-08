@@ -7,13 +7,13 @@ import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.test.Postcondicion;
-import espacial.test.Prueba;
+import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public abstract class PruebaSobrePieza<T extends Pieza> implements Prueba {
+public abstract class TestDeContratoSobrePieza<T extends Pieza> implements TestDeContrato {
 
     protected final NaveEspacial NAVE_ESPACIAL = mock(NaveEspacial.class, "NAVE_ESPACIAL");
     protected final Ataque UN_ATAQUE = mock(Ataque.class, "UN_ATAQUE");

@@ -1,18 +1,18 @@
 package espacial.piezas;
 
-import static org.assertj.core.api.Assertions.*;
-
 import espacial.Ataque;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
-import espacial.test.Prueba;
+import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class ArtilleriaTest implements Prueba {
+import static org.assertj.core.api.Assertions.*;
+
+public class ArtilleriaTest implements TestDeContrato {
 
     private Artilleria unaArtilleria;
     private List<Ataque> ataquesRealizados = new LinkedList<>();

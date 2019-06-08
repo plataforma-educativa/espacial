@@ -5,7 +5,7 @@ import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
-import espacial.test.Prueba;
+import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.IntStream;
@@ -14,7 +14,7 @@ import static espacial.test.Aserciones.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.*;
 
-public class NaveTest implements Prueba {
+public class NaveTest implements TestDeContrato {
 
     private BatallaEspacial batallaEspacial;
     private Nave unaNave;

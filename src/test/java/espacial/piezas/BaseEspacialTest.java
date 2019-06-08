@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class BaseEspacialTest extends PruebaSobrePieza<BaseEspacial> {
+public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
     private final NaveEspacial NAVE = mock(NaveEspacial.class, "NAVE");
     private final NaveEspacial NAVE_ALFA = mock(NaveEspacial.class, "NAVE_ALFA");

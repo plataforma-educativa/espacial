@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class ContenedorDeAntimateriaTest extends PruebaSobrePieza<ContenedorDeAntimateria> {
+public class ContenedorDeAntimateriaTest extends TestDeContratoSobrePieza<ContenedorDeAntimateria> {
 
     private ContenedorDeAntimateria unContenedorDeAntimateria;
 

@@ -1,11 +1,12 @@
 package espacial.utiles;
 
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
+import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class OpcionalTest {
+public class OpcionalTest implements TestDeContrato {
 
     @Test
     public void conValor() {

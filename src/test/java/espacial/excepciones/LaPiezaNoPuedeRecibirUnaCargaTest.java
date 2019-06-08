@@ -4,13 +4,14 @@ import espacial.Carga;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
+import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class LaPiezaNoPuedeRecibirUnaCargaTest {
+public class LaPiezaNoPuedeRecibirUnaCargaTest implements TestDeContrato {
 
     private final Pieza UNA_PIEZA = mock(Pieza.class, "UNA_PIEZA");
     private final Carga UNA_CARGA = SustanciaEspacial.ANTIMATERIA.por(8);

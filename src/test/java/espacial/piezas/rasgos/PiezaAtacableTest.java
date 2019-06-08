@@ -1,13 +1,13 @@
 package espacial.piezas.rasgos;
 
-import static org.assertj.core.api.Assertions.*;
-
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
-import espacial.test.Prueba;
+import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
-public class PiezaAtacableTest implements Prueba {
+import static org.assertj.core.api.Assertions.*;
+
+public class PiezaAtacableTest implements TestDeContrato {
 
     private int puntosDecrementados;
 

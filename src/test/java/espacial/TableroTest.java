@@ -1,15 +1,15 @@
 package espacial;
 
-import static org.assertj.core.api.Assertions.*;
+import espacial.piezas.BaseEspacial;
+import espacial.test.TestDeContrato;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.*;
 
-import espacial.piezas.BaseEspacial;
-
-public class TableroTest {
+public class TableroTest implements TestDeContrato {
 
     @Test
     public void obtenerDimensiones() {

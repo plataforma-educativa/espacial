@@ -1,18 +1,16 @@
+import espacial.Direccion;
+import espacial.NaveEspacial;
+import espacial.Tablero;
+import espacial.test.Postcondicion;
+import espacial.test.Precondicion;
+import espacial.test.TestDeContrato;
+import org.junit.jupiter.api.Test;
 
 import static espacial.test.Aserciones.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
-import espacial.Direccion;
-import espacial.NaveEspacial;
-import espacial.test.Precondicion;
-import org.junit.jupiter.api.Test;
-
-import espacial.Tablero;
-import espacial.test.Postcondicion;
-import espacial.test.Prueba;
-
-public class BatallaEspacialTest implements Prueba {
+public class BatallaEspacialTest implements TestDeContrato {
 
     private final Nave UNA_NAVE = mock(Nave.class, "UNA_NAVE");
 

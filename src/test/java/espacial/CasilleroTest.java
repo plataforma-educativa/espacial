@@ -1,23 +1,22 @@
 package espacial;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.params.provider.Arguments.*;
-
-import java.util.stream.Stream;
-
 import espacial.piezas.Asteroide;
 import espacial.piezas.CazaEspacial;
 import espacial.piezas.ContenedorDeAntimateria;
+import espacial.test.Postcondicion;
+import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-import espacial.test.Postcondicion;
-import espacial.test.Prueba;
+import java.util.stream.Stream;
 
-public class CasilleroTest implements Prueba {
+import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.params.provider.Arguments.*;
+
+public class CasilleroTest implements TestDeContrato {
 
     private Tablero tablero;
 

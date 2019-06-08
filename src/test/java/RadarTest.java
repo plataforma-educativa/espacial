@@ -3,7 +3,7 @@ import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
-import espacial.test.Prueba;
+import espacial.test.TestDeContrato;
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class RadarTest implements Prueba {
+public class RadarTest implements TestDeContrato {
 
     private static Condition<Integer> CERO = new Condition<>(valor -> valor == 0, "igual a 0");
     private static Condition<Integer> MAYOR_A_CERO = new Condition<>(valor -> valor > 0, "mayor a 0");

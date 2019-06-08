@@ -1,18 +1,18 @@
 package espacial.tableros;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
-
 import espacial.Ataque;
 import espacial.Casillero;
 import espacial.Pieza;
 import espacial.excepciones.Defecto;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
-import espacial.test.Prueba;
+import espacial.test.TestDeContrato;
 
-public abstract class EstadoDelCasilleroTest implements Prueba {
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
+
+public abstract class EstadoDelCasilleroTest implements TestDeContrato {
 
     protected final CasilleroInterior CASILLERO = mock(CasilleroInterior.class, "CASILLERO");
     protected final Casillero CASILLERO_ORIGEN = mock(Casillero.class, "CASILLERO_ORIGEN");

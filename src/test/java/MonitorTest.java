@@ -1,14 +1,14 @@
 
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
-import espacial.test.Prueba;
+import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class MonitorTest implements Prueba {
+public class MonitorTest implements TestDeContrato {
 
     private BatallaEspacial batallaEspacial;
     private Nave unaNave;

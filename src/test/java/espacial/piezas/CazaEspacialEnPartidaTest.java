@@ -1,14 +1,14 @@
 package espacial.piezas;
 
-import static org.mockito.Mockito.*;
-
 import espacial.Casillero;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
-import espacial.test.Prueba;
+import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
-public class CazaEspacialEnPartidaTest implements Prueba {
+import static org.mockito.Mockito.*;
+
+public class CazaEspacialEnPartidaTest implements TestDeContrato {
 
     private final Casillero UN_CASILLERO = mock(Casillero.class, "UN_CASILLERO");
 

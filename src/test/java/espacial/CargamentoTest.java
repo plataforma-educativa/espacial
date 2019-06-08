@@ -5,12 +5,12 @@ import espacial.excepciones.ExcedeLaCargaDisponible;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
-import espacial.test.Prueba;
+import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class CargamentoTest implements Prueba {
+public class CargamentoTest implements TestDeContrato {
 
     private Cargamento unCargamento;
 

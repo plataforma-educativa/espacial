@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class AgujeroNegroTest extends PruebaSobrePieza<AgujeroNegro> {
+public class AgujeroNegroTest extends TestDeContratoSobrePieza<AgujeroNegro> {
 
     private AgujeroNegro unAgujeroNegro;
 
