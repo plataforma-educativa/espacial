@@ -133,14 +133,14 @@ public class CargamentoTest implements Prueba {
     }
 
     private Postcondicion generaExcepcionPorqueExcedeLaCapacidadDeCarga(Ejecutable ejecutable,
-                                                                        int agregada, int capacidad) {
+                                                                        int total, int capacidad) {
 
         return postcondicion(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(ExcedeLaCapacidadDeCarga.class)
-                        .hasMessage("La carga de '%d' excede la capacidad de '%d'", agregada, capacidad)
+                        .hasMessage("'%d' excede la capacidad de carga de '%d'", total, capacidad)
         );
     }
 }
