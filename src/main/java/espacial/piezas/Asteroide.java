@@ -7,6 +7,7 @@ import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.Visitante;
 import espacial.excepciones.LaPiezaNoPuedeRecibirUnaCarga;
+import espacial.excepciones.NoPuedeExtraerUnaCarga;
 import espacial.piezas.rasgos.PiezaAtacable;
 
 public class Asteroide implements Pieza, PiezaAtacable {
@@ -53,5 +54,10 @@ public class Asteroide implements Pieza, PiezaAtacable {
     public void recibir(Carga unaCarga) {
 
         throw new LaPiezaNoPuedeRecibirUnaCarga(this, unaCarga);
+    }
+
+    public void extraer(Carga unaCarga) {
+
+        throw new NoPuedeExtraerUnaCarga(this, unaCarga);
     }
 }

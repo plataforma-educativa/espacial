@@ -3,6 +3,7 @@ package espacial.piezas;
 import espacial.EspectroEspacial;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.LaPiezaNoPuedeRecibirUnaCarga;
+import espacial.excepciones.NoPuedeExtraerUnaCarga;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
@@ -55,7 +56,10 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
         dadoQue(fueCreadoUnAsteroide());
 
-        comprobarQue(generaExcepcionPorqueNoPuedeRecirCarga(() -> unAsteroide.recibir(SustanciaEspacial.ANTIMATERIA.por(34))));
+        comprobarQue(generaExcepcionPorqueNoPuedeRecirCarga(() ->
+
+                unAsteroide.recibir(SustanciaEspacial.ANTIMATERIA.por(34)))
+        );
     }
 
     private Postcondicion generaExcepcionPorqueNoPuedeRecirCarga(Ejecutable ejecutable) {
@@ -65,6 +69,27 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción lanzada")
                         .isInstanceOf(LaPiezaNoPuedeRecibirUnaCarga.class)
+        );
+    }
+
+    @Test
+    public void extraerUnaCarga() {
+
+        dadoQue(fueCreadoUnAsteroide());
+
+        comprobarQue(generaExcepcionPorqueNoPuedeExtraerCarga(() ->
+
+                unAsteroide.extraer(SustanciaEspacial.ANTIMATERIA.por(100)))
+        );
+    }
+
+    private Postcondicion generaExcepcionPorqueNoPuedeExtraerCarga(Ejecutable ejecutable) {
+
+        return postcondicion(() ->
+
+                assertThatThrownBy(ejecutable::ejecutar)
+                        .as("excepción generada")
+                        .isInstanceOf(NoPuedeExtraerUnaCarga.class)
         );
     }
 }
