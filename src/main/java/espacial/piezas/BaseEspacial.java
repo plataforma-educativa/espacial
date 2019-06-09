@@ -9,22 +9,18 @@ import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.Visitante;
-import espacial.piezas.rasgos.DepositoDeAntimateria;
-import espacial.piezas.rasgos.DepositoDeCristal;
-import espacial.piezas.rasgos.DepositoDeMetal;
+import espacial.piezas.rasgos.BaseDeposito;
 import espacial.piezas.rasgos.PiezaAtacable;
-import espacial.piezas.rasgos.PiezaDeposito;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class BaseEspacial implements Pieza, PiezaAtacable, PiezaDeposito, DepositoDeAntimateria, DepositoDeMetal, DepositoDeCristal {
+public class BaseEspacial implements Pieza, PiezaAtacable, BaseDeposito {
 
-    private static final int CAPACIDAD = 5000;
     private final List<Amarre> amarres = new LinkedList<>();
-    private final Cargamento antimateria = new Cargamento(CAPACIDAD);
-    private final Cargamento metal = new Cargamento(CAPACIDAD);
-    private final Cargamento cristal = new Cargamento(CAPACIDAD);
+    private final Cargamento antimateria = new Cargamento(obtenerCapacidad());
+    private final Cargamento metal = new Cargamento(obtenerCapacidad());
+    private final Cargamento cristal = new Cargamento(obtenerCapacidad());
     private int puntos = 200;
     private Casillero casillero;
 
