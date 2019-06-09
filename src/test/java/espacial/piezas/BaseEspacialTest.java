@@ -270,4 +270,44 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
         comprobarQue(unaBaseTiene(SustanciaEspacial.CRISTAL, cantidad));
     }
+
+    @Test
+    public void entregarUnaCargaDeAntimateria() {
+
+        final int cantidadInicial = 60;
+        final int cantidadRetirada = 12;
+
+        dadoQue(fueCreadaUnaBaseRecibiendo(SustanciaEspacial.ANTIMATERIA.por(cantidadInicial)));
+
+        unaBase.entregar(SustanciaEspacial.ANTIMATERIA.por(cantidadRetirada));
+
+        comprobarQue(unaBaseTiene(SustanciaEspacial.ANTIMATERIA, cantidadInicial - cantidadRetirada));
+    }
+
+    @Test
+    public void entregarUnaCargaDeCristal() {
+
+        final int cantidadInicial = 500;
+        final int cantidadRetirada = 120;
+
+        dadoQue(fueCreadaUnaBaseRecibiendo(SustanciaEspacial.CRISTAL.por(cantidadInicial)));
+
+        unaBase.entregar(SustanciaEspacial.CRISTAL.por(cantidadRetirada));
+
+        comprobarQue(unaBaseTiene(SustanciaEspacial.CRISTAL, cantidadInicial - cantidadRetirada));
+    }
+
+    @Test
+    public void entregarUnaCargaDeMETAL() {
+
+        final int cantidadInicial = 1300;
+        final int cantidadRetirada = 450;
+
+        dadoQue(fueCreadaUnaBaseRecibiendo(SustanciaEspacial.METAL.por(cantidadInicial)));
+
+        unaBase.entregar(SustanciaEspacial.METAL.por(cantidadRetirada));
+
+        comprobarQue(unaBaseTiene(SustanciaEspacial.METAL, cantidadInicial - cantidadRetirada));
+    }
+
 }
