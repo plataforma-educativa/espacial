@@ -18,7 +18,6 @@ public abstract class TestDeContratoSobrePieza<T extends Pieza> implements TestD
     protected final NaveEspacial NAVE_ESPACIAL = mock(NaveEspacial.class, "NAVE_ESPACIAL");
     protected final Ataque UN_ATAQUE = mock(Ataque.class, "UN_ATAQUE");
 
-
     protected abstract T piezaCreada();
 
     protected abstract EspectroEspacial espectroEsperado();
