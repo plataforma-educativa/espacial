@@ -59,6 +59,7 @@ public class ContenedorDeAntimateria implements PiezaDeposito, PiezaAtacable, De
         return antimateria;
     }
 
+    @Override
     public void extraer(Carga unaCarga) {
 
         unaCarga.bajarDe(this);
