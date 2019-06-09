@@ -139,7 +139,7 @@ public class ContenedorDeAntimateriaTest extends TestDeContratoSobrePieza<Conten
 
         dadoQue(fueCreadoUnContenedorDeAntimateriaRecibiendo(cantidadInicial));
 
-        unContenedorDeAntimateria.extraer(SustanciaEspacial.ANTIMATERIA.por(cantidad));
+        unContenedorDeAntimateria.entregar(SustanciaEspacial.ANTIMATERIA.por(cantidad));
 
         comprobarQue(unContenedorTiene(SustanciaEspacial.ANTIMATERIA, cantidadInicial - cantidad));
     }
@@ -154,7 +154,7 @@ public class ContenedorDeAntimateriaTest extends TestDeContratoSobrePieza<Conten
         dadoQue(fueCreadoUnContenedorDeAntimateriaRecibiendo(cantidadInicial));
         dadoQue(fueExtraidaDeUnContenedorDeAntimateriaUnaCarga(cantidadExtraida));
 
-        unContenedorDeAntimateria.extraer(SustanciaEspacial.ANTIMATERIA.por(cantidad));
+        unContenedorDeAntimateria.entregar(SustanciaEspacial.ANTIMATERIA.por(cantidad));
 
         comprobarQue(unContenedorTiene(SustanciaEspacial.ANTIMATERIA, cantidadInicial - cantidadExtraida - cantidad));
     }
@@ -169,7 +169,7 @@ public class ContenedorDeAntimateriaTest extends TestDeContratoSobrePieza<Conten
 
         comprobarQue(generaExcepcionPorqueExcedeLaCargaDisponible(() ->
 
-                unContenedorDeAntimateria.extraer(SustanciaEspacial.ANTIMATERIA.por(cantidad)))
+                unContenedorDeAntimateria.entregar(SustanciaEspacial.ANTIMATERIA.por(cantidad)))
         );
     }
 
@@ -180,7 +180,7 @@ public class ContenedorDeAntimateriaTest extends TestDeContratoSobrePieza<Conten
 
         dadoQue(fueCreadoUnContenedorDeAntimateriaRecibiendo(cantidadInicial));
 
-        unContenedorDeAntimateria.extraer(SustanciaEspacial.ANTIMATERIA.por(cantidadInicial));
+        unContenedorDeAntimateria.entregar(SustanciaEspacial.ANTIMATERIA.por(cantidadInicial));
 
         comprobarQue(unContenedorTiene(SustanciaEspacial.ANTIMATERIA, 0));
     }
@@ -189,7 +189,7 @@ public class ContenedorDeAntimateriaTest extends TestDeContratoSobrePieza<Conten
 
         return precondicion(() ->
 
-                unContenedorDeAntimateria.extraer(SustanciaEspacial.ANTIMATERIA.por(cantidadExtraida))
+                unContenedorDeAntimateria.entregar(SustanciaEspacial.ANTIMATERIA.por(cantidadExtraida))
         );
     }
 

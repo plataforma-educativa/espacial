@@ -2,7 +2,7 @@ package espacial.piezas;
 
 import espacial.EspectroEspacial;
 import espacial.SustanciaEspacial;
-import espacial.excepciones.NoPuedeExtraerUnaCarga;
+import espacial.excepciones.NoPuedeEntregarUnaCarga;
 import espacial.excepciones.NoPuedeRecibirUnaCarga;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
@@ -79,7 +79,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
         comprobarQue(generaExcepcionPorqueNoPuedeExtraerCarga(() ->
 
-                unAsteroide.extraer(SustanciaEspacial.ANTIMATERIA.por(100)))
+                unAsteroide.entregar(SustanciaEspacial.ANTIMATERIA.por(100)))
         );
     }
 
@@ -89,7 +89,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")
-                        .isInstanceOf(NoPuedeExtraerUnaCarga.class)
+                        .isInstanceOf(NoPuedeEntregarUnaCarga.class)
         );
     }
 }

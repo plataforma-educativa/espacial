@@ -1,11 +1,11 @@
 package espacial;
 
 import espacial.excepciones.LaOperacionNoEstaSoportada;
-import espacial.excepciones.NoPuedeExtraerUnaCarga;
+import espacial.excepciones.NoPuedeEntregarUnaCarga;
 
 /**
  * Una Pieza es un elemento que participa de una Partida.
- * 
+ *
  * @author Mariano Tugnarelli
  *
  */
@@ -67,12 +67,12 @@ public interface Pieza extends Obstaculo, Objetivo {
     void recibir(Carga unaCarga);
 
     /**
-     * @pre  la Pieza es capaz de extraer una Carga de SustanciaEspacial.
+     * @pre  la Pieza es capaz de entregar una Carga de SustanciaEspacial.
      * @post entrega la Carga indicada.
      * @param unaCarga Carga de Sustancia Espacial a entregar.
      */
-    default void extraer(Carga unaCarga) {
+    default void entregar(Carga unaCarga) {
 
-        throw new NoPuedeExtraerUnaCarga(this, unaCarga);
+        throw new NoPuedeEntregarUnaCarga(this, unaCarga);
     }
 }
