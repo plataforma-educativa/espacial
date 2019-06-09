@@ -1,6 +1,7 @@
 package espacial.piezas;
 
 import espacial.Amarre;
+import espacial.Carga;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
@@ -182,19 +183,19 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
         final int cantidadInicial = 45;
         final int cantidad = 20;
 
-        dadoQue(fueCreadoUnaBaseRecibiendo(cantidadInicial));
+        dadoQue(fueCreadaUnaBaseRecibiendo(SustanciaEspacial.ANTIMATERIA.por(cantidadInicial)));
 
         unaBase.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidad));
 
         comprobarQue(unaBaseTiene(SustanciaEspacial.ANTIMATERIA, cantidadInicial + cantidad));
     }
 
-    private Precondicion fueCreadoUnaBaseRecibiendo(int cantidadInicial) {
+    private Precondicion fueCreadaUnaBaseRecibiendo(Carga unaCarga) {
 
         return precondicion(() -> {
 
             unaBase = new BaseEspacial();
-            unaBase.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidadInicial));
+            unaBase.recibir(unaCarga);
         });
     }
 
@@ -233,4 +234,16 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
         );
     }
 
+    @Test
+    public void entregarUnaCarga() {
+
+        final int cantidadInicial = 400;
+        final int cantidadEntregada = 150;
+
+        dadoQue(fueCreadaUnaBaseRecibiendo(SustanciaEspacial.ANTIMATERIA.por(cantidadInicial)));
+
+        unaBase.entregar(SustanciaEspacial.ANTIMATERIA.por(cantidadEntregada));
+
+        comprobarQue(unaBaseTiene(SustanciaEspacial.ANTIMATERIA, cantidadInicial - cantidadEntregada));
+    }
 }
