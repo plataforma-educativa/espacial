@@ -156,7 +156,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void recibirUnaCarga() {
+    public void recibirUnaCargaDeAntimateria() {
 
         final int cantidad = 40;
 
@@ -178,7 +178,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void recibirMultiplesCargas() {
+    public void recibirMultiplesCargasDeAntimateria() {
 
         final int cantidadInicial = 45;
         final int cantidad = 20;
@@ -200,7 +200,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void recibirLaCargaMaxima() {
+    public void recibirLaCargaMaximaDeAntimateria() {
 
         final int cantidadMaxima = 5000;
 
@@ -212,7 +212,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void recibirCargaExcediendoLaCapacidad() {
+    public void recibirCargaExcediendoLaCapacidadDeAntimateria() {
 
         final int cantidadExcedida = 5001;
 
@@ -245,5 +245,29 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
         unaBase.entregar(SustanciaEspacial.ANTIMATERIA.por(cantidadEntregada));
 
         comprobarQue(unaBaseTiene(SustanciaEspacial.ANTIMATERIA, cantidadInicial - cantidadEntregada));
+    }
+
+    @Test
+    public void recibirUnaCargaDeMetal() {
+
+        final int cantidad = 400;
+
+        dadoQue(fueCreadaUnaBase());
+
+        unaBase.recibir(SustanciaEspacial.METAL.por(cantidad));
+
+        comprobarQue(unaBaseTiene(SustanciaEspacial.METAL, cantidad));
+    }
+
+    @Test
+    public void recibirUnaCargaDeCristal() {
+
+        final int cantidad = 320;
+
+        dadoQue(fueCreadaUnaBase());
+
+        unaBase.recibir(SustanciaEspacial.CRISTAL.por(cantidad));
+
+        comprobarQue(unaBaseTiene(SustanciaEspacial.CRISTAL, cantidad));
     }
 }
