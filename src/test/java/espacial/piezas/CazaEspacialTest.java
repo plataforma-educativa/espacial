@@ -3,6 +3,7 @@ package espacial.piezas;
 import espacial.Amarre;
 import espacial.Atacable;
 import espacial.Ataque;
+import espacial.Carga;
 import espacial.Casillero;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
@@ -471,13 +472,13 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
         comprobarQue(unCazaEspacialTiene(SustanciaEspacial.ANTIMATERIA, cantidad));
     }
 
-    private Postcondicion unCazaEspacialTiene(SustanciaEspacial sustanciaEsperada, int cantidadEsperada) {
+    private Postcondicion unCazaEspacialTiene(SustanciaEspacial sustanciaEsperada, int esperada) {
 
         return postcondicion(() ->
 
                 assertThat(unCazaEspacial.buscar(sustanciaEsperada))
                         .as("buscar(" + sustanciaEsperada + ")")
-                        .isEqualTo(cantidadEsperada)
+                        .isEqualTo(esperada)
         );
     }
 
@@ -487,19 +488,19 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
         final int cantidadInicial = 45;
         final int cantidad = 20;
 
-        dadoQue(fueCreadoUnCazaEspacialRecibiendo(cantidadInicial));
+        dadoQue(fueCreadoUnCazaEspacialRecibiendo(SustanciaEspacial.ANTIMATERIA.por(cantidadInicial)));
 
         unCazaEspacial.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidad));
 
         comprobarQue(unCazaEspacialTiene(SustanciaEspacial.ANTIMATERIA, cantidadInicial + cantidad));
     }
 
-    private Precondicion fueCreadoUnCazaEspacialRecibiendo(int cantidadInicial) {
+    private Precondicion fueCreadoUnCazaEspacialRecibiendo(Carga unaCarga) {
 
         return precondicion(() -> {
 
             unCazaEspacial = new CazaEspacial();
-            unCazaEspacial.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidadInicial));
+            unCazaEspacial.recibir(unaCarga);
         });
     }
 
@@ -538,4 +539,53 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
         );
     }
 
+    @Test
+    public void recibirUnaCargaDeMetal() {
+
+        final int cantidad = 79;
+
+        dadoQue(fueCreadoUnCazaEspacial());
+
+        unCazaEspacial.recibir(SustanciaEspacial.METAL.por(cantidad));
+
+        comprobarQue(unCazaEspacialTiene(SustanciaEspacial.METAL, cantidad));
+    }
+
+    @Test
+    public void entregarUnaCargaDeMetal() {
+
+        final int cantidadInicial = 80;
+        final int cantidadRetirada = 45;
+
+        dadoQue(fueCreadoUnCazaEspacialRecibiendo(SustanciaEspacial.METAL.por(cantidadInicial)));
+
+        unCazaEspacial.entregar(SustanciaEspacial.METAL.por(cantidadRetirada));
+
+        comprobarQue(unCazaEspacialTiene(SustanciaEspacial.METAL, cantidadInicial - cantidadRetirada));
+    }
+
+    @Test
+    public void recibirUnaCargaDeCristal() {
+
+        final int cantidad = 23;
+
+        dadoQue(fueCreadoUnCazaEspacial());
+
+        unCazaEspacial.recibir(SustanciaEspacial.CRISTAL.por(cantidad));
+
+        comprobarQue(unCazaEspacialTiene(SustanciaEspacial.CRISTAL, cantidad));
+    }
+
+    @Test
+    public void entregarUnaCargaDeCristal() {
+
+        final int cantidadInicial = 70;
+        final int cantidadRetirada = 12;
+
+        dadoQue(fueCreadoUnCazaEspacialRecibiendo(SustanciaEspacial.CRISTAL.por(cantidadInicial)));
+
+        unCazaEspacial.entregar(SustanciaEspacial.CRISTAL.por(cantidadRetirada));
+
+        comprobarQue(unCazaEspacialTiene(SustanciaEspacial.CRISTAL, cantidadInicial - cantidadRetirada));
+    }
 }

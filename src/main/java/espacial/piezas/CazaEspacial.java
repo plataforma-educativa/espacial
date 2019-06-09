@@ -12,18 +12,23 @@ import espacial.Visitante;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.piezas.rasgos.DepositoDeAntimateria;
+import espacial.piezas.rasgos.DepositoDeCristal;
+import espacial.piezas.rasgos.DepositoDeMetal;
 import espacial.piezas.rasgos.NaveChocable;
 import espacial.piezas.rasgos.PiezaAtacable;
 import espacial.piezas.rasgos.PiezaDeposito;
 import espacial.utiles.Opcional;
 
-public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable, PiezaDeposito, DepositoDeAntimateria {
+public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable, PiezaDeposito,
+        DepositoDeAntimateria, DepositoDeMetal, DepositoDeCristal {
 
     private final static int CAPACIDAD = 100;
 
     private final Indicador nivelDeEscudos = new Indicador(100);
     private final Artilleria artilleria = new Artilleria(100);
     private final Cargamento antimateria = new Cargamento(CAPACIDAD);
+    private final Cargamento metal = new Cargamento(CAPACIDAD);
+    private final Cargamento cristal = new Cargamento(CAPACIDAD);
     private Opcional<Casillero> casillero = Opcional.sinValor();
     private Opcional<Amarre> amarre = Opcional.sinValor();
 
@@ -146,5 +151,17 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, PiezaAtacable, 
     public Cargamento obtenerAntimateria() {
 
         return antimateria;
+    }
+
+    @Override
+    public Cargamento obtenerMetal() {
+
+        return metal;
+    }
+
+    @Override
+    public Cargamento obtenerCristal() {
+
+        return cristal;
     }
 }

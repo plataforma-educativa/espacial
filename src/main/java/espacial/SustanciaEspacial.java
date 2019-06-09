@@ -23,6 +23,48 @@ public enum SustanciaEspacial {
 
             return deposito.contarAntimateria();
         }
+    },
+
+    METAL {
+
+        @Override
+        public void cargar(int cantidad, Deposito deposito) {
+
+            deposito.cargarMetal(cantidad);
+        }
+
+        @Override
+        public void descargar(int cantidad, Deposito deposito) {
+
+            deposito.descargarMetal(cantidad);
+        }
+
+        @Override
+        public int buscar(Deposito deposito) {
+
+            return deposito.contarMetal();
+        }
+    },
+
+    CRISTAL {
+
+        @Override
+        public void cargar(int cantidad, Deposito deposito) {
+
+            deposito.cargarCristal(cantidad);
+        }
+
+        @Override
+        public void descargar(int cantidad, Deposito deposito) {
+
+            deposito.descargarCristal(cantidad);
+        }
+
+        @Override
+        public int buscar(Deposito deposito) {
+
+            return deposito.contarCristal();
+        }
     };
 
     public Carga por(int cantidad) {
