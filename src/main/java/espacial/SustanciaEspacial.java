@@ -7,19 +7,19 @@ public enum SustanciaEspacial {
     ANTIMATERIA {
 
         @Override
-        public void cargar(int cantidad, Deposito deposito) {
+        public void cargar(int cantidad, Deposito enDeposito) {
 
-            deposito.cargarAntimateria(cantidad);
+            enDeposito.cargarAntimateria(cantidad);
         }
 
         @Override
-        public void descargar(int cantidad, Deposito deposito) {
+        public void descargar(int cantidad, Deposito enDeposito) {
 
-            deposito.descargarAntimateria(cantidad);
+            enDeposito.descargarAntimateria(cantidad);
         }
 
         @Override
-        public int buscar(Deposito deposito) {
+        public int buscarEn(Deposito deposito) {
 
             return deposito.contarAntimateria();
         }
@@ -28,19 +28,19 @@ public enum SustanciaEspacial {
     METAL {
 
         @Override
-        public void cargar(int cantidad, Deposito deposito) {
+        public void cargar(int cantidad, Deposito enDeposito) {
 
-            deposito.cargarMetal(cantidad);
+            enDeposito.cargarMetal(cantidad);
         }
 
         @Override
-        public void descargar(int cantidad, Deposito deposito) {
+        public void descargar(int cantidad, Deposito enDeposito) {
 
-            deposito.descargarMetal(cantidad);
+            enDeposito.descargarMetal(cantidad);
         }
 
         @Override
-        public int buscar(Deposito deposito) {
+        public int buscarEn(Deposito deposito) {
 
             return deposito.contarMetal();
         }
@@ -49,19 +49,19 @@ public enum SustanciaEspacial {
     CRISTAL {
 
         @Override
-        public void cargar(int cantidad, Deposito deposito) {
+        public void cargar(int cantidad, Deposito enDeposito) {
 
-            deposito.cargarCristal(cantidad);
+            enDeposito.cargarCristal(cantidad);
         }
 
         @Override
-        public void descargar(int cantidad, Deposito deposito) {
+        public void descargar(int cantidad, Deposito enDeposito) {
 
-            deposito.descargarCristal(cantidad);
+            enDeposito.descargarCristal(cantidad);
         }
 
         @Override
-        public int buscar(Deposito deposito) {
+        public int buscarEn(Deposito deposito) {
 
             return deposito.contarCristal();
         }
@@ -77,9 +77,9 @@ public enum SustanciaEspacial {
         return new CargaIndividual(cantidad, this);
     }
 
-    public abstract void cargar(int cantidad, Deposito deposito);
+    public abstract void cargar(int cantidad, Deposito enDeposito);
 
-    public abstract void descargar(int cantidad, Deposito deposito);
+    public abstract void descargar(int cantidad, Deposito enDeposito);
 
-    public abstract int buscar(Deposito deposito);
+    public abstract int buscarEn(Deposito deposito);
 }

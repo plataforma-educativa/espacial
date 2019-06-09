@@ -90,13 +90,13 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
     private Postcondicion unaBaseTieneAmarradasLasNavesAlfaBetaGamma() {
 
-        return postcondicion(() -> {
+        return postcondicion(() ->
 
             assertThat(unaBase.obtenerAmarres())
                     .as("amarres")
                     .extracting(Amarre::obtenerPieza)
-                    .containsExactly(NAVE_ALFA, NAVE_BETA, NAVE_GAMMA);
-        });
+                    .containsExactly(NAVE_ALFA, NAVE_BETA, NAVE_GAMMA)
+        );
     }
 
     @Test

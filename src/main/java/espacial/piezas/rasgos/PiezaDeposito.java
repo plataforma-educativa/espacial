@@ -10,7 +10,7 @@ public interface PiezaDeposito extends Pieza, Deposito {
     @Override
     default int buscar(SustanciaEspacial unaSustancia) {
 
-        return unaSustancia.buscar(this);
+        return unaSustancia.buscarEn(this);
     }
 
     @Override
