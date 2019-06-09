@@ -3,6 +3,8 @@ package espacial.piezas;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
+import espacial.excepciones.NoPuedeRecibirUnaCarga;
+import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import org.junit.jupiter.api.Test;
@@ -74,13 +76,19 @@ public class AgujeroNegroTest extends TestDeContratoSobrePieza<AgujeroNegro> {
 
         dadoQue(fueCreadoUnAgujeroNegro());
 
-        unAgujeroNegro.recibir(SustanciaEspacial.ANTIMATERIA.por(20));
+        comprobarQue(generaExcepcionPorqueNoPuedeRecibirUnaCarga(() ->
 
-        comprobarQue(noGeneraExcepcionPeroTampocoCambiaElEstadoDeLaPieza());
+                unAgujeroNegro.recibir(SustanciaEspacial.ANTIMATERIA.por(20))
+        ));
     }
 
-    private Postcondicion noGeneraExcepcionPeroTampocoCambiaElEstadoDeLaPieza() {
+    private Postcondicion generaExcepcionPorqueNoPuedeRecibirUnaCarga(Ejecutable ejecutable) {
 
-        return postcondicion(() -> {});
+        return postcondicion(() ->
+
+                assertThatThrownBy(ejecutable::ejecutar)
+                        .as("excepción generada")
+                        .isInstanceOf(NoPuedeRecibirUnaCarga.class)
+        );
     }
 }
