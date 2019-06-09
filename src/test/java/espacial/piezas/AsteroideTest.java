@@ -77,13 +77,13 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
         dadoQue(fueCreadoUnAsteroide());
 
-        comprobarQue(generaExcepcionPorqueNoPuedeExtraerCarga(() ->
+        comprobarQue(generaExcepcionPorqueNoPuedeEntregarUnaCarga(() ->
 
                 unAsteroide.entregar(SustanciaEspacial.ANTIMATERIA.por(100)))
         );
     }
 
-    private Postcondicion generaExcepcionPorqueNoPuedeExtraerCarga(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueNoPuedeEntregarUnaCarga(Ejecutable ejecutable) {
 
         return postcondicion(() ->
 
