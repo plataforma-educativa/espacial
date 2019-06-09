@@ -3,6 +3,7 @@ package espacial.piezas;
 import espacial.EspectroEspacial;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.ExcedeLaCapacidadDeCarga;
+import espacial.excepciones.ExcedeLaCargaDisponible;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
@@ -60,16 +61,16 @@ public class ContenedorDeAntimateriaTest extends TestDeContratoSobrePieza<Conten
 
         unContenedorDeAntimateria.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidad));
 
-        comprobarQue(elContenedorTiene(SustanciaEspacial.ANTIMATERIA, cantidad));
+        comprobarQue(unContenedorTiene(SustanciaEspacial.ANTIMATERIA, cantidad));
     }
 
-    private Postcondicion elContenedorTiene(SustanciaEspacial sustanciaEsperada, int cantidadEsperada) {
+    private Postcondicion unContenedorTiene(SustanciaEspacial sustanciaEsperada, int cantidadEsperada) {
 
         return postcondicion(() ->
 
                 assertThat(unContenedorDeAntimateria.buscar(sustanciaEsperada))
-                    .as("buscar(" + sustanciaEsperada + ")")
-                    .isEqualTo(cantidadEsperada)
+                        .as("buscar(" + sustanciaEsperada + ")")
+                        .isEqualTo(cantidadEsperada)
         );
     }
 
@@ -83,7 +84,7 @@ public class ContenedorDeAntimateriaTest extends TestDeContratoSobrePieza<Conten
 
         unContenedorDeAntimateria.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidad));
 
-        comprobarQue(elContenedorTiene(SustanciaEspacial.ANTIMATERIA, cantidadInicial + cantidad));
+        comprobarQue(unContenedorTiene(SustanciaEspacial.ANTIMATERIA, cantidadInicial + cantidad));
     }
 
     private Precondicion fueCreadoUnContenedorDeAntimateriaRecibiendo(int cantidadInicial) {
@@ -97,16 +98,16 @@ public class ContenedorDeAntimateriaTest extends TestDeContratoSobrePieza<Conten
 
     @Test
     public void recibirLaCargaMaxima() {
-        
+
         final int cantidadMaxima = 1000;
-        
+
         dadoQue(fueCreadoUnContenedorDeAntimateria());
-        
+
         unContenedorDeAntimateria.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidadMaxima));
 
-        comprobarQue(elContenedorTiene(SustanciaEspacial.ANTIMATERIA, cantidadMaxima));
+        comprobarQue(unContenedorTiene(SustanciaEspacial.ANTIMATERIA, cantidadMaxima));
     }
-    
+
     @Test
     public void recibirCargaExcediendoLaCapacidad() {
 
@@ -119,7 +120,7 @@ public class ContenedorDeAntimateriaTest extends TestDeContratoSobrePieza<Conten
                 unContenedorDeAntimateria.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidadExcedida)))
         );
     }
-    
+
     private Postcondicion generaExcepcionPorqueExcedeLaCapacidadDeCarga(Ejecutable ejecutable) {
 
         return postcondicion(() ->
@@ -134,12 +135,71 @@ public class ContenedorDeAntimateriaTest extends TestDeContratoSobrePieza<Conten
     public void extraerUnaCarga() {
 
         final int cantidadInicial = 90;
-        final int cantidadExtraida = 10;
+        final int cantidad = 10;
 
         dadoQue(fueCreadoUnContenedorDeAntimateriaRecibiendo(cantidadInicial));
 
-        unContenedorDeAntimateria.extraer(SustanciaEspacial.ANTIMATERIA.por(cantidadExtraida));
+        unContenedorDeAntimateria.extraer(SustanciaEspacial.ANTIMATERIA.por(cantidad));
 
-        comprobarQue(elContenedorTiene(SustanciaEspacial.ANTIMATERIA, cantidadInicial - cantidadExtraida));
+        comprobarQue(unContenedorTiene(SustanciaEspacial.ANTIMATERIA, cantidadInicial - cantidad));
+    }
+
+    @Test
+    public void extraerMultiplesCargas() {
+
+        final int cantidadInicial = 500;
+        final int cantidadExtraida = 343;
+        final int cantidad = 132;
+
+        dadoQue(fueCreadoUnContenedorDeAntimateriaRecibiendo(cantidadInicial));
+        dadoQue(fueExtraidaDeUnContenedorDeAntimateriaUnaCarga(cantidadExtraida));
+
+        unContenedorDeAntimateria.extraer(SustanciaEspacial.ANTIMATERIA.por(cantidad));
+
+        comprobarQue(unContenedorTiene(SustanciaEspacial.ANTIMATERIA, cantidadInicial - cantidadExtraida - cantidad));
+    }
+
+    @Test
+    public void extraerExcediendoLaCargaDisponible() {
+
+        final int cantidadInicial = 100;
+        final int cantidad = 101;
+
+        dadoQue(fueCreadoUnContenedorDeAntimateriaRecibiendo(cantidadInicial));
+
+        comprobarQue(generaExcepcionPorqueExcedeLaCargaDisponible(() ->
+
+                unContenedorDeAntimateria.extraer(SustanciaEspacial.ANTIMATERIA.por(cantidad)))
+        );
+    }
+
+    @Test
+    public void extraerTodaLaCargaDisponible() {
+
+        final int cantidadInicial = 345;
+
+        dadoQue(fueCreadoUnContenedorDeAntimateriaRecibiendo(cantidadInicial));
+
+        unContenedorDeAntimateria.extraer(SustanciaEspacial.ANTIMATERIA.por(cantidadInicial));
+
+        comprobarQue(unContenedorTiene(SustanciaEspacial.ANTIMATERIA, 0));
+    }
+
+    private Precondicion fueExtraidaDeUnContenedorDeAntimateriaUnaCarga(int cantidadExtraida) {
+
+        return precondicion(() ->
+
+                unContenedorDeAntimateria.extraer(SustanciaEspacial.ANTIMATERIA.por(cantidadExtraida))
+        );
+    }
+
+    private Postcondicion generaExcepcionPorqueExcedeLaCargaDisponible(Ejecutable ejecutable) {
+
+        return postcondicion(() ->
+
+                assertThatThrownBy(ejecutable::ejecutar)
+                        .as("excepción generada")
+                        .isInstanceOf(ExcedeLaCargaDisponible.class)
+        );
     }
 }
