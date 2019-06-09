@@ -1,7 +1,6 @@
 package espacial.piezas;
 
 import espacial.Ataque;
-import espacial.Carga;
 import espacial.Cargamento;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
@@ -57,11 +56,5 @@ public class ContenedorDeAntimateria implements PiezaDeposito, PiezaAtacable, De
     public Cargamento obtenerAntimateria() {
 
         return antimateria;
-    }
-
-    @Override
-    public void entregar(Carga unaCarga) {
-
-        unaCarga.bajarDe(this);
     }
 }

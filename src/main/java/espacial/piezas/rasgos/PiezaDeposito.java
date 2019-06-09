@@ -18,4 +18,11 @@ public interface PiezaDeposito extends Pieza, Deposito {
 
         unaCarga.subirEn(this);
     }
+
+    @Override
+    default void entregar(Carga unaCarga) {
+
+        unaCarga.bajarDe(this);
+    }
+
 }
