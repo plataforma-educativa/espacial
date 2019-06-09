@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class LaPiezaNoPuedeRecibirUnaCargaTest implements TestDeContrato {
+public class NoPuedeRecibirUnaCargaTest implements TestDeContrato {
 
     private final Pieza UNA_PIEZA = mock(Pieza.class, "UNA_PIEZA");
     private final Carga UNA_CARGA = SustanciaEspacial.ANTIMATERIA.por(8);
@@ -24,7 +24,7 @@ public class LaPiezaNoPuedeRecibirUnaCargaTest implements TestDeContrato {
 
     @Test
     public void getMessage() {
-        assertThat(new LaPiezaNoPuedeRecibirUnaCarga(UNA_PIEZA, UNA_CARGA))
+        assertThat(new NoPuedeRecibirUnaCarga(UNA_PIEZA, UNA_CARGA))
                 .hasNoCause()
                 .hasMessage("ASTEROIDE no puede recibir una carga de '8 ANTIMATERIA'");
 

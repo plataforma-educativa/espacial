@@ -6,8 +6,8 @@ import espacial.Chocable;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.Visitante;
-import espacial.excepciones.LaPiezaNoPuedeRecibirUnaCarga;
 import espacial.excepciones.NoPuedeExtraerUnaCarga;
+import espacial.excepciones.NoPuedeRecibirUnaCarga;
 import espacial.piezas.rasgos.PiezaAtacable;
 
 public class Asteroide implements Pieza, PiezaAtacable {
@@ -53,7 +53,7 @@ public class Asteroide implements Pieza, PiezaAtacable {
     @Override
     public void recibir(Carga unaCarga) {
 
-        throw new LaPiezaNoPuedeRecibirUnaCarga(this, unaCarga);
+        throw new NoPuedeRecibirUnaCarga(this, unaCarga);
     }
 
     public void extraer(Carga unaCarga) {

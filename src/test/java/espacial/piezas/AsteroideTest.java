@@ -2,8 +2,8 @@ package espacial.piezas;
 
 import espacial.EspectroEspacial;
 import espacial.SustanciaEspacial;
-import espacial.excepciones.LaPiezaNoPuedeRecibirUnaCarga;
 import espacial.excepciones.NoPuedeExtraerUnaCarga;
+import espacial.excepciones.NoPuedeRecibirUnaCarga;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
@@ -68,7 +68,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción lanzada")
-                        .isInstanceOf(LaPiezaNoPuedeRecibirUnaCarga.class)
+                        .isInstanceOf(NoPuedeRecibirUnaCarga.class)
         );
     }
 
