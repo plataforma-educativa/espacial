@@ -9,7 +9,7 @@ import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
-import espacial.excepciones.ExcedeLaCapacidadDeCarga;
+import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.test.Ejecutable;
@@ -523,19 +523,19 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
         dadoQue(fueCreadoUnCazaEspacial());
 
-        comprobarQue(generaExcepcionPorqueExcedeLaCapacidadDeCarga(() ->
+        comprobarQue(generaExcepcionPorqueExcedeElLugarDisponible(() ->
 
                 unCazaEspacial.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidadExcedida)))
         );
     }
 
-    private Postcondicion generaExcepcionPorqueExcedeLaCapacidadDeCarga(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Ejecutable ejecutable) {
 
         return postcondicion(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")
-                        .isInstanceOf(ExcedeLaCapacidadDeCarga.class)
+                        .isInstanceOf(ExcedeElLugarDisponible.class)
         );
     }
 
@@ -612,7 +612,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
         dadoQue(fueCreadoUnCazaEspacialRecibiendo(SustanciaEspacial.ANTIMATERIA.por(cantidadInicialDeAntimateria)));
 
-        comprobarQue(generaExcepcionPorqueExcedeLaCapacidadDeCarga(() ->
+        comprobarQue(generaExcepcionPorqueExcedeElLugarDisponible(() ->
 
                 unCazaEspacial.recibir(SustanciaEspacial.METAL.por(cantidadDeMetal)))
         );

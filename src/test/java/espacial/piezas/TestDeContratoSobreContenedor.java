@@ -2,7 +2,7 @@ package espacial.piezas;
 
 import espacial.EspectroEspacial;
 import espacial.SustanciaEspacial;
-import espacial.excepciones.ExcedeLaCapacidadDeCarga;
+import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.excepciones.ExcedeLaCargaDisponible;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
@@ -111,19 +111,19 @@ public abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustan
 
         dadoQue(fueCreadoUnContenedor());
 
-        comprobarQue(generaExcepcionPorqueExcedeLaCapacidadDeCarga(() ->
+        comprobarQue(generaExcepcionPorqueExcedeElLugarDisponible(() ->
 
                 unContenedor.recibir(sustanciaAlmacenada().por(cantidadExcedida)))
         );
     }
 
-    private Postcondicion generaExcepcionPorqueExcedeLaCapacidadDeCarga(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Ejecutable ejecutable) {
 
         return postcondicion(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")
-                        .isInstanceOf(ExcedeLaCapacidadDeCarga.class)
+                        .isInstanceOf(ExcedeElLugarDisponible.class)
         );
     }
 

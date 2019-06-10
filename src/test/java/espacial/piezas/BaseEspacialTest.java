@@ -6,7 +6,7 @@ import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
 import espacial.SustanciaEspacial;
-import espacial.excepciones.ExcedeLaCapacidadDeCarga;
+import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
@@ -218,19 +218,19 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
         dadoQue(fueCreadaUnaBase());
 
-        comprobarQue(generaExcepcionPorqueExcedeLaCapacidadDeCarga(() ->
+        comprobarQue(generaExcepcionPorqueExcedeElLugarDisponible(() ->
 
                 unaBase.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidadExcedida)))
         );
     }
 
-    private Postcondicion generaExcepcionPorqueExcedeLaCapacidadDeCarga(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Ejecutable ejecutable) {
 
         return postcondicion(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")
-                        .isInstanceOf(ExcedeLaCapacidadDeCarga.class)
+                        .isInstanceOf(ExcedeElLugarDisponible.class)
         );
     }
 
@@ -318,7 +318,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
         dadoQue(fueCreadaUnaBaseRecibiendo(SustanciaEspacial.ANTIMATERIA.por(cantidadInicialDeAntimateria)));
 
-        comprobarQue(generaExcepcionPorqueExcedeLaCapacidadDeCarga(() ->
+        comprobarQue(generaExcepcionPorqueExcedeElLugarDisponible(() ->
 
                 unaBase.recibir(SustanciaEspacial.METAL.por(cantidadDeCristal)))
         );

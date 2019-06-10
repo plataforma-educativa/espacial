@@ -1,7 +1,7 @@
 package espacial.piezas;
 
 import espacial.Cargamento;
-import espacial.excepciones.ExcedeLaCapacidadDeCarga;
+import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.excepciones.ExcedeLaCargaDisponible;
 
 public class Bodega {
@@ -36,7 +36,7 @@ public class Bodega {
 
             if (cantidadAgregada > contabilizarLugar()) {
 
-                throw new ExcedeLaCapacidadDeCarga(capacidad, cantidadAgregada);
+                throw new ExcedeElLugarDisponible(capacidad, cantidadAgregada);
             }
 
             cantidad += cantidadAgregada;

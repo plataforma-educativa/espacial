@@ -1,6 +1,6 @@
 package espacial;
 
-import espacial.excepciones.ExcedeLaCapacidadDeCarga;
+import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.excepciones.ExcedeLaCargaDisponible;
 import espacial.piezas.CargamentoDeSustancia;
 import espacial.test.Ejecutable;
@@ -61,8 +61,8 @@ public class CargamentoTest implements TestDeContrato {
         final int agregada = 90;
         dadoQue(fueCreadoUnCargamento(capacidad, inicial));
 
-        comprobarQue(generaExcepcionPorqueExcedeLaCapacidadDeCarga(() -> unCargamento.agregar(agregada),
-                inicial + agregada, capacidad));
+        comprobarQue(generaExcepcionPorqueExcedeElLugarDisponible(() -> unCargamento.agregar(agregada),
+                agregada, capacidad - inicial));
     }
 
     @Test
@@ -133,15 +133,15 @@ public class CargamentoTest implements TestDeContrato {
         );
     }
 
-    private Postcondicion generaExcepcionPorqueExcedeLaCapacidadDeCarga(Ejecutable ejecutable,
-                                                                        int total, int capacidad) {
+    private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Ejecutable ejecutable,
+                                                                       int agregada, int disponible) {
 
         return postcondicion(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")
-                        .isInstanceOf(ExcedeLaCapacidadDeCarga.class)
-                        .hasMessage("'%d' excede la capacidad de carga de '%d'", total, capacidad)
+                        .isInstanceOf(ExcedeElLugarDisponible.class)
+                        .hasMessage("'%d' excede el lugar disponible de '%d'", agregada, disponible)
         );
     }
 }

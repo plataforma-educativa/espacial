@@ -1,7 +1,7 @@
 package espacial.piezas;
 
 import espacial.Cargamento;
-import espacial.excepciones.ExcedeLaCapacidadDeCarga;
+import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.excepciones.ExcedeLaCargaDisponible;
 
 public class CargamentoDeSustancia implements Cargamento {
@@ -21,7 +21,7 @@ public class CargamentoDeSustancia implements Cargamento {
 
         if (total > capacidad) {
 
-            throw  new ExcedeLaCapacidadDeCarga(capacidad, total);
+            throw  new ExcedeElLugarDisponible(capacidad - cantidad, cantidadAgregada);
         }
 
         cantidad = total;

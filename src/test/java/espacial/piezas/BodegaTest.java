@@ -2,7 +2,7 @@ package espacial.piezas;
 
 
 import espacial.Cargamento;
-import espacial.excepciones.ExcedeLaCapacidadDeCarga;
+import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.excepciones.ExcedeLaCargaDisponible;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
@@ -141,7 +141,7 @@ public class BodegaTest implements TestDeContrato {
         dadoQue(fueCreadaLaBodegaConCapacidad(100));
         dadoQue(unaBodegaCargoMETAL(50));
 
-        comprobarQue(generaExcepcionPorqueExcedeLaCapacidadDeCarga(() ->
+        comprobarQue(generaExcepcionPorqueExcedeElLugarDisponible(() ->
 
                 unaBodega.ANTIMATERIA.agregar(51)
         ));
@@ -153,7 +153,7 @@ public class BodegaTest implements TestDeContrato {
         dadoQue(fueCreadaLaBodegaConCapacidad(70));
         dadoQue(unaBodegaCargoANTIMATERIA(50));
 
-        comprobarQue(generaExcepcionPorqueExcedeLaCapacidadDeCarga(() ->
+        comprobarQue(generaExcepcionPorqueExcedeElLugarDisponible(() ->
 
                 unaBodega.CRISTAL.agregar(21)
         ));
@@ -165,7 +165,7 @@ public class BodegaTest implements TestDeContrato {
         dadoQue(fueCreadaLaBodegaConCapacidad(120));
         dadoQue(unaBodegaCargoCRISTAL(90));
 
-        comprobarQue(generaExcepcionPorqueExcedeLaCapacidadDeCarga(() ->
+        comprobarQue(generaExcepcionPorqueExcedeElLugarDisponible(() ->
 
                 unaBodega.METAL.agregar(31)
         ));
@@ -222,13 +222,13 @@ public class BodegaTest implements TestDeContrato {
         );
     }
 
-    private Postcondicion generaExcepcionPorqueExcedeLaCapacidadDeCarga(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Ejecutable ejecutable) {
 
         return postcondicion(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")
-                        .isInstanceOf(ExcedeLaCapacidadDeCarga.class)
+                        .isInstanceOf(ExcedeElLugarDisponible.class)
         );
     }
 
