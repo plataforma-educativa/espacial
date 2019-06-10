@@ -18,9 +18,7 @@ import java.util.List;
 public class BaseEspacial implements Pieza, PiezaAtacable, BaseDeposito {
 
     private final List<Amarre> amarres = new LinkedList<>();
-    private final Cargamento antimateria = new Cargamento(obtenerCapacidad());
-    private final Cargamento metal = new Cargamento(obtenerCapacidad());
-    private final Cargamento cristal = new Cargamento(obtenerCapacidad());
+    private final Bodega bodega = new Bodega(obtenerCapacidad());
     private int puntos = 200;
     private Casillero casillero;
 
@@ -81,19 +79,19 @@ public class BaseEspacial implements Pieza, PiezaAtacable, BaseDeposito {
     @Override
     public Cargamento obtenerAntimateria() {
 
-        return antimateria;
+        return bodega.ANTIMATERIA;
     }
 
     @Override
     public Cargamento obtenerMetal() {
 
-        return metal;
+        return bodega.METAL;
     }
 
     @Override
     public Cargamento obtenerCristal() {
 
-        return cristal;
+        return bodega.CRISTAL;
     }
 
     private class AmarreConBaseEspacial implements Amarre {

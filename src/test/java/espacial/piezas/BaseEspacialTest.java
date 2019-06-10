@@ -310,4 +310,17 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
         comprobarQue(unaBaseTiene(SustanciaEspacial.METAL, cantidadInicial - cantidadRetirada));
     }
 
+    @Test
+    public void recibirCargaDeCristalQueExcedeLaCapacidadPorqueTieneAntimateria() {
+
+        final int cantidadInicialDeAntimateria = 3000;
+        final int cantidadDeCristal = 2001;
+
+        dadoQue(fueCreadaUnaBaseRecibiendo(SustanciaEspacial.ANTIMATERIA.por(cantidadInicialDeAntimateria)));
+
+        comprobarQue(generaExcepcionPorqueExcedeLaCapacidadDeCarga(() ->
+
+                unaBase.recibir(SustanciaEspacial.METAL.por(cantidadDeCristal)))
+        );
+    }
 }

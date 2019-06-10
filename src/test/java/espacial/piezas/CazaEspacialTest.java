@@ -588,4 +588,33 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
         comprobarQue(unCazaEspacialTiene(SustanciaEspacial.CRISTAL, cantidadInicial - cantidadRetirada));
     }
+
+    @Test
+    public void recibirCargasDeAntimateriaCristal() {
+
+        final int cantidadDeAntimateria = 30;
+        final int cantidadDeCristal = 23;
+
+        dadoQue(fueCreadoUnCazaEspacial());
+
+        unCazaEspacial.recibir(SustanciaEspacial.ANTIMATERIA.por(cantidadDeAntimateria));
+        unCazaEspacial.recibir(SustanciaEspacial.CRISTAL.por(cantidadDeCristal));
+
+        comprobarQue(unCazaEspacialTiene(SustanciaEspacial.ANTIMATERIA, cantidadDeAntimateria));
+        comprobarQue(unCazaEspacialTiene(SustanciaEspacial.CRISTAL, cantidadDeCristal));
+    }
+
+    @Test
+    public void recibirCargaDeMetalQueExcedeLaCapacidadPorqueTieneAntimateria() {
+
+        final int cantidadInicialDeAntimateria = 50;
+        final int cantidadDeMetal = 51;
+
+        dadoQue(fueCreadoUnCazaEspacialRecibiendo(SustanciaEspacial.ANTIMATERIA.por(cantidadInicialDeAntimateria)));
+
+        comprobarQue(generaExcepcionPorqueExcedeLaCapacidadDeCarga(() ->
+
+                unCazaEspacial.recibir(SustanciaEspacial.METAL.por(cantidadDeMetal)))
+        );
+    }
 }

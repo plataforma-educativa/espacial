@@ -2,6 +2,7 @@ package espacial;
 
 import espacial.excepciones.ExcedeLaCapacidadDeCarga;
 import espacial.excepciones.ExcedeLaCargaDisponible;
+import espacial.piezas.CargamentoDeSustancia;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
@@ -103,14 +104,14 @@ public class CargamentoTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnCargamento(int capacidad) {
 
-        return precondicion(() -> unCargamento = new Cargamento(capacidad));
+        return precondicion(() -> unCargamento = new CargamentoDeSustancia(capacidad));
     }
 
     private Precondicion fueCreadoUnCargamento(int capacidad, int cantidad) {
 
         return precondicion(() -> {
 
-            unCargamento = new Cargamento(capacidad);
+            unCargamento = new CargamentoDeSustancia(capacidad);
             unCargamento.agregar(cantidad);
         });
     }

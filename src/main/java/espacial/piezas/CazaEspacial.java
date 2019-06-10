@@ -20,9 +20,8 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
 
     private final Indicador nivelDeEscudos = new Indicador(100);
     private final Artilleria artilleria = new Artilleria(100);
-    private final Cargamento antimateria = new Cargamento(obtenerCapacidad());
-    private final Cargamento metal = new Cargamento(obtenerCapacidad());
-    private final Cargamento cristal = new Cargamento(obtenerCapacidad());
+    private final Bodega bodega = new Bodega(obtenerCapacidad());
+
     private Opcional<Casillero> casillero = Opcional.sinValor();
     private Opcional<Amarre> amarre = Opcional.sinValor();
 
@@ -144,18 +143,18 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     @Override
     public Cargamento obtenerAntimateria() {
 
-        return antimateria;
+        return bodega.ANTIMATERIA;
     }
 
     @Override
     public Cargamento obtenerMetal() {
 
-        return metal;
+        return bodega.METAL;
     }
 
     @Override
     public Cargamento obtenerCristal() {
 
-        return cristal;
+        return bodega.CRISTAL;
     }
 }
