@@ -11,9 +11,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class CargamentoDeSustanciaTest implements TestDeContrato {
+public abstract class TestDeCargamentoLimitado implements TestDeContrato {
 
-    private Cargamento unCargamento;
+    protected Cargamento unCargamento;
+
+    protected abstract Precondicion fueCreadoUnCargamento(int capacidad);
 
     @Test
     public void agregar40CuandoTiene0ConCapacidadPara100() {
@@ -100,11 +102,6 @@ public class CargamentoDeSustanciaTest implements TestDeContrato {
 
         comprobarQue(generaExcepcionPorqueExcedeLaCargaDisponible(() -> unCargamento.retirar(retirada),
                 retirada, disponible));
-    }
-
-    private Precondicion fueCreadoUnCargamento(int capacidad) {
-
-        return precondicion(() -> unCargamento = new CargamentoDeSustancia(capacidad));
     }
 
     private Precondicion fueCreadoUnCargamento(int capacidad, int cantidad) {
