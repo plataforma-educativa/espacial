@@ -10,13 +10,26 @@ public abstract class CargamentoFinito implements Cargamento {
 
     protected abstract int contarLugar();
 
-    @Override
-    public void agregar(int cantidadAgregada) {
+    private void verificarQueSePuedaAgregar(int cantidadAgregada) {
 
         if (cantidadAgregada > contarLugar()) {
 
             throw new ExcedeElLugarDisponible(contarLugar(), cantidadAgregada);
         }
+    }
+
+    private void verificarQueSePuedaRetirar(int cantidadRetirada) {
+
+        if (cantidadRetirada > contar()) {
+
+            throw new ExcedeLaCargaDisponible(contar(), cantidadRetirada);
+        }
+    }
+
+    @Override
+    public void agregar(int cantidadAgregada) {
+
+        verificarQueSePuedaAgregar(cantidadAgregada);
 
         cantidad += cantidadAgregada;
     }
@@ -24,10 +37,7 @@ public abstract class CargamentoFinito implements Cargamento {
     @Override
     public void retirar(int cantidadRetirada) {
 
-        if (cantidadRetirada > cantidad) {
-
-            throw new ExcedeLaCargaDisponible(cantidad, cantidadRetirada);
-        }
+        verificarQueSePuedaRetirar(cantidadRetirada);
 
         cantidad -= cantidadRetirada;
     }
