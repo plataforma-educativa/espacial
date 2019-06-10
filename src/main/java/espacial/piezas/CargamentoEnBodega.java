@@ -1,6 +1,6 @@
 package espacial.piezas;
 
-public class CargamentoEnBodega extends CargamentoFinito {
+public class CargamentoEnBodega extends CargamentoLimitado {
 
     private final Bodega bodega;
 

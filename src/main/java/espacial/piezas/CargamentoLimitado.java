@@ -4,7 +4,7 @@ import espacial.Cargamento;
 import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.excepciones.ExcedeLaCargaDisponible;
 
-public abstract class CargamentoFinito implements Cargamento {
+public abstract class CargamentoLimitado implements Cargamento {
 
     private int cantidad = 0;
 

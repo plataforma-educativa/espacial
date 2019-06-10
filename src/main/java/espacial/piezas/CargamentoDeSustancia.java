@@ -1,6 +1,6 @@
 package espacial.piezas;
 
-public class CargamentoDeSustancia extends CargamentoFinito {
+public class CargamentoDeSustancia extends CargamentoLimitado {
 
     private final int capacidad;
 
