@@ -1,47 +1,17 @@
 package espacial.piezas;
 
-import espacial.Cargamento;
-import espacial.excepciones.ExcedeElLugarDisponible;
-import espacial.excepciones.ExcedeLaCargaDisponible;
-
-public class CargamentoDeSustancia implements Cargamento {
+public class CargamentoDeSustancia extends CargamentoFinito {
 
     private final int capacidad;
-    private int cantidad;
 
     public CargamentoDeSustancia(int capacidadTotal) {
 
         capacidad = capacidadTotal;
-        cantidad = 0;
     }
 
-    public void agregar(int cantidadAgregada) {
+    @Override
+    protected int contarLugar() {
 
-        int total = cantidad + cantidadAgregada;
-
-        if (total > capacidad) {
-
-            throw  new ExcedeElLugarDisponible(capacidad - cantidad, cantidadAgregada);
-        }
-
-        cantidad = total;
+        return capacidad - contar();
     }
-
-    public void retirar(int cantidadRetirada) {
-
-        int total = cantidad - cantidadRetirada;
-
-        if (total < 0) {
-
-            throw new ExcedeLaCargaDisponible(cantidad, cantidadRetirada);
-        }
-
-        cantidad = total;
-    }
-
-    public int contar() {
-
-        return cantidad;
-    }
-
 }
