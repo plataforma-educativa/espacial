@@ -17,10 +17,15 @@ import java.util.List;
 
 public class BaseEspacial implements Pieza, PiezaAtacable, BaseDeposito {
 
-    private final List<Amarre> amarres = new LinkedList<>();
+    private final Indicador puntos = new Indicador(200);
     private final Bodega bodega = new Bodega(obtenerCapacidad());
-    private int puntos = 200;
+    private final List<Amarre> amarres = new LinkedList<>();
     private Casillero casillero;
+
+    public BaseEspacial() {
+
+        puntos.cuandoSeAgota(() -> casillero.desocupar());
+    }
 
     @Override
     public void fueColocadaEn(Casillero casillero) {
@@ -67,13 +72,13 @@ public class BaseEspacial implements Pieza, PiezaAtacable, BaseDeposito {
     @Override
     public int obtenerPuntos() {
 
-        return puntos;
+        return puntos.obtenerValor();
     }
 
     @Override
     public void decrementarPuntosEn(int decremento) {
 
-        puntos -= decremento;
+        puntos.decrementarEn(decremento);
     }
 
     @Override

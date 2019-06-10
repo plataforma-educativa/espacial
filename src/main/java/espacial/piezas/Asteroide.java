@@ -1,6 +1,7 @@
 package espacial.piezas;
 
 import espacial.Ataque;
+import espacial.Casillero;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
@@ -9,12 +10,18 @@ import espacial.piezas.rasgos.PiezaAtacable;
 
 public class Asteroide implements Pieza, PiezaAtacable {
 
-    private int puntos = 90;
+    private final Indicador puntos = new Indicador(90);
 
     @Override
     public EspectroEspacial escanear() {
         
         return EspectroEspacial.ASTEROIDE;
+    }
+
+    @Override
+    public void fueColocadaEn(Casillero casillero) {
+
+        puntos.cuandoSeAgota(() -> casillero.desocupar());
     }
 
     @Override
@@ -38,12 +45,12 @@ public class Asteroide implements Pieza, PiezaAtacable {
     @Override
     public int obtenerPuntos() {
 
-        return puntos;
+        return puntos.obtenerValor();
     }
 
     @Override
     public void decrementarPuntosEn(int decremento) {
 
-        puntos -= decremento;
+        puntos.decrementarEn(decremento);
     }
 }

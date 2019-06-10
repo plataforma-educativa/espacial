@@ -1,8 +1,9 @@
 package espacial.piezas.rasgos;
 
 import espacial.Atacable;
+import espacial.Pieza;
 
-public interface PiezaAtacable extends Atacable {
+public interface PiezaAtacable extends Pieza, Atacable {
 
     @Override
     default void atacadoConTorpedoDeFotones() {
