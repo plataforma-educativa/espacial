@@ -1,8 +1,8 @@
-package espacial;
+package espacial.piezas;
 
+import espacial.Cargamento;
 import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.excepciones.ExcedeLaCargaDisponible;
-import espacial.piezas.CargamentoDeSustancia;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class CargamentoTest implements TestDeContrato {
+public class CargamentoDeSustanciaTest implements TestDeContrato {
 
     private Cargamento unCargamento;
 
