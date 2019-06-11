@@ -4,9 +4,12 @@ import espacial.piezas.AgujeroNegro;
 import espacial.piezas.Asteroide;
 import espacial.piezas.BaseEspacial;
 import espacial.piezas.ContenedorDeAntimateria;
+import espacial.piezas.ContenedorDeCristal;
 import espacial.tableros.CasilleroBorde;
 import espacial.tableros.CasilleroInterior;
 import espacial.utiles.Proveedor;
+
+import java.util.Random;
 
 /**
  * El Tablero mantiene el ordenamiento relativo de las Piezas en una Partida.
@@ -24,9 +27,9 @@ public class Tablero {
         
         inicializarCasilleros();
 
-        colocarEnCoordenada(-2, -2, ContenedorDeAntimateria::new);
-        colocarEnCoordenada(4, 2, ContenedorDeAntimateria::new);
-        colocarEnCoordenada(2, -7, ContenedorDeAntimateria::new);
+        colocarEnCoordenada(-2, -2, this::contenedorDeAntimateria);
+        colocarEnCoordenada(4, 2, this::contenedorDeAntimateria);
+        colocarEnCoordenada(2, -7, this::contenedorDeCristal);
         colocarEnCoordenada(1, -3, Asteroide::new);
         colocarEntreCoordenadas(7, -1, 7, 0, Asteroide::new);
         colocarEntreCoordenadas(8, -3, 8, 3, Asteroide::new);
@@ -49,6 +52,28 @@ public class Tablero {
         conCadaCoordenada((fila, columna) ->
             casilleros[indiceFila(fila)][indiceColumna(columna)] = new CasilleroInterior(this, fila, columna)
         );
+    }
+
+    private Pieza contenedorDeCristal() {
+
+        ContenedorDeCristal contenedor = new ContenedorDeCristal();
+
+        Random random = new Random();
+
+        contenedor.cargarCristal(random.nextInt(250) + 1);
+
+        return contenedor;
+    }
+
+    private Pieza contenedorDeAntimateria() {
+
+        ContenedorDeAntimateria contenedor = new ContenedorDeAntimateria();
+
+        Random random = new Random();
+
+        contenedor.cargarAntimateria(random.nextInt(250) + 1);
+
+        return contenedor;
     }
 
     private void colocarEntreCoordenadas(int filaInicial, int columnaInicial,
