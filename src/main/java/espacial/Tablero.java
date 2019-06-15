@@ -1,5 +1,6 @@
 package espacial;
 
+import espacial.partidas.FabricaDePiezas;
 import espacial.piezas.AgujeroNegro;
 import espacial.piezas.Asteroide;
 import espacial.piezas.BaseEspacial;
@@ -20,6 +21,7 @@ import java.util.Random;
  */
 public class Tablero {
 
+    private FabricaDePiezas fabrica = new FabricaDePiezas();
     private Casillero borde;
     private Casillero[][] casilleros;
     
@@ -27,8 +29,8 @@ public class Tablero {
         
         inicializarCasilleros();
 
-        colocarEnCoordenada(-2, -2, this::contenedorDeAntimateria);
-        colocarEnCoordenada(4, 2, this::contenedorDeAntimateria);
+        colocarEnCoordenada(-2, -2, fabrica::crearContenedorDeAntimateria);
+        colocarEnCoordenada(4, 2, fabrica::crearContenedorDeAntimateria);
         colocarEnCoordenada(2, -7, this::contenedorDeCristal);
         colocarEnCoordenada(1, -3, Asteroide::new);
         colocarEntreCoordenadas(7, -1, 7, 0, Asteroide::new);

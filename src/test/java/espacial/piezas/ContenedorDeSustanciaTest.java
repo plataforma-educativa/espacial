@@ -20,6 +20,12 @@ public class ContenedorDeSustanciaTest implements TestDeContrato {
 
             return new ContenedorDeAntimateria();
         }
+
+        @Override
+        protected ContenedorDeAntimateria piezaCreadaConCarga(int cantidadInicial) {
+
+            return new ContenedorDeAntimateria(cantidadInicial);
+        }
     }
 
     @Nested
@@ -36,6 +42,12 @@ public class ContenedorDeSustanciaTest implements TestDeContrato {
 
             return new ContenedorDeMetal();
         }
+
+        @Override
+        protected ContenedorDeMetal piezaCreadaConCarga(int cantidadInicial) {
+
+            return new ContenedorDeMetal(cantidadInicial);
+        }
     }
 
     @Nested
@@ -51,6 +63,12 @@ public class ContenedorDeSustanciaTest implements TestDeContrato {
         protected ContenedorDeCristal piezaCreada() {
 
             return new ContenedorDeCristal();
+        }
+
+        @Override
+        protected ContenedorDeCristal piezaCreadaConCarga(int cantidadInicial) {
+
+            return new ContenedorDeCristal(cantidadInicial);
         }
     }
 }

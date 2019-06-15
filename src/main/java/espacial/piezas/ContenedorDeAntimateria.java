@@ -7,6 +7,15 @@ public class ContenedorDeAntimateria extends ContenedorDeSustancia implements De
 
     private final Cargamento antimateria = new CargamentoDeSustancia(obtenerCapacidad());
 
+    public ContenedorDeAntimateria() {
+
+    }
+
+    public ContenedorDeAntimateria(int cantidadInicial) {
+
+        this.cargarAntimateria(cantidadInicial);
+    }
+
     @Override
     public Cargamento obtenerAntimateria() {
 

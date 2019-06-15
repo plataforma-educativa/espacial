@@ -7,6 +7,16 @@ public class ContenedorDeCristal extends ContenedorDeSustancia implements Deposi
 
     private final Cargamento cristal = new CargamentoDeSustancia(obtenerCapacidad());
 
+    public ContenedorDeCristal() {
+
+    }
+
+    public ContenedorDeCristal(int cantidadInicial) {
+
+        cargarCristal(cantidadInicial);
+    }
+
+
     @Override
     public Cargamento obtenerCristal() {
 

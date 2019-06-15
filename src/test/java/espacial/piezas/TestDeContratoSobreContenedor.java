@@ -18,6 +18,8 @@ public abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustan
 
     protected abstract SustanciaEspacial sustanciaAlmacenada();
 
+    protected abstract T piezaCreadaConCarga(int cantidadInicial);
+
     @Override
     public EspectroEspacial espectroEsperado() {
 
@@ -28,6 +30,21 @@ public abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustan
     public Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
         return postcondicion(() -> verify(NAVE_ESPACIAL).chocoContraUnContenedor());
+    }
+
+    @Test
+    public void crearConCargaInicial() {
+
+        final int cantidad = 142;
+
+        dadoQue(fueCreadoUnContenedorConCargaInicalDe(cantidad));
+
+        comprobarQue(unContenedorTiene(sustanciaAlmacenada(), cantidad));
+    }
+
+    protected Precondicion fueCreadoUnContenedorConCargaInicalDe(int cantidad) {
+
+        return precondicion(() -> unContenedor = piezaCreadaConCarga(cantidad));
     }
 
     @Test

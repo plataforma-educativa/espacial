@@ -7,6 +7,15 @@ public class ContenedorDeMetal extends  ContenedorDeSustancia implements Deposit
 
     private final Cargamento metal = new CargamentoDeSustancia(obtenerCapacidad());
 
+    public ContenedorDeMetal() {
+
+    }
+
+    public ContenedorDeMetal(int cantidadInicial) {
+
+        cargarMetal(cantidadInicial);
+    }
+
     @Override
     public Cargamento obtenerMetal() {
 
