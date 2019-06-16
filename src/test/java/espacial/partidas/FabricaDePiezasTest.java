@@ -6,7 +6,6 @@ import espacial.SustanciaEspacial;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
-import espacial.utiles.Aleatorio;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
@@ -54,7 +53,7 @@ public class FabricaDePiezasTest implements TestDeContrato {
 
     private Precondicion fueCreadaUnaFabricaDePiezas() {
 
-        return precondicion(() -> unaFabrica = new FabricaDePiezas(new Aleatorio(1, 300)));
+        return precondicion(() -> unaFabrica = FabricaDePiezas.crear());
     }
 
     private Postcondicion unaPiezaEsUnContenedorCon(SustanciaEspacial sustancia) {
@@ -128,5 +127,30 @@ public class FabricaDePiezasTest implements TestDeContrato {
 
             cargas.add(unaFabrica.crearContenedorDeCristal().buscar(SustanciaEspacial.CRISTAL));
         }
+    }
+
+    @Test
+    public void crear() {
+
+        dadoQue(fueCreadaUnaFabricaDePiezas());
+
+        alCrearMultiplesContenedores();
+
+        comprobarQue(lasCargasDeLasPiezasCreadasEstanEnElRango(1, 250));
+    }
+
+    private void alCrearMultiplesContenedores() {
+
+        for (int i = 0; i < 1000; i++) {
+
+            cargas.add(unaFabrica.crearContenedorDeAntimateria().buscar(SustanciaEspacial.ANTIMATERIA));
+            cargas.add(unaFabrica.crearContenedorDeMetal().buscar(SustanciaEspacial.METAL));
+            cargas.add(unaFabrica.crearContenedorDeCristal().buscar(SustanciaEspacial.CRISTAL));
+        }
+    }
+
+    private Postcondicion lasCargasDeLasPiezasCreadasEstanEnElRango(int desde, int hasta) {
+
+        return postcondicion(() -> assertThat(cargas).allMatch(carga -> (carga >= desde && carga <= hasta)));
     }
 }

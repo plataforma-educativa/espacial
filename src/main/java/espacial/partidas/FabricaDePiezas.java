@@ -12,10 +12,10 @@ public class FabricaDePiezas {
 
     public static FabricaDePiezas crear() {
 
-        return new FabricaDePiezas(new Aleatorio(1, 300));
+        return new FabricaDePiezas(new Aleatorio(1, 250));
     }
 
-    public FabricaDePiezas(Aleatorio cargaAleatoriaDeContenedores) {
+    private FabricaDePiezas(Aleatorio cargaAleatoriaDeContenedores) {
 
         cargaAleatoria = cargaAleatoriaDeContenedores;
     }
