@@ -21,7 +21,7 @@ import java.util.Random;
  */
 public class Tablero {
 
-    private FabricaDePiezas fabrica = new FabricaDePiezas();
+    private FabricaDePiezas fabrica = FabricaDePiezas.crear();
     private Casillero borde;
     private Casillero[][] casilleros;
     

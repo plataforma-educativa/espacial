@@ -6,7 +6,11 @@ import espacial.SustanciaEspacial;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
+import espacial.utiles.Aleatorio;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -15,6 +19,8 @@ public class FabricaDePiezasTest implements TestDeContrato {
     private FabricaDePiezas unaFabrica;
 
     private Pieza piezaCreada;
+
+    private Set<Integer> cargas = new HashSet<>();
 
     @Test
     public void crearContenedorDeAntimateria() {
@@ -48,7 +54,7 @@ public class FabricaDePiezasTest implements TestDeContrato {
 
     private Precondicion fueCreadaUnaFabricaDePiezas() {
 
-        return precondicion(() -> unaFabrica = new FabricaDePiezas());
+        return precondicion(() -> unaFabrica = new FabricaDePiezas(new Aleatorio(1, 300)));
     }
 
     private Postcondicion unaPiezaEsUnContenedorCon(SustanciaEspacial sustancia) {
@@ -63,5 +69,64 @@ public class FabricaDePiezasTest implements TestDeContrato {
                     .as("buscar(ANTIMATERIA)")
                     .isGreaterThan(0);
         });
+    }
+
+    @Test
+    public void crearContenedorDeAntimateriaConCargaAleatoria() {
+
+        dadoQue(fueCreadaUnaFabricaDePiezas());
+
+        alCrearMultiplesContenedoresDeAntimateria();
+
+        comprobarQue(lasCargasDeLasPiezasCreadasSonDiferentes());
+    }
+
+    private void alCrearMultiplesContenedoresDeAntimateria() {
+
+        for (int i = 0; i < 100; i++) {
+
+            cargas.add(unaFabrica.crearContenedorDeAntimateria().buscar(SustanciaEspacial.ANTIMATERIA));
+        }
+    }
+
+    private Postcondicion lasCargasDeLasPiezasCreadasSonDiferentes() {
+
+        return postcondicion(() -> assertThat(cargas.size() > 10).as("tiene cargas diferentes").isTrue());
+    }
+
+    @Test
+    public void crearContenedorDeMetalConCargaAleatoria() {
+
+        dadoQue(fueCreadaUnaFabricaDePiezas());
+
+        alCrearMultiplesContenedoresDeMetal();
+
+        comprobarQue(lasCargasDeLasPiezasCreadasSonDiferentes());
+    }
+
+    private void alCrearMultiplesContenedoresDeMetal() {
+
+        for (int i = 0; i < 100; i++) {
+
+            cargas.add(unaFabrica.crearContenedorDeMetal().buscar(SustanciaEspacial.METAL));
+        }
+    }
+
+    @Test
+    public void crearContenedorDeCristalConCargaAleatoria() {
+
+        dadoQue(fueCreadaUnaFabricaDePiezas());
+
+        alCrearMultiplesContenedoresDeCristal();
+
+        comprobarQue(lasCargasDeLasPiezasCreadasSonDiferentes());
+    }
+
+    private void alCrearMultiplesContenedoresDeCristal() {
+
+        for (int i = 0; i < 100; i++) {
+
+            cargas.add(unaFabrica.crearContenedorDeCristal().buscar(SustanciaEspacial.CRISTAL));
+        }
     }
 }
