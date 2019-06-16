@@ -2,6 +2,7 @@ package espacial.piezas;
 
 import espacial.EspectroEspacial;
 import espacial.SustanciaEspacial;
+import espacial.excepciones.Defecto;
 import espacial.excepciones.NoPuedeEntregarUnaCarga;
 import espacial.excepciones.NoPuedeRecibirUnaCarga;
 import espacial.test.Ejecutable;
@@ -25,7 +26,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
     @Override
     public Asteroide piezaCreada() {
 
-        return new Asteroide(100);
+        return new Asteroide(Dureza.MAXIMA);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
     private Precondicion fueCreadoUnAsteroide() {
 
-        return precondicion(() -> unAsteroide = new Asteroide(100));
+        return precondicion(() -> unAsteroide = new Asteroide(Dureza.MAXIMA));
     }
 
     private Postcondicion losPuntosInicialesDeUnAsteroideSonCorrectos() {
@@ -119,8 +120,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
                 arguments(50, 290),
                 arguments(25, 280),
                 arguments(10, 250),
-                arguments(5, 200),
-                arguments(1, 0)
+                arguments(5, 200)
         );
     }
 
@@ -154,9 +154,54 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
                 arguments(50, 280),
                 arguments(25, 260),
                 arguments(10, 200),
-                arguments(5, 100),
-                arguments(1, 0)
+                arguments(5, 100)
         );
     }
 
+    @Test
+    public void crearConDurezaMinima() {
+
+        final int dureza = Asteroide.DUREZA_MINIMA;
+
+        unAsteroide = new Asteroide(dureza);
+
+        comprobarQue(unAsteroideTieneLaDurezaEsperada(dureza));
+    }
+
+    @Test
+    public void crearConDurezaMaxima() {
+
+        final int dureza = Asteroide.DUREZA_MAXIMA;
+
+        unAsteroide = new Asteroide(dureza);
+
+        comprobarQue(unAsteroideTieneLaDurezaEsperada(dureza));
+    }
+
+    @Test
+    public void crearConDurezaMenorAlMinimo() {
+
+        comprobarQue(generaDefecto(() -> new Asteroide(Dureza.MINIMA - 1)));
+    }
+
+    @Test
+    public void crearConDurezaManorAlMaximo() {
+
+        comprobarQue(generaDefecto(() -> new Asteroide(Dureza.MAXIMA + 1)));
+    }
+
+    private Postcondicion unAsteroideTieneLaDurezaEsperada(int dureza) {
+
+        return postcondicion(() -> assertThat(unAsteroide.obtenerDureza()).as("dureza").isEqualTo(dureza));
+    }
+
+    private Postcondicion generaDefecto(Ejecutable ejecutable) {
+
+        return postcondicion(() ->
+
+                assertThatThrownBy(ejecutable::ejecutar)
+                        .as("excepción generada")
+                        .isInstanceOf(Defecto.class)
+        );
+    }
 }

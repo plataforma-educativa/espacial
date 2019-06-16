@@ -10,13 +10,16 @@ import espacial.piezas.rasgos.AsteroideAtacable;
 
 public class Asteroide implements Pieza, AsteroideAtacable {
 
+    public static final int DUREZA_MINIMA = 5;
+    public static final int DUREZA_MAXIMA = 100;
+
     private final Indicador puntos = new Indicador(300);
 
-    private final int dureza;
+    private final Dureza dureza;
 
     public Asteroide(int valorDureza) {
 
-        dureza = valorDureza;
+        dureza = new Dureza(valorDureza);
     }
 
     @Override
@@ -28,7 +31,7 @@ public class Asteroide implements Pieza, AsteroideAtacable {
     @Override
     public int obtenerDureza() {
 
-        return dureza;
+        return dureza.obtener();
     }
 
     @Override
