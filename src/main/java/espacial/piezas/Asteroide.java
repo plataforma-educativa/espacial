@@ -14,11 +14,6 @@ public class Asteroide implements Pieza, AsteroideAtacable {
 
     private final int dureza;
 
-    public Asteroide() {
-
-        this(100);
-    }
-
     public Asteroide(int valorDureza) {
 
         dureza = valorDureza;

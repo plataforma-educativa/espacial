@@ -22,7 +22,7 @@ public class CasilleroTest implements TestDeContrato {
 
     private final Pieza CONTENEDOR = new ContenedorDeAntimateria();
 
-    private final Pieza ASTEROIDE = new Asteroide();
+    private final Pieza ASTEROIDE = new Asteroide(100);
 
     private final Pieza NAVE = new CazaEspacial();
 

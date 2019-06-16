@@ -25,7 +25,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
     @Override
     public Asteroide piezaCreada() {
 
-        return new Asteroide();
+        return new Asteroide(100);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
     private Precondicion fueCreadoUnAsteroide() {
 
-        return precondicion(() -> unAsteroide = new Asteroide());
+        return precondicion(() -> unAsteroide = new Asteroide(100));
     }
 
     private Postcondicion losPuntosInicialesDeUnAsteroideSonCorrectos() {

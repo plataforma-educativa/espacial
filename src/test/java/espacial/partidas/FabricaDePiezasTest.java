@@ -1,5 +1,6 @@
 package espacial.partidas;
 
+import espacial.Atacable;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
@@ -20,6 +21,8 @@ public class FabricaDePiezasTest implements TestDeContrato {
     private Pieza piezaCreada;
 
     private Set<Integer> cargas = new HashSet<>();
+
+    private Set<Integer> durezas = new HashSet<>();
 
     @Test
     public void crearContenedorDeAntimateria() {
@@ -152,5 +155,59 @@ public class FabricaDePiezasTest implements TestDeContrato {
     private Postcondicion lasCargasDeLasPiezasCreadasEstanEnElRango(int desde, int hasta) {
 
         return postcondicion(() -> assertThat(cargas).allMatch(carga -> (carga >= desde && carga <= hasta)));
+    }
+
+    @Test
+    public void crearAsteroide() {
+
+        dadoQue(fueCreadaUnaFabricaDePiezas());
+
+        piezaCreada = unaFabrica.crearAsteoride();
+
+        comprobarQue(unaPiezasEsUnAsteoride());
+    }
+
+    private Postcondicion unaPiezasEsUnAsteoride() {
+
+        return postcondicion(() ->
+
+                assertThat(piezaCreada)
+                        .as("Pieza creada").isNotNull()
+                        .extracting(Pieza::escanear).isEqualTo(EspectroEspacial.ASTEROIDE)
+        );
+    }
+
+    @Test
+    public void crearAsteroidesConDurezaAleatoria() {
+
+        dadoQue(fueCreadaUnaFabricaDePiezas());
+
+        alCrearMultiplesAsteroides();
+
+        comprobarQue(lasDurezasDeLasPiezasCreadasSonDiferentes());
+    }
+
+    private void alCrearMultiplesAsteroides() {
+
+        for (int i = 0; i < 10_000; i++) {
+
+            Pieza asteroide = unaFabrica.crearAsteoride();
+
+            int puntosIniciales = asteroide.obtenerPuntos();
+            asteroide.fueAtacadoCon(Atacable::atacadoConLaser);
+            int puntosFinales = asteroide.obtenerPuntos();
+
+            durezas.add(puntosFinales - puntosIniciales);
+        }
+    }
+
+    private Postcondicion lasDurezasDeLasPiezasCreadasSonDiferentes() {
+
+        return postcondicion(() ->
+
+                assertThat(durezas.size() > 10)
+                        .as("las durezas son diferentes")
+                        .isTrue()
+        );
     }
 }

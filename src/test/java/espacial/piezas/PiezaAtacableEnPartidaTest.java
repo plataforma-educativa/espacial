@@ -32,7 +32,7 @@ public class PiezaAtacableEnPartidaTest implements TestDeContrato {
         @Override
         protected Precondicion fueCreadaLaPieza() {
 
-            return precondicion(() -> unaPiezaAtacable = new Asteroide());
+            return precondicion(() -> unaPiezaAtacable = new Asteroide(100));
         }
     }
 
