@@ -78,6 +78,8 @@ public class BatallaEspacialTest implements TestDeContrato {
                     .en(4, 2)
                     .tieneContenedor().conCristal()
                     .en(2, -7)
+                    .tieneContenedor().conMetal()
+                    .en(10, -24)
                     .tieneAsteroide()
                     .en(1, -3)
                     .entre(7, -1, 7, 0)

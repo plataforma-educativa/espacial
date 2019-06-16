@@ -32,6 +32,7 @@ public class Tablero {
         colocarEnCoordenada(-2, -2, fabrica::crearContenedorDeAntimateria);
         colocarEnCoordenada(4, 2, fabrica::crearContenedorDeAntimateria);
         colocarEnCoordenada(2, -7, this::contenedorDeCristal);
+        colocarEnCoordenada(10, -24, fabrica::crearContenedorDeMetal);
         colocarEnCoordenada(1, -3, Asteroide::new);
         colocarEntreCoordenadas(7, -1, 7, 0, Asteroide::new);
         colocarEntreCoordenadas(8, -3, 8, 3, Asteroide::new);
