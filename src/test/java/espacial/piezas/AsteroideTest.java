@@ -161,7 +161,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
     @Test
     public void crearConDurezaMinima() {
 
-        final int dureza = Asteroide.DUREZA_MINIMA;
+        final int dureza = Dureza.MINIMA;
 
         unAsteroide = new Asteroide(dureza);
 
@@ -171,7 +171,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
     @Test
     public void crearConDurezaMaxima() {
 
-        final int dureza = Asteroide.DUREZA_MAXIMA;
+        final int dureza = Dureza.MAXIMA;
 
         unAsteroide = new Asteroide(dureza);
 
@@ -192,7 +192,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
     private Postcondicion unAsteroideTieneLaDurezaEsperada(int dureza) {
 
-        return postcondicion(() -> assertThat(unAsteroide.obtenerDureza()).as("dureza").isEqualTo(dureza));
+        return postcondicion(() -> assertThat(unAsteroide.obtenerDureza().obtener()).as("dureza").isEqualTo(dureza));
     }
 
     private Postcondicion generaDefecto(Ejecutable ejecutable) {

@@ -33,4 +33,9 @@ public class Dureza {
 
         return valor;
     }
+
+    public int ponderarAtaqueDe(int puntosDeAtaque) {
+
+        return (100 * puntosDeAtaque / valor);
+    }
 }

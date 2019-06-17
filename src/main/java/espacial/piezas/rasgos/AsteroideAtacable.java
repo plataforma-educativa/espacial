@@ -1,18 +1,28 @@
 package espacial.piezas.rasgos;
 
+import espacial.piezas.Dureza;
+
 public interface AsteroideAtacable extends PiezaAtacable {
 
-    int obtenerDureza();
+    Dureza obtenerDureza();
 
     @Override
-    default void atacadoConLaser() {
+    default int obtenerPuntosDeTorpedoDeFotones() {
 
-        decrementarPuntosEn(100 * 5 / obtenerDureza());
+        int puntos = PiezaAtacable.super.obtenerPuntosDeTorpedoDeFotones();
+
+        Dureza dureza = obtenerDureza();
+
+        return dureza.ponderarAtaqueDe(puntos);
     }
 
     @Override
-    default void atacadoConTorpedoDeFotones() {
+    default int obtenerPuntosDeLaser() {
 
-        decrementarPuntosEn(100 * 10 / obtenerDureza());
+        int puntos = PiezaAtacable.super.obtenerPuntosDeLaser();
+
+        Dureza dureza = obtenerDureza();
+
+        return dureza.ponderarAtaqueDe(puntos);
     }
 }
