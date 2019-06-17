@@ -19,30 +19,30 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.*;
 import static org.mockito.Mockito.*;
 
-public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
+class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
     private Asteroide unAsteroide;
 
     @Override
-    public Asteroide piezaCreada() {
+    Asteroide piezaCreada() {
 
         return new Asteroide(Dureza.MAXIMA);
     }
 
     @Override
-    public EspectroEspacial espectroEsperado() {
+    EspectroEspacial espectroEsperado() {
 
         return EspectroEspacial.ASTEROIDE;
     }
 
     @Override
-    public Postcondicion laNaveEspacialFueNotificadaDelChoque() {
+    Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
         return postcondicion(() -> verify(NAVE_ESPACIAL).chocoContraUnAsteroide());
     }
 
     @Test
-    public void obtenerPuntos() {
+    void obtenerPuntos() {
 
         dadoQue(fueCreadoUnAsteroide());
         comprobarQue(losPuntosInicialesDeUnAsteroideSonCorrectos());
@@ -59,7 +59,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
     }
 
     @Test
-    public void recibirUnaCarga() {
+    void recibirUnaCarga() {
 
         dadoQue(fueCreadoUnAsteroide());
 
@@ -80,7 +80,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
     }
 
     @Test
-    public void extraerUnaCarga() {
+    void extraerUnaCarga() {
 
         dadoQue(fueCreadoUnAsteroide());
 
@@ -102,7 +102,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
     @ParameterizedTest
     @MethodSource
-    public void atacadoConLaser(int dureza, int puntosLuegoDelAtaqueConLaser) {
+    void atacadoConLaser(int dureza, int puntosLuegoDelAtaqueConLaser) {
 
         dadoQue(fueCreadoUnAsteroideConDureza(dureza));
 
@@ -111,7 +111,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
         comprobarQue(losPuntosDeUnAsteroideSon(puntosLuegoDelAtaqueConLaser));
     }
 
-    public static Stream<Arguments> atacadoConLaser() {
+    static Stream<Arguments> atacadoConLaser() {
 
         return Stream.of(
                 arguments(100, 295),
@@ -136,7 +136,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
     @ParameterizedTest
     @MethodSource
-    public void atacadoConUnTopedoDeFotones(int dureza, int puntosLuegoDelAtaqueConUnTorpedoDeFotones) {
+    void atacadoConUnTopedoDeFotones(int dureza, int puntosLuegoDelAtaqueConUnTorpedoDeFotones) {
 
         dadoQue(fueCreadoUnAsteroideConDureza(dureza));
 
@@ -145,7 +145,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
         comprobarQue(losPuntosDeUnAsteroideSon(puntosLuegoDelAtaqueConUnTorpedoDeFotones));
     }
 
-    public static Stream<Arguments> atacadoConUnTopedoDeFotones() {
+    static Stream<Arguments> atacadoConUnTopedoDeFotones() {
 
         return Stream.of(
                 arguments(100, 290),
@@ -159,7 +159,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
     }
 
     @Test
-    public void crearConDurezaMinima() {
+    void crearConDurezaMinima() {
 
         final int dureza = Dureza.MINIMA;
 
@@ -169,7 +169,7 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
     }
 
     @Test
-    public void crearConDurezaMaxima() {
+    void crearConDurezaMaxima() {
 
         final int dureza = Dureza.MAXIMA;
 
@@ -179,13 +179,13 @@ public class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
     }
 
     @Test
-    public void crearConDurezaMenorAlMinimo() {
+    void crearConDurezaMenorAlMinimo() {
 
         comprobarQue(generaDefecto(() -> new Asteroide(Dureza.MINIMA - 1)));
     }
 
     @Test
-    public void crearConDurezaManorAlMaximo() {
+    void crearConDurezaManorAlMaximo() {
 
         comprobarQue(generaDefecto(() -> new Asteroide(Dureza.MAXIMA + 1)));
     }

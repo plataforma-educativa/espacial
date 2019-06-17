@@ -2,10 +2,10 @@ package espacial.tableros;
 
 import org.junit.jupiter.api.Test;
 
-public class EstadoDelCasilleroAlDesocuparTest extends EstadoDelCasilleroTest {
+class EstadoDelCasilleroAlDesocuparTest extends EstadoDelCasilleroTest {
     
     @Test
-    public void siEstaVacio() {
+    void siEstaVacio() {
 
         estado = new Vacio(CASILLERO);
         
@@ -14,7 +14,7 @@ public class EstadoDelCasilleroAlDesocuparTest extends EstadoDelCasilleroTest {
     }
 
     @Test
-    public void siEstaOcupado() {
+    void siEstaOcupado() {
         
         estado = new Ocupado(CASILLERO, PIEZA);
         
@@ -24,7 +24,7 @@ public class EstadoDelCasilleroAlDesocuparTest extends EstadoDelCasilleroTest {
     }
     
     @Test
-    public void siEstaOcupadoPorUnaBase() {
+    void siEstaOcupadoPorUnaBase() {
      
         estado = new OcupadoPorUnaBase(CASILLERO, PIEZA);
         
@@ -34,7 +34,7 @@ public class EstadoDelCasilleroAlDesocuparTest extends EstadoDelCasilleroTest {
     }
 
     @Test
-    public void siEstaOcupadoPorUnaBaseConNaveEnManiobras() {
+    void siEstaOcupadoPorUnaBaseConNaveEnManiobras() {
      
         estado = new OcupadoPorUnaBaseConNaveEnManiobras(CASILLERO, PIEZA, NAVE);
         

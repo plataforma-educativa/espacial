@@ -9,13 +9,13 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class IndicadorTest implements TestDeContrato {
+class IndicadorTest implements TestDeContrato {
 
     private final Accion UNA_ACCION = mock(Accion.class, "UNA_ACCION");
     private Indicador unIndicador;
 
     @Test
-    public void crearConUnValor() {
+    void crearConUnValor() {
 
         unIndicador = new Indicador(300);
 
@@ -28,7 +28,7 @@ public class IndicadorTest implements TestDeContrato {
     }
 
     @Test
-    public void decrementar() {
+    void decrementar() {
 
         dadoQue(fueCreadoUnIndicadorConValorInicial(100));
 
@@ -48,7 +48,7 @@ public class IndicadorTest implements TestDeContrato {
     }
 
     @Test
-    public void decrementarMasDelValorInicial() {
+    void decrementarMasDelValorInicial() {
 
         dadoQue(fueCreadoUnIndicadorConValorInicial(50));
 
@@ -58,7 +58,7 @@ public class IndicadorTest implements TestDeContrato {
     }
 
     @Test
-    public void cuandoSeAgota() {
+    void cuandoSeAgota() {
 
         dadoQue(fueCreadoUnIndicadorConValorInicial(80));
 
@@ -75,7 +75,7 @@ public class IndicadorTest implements TestDeContrato {
     }
 
     @Test
-    public void cuandoSeAgotaSiNoTieneConfiguradaUnaAccion() {
+    void cuandoSeAgotaSiNoTieneConfiguradaUnaAccion() {
 
         dadoQue(fueCreadoUnIndicadorConValorInicial(25));
 
@@ -83,7 +83,7 @@ public class IndicadorTest implements TestDeContrato {
     }
 
     @Test
-    public void cuandoSeAgotaAlDecrementarHabiendoseAgotadoAntes() {
+    void cuandoSeAgotaAlDecrementarHabiendoseAgotadoAntes() {
 
         dadoQue(fueCreadoUnIndicadorConValorInicial(40));
 

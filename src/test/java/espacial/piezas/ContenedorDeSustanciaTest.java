@@ -4,10 +4,10 @@ import espacial.SustanciaEspacial;
 import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Nested;
 
-public class ContenedorDeSustanciaTest implements TestDeContrato {
+class ContenedorDeSustanciaTest implements TestDeContrato {
 
     @Nested
-    public class AntimateriaTest extends TestDeContratoSobreContenedor<ContenedorDeAntimateria> {
+    class AntimateriaTest extends TestDeContratoSobreContenedor<ContenedorDeAntimateria> {
 
         @Override
         protected SustanciaEspacial sustanciaAlmacenada() {
@@ -29,7 +29,7 @@ public class ContenedorDeSustanciaTest implements TestDeContrato {
     }
 
     @Nested
-    public class MetalTest extends TestDeContratoSobreContenedor<ContenedorDeMetal> {
+    class MetalTest extends TestDeContratoSobreContenedor<ContenedorDeMetal> {
 
         @Override
         protected SustanciaEspacial sustanciaAlmacenada() {
@@ -51,7 +51,7 @@ public class ContenedorDeSustanciaTest implements TestDeContrato {
     }
 
     @Nested
-    public class CristalTest extends TestDeContratoSobreContenedor<ContenedorDeCristal> {
+    class CristalTest extends TestDeContratoSobreContenedor<ContenedorDeCristal> {
 
         @Override
         protected SustanciaEspacial sustanciaAlmacenada() {

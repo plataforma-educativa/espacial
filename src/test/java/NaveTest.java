@@ -14,7 +14,7 @@ import static espacial.test.Aserciones.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.*;
 
-public class NaveTest implements TestDeContrato {
+class NaveTest implements TestDeContrato {
 
     private BatallaEspacial batallaEspacial;
     private Nave unaNave;
@@ -30,7 +30,7 @@ public class NaveTest implements TestDeContrato {
     private int puntosInicialesDeOtraNave;
 
     @Test
-    public void crearUnObjetoDeTipoNaveDejandoloEnLaBase() {
+    void crearUnObjetoDeTipoNaveDejandoloEnLaBase() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
 
@@ -58,7 +58,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void crearTresObjetosDeTipoNaveDejandolosEnLaBase() {
+    void crearTresObjetosDeTipoNaveDejandolosEnLaBase() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
 
@@ -81,7 +81,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void noPuedeAvanzarAlNorteSiNoDespegoAntes() {
+    void noPuedeAvanzarAlNorteSiNoDespegoAntes() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNave());
@@ -105,7 +105,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void avanzarAlNorte() {
+    void avanzarAlNorte() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
@@ -134,7 +134,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void avanzarAlNorteTresVeces() {
+    void avanzarAlNorteTresVeces() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
@@ -158,7 +158,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void avanzarAlSur() {
+    void avanzarAlSur() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
@@ -179,7 +179,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void avanzarAlEste() {
+    void avanzarAlEste() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
@@ -200,7 +200,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void avanzarAlOeste() {
+    void avanzarAlOeste() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
@@ -221,7 +221,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void noPuedeAvanzarSiExisteUnAsteroideEnElCasilleroDestino() {
+    void noPuedeAvanzarSiExisteUnAsteroideEnElCasilleroDestino() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(unaNaveEstaAlEsteDeUnAsteroide());
@@ -255,7 +255,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void consultarNivelDeEscudos() {
+    void consultarNivelDeEscudos() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNave());
@@ -274,7 +274,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void noPuedeAvanzarSiExisteUnContenedorEnElCasilleroDestino() {
+    void noPuedeAvanzarSiExisteUnContenedorEnElCasilleroDestino() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(unaNaveEstaAlSurDeUnContenedor());
@@ -307,7 +307,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void noPuedeAvanzarSiElCasilleroDestinoEsElBordeDelTablero() {
+    void noPuedeAvanzarSiElCasilleroDestinoEsElBordeDelTablero() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(unaNaveEstaEnElBordeSurDelTablero());
@@ -341,7 +341,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void noPuedeAvanzarSiExisteUnAgujeroNegroEnElCasilleroDestino() {
+    void noPuedeAvanzarSiExisteUnAgujeroNegroEnElCasilleroDestino() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(unaNaveEstaAlEsteDeUnAgujeroNegro());
@@ -369,7 +369,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void atacarAlSurUnAsteroide() {
+    void atacarAlSurUnAsteroide() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(unaNaveEstaAlNorteDeUnAsteroide());
@@ -413,7 +413,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void atacarAlOesteUnContenedor() {
+    void atacarAlOesteUnContenedor() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(unaNaveEstaAlEsteDeUnContenedor());
@@ -458,7 +458,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void atacarAlNorteUnaBase() {
+    void atacarAlNorteUnaBase() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(unaNaveEstaAlSurDeUnaBase());
@@ -501,7 +501,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void atacarAlEsteOtraNave() {
+    void atacarAlEsteOtraNave() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(unaNaveEstaAlOesteDeOtraNave());
@@ -548,7 +548,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void obtenerRadar() {
+    void obtenerRadar() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
@@ -571,7 +571,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void obtenerMonitor() {
+    void obtenerMonitor() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNave());
@@ -587,7 +587,7 @@ public class NaveTest implements TestDeContrato {
     }
 
     @Test
-    public void evaluarVariable() {
+    void evaluarVariable() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(fueCreadaUnaNave());

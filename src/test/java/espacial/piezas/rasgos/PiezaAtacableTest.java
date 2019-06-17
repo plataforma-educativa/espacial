@@ -11,14 +11,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class PiezaAtacableTest implements TestDeContrato {
+class PiezaAtacableTest implements TestDeContrato {
 
     private int puntosDecrementados;
 
     private PiezaAtacable piezaAtacada;
 
     @Test
-    public void atacadoConTorpedoDeFotones() {
+    void atacadoConTorpedoDeFotones() {
 
         dadoQue(laPiezaAtacadaImplementaPiezaAtacable());
 
@@ -29,7 +29,7 @@ public class PiezaAtacableTest implements TestDeContrato {
     }
 
     @Test
-    public void atacadoConLaser() {
+    void atacadoConLaser() {
 
         dadoQue(laPiezaAtacadaImplementaPiezaAtacable());
 

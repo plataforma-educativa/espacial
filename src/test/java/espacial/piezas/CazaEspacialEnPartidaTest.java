@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
-public class CazaEspacialEnPartidaTest implements TestDeContrato {
+class CazaEspacialEnPartidaTest implements TestDeContrato {
 
     private final Casillero UN_CASILLERO = mock(Casillero.class, "UN_CASILLERO");
 
     private CazaEspacial unCazaEspacial;
 
     @Test
-    public void cuandoSeQuedaSinPuntosSeSacaDelTablero() {
+    void cuandoSeQuedaSinPuntosSeSacaDelTablero() {
 
         dadoQue(fueCreadoUnCazaEspacialColocandoloEnUnCasillero());
 

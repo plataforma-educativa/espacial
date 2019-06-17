@@ -9,14 +9,14 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class NaveChocableTest implements TestDeContrato {
+class NaveChocableTest implements TestDeContrato {
 
     private int nivelDeEscudosDisminuido;
     private NaveChocable naveChocada;
     private Chocable UN_CHOCABLE = mock(Chocable.class, "UN_CHOCABLE");
 
     @Test
-    public void chocoContraUnAsteroide() {
+    void chocoContraUnAsteroide() {
 
         dadoQue(laNaveChocadaImplementaNaveChocable());
 
@@ -26,7 +26,7 @@ public class NaveChocableTest implements TestDeContrato {
     }
 
     @Test
-    public void chocoContraUnContenedor() {
+    void chocoContraUnContenedor() {
 
         dadoQue(laNaveChocadaImplementaNaveChocable());
 
@@ -36,7 +36,7 @@ public class NaveChocableTest implements TestDeContrato {
     }
 
     @Test
-    public void chocoContraUnaBase() {
+    void chocoContraUnaBase() {
 
         dadoQue(laNaveChocadaImplementaNaveChocable());
 
@@ -46,7 +46,7 @@ public class NaveChocableTest implements TestDeContrato {
     }
 
     @Test
-    public void chocoContraUnAgujeroNegro() {
+    void chocoContraUnAgujeroNegro() {
 
         dadoQue(laNaveChocadaImplementaNaveChocable());
 
@@ -56,7 +56,7 @@ public class NaveChocableTest implements TestDeContrato {
     }
 
     @Test
-    public void chocoContraElBordeDelTablero() {
+    void chocoContraElBordeDelTablero() {
 
         dadoQue(laNaveChocadaImplementaNaveChocable());
 
@@ -66,7 +66,7 @@ public class NaveChocableTest implements TestDeContrato {
     }
 
     @Test
-    public void chocoContraUnaNave() {
+    void chocoContraUnaNave() {
 
         dadoQue(laNaveChocadaImplementaNaveChocable());
 
@@ -76,7 +76,7 @@ public class NaveChocableTest implements TestDeContrato {
     }
 
     @Test
-    public void fueChocadaPor() {
+    void fueChocadaPor() {
 
         dadoQue(laNaveChocadaImplementaNaveChocable());
 
@@ -88,16 +88,13 @@ public class NaveChocableTest implements TestDeContrato {
 
     private Precondicion laNaveChocadaImplementaNaveChocable() {
 
-        return precondicion(() -> {
+        return precondicion(() -> naveChocada = new NaveChocable() {
 
-            naveChocada = new NaveChocable() {
+            @Override
+            public void disminuirNivelDeEscudosEn(int diferencia) {
 
-                @Override
-                public void disminuirNivelDeEscudosEn(int diferencia) {
-
-                    nivelDeEscudosDisminuido = diferencia;
-                }
-            };
+                nivelDeEscudosDisminuido = diferencia;
+            }
         });
     }
 

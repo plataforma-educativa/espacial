@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.*;
 
-public class CasilleroTest implements TestDeContrato {
+class CasilleroTest implements TestDeContrato {
 
     private Tablero tablero;
 
@@ -27,13 +27,13 @@ public class CasilleroTest implements TestDeContrato {
     private final Pieza NAVE = new CazaEspacial();
 
     @BeforeEach
-    public void crearTablero() {
+    void crearTablero() {
 
         tablero = new Tablero();
     }
 
     @Test
-    public void escanearCuandoNoTienePieza() {
+    void escanearCuandoNoTienePieza() {
 
         Casillero casillero = tablero.obtenerCasilleroEn(5, 2);
 
@@ -41,7 +41,7 @@ public class CasilleroTest implements TestDeContrato {
     }
 
     @Test
-    public void escanearCuandoTieneUnaPiezaQueEsUnContenedor() {
+    void escanearCuandoTieneUnaPiezaQueEsUnContenedor() {
 
         Casillero casillero = tablero.obtenerCasilleroEn(-9, 1);
 
@@ -51,7 +51,7 @@ public class CasilleroTest implements TestDeContrato {
     }
 
     @Test
-    public void escanearCuandoTieneUnaPiezaQueEsUnAsteroide() {
+    void escanearCuandoTieneUnaPiezaQueEsUnAsteroide() {
 
         Casillero casillero = tablero.obtenerCasilleroEn(3, 10);
 
@@ -61,7 +61,7 @@ public class CasilleroTest implements TestDeContrato {
     }
 
     @Test
-    public void moverPiezaEntreCasilleros() {
+    void moverPiezaEntreCasilleros() {
 
         Casillero origen = tablero.obtenerCasilleroEn(1, 1);
         origen.ocuparCon(NAVE);
@@ -88,7 +88,7 @@ public class CasilleroTest implements TestDeContrato {
     }
 
     @Test
-    public void desocupar() {
+    void desocupar() {
 
         Casillero casillero = tablero.obtenerCasilleroEn(4, 9);
         casillero.ocuparCon(ASTEROIDE);
@@ -108,7 +108,7 @@ public class CasilleroTest implements TestDeContrato {
 
     @ParameterizedTest
     @MethodSource("contiguosPorDireccion")
-    public void obtenerContiguo(int fila, int columna, Direccion direccionElegida,
+    void obtenerContiguo(int fila, int columna, Direccion direccionElegida,
                                 int filaEsperada, int columnaEsperada) {
 
         Casillero casillero = tablero.obtenerCasilleroEn(fila, columna);
@@ -118,7 +118,7 @@ public class CasilleroTest implements TestDeContrato {
         comprobarQue(elCasilleroEsEl(filaEsperada, columnaEsperada, contiguo));
     }
 
-    public static Stream<Arguments> contiguosPorDireccion() {
+    static Stream<Arguments> contiguosPorDireccion() {
 
         return Stream.of(
                 arguments(0, 0, Direccion.NORTE, 1, 0),
@@ -143,7 +143,7 @@ public class CasilleroTest implements TestDeContrato {
 
     @ParameterizedTest
     @MethodSource("contiguosPorDireccionEnElLimiteDelTablero")
-    public void obtenerContiguoCuandoEstaEnElLimiteDelTablero(int fila, int columna, Direccion direccionElegida) {
+    void obtenerContiguoCuandoEstaEnElLimiteDelTablero(int fila, int columna, Direccion direccionElegida) {
 
         Casillero casillero = tablero.obtenerCasilleroEn(fila, columna);
 
@@ -152,7 +152,7 @@ public class CasilleroTest implements TestDeContrato {
         comprobarQue(elCasilleroEsMargen(contiguo));
     }
 
-    public static Stream<Arguments> contiguosPorDireccionEnElLimiteDelTablero() {
+    static Stream<Arguments> contiguosPorDireccionEnElLimiteDelTablero() {
 
         return Stream.of(
                 arguments(10, 0, Direccion.NORTE),

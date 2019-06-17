@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustancia> extends TestDeContratoSobrePieza<T> {
+abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustancia> extends TestDeContratoSobrePieza<T> {
 
     private T unContenedor;
 
@@ -21,19 +21,19 @@ public abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustan
     protected abstract T piezaCreadaConCarga(int cantidadInicial);
 
     @Override
-    public EspectroEspacial espectroEsperado() {
+    EspectroEspacial espectroEsperado() {
 
         return EspectroEspacial.CONTENEDOR;
     }
 
     @Override
-    public Postcondicion laNaveEspacialFueNotificadaDelChoque() {
+    Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
         return postcondicion(() -> verify(NAVE_ESPACIAL).chocoContraUnContenedor());
     }
 
     @Test
-    public void crearConCargaInicial() {
+    void crearConCargaInicial() {
 
         final int cantidad = 142;
 
@@ -48,7 +48,7 @@ public abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustan
     }
 
     @Test
-    public void obtenerPuntos() {
+    void obtenerPuntos() {
 
         dadoQue(fueCreadoUnContenedor());
 
@@ -66,7 +66,7 @@ public abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustan
     }
 
     @Test
-    public void recibirUnaCarga() {
+    void recibirUnaCarga() {
 
         final int cantidad = 65;
 
@@ -88,7 +88,7 @@ public abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustan
     }
 
     @Test
-    public void recibirMultiplesCargas() {
+    void recibirMultiplesCargas() {
 
         final int cantidadInicial = 20;
         final int cantidad = 90;
@@ -110,7 +110,7 @@ public abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustan
     }
 
     @Test
-    public void recibirLaCargaMaxima() {
+    void recibirLaCargaMaxima() {
 
         final int cantidadMaxima = 1000;
 
@@ -122,7 +122,7 @@ public abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustan
     }
 
     @Test
-    public void recibirCargaExcediendoLaCapacidad() {
+    void recibirCargaExcediendoLaCapacidad() {
 
         final int cantidadExcedida = 1001;
 
@@ -145,7 +145,7 @@ public abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustan
     }
 
     @Test
-    public void extraerUnaCarga() {
+    void extraerUnaCarga() {
 
         final int cantidadInicial = 90;
         final int cantidad = 10;
@@ -158,7 +158,7 @@ public abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustan
     }
 
     @Test
-    public void extraerMultiplesCargas() {
+    void extraerMultiplesCargas() {
 
         final int cantidadInicial = 500;
         final int cantidadExtraida = 343;
@@ -173,7 +173,7 @@ public abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustan
     }
 
     @Test
-    public void extraerExcediendoLaCargaDisponible() {
+    void extraerExcediendoLaCargaDisponible() {
 
         final int cantidadInicial = 100;
         final int cantidad = 101;
@@ -187,7 +187,7 @@ public abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustan
     }
 
     @Test
-    public void extraerTodaLaCargaDisponible() {
+    void extraerTodaLaCargaDisponible() {
 
         final int cantidadInicial = 345;
 

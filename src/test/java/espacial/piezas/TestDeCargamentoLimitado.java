@@ -11,14 +11,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public abstract class TestDeCargamentoLimitado implements TestDeContrato {
+abstract class TestDeCargamentoLimitado implements TestDeContrato {
 
     protected Cargamento unCargamento;
 
     protected abstract Precondicion fueCreadoUnCargamento(int capacidad);
 
     @Test
-    public void agregar40CuandoTiene0ConCapacidadPara100() {
+    void agregar40CuandoTiene0ConCapacidadPara100() {
 
         final int capacidad = 100;
         final int agregada = 40;
@@ -30,7 +30,7 @@ public abstract class TestDeCargamentoLimitado implements TestDeContrato {
     }
 
     @Test
-    public void agregar50CuandoTiene10ConCapacidadPara200() {
+    void agregar50CuandoTiene10ConCapacidadPara200() {
 
         final int capacidad = 200;
         final int inicial = 10;
@@ -43,7 +43,7 @@ public abstract class TestDeCargamentoLimitado implements TestDeContrato {
     }
 
     @Test
-    public void agregar70CuandoTiene20ConCapacidadPara90() {
+    void agregar70CuandoTiene20ConCapacidadPara90() {
 
         final int capacidad = 90;
         final int inicial = 20;
@@ -56,7 +56,7 @@ public abstract class TestDeCargamentoLimitado implements TestDeContrato {
     }
 
     @Test
-    public void agregar90CuandoTiene100ConCapacidadPara189() {
+    void agregar90CuandoTiene100ConCapacidadPara189() {
 
         final int capacidad = 189;
         final int inicial = 100;
@@ -68,7 +68,7 @@ public abstract class TestDeCargamentoLimitado implements TestDeContrato {
     }
 
     @Test
-    public void retirar10CuandoTiene25() {
+    void retirar10CuandoTiene25() {
 
         final int capacidad = 50;
         final int disponible = 30;
@@ -81,7 +81,7 @@ public abstract class TestDeCargamentoLimitado implements TestDeContrato {
     }
 
     @Test
-    public void retirar40CuandoTiene40() {
+    void retirar40CuandoTiene40() {
 
         final int capacidad = 50;
         final int disponible = 30;
@@ -93,7 +93,7 @@ public abstract class TestDeCargamentoLimitado implements TestDeContrato {
     }
 
     @Test
-    public void retirar60CuandoTiene30() {
+    void retirar60CuandoTiene30() {
 
         final int capacidad = 70;
         final int disponible = 30;

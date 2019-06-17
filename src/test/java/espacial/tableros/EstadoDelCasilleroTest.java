@@ -12,7 +12,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
-public abstract class EstadoDelCasilleroTest implements TestDeContrato {
+abstract class EstadoDelCasilleroTest implements TestDeContrato {
 
     protected final CasilleroInterior CASILLERO = mock(CasilleroInterior.class, "CASILLERO");
     protected final Casillero CASILLERO_ORIGEN = mock(Casillero.class, "CASILLERO_ORIGEN");
@@ -68,11 +68,11 @@ public abstract class EstadoDelCasilleroTest implements TestDeContrato {
         );
     }
 
-    public abstract void siEstaVacio();
+    abstract void siEstaVacio();
 
-    public abstract void siEstaOcupado();
+    abstract void siEstaOcupado();
 
-    public abstract void siEstaOcupadoPorUnaBase();
+    abstract void siEstaOcupadoPorUnaBase();
 
-    public abstract void siEstaOcupadoPorUnaBaseConNaveEnManiobras();
+    abstract void siEstaOcupadoPorUnaBaseConNaveEnManiobras();
 }

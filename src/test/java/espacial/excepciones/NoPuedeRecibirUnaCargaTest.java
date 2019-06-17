@@ -11,19 +11,19 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class NoPuedeRecibirUnaCargaTest implements TestDeContrato {
+class NoPuedeRecibirUnaCargaTest implements TestDeContrato {
 
     private final Pieza UNA_PIEZA = mock(Pieza.class, "UNA_PIEZA");
     private final Carga UNA_CARGA = SustanciaEspacial.ANTIMATERIA.por(8);
 
     @BeforeEach
-    public void configurarMocks() {
+    void configurarMocks() {
 
         when(UNA_PIEZA.escanear()).thenReturn(EspectroEspacial.ASTEROIDE);
     }
 
     @Test
-    public void getMessage() {
+    void getMessage() {
         assertThat(new NoPuedeRecibirUnaCarga(UNA_PIEZA, UNA_CARGA))
                 .hasNoCause()
                 .hasMessage("ASTEROIDE no puede recibir una carga de '8 ANTIMATERIA'");

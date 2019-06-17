@@ -14,7 +14,7 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class FabricaDePiezasTest implements TestDeContrato {
+class FabricaDePiezasTest implements TestDeContrato {
 
     private FabricaDePiezas unaFabrica;
 
@@ -25,7 +25,7 @@ public class FabricaDePiezasTest implements TestDeContrato {
     private Set<Integer> durezas = new HashSet<>();
 
     @Test
-    public void crearContenedorDeAntimateria() {
+    void crearContenedorDeAntimateria() {
 
         dadoQue(fueCreadaUnaFabricaDePiezas());
 
@@ -35,7 +35,7 @@ public class FabricaDePiezasTest implements TestDeContrato {
     }
 
     @Test
-    public void crearContenedorDeMetal() {
+    void crearContenedorDeMetal() {
 
         dadoQue(fueCreadaUnaFabricaDePiezas());
 
@@ -45,7 +45,7 @@ public class FabricaDePiezasTest implements TestDeContrato {
     }
 
     @Test
-    public void crearContenedorDeCristal() {
+    void crearContenedorDeCristal() {
 
         dadoQue(fueCreadaUnaFabricaDePiezas());
 
@@ -74,7 +74,7 @@ public class FabricaDePiezasTest implements TestDeContrato {
     }
 
     @Test
-    public void crearContenedorDeAntimateriaConCargaAleatoria() {
+    void crearContenedorDeAntimateriaConCargaAleatoria() {
 
         dadoQue(fueCreadaUnaFabricaDePiezas());
 
@@ -97,7 +97,7 @@ public class FabricaDePiezasTest implements TestDeContrato {
     }
 
     @Test
-    public void crearContenedorDeMetalConCargaAleatoria() {
+    void crearContenedorDeMetalConCargaAleatoria() {
 
         dadoQue(fueCreadaUnaFabricaDePiezas());
 
@@ -115,7 +115,7 @@ public class FabricaDePiezasTest implements TestDeContrato {
     }
 
     @Test
-    public void crearContenedorDeCristalConCargaAleatoria() {
+    void crearContenedorDeCristalConCargaAleatoria() {
 
         dadoQue(fueCreadaUnaFabricaDePiezas());
 
@@ -133,7 +133,7 @@ public class FabricaDePiezasTest implements TestDeContrato {
     }
 
     @Test
-    public void crear() {
+    void crear() {
 
         dadoQue(fueCreadaUnaFabricaDePiezas());
 
@@ -158,7 +158,7 @@ public class FabricaDePiezasTest implements TestDeContrato {
     }
 
     @Test
-    public void crearAsteroide() {
+    void crearAsteroide() {
 
         dadoQue(fueCreadaUnaFabricaDePiezas());
 
@@ -178,7 +178,7 @@ public class FabricaDePiezasTest implements TestDeContrato {
     }
 
     @Test
-    public void crearAsteroidesConDurezaAleatoria() {
+    void crearAsteroidesConDurezaAleatoria() {
 
         dadoQue(fueCreadaUnaFabricaDePiezas());
 

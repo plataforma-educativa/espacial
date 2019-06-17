@@ -9,10 +9,10 @@ import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class TableroTest implements TestDeContrato {
+class TableroTest implements TestDeContrato {
 
     @Test
-    public void obtenerDimensiones() {
+    void obtenerDimensiones() {
 
         Tablero tablero = new Tablero();
 
@@ -25,7 +25,7 @@ public class TableroTest implements TestDeContrato {
     }
 
     @Test
-    public void paraCadaCoordenada() {
+    void paraCadaCoordenada() {
 
         Tablero tablero = new Tablero();
         final Set<Coordenada> coordenadasIteradas = new HashSet<>();
@@ -38,7 +38,7 @@ public class TableroTest implements TestDeContrato {
     }
 
     @Test
-    public void obtenerCasilleroEnFilaColumna() {
+    void obtenerCasilleroEnFilaColumna() {
 
         Tablero tablero = new Tablero();
 
@@ -48,7 +48,7 @@ public class TableroTest implements TestDeContrato {
     }
 
     @Test
-    public void obtenerCasilleroEnCoordenada() {
+    void obtenerCasilleroEnCoordenada() {
 
         Tablero tablero = new Tablero();
 
@@ -59,7 +59,7 @@ public class TableroTest implements TestDeContrato {
     }
 
     @Test
-    public void colocarEnCasilleroUnaBase() {
+    void colocarEnCasilleroUnaBase() {
 
         final BaseEspacial base = new BaseEspacial();
         Tablero tablero = new Tablero();

@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class EstadoDelCasilleroAlBuscarTest extends EstadoDelCasilleroTest {
+class EstadoDelCasilleroAlBuscarTest extends EstadoDelCasilleroTest {
     
     @Test
-    public void siEstaVacio() {
+    void siEstaVacio() {
 
         estado = new Vacio(CASILLERO);
         
@@ -20,7 +20,7 @@ public class EstadoDelCasilleroAlBuscarTest extends EstadoDelCasilleroTest {
     }
 
     @Test
-    public void siEstaOcupado() {
+    void siEstaOcupado() {
 
         final int antimateriaEnLaPieza = 50;
         dadoQue(cuandoSobreLaPiezaSeBuscaDevuelve(SustanciaEspacial.ANTIMATERIA, antimateriaEnLaPieza));
@@ -32,7 +32,7 @@ public class EstadoDelCasilleroAlBuscarTest extends EstadoDelCasilleroTest {
     }
 
     @Test
-    public void siEstaOcupadoPorUnaBase() {
+    void siEstaOcupadoPorUnaBase() {
 
         final int antimateriaEnLaBase = 234;
         dadoQue(cuandoSobreLaPiezaSeBuscaDevuelve(SustanciaEspacial.ANTIMATERIA, antimateriaEnLaBase));
@@ -44,7 +44,7 @@ public class EstadoDelCasilleroAlBuscarTest extends EstadoDelCasilleroTest {
     }
 
     @Test
-    public void siEstaOcupadoPorUnaBaseConNaveEnManiobras() {
+    void siEstaOcupadoPorUnaBaseConNaveEnManiobras() {
 
         final int antimateriaEnLaBase = 332;
         dadoQue(cuandoSobreLaPiezaSeBuscaDevuelve(SustanciaEspacial.ANTIMATERIA, antimateriaEnLaBase));

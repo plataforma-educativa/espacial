@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class ExcedeLaCargaDisponibleTest implements TestDeContrato {
+class ExcedeLaCargaDisponibleTest implements TestDeContrato {
 
     @Test
-    public void getMessage() {
+    void getMessage() {
 
         assertThat(new ExcedeLaCargaDisponible(30, 80))
                 .hasNoCause()

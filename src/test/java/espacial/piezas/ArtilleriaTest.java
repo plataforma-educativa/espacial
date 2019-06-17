@@ -12,13 +12,13 @@ import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class ArtilleriaTest implements TestDeContrato {
+class ArtilleriaTest implements TestDeContrato {
 
     private Artilleria unaArtilleria;
     private List<Ataque> ataquesRealizados = new LinkedList<>();
 
     @Test
-    public void crearArsenalConLaCantidadDeTorpedosDeFotones() {
+    void crearArsenalConLaCantidadDeTorpedosDeFotones() {
 
         final int CANTIDAD = 40;
         unaArtilleria = new Artilleria(CANTIDAD);
@@ -35,7 +35,7 @@ public class ArtilleriaTest implements TestDeContrato {
     }
 
     @Test
-    public void lanzarAtaque() {
+    void lanzarAtaque() {
 
         final int CANTIDAD_DE_TORPEDOS = 5;
         final int CANTIDAD_DE_LASER = 35;

@@ -25,7 +25,7 @@ import java.util.stream.IntStream;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
+class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private final Amarre AMARRE = mock(Amarre.class, "AMARRE");
     private final Casillero UN_CASILLERO = mock(Casillero.class, "UN_CASILLERO");
@@ -39,7 +39,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     private CazaEspacial unCazaEspacial;
 
     @BeforeEach
-    public void simularCasillero() {
+    void simularCasillero() {
 
         when(UN_CASILLERO.obtenerContiguoEn(Direccion.NORTE)).thenReturn(CASILLERO_NORTE);
         when(UN_CASILLERO.obtenerContiguoEn(Direccion.SUR)).thenReturn(CASILLERO_SUR);
@@ -48,25 +48,25 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Override
-    public CazaEspacial piezaCreada() {
+    CazaEspacial piezaCreada() {
 
         return new CazaEspacial();
     }
 
     @Override
-    public EspectroEspacial espectroEsperado() {
+    EspectroEspacial espectroEsperado() {
 
         return EspectroEspacial.NAVE;
     }
 
     @Override
-    public Postcondicion laNaveEspacialFueNotificadaDelChoque() {
+    Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
         return postcondicion(() -> verify(NAVE_ESPACIAL).chocoContraUnaNave());
     }
 
     @Test
-    public void obtenerNivelDeEscudosInicial() {
+    void obtenerNivelDeEscudosInicial() {
 
         dadoQue(fueCreadoUnCazaEspacial());
 
@@ -83,7 +83,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void disminuirNivelDeEscudosEn() {
+    void disminuirNivelDeEscudosEn() {
 
         dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasillero());
 
@@ -93,7 +93,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void disminuirNivelDeEscudosEnUnValorMayorA100() {
+    void disminuirNivelDeEscudosEnUnValorMayorA100() {
 
         dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasillero());
 
@@ -103,7 +103,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void fueChocadaPorOtraNaveEspacial() {
+    void fueChocadaPorOtraNaveEspacial() {
 
         dadoQue(fueCreadoUnCazaEspacial());
 
@@ -113,7 +113,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void moverEnDireccionCuandoNoDespego() {
+    void moverEnDireccionCuandoNoDespego() {
 
         dadoQue(fueCreadoUnCazaEspacial());
 
@@ -130,7 +130,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void moverEnDireccion() {
+    void moverEnDireccion() {
 
         dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasillero());
 
@@ -153,7 +153,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void chocoContraUnAsteroide() {
+    void chocoContraUnAsteroide() {
 
         dadoQue(fueCreadoUnCazaEspacial());
 
@@ -177,7 +177,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void chocoContraUnContenedor() {
+    void chocoContraUnContenedor() {
 
         dadoQue(fueCreadoUnCazaEspacial());
 
@@ -187,7 +187,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void chocoContraElBordeDelTablero() {
+    void chocoContraElBordeDelTablero() {
 
         dadoQue(fueCreadoUnCazaEspacial());
 
@@ -197,7 +197,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void chocoContraUnAgujeroNegro() {
+    void chocoContraUnAgujeroNegro() {
 
         dadoQue(fueCreadoUnCazaEspacial());
 
@@ -207,7 +207,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void chocoContraUnaNave() {
+    void chocoContraUnaNave() {
 
         dadoQue(fueCreadoUnCazaEspacial());
 
@@ -217,7 +217,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void chocoContraUnaBase() {
+    void chocoContraUnaBase() {
 
         dadoQue(fueCreadoUnCazaEspacial());
 
@@ -227,7 +227,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void despegar() {
+    void despegar() {
 
         dadoQue(fueCreadoUnCazaEspacial());
         dadoQue(unCazaEspacialFueAmarrado());
@@ -248,7 +248,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void despegarCuandoNoEstaAmarrada() {
+    void despegarCuandoNoEstaAmarrada() {
 
         dadoQue(fueCreadoUnCazaEspacial());
 
@@ -261,7 +261,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void obtenerPuntos() {
+    void obtenerPuntos() {
 
         dadoQue(fueCreadoUnCazaEspacial());
 
@@ -274,7 +274,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void atacarEnDireccion() {
+    void atacarEnDireccion() {
 
         dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasilleroConOtraPiezaAlOeste());
 
@@ -306,7 +306,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void atacarEnUnaDireccionUtilizaTorpedosDeFotonesHasta100VecesLuegoUsaLaser() {
+    void atacarEnUnaDireccionUtilizaTorpedosDeFotonesHasta100VecesLuegoUsaLaser() {
 
         final int TORPEDOS_DE_FOTONES = 100;
         final int LASER = 45;
@@ -346,7 +346,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void escanearEnDireccion() {
+    void escanearEnDireccion() {
 
         dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasilleroRodeadoDeAsteroides());
 
@@ -379,7 +379,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void escanearEnDireccionCuandoNoEstaEnUnCasillero() {
+    void escanearEnDireccionCuandoNoEstaEnUnCasillero() {
 
         dadoQue(fueCreadoUnCazaEspacialQueNoSeColocoEnNingunCasillero());
 
@@ -395,7 +395,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void atacarEnDireccionCuandoNoEstaEnUnCasillero() {
+    void atacarEnDireccionCuandoNoEstaEnUnCasillero() {
 
         dadoQue(fueCreadoUnCazaEspacialQueNoSeColocoEnNingunCasillero());
 
@@ -406,7 +406,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void consultarCantidadDeTorpedosIniciales() {
+    void consultarCantidadDeTorpedosIniciales() {
 
         dadoQue(fueCreadoUnCazaEspacial());
 
@@ -424,7 +424,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void buscarEnDireccionUnaSustanciaEspacial() {
+    void buscarEnDireccionUnaSustanciaEspacial() {
 
         dadoQue(fueCreadoUnCazaEspacialConAntimateriaAlrededor(10,0, 15, 30));
 
@@ -461,7 +461,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void recibirUnaCarga() {
+    void recibirUnaCarga() {
 
         final int cantidad = 40;
 
@@ -483,7 +483,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void recibirMultiplesCargas() {
+    void recibirMultiplesCargas() {
 
         final int cantidadInicial = 45;
         final int cantidad = 20;
@@ -505,7 +505,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void recibirLaCargaMaxima() {
+    void recibirLaCargaMaxima() {
 
         final int cantidadMaxima = 100;
 
@@ -517,7 +517,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void recibirCargaExcediendoLaCapacidad() {
+    void recibirCargaExcediendoLaCapacidad() {
 
         final int cantidadExcedida = 101;
 
@@ -540,7 +540,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void recibirUnaCargaDeMetal() {
+    void recibirUnaCargaDeMetal() {
 
         final int cantidad = 79;
 
@@ -552,7 +552,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void entregarUnaCargaDeMetal() {
+    void entregarUnaCargaDeMetal() {
 
         final int cantidadInicial = 80;
         final int cantidadRetirada = 45;
@@ -565,7 +565,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void recibirUnaCargaDeCristal() {
+    void recibirUnaCargaDeCristal() {
 
         final int cantidad = 23;
 
@@ -577,7 +577,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void entregarUnaCargaDeCristal() {
+    void entregarUnaCargaDeCristal() {
 
         final int cantidadInicial = 70;
         final int cantidadRetirada = 12;
@@ -590,7 +590,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void recibirCargasDeAntimateriaCristal() {
+    void recibirCargasDeAntimateriaCristal() {
 
         final int cantidadDeAntimateria = 30;
         final int cantidadDeCristal = 23;
@@ -605,7 +605,7 @@ public class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Test
-    public void recibirCargaDeMetalQueExcedeLaCapacidadPorqueTieneAntimateria() {
+    void recibirCargaDeMetalQueExcedeLaCapacidadPorqueTieneAntimateria() {
 
         final int cantidadInicialDeAntimateria = 50;
         final int cantidadDeMetal = 51;

@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class CargaTest implements TestDeContrato {
+class CargaTest implements TestDeContrato {
 
     @Test
-    public void por() {
+    void por() {
 
         Carga carga = SustanciaEspacial.ANTIMATERIA.por(34);
 
@@ -17,7 +17,7 @@ public class CargaTest implements TestDeContrato {
     }
 
     @Test
-    public void obtenerCantidad() {
+    void obtenerCantidad() {
 
         Carga carga = SustanciaEspacial.ANTIMATERIA.por(230);
 
@@ -25,7 +25,7 @@ public class CargaTest implements TestDeContrato {
     }
 
     @Test
-    public void tieneToString() {
+    void tieneToString() {
 
         Carga carga = SustanciaEspacial.ANTIMATERIA.por(42);
 
@@ -33,7 +33,7 @@ public class CargaTest implements TestDeContrato {
     }
 
     @Test
-    public void porCantidadNula() {
+    void porCantidadNula() {
 
         assertThatThrownBy(() -> SustanciaEspacial.ANTIMATERIA.por(0))
                 .as("excepción generada")
@@ -42,7 +42,7 @@ public class CargaTest implements TestDeContrato {
     }
 
     @Test
-    public void porCantidadNegativa() {
+    void porCantidadNegativa() {
 
         assertThatThrownBy(() -> SustanciaEspacial.ANTIMATERIA.por(-234))
                 .as("excepción generada")

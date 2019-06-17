@@ -12,12 +12,12 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class BodegaTest implements TestDeContrato {
+class BodegaTest implements TestDeContrato {
 
     private Bodega unaBodega;
 
     @Test
-    public void crear() {
+    void crear() {
 
         final int capacidad = 400;
 
@@ -51,7 +51,7 @@ public class BodegaTest implements TestDeContrato {
     }
 
     @Test
-    public void agregarAlCargamentoDeANTIMATERIAOcupandoTodoElLugar() {
+    void agregarAlCargamentoDeANTIMATERIAOcupandoTodoElLugar() {
 
         final int capacidad = 100;
 
@@ -78,7 +78,7 @@ public class BodegaTest implements TestDeContrato {
     }
 
     @Test
-    public void agregarAlCargamentoDeMETALOcupandoTodoElLugar() {
+    void agregarAlCargamentoDeMETALOcupandoTodoElLugar() {
 
         final int capacidad = 500;
 
@@ -100,7 +100,7 @@ public class BodegaTest implements TestDeContrato {
     }
 
     @Test
-    public void agregarAlCargamentoDeCRISTALOcupandoTodoElLugar() {
+    void agregarAlCargamentoDeCRISTALOcupandoTodoElLugar() {
 
         final int capacidad = 500;
 
@@ -122,7 +122,7 @@ public class BodegaTest implements TestDeContrato {
     }
 
     @Test
-    public void agregarAlCargamentoDeANTIMATERIAMultiplesCargas() {
+    void agregarAlCargamentoDeANTIMATERIAMultiplesCargas() {
 
         final int primeraCarga = 40;
         final int segundaCarga = 20;
@@ -136,7 +136,7 @@ public class BodegaTest implements TestDeContrato {
     }
 
     @Test
-    public void agregarAlCargamentoDeANTIMATERIA51Teniendo50DeMETALConCapacidadDe100() {
+    void agregarAlCargamentoDeANTIMATERIA51Teniendo50DeMETALConCapacidadDe100() {
 
         dadoQue(fueCreadaLaBodegaConCapacidad(100));
         dadoQue(unaBodegaCargoMETAL(50));
@@ -148,7 +148,7 @@ public class BodegaTest implements TestDeContrato {
     }
 
     @Test
-    public void agregarAlCargamentoDeCRISTAL21Teniendo50DeANTIMATERIAConCapacidadDe70() {
+    void agregarAlCargamentoDeCRISTAL21Teniendo50DeANTIMATERIAConCapacidadDe70() {
 
         dadoQue(fueCreadaLaBodegaConCapacidad(70));
         dadoQue(unaBodegaCargoANTIMATERIA(50));
@@ -160,7 +160,7 @@ public class BodegaTest implements TestDeContrato {
     }
 
     @Test
-    public void agregarAlCargamentoDeMETAL31Teniendo90DeCRISTALConCapacidadDe120() {
+    void agregarAlCargamentoDeMETAL31Teniendo90DeCRISTALConCapacidadDe120() {
 
         dadoQue(fueCreadaLaBodegaConCapacidad(120));
         dadoQue(unaBodegaCargoCRISTAL(90));
@@ -172,7 +172,7 @@ public class BodegaTest implements TestDeContrato {
     }
 
     @Test
-    public void retirarDelCargamentoDeCRISTAL() {
+    void retirarDelCargamentoDeCRISTAL() {
 
         final int cargaInicial = 90;
         final int cargaRetirada = 50;
@@ -201,7 +201,7 @@ public class BodegaTest implements TestDeContrato {
     }
 
     @Test
-    public void retirarDelCargamentoDeMETALMasDeLoDisponible() {
+    void retirarDelCargamentoDeMETALMasDeLoDisponible() {
 
         final int cargaInicial = 80;
         final int cargaRetirada = 90;

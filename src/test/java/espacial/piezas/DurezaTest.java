@@ -13,14 +13,14 @@ import java.util.stream.Stream;
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.*;
 
-public class DurezaTest implements TestDeContrato {
+class DurezaTest implements TestDeContrato {
 
     private Dureza unaDureza;
 
     private int ataquePonderado;
 
     @Test
-    public void crear() {
+    void crear() {
 
         dadoQue(fueCreadaUnaDurezaDe(30));
 
@@ -34,7 +34,7 @@ public class DurezaTest implements TestDeContrato {
 
     @ParameterizedTest
     @MethodSource
-    public void ponderarAtaqueDe(int dureza, int puntos, int puntosPonderados) {
+    void ponderarAtaqueDe(int dureza, int puntos, int puntosPonderados) {
 
         dadoQue(fueCreadaUnaDurezaDe(dureza));
 
@@ -43,7 +43,7 @@ public class DurezaTest implements TestDeContrato {
         comprobarQue(elAtaquePonderadoEsDe(puntosPonderados));
     }
 
-    public static Stream<Arguments> ponderarAtaqueDe() {
+    static Stream<Arguments> ponderarAtaqueDe() {
 
         return Stream.of(
                 arguments(100, 5, 5),

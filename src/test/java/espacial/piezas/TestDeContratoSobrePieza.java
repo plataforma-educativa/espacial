@@ -13,19 +13,19 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public abstract class TestDeContratoSobrePieza<T extends Pieza> implements TestDeContrato {
+abstract class TestDeContratoSobrePieza<T extends Pieza> implements TestDeContrato {
 
-    protected final NaveEspacial NAVE_ESPACIAL = mock(NaveEspacial.class, "NAVE_ESPACIAL");
-    protected final Ataque UN_ATAQUE = mock(Ataque.class, "UN_ATAQUE");
+    final NaveEspacial NAVE_ESPACIAL = mock(NaveEspacial.class, "NAVE_ESPACIAL");
+    final Ataque UN_ATAQUE = mock(Ataque.class, "UN_ATAQUE");
 
-    protected abstract T piezaCreada();
+    abstract T piezaCreada();
 
-    protected abstract EspectroEspacial espectroEsperado();
+    abstract EspectroEspacial espectroEsperado();
 
-    protected abstract Postcondicion laNaveEspacialFueNotificadaDelChoque();
+    abstract Postcondicion laNaveEspacialFueNotificadaDelChoque();
 
     @Test
-    public void escanear() {
+    void escanear() {
 
         Pieza pieza = piezaCreada();
 
@@ -40,7 +40,7 @@ public abstract class TestDeContratoSobrePieza<T extends Pieza> implements TestD
     }
 
     @Test
-    public void fueChocadaPor() {
+    void fueChocadaPor() {
 
         Pieza pieza = piezaCreada();
 
@@ -61,7 +61,7 @@ public abstract class TestDeContratoSobrePieza<T extends Pieza> implements TestD
     }
 
     @Test
-    public void obtenerPuntosParaCualquierPieza() {
+    void obtenerPuntosParaCualquierPieza() {
 
         Pieza unaPieza = piezaCreada();
 

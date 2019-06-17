@@ -29,7 +29,7 @@ public class RadarTest implements TestDeContrato {
     private int cantidadAlOeste;
 
     @Test
-    public void escanarSinHaberDespegado() {
+    void escanarSinHaberDespegado() {
 
         dadoQue(fueObtenidoUnRadarDeUnaNaveQueNoDespego());
 
@@ -58,7 +58,7 @@ public class RadarTest implements TestDeContrato {
     }
 
     @Test
-    public void escanearEnLaBase() {
+    void escanearEnLaBase() {
 
         dadoQue(fueObtenidoUnRadarDeUnaNaveEnLaBase());
 
@@ -101,7 +101,7 @@ public class RadarTest implements TestDeContrato {
 
 
     @Test
-    public void escanearAlOesteDeUnContenedor() {
+    void escanearAlOesteDeUnContenedor() {
 
         dadoQue(fueObtenidoUnRadarDeUnaNaveAlOesteDeUnContenedorConAntimateria());
 
@@ -134,7 +134,7 @@ public class RadarTest implements TestDeContrato {
     }
 
     @Test
-    public void escanearAlNorteDeUnaBase() {
+    void escanearAlNorteDeUnaBase() {
 
         dadoQue(fueObtenidoUnRadarDeUnaNaveAlNorteDeUnaBase());
 
@@ -157,7 +157,7 @@ public class RadarTest implements TestDeContrato {
     }
 
     @Test
-    public void escanearAlSurDeUnAsteroide() {
+    void escanearAlSurDeUnAsteroide() {
 
         dadoQue(fueObtenidoUnRadarDeUnaNaveAlSurDeUnAsteroide());
 
@@ -180,7 +180,7 @@ public class RadarTest implements TestDeContrato {
     }
 
     @Test
-    public void escanearAlEsteDeDesconocido() {
+    void escanearAlEsteDeDesconocido() {
 
         dadoQue(fueObtenidoUnRadarDeUnaNaveAlEsteDeDesconocido());
 
@@ -204,7 +204,7 @@ public class RadarTest implements TestDeContrato {
     }
 
     @Test
-    public void evaluarVariable() {
+    void evaluarVariable() {
 
         dadoQue(fueObtenidoUnRadarDeUnaNaveEnLaBase());
 
@@ -217,7 +217,7 @@ public class RadarTest implements TestDeContrato {
     }
 
     @Test
-    public void buscarAlNorteAntimateriaLaEncuentra() {
+    void buscarAlNorteAntimateriaLaEncuentra() {
 
         dadoQue(fueObtenidoUnRadarDeUnaNaveAlSurDeUnContenedorConAntimateria());
 
@@ -227,7 +227,7 @@ public class RadarTest implements TestDeContrato {
     }
 
     @Test
-    public void buscarAlSurAntimateriaLaEncuentra() {
+    void buscarAlSurAntimateriaLaEncuentra() {
 
         dadoQue(fueObtenidoUnRadarDeUnaNaveAlNorteDeUnContenedorConAntimateria());
 
@@ -237,7 +237,7 @@ public class RadarTest implements TestDeContrato {
     }
 
     @Test
-    public void buscarAlEsteAntimateriaLaEncuentra() {
+    void buscarAlEsteAntimateriaLaEncuentra() {
 
         dadoQue(fueObtenidoUnRadarDeUnaNaveAlOesteDeUnContenedorConAntimateria());
 
@@ -247,7 +247,7 @@ public class RadarTest implements TestDeContrato {
     }
 
     @Test
-    public void buscarAlOesteAntimateriaLaEncuentra() {
+    void buscarAlOesteAntimateriaLaEncuentra() {
 
         dadoQue(fueObtenidoUnRadarDeUnaNaveAlEsteDeUnContenedorConAntimateria());
 

@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class OpcionalTest implements TestDeContrato {
+class OpcionalTest implements TestDeContrato {
 
     @Test
-    public void conValor() {
+    void conValor() {
 
         Opcional<Integer> opcional = Opcional.con(5);
 
@@ -17,7 +17,7 @@ public class OpcionalTest implements TestDeContrato {
     }
 
     @Test
-    public void vacio() {
+    void vacio() {
 
         Opcional<String> opcional = Opcional.sinValor();
 
@@ -25,7 +25,7 @@ public class OpcionalTest implements TestDeContrato {
     }
 
     @Test
-    public void obtenerPeroSiNoExisteLanzar() {
+    void obtenerPeroSiNoExisteLanzar() {
 
         final String ACTIVADO = "activado";
 
@@ -37,7 +37,7 @@ public class OpcionalTest implements TestDeContrato {
     }
 
     @Test
-    public void obtenerPeroSiNoExisteLanzarCuandoNoTieneValor() {
+    void obtenerPeroSiNoExisteLanzarCuandoNoTieneValor() {
 
         Opcional<String> configuracion = Opcional.con(null);
 

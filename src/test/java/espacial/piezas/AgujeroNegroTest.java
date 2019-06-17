@@ -13,30 +13,30 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class AgujeroNegroTest extends TestDeContratoSobrePieza<AgujeroNegro> {
+class AgujeroNegroTest extends TestDeContratoSobrePieza<AgujeroNegro> {
 
     private AgujeroNegro unAgujeroNegro;
 
     @Override
-    public AgujeroNegro piezaCreada() {
+    AgujeroNegro piezaCreada() {
 
         return new AgujeroNegro();
     }
 
     @Override
-    public EspectroEspacial espectroEsperado() {
+    EspectroEspacial espectroEsperado() {
 
         return EspectroEspacial.DESCONOCIDO;
     }
 
     @Override
-    public Postcondicion laNaveEspacialFueNotificadaDelChoque() {
+    Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
         return postcondicion(() -> verify(NAVE_ESPACIAL).chocoContraUnAgujeroNegro());
     }
 
     @Test
-    public void obtenerPuntos() {
+    void obtenerPuntos() {
 
         dadoQue(fueCreadoUnAgujeroNegro());
 
@@ -58,7 +58,7 @@ public class AgujeroNegroTest extends TestDeContratoSobrePieza<AgujeroNegro> {
     }
 
     @Test
-    public void fueAtacadoCon() {
+    void fueAtacadoCon() {
 
         dadoQue(fueCreadoUnAgujeroNegro());
 
@@ -73,7 +73,7 @@ public class AgujeroNegroTest extends TestDeContratoSobrePieza<AgujeroNegro> {
     }
 
     @Test
-    public void recibirUnaCarga() {
+    void recibirUnaCarga() {
 
         dadoQue(fueCreadoUnAgujeroNegro());
 
@@ -94,7 +94,7 @@ public class AgujeroNegroTest extends TestDeContratoSobrePieza<AgujeroNegro> {
     }
 
     @Test
-    public void extraerUnaCarga() {
+    void extraerUnaCarga() {
 
         dadoQue(fueCreadoUnAgujeroNegro());
 

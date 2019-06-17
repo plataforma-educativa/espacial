@@ -10,14 +10,14 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class AleatorioTest implements TestDeContrato {
+class AleatorioTest implements TestDeContrato {
 
     private final List<Integer> valores = new LinkedList<>();
 
     private Aleatorio unAleatorio;
 
     @Test
-    public void obtener() {
+    void obtener() {
 
         final int desde = 3;
         final int hasta = 90;
@@ -51,7 +51,7 @@ public class AleatorioTest implements TestDeContrato {
     }
 
     @Test
-    public void obtenerSePuedeRestringirEnUnUnicoValor() {
+    void obtenerSePuedeRestringirEnUnUnicoValor() {
 
         final int unicoValor = 10;
 

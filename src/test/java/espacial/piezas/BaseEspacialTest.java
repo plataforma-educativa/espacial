@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
+class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
     private final NaveEspacial NAVE = mock(NaveEspacial.class, "NAVE");
     private final NaveEspacial NAVE_ALFA = mock(NaveEspacial.class, "NAVE_ALFA");
@@ -26,25 +26,25 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     private BaseEspacial unaBase;
 
     @Override
-    public BaseEspacial piezaCreada() {
+    BaseEspacial piezaCreada() {
 
         return new BaseEspacial();
     }
 
     @Override
-    public EspectroEspacial espectroEsperado() {
+    EspectroEspacial espectroEsperado() {
 
         return EspectroEspacial.BASE;
     }
 
     @Override
-    public Postcondicion laNaveEspacialFueNotificadaDelChoque() {
+    Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
         return postcondicion(() -> verify(NAVE_ESPACIAL).chocoContraUnaBase());
     }
 
     @Test
-    public void amarrarUnaNave() {
+    void amarrarUnaNave() {
 
         dadoQue(unaBaseFueCreadaYColocadaEnCasillero());
 
@@ -78,7 +78,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void amarrarMultiplesNaves() {
+    void amarrarMultiplesNaves() {
 
         dadoQue(unaBaseFueCreadaYColocadaEnCasillero());
 
@@ -101,7 +101,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void soltarAmarreDeUnaNave() {
+    void soltarAmarreDeUnaNave() {
 
         dadoQue(unaBaseFueCreadaYColocadaEnCasillero());
         dadoQue(lasNavesAlfaBetaGammaEstanAmarradasAUnaBase());
@@ -138,7 +138,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void obtenerPuntos() {
+    void obtenerPuntos() {
 
         dadoQue(fueCreadaUnaBase());
 
@@ -156,7 +156,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void recibirUnaCargaDeAntimateria() {
+    void recibirUnaCargaDeAntimateria() {
 
         final int cantidad = 40;
 
@@ -178,7 +178,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void recibirMultiplesCargasDeAntimateria() {
+    void recibirMultiplesCargasDeAntimateria() {
 
         final int cantidadInicial = 45;
         final int cantidad = 20;
@@ -200,7 +200,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void recibirLaCargaMaximaDeAntimateria() {
+    void recibirLaCargaMaximaDeAntimateria() {
 
         final int cantidadMaxima = 5000;
 
@@ -212,7 +212,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void recibirCargaExcediendoLaCapacidadDeAntimateria() {
+    void recibirCargaExcediendoLaCapacidadDeAntimateria() {
 
         final int cantidadExcedida = 5001;
 
@@ -235,7 +235,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void entregarUnaCarga() {
+    void entregarUnaCarga() {
 
         final int cantidadInicial = 400;
         final int cantidadEntregada = 150;
@@ -248,7 +248,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void recibirUnaCargaDeMetal() {
+    void recibirUnaCargaDeMetal() {
 
         final int cantidad = 400;
 
@@ -260,7 +260,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void recibirUnaCargaDeCristal() {
+    void recibirUnaCargaDeCristal() {
 
         final int cantidad = 320;
 
@@ -272,7 +272,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void entregarUnaCargaDeAntimateria() {
+    void entregarUnaCargaDeAntimateria() {
 
         final int cantidadInicial = 60;
         final int cantidadRetirada = 12;
@@ -285,7 +285,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void entregarUnaCargaDeCristal() {
+    void entregarUnaCargaDeCristal() {
 
         final int cantidadInicial = 500;
         final int cantidadRetirada = 120;
@@ -298,7 +298,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void entregarUnaCargaDeMETAL() {
+    void entregarUnaCargaDeMETAL() {
 
         final int cantidadInicial = 1300;
         final int cantidadRetirada = 450;
@@ -311,7 +311,7 @@ public class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     }
 
     @Test
-    public void recibirCargaDeCristalQueExcedeLaCapacidadPorqueTieneAntimateria() {
+    void recibirCargaDeCristalQueExcedeLaCapacidadPorqueTieneAntimateria() {
 
         final int cantidadInicialDeAntimateria = 3000;
         final int cantidadDeCristal = 2001;

@@ -10,14 +10,14 @@ import static espacial.test.Aserciones.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
-public class BatallaEspacialTest implements TestDeContrato {
+class BatallaEspacialTest implements TestDeContrato {
 
     private final Nave UNA_NAVE = mock(Nave.class, "UNA_NAVE");
 
     private BatallaEspacial batalla;
 
     @Test
-    public void crearUnObjetoDeTipoBatallaEspacialDejandolaRegistrada() {
+    void crearUnObjetoDeTipoBatallaEspacialDejandolaRegistrada() {
 
         BatallaEspacial batallaEspacial = new BatallaEspacial();
 
@@ -32,7 +32,7 @@ public class BatallaEspacialTest implements TestDeContrato {
     }
 
     @Test
-    public void evaluarVariable() {
+    void evaluarVariable() {
 
         dadoQue(fueCreadaLaBatalla());
 
@@ -45,7 +45,7 @@ public class BatallaEspacialTest implements TestDeContrato {
     }
 
     @Test
-    public void obtenerTablero() {
+    void obtenerTablero() {
 
         BatallaEspacial batalla = new BatallaEspacial();
 
@@ -99,7 +99,7 @@ public class BatallaEspacialTest implements TestDeContrato {
     }
 
     @Test
-    public void obtenerTableroSiempreDevuelveElMismoTablero() {
+    void obtenerTableroSiempreDevuelveElMismoTablero() {
 
         BatallaEspacial batalla = new BatallaEspacial();
 
@@ -118,7 +118,7 @@ public class BatallaEspacialTest implements TestDeContrato {
     }
 
     @Test
-    public void intervenirConNave() {
+    void intervenirConNave() {
 
         dadoQue(fueCreadaLaBatalla());
 

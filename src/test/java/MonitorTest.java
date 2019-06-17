@@ -8,14 +8,14 @@ import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class MonitorTest implements TestDeContrato {
+class MonitorTest implements TestDeContrato {
 
     private BatallaEspacial batallaEspacial;
     private Nave unaNave;
     private Monitor unMonitor;
 
     @Test
-    public void consultarNivelDeEscudos() {
+    void consultarNivelDeEscudos() {
 
         dadoQue(fueObtenidoUnMonitorDeUnaNaveEnLaBase());
 
@@ -45,7 +45,7 @@ public class MonitorTest implements TestDeContrato {
     }
 
     @Test
-    public void consultarNivelDeEscudosLuegoDeUnChoque() {
+    void consultarNivelDeEscudosLuegoDeUnChoque() {
 
         dadoQue(fueObtenidoUnMonitorDeUnaNaveQueLuegoChocoConUnAsteroide());
 
@@ -79,7 +79,7 @@ public class MonitorTest implements TestDeContrato {
     }
 
     @Test
-    public void consultarCantidadDeTorpedos() {
+    void consultarCantidadDeTorpedos() {
 
         dadoQue(fueObtenidoUnMonitorDeUnaNaveEnLaBase());
 
@@ -97,7 +97,7 @@ public class MonitorTest implements TestDeContrato {
     }
 
     @Test
-    public void consultarCantidadDeTorpedosLuegoDeAtacar() {
+    void consultarCantidadDeTorpedosLuegoDeAtacar() {
 
         dadoQue(fueObtenidoUnMonitorDeUnaNaveQueLuegoHizoUnAtaque());
 
@@ -129,7 +129,7 @@ public class MonitorTest implements TestDeContrato {
     }
 
     @Test
-    public void evaluarVariable() {
+    void evaluarVariable() {
 
         dadoQue(fueObtenidoUnMonitorDeUnaNaveEnLaBase());
 

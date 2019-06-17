@@ -4,10 +4,10 @@ import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Nested;
 
-public class CargamentoTest implements TestDeContrato {
+class CargamentoTest implements TestDeContrato {
 
     @Nested
-    public class DeSustancia extends TestDeCargamentoLimitado {
+    class DeSustancia extends TestDeCargamentoLimitado {
 
         @Override
         protected Precondicion fueCreadoUnCargamento(int capacidad) {
@@ -17,7 +17,7 @@ public class CargamentoTest implements TestDeContrato {
     }
 
     @Nested
-    public class EnBodega extends TestDeCargamentoLimitado {
+    class EnBodega extends TestDeCargamentoLimitado {
 
         @Override
         protected Precondicion fueCreadoUnCargamento(int capacidad) {

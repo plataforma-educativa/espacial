@@ -1,18 +1,17 @@
 package espacial.tableros;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
-import org.junit.jupiter.api.Test;
-
 import espacial.EspectroEspacial;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
+import org.junit.jupiter.api.Test;
 
-public class EstadoDelCasilleroAlEscanearTest extends EstadoDelCasilleroTest {
+import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
+class EstadoDelCasilleroAlEscanearTest extends EstadoDelCasilleroTest {
     
     @Test
-    public void siEstaVacio() {
+    void siEstaVacio() {
 
         estado = new Vacio(CASILLERO);
         
@@ -21,7 +20,7 @@ public class EstadoDelCasilleroAlEscanearTest extends EstadoDelCasilleroTest {
     }
 
     @Test
-    public void siEstaOcupado() {
+    void siEstaOcupado() {
         
         dadoQue(cuandoLaPiezaEsEscaneadaDevuelve(EspectroEspacial.ASTEROIDE));
 
@@ -32,7 +31,7 @@ public class EstadoDelCasilleroAlEscanearTest extends EstadoDelCasilleroTest {
     }
     
     @Test
-    public void siEstaOcupadoPorUnaBase() {
+    void siEstaOcupadoPorUnaBase() {
      
         dadoQue(cuandoLaPiezaEsEscaneadaDevuelve(EspectroEspacial.BASE));
 
@@ -43,7 +42,7 @@ public class EstadoDelCasilleroAlEscanearTest extends EstadoDelCasilleroTest {
     }
 
     @Test
-    public void siEstaOcupadoPorUnaBaseConNaveEnManiobras() {
+    void siEstaOcupadoPorUnaBaseConNaveEnManiobras() {
      
         dadoQue(cuandoLaPiezaEsEscaneadaDevuelve(EspectroEspacial.BASE));
 

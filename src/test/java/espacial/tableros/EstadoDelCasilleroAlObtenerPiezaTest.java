@@ -1,16 +1,15 @@
 package espacial.tableros;
 
-import static org.assertj.core.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
 import espacial.Pieza;
 import espacial.test.Postcondicion;
+import org.junit.jupiter.api.Test;
 
-public class EstadoDelCasilleroAlObtenerPiezaTest extends EstadoDelCasilleroTest {
+import static org.assertj.core.api.Assertions.*;
+
+class EstadoDelCasilleroAlObtenerPiezaTest extends EstadoDelCasilleroTest {
     
     @Test
-    public void siEstaVacio() {
+    void siEstaVacio() {
 
         estado = new Vacio(CASILLERO);
         
@@ -19,7 +18,7 @@ public class EstadoDelCasilleroAlObtenerPiezaTest extends EstadoDelCasilleroTest
     }
 
     @Test
-    public void siEstaOcupado() {
+    void siEstaOcupado() {
         
         estado = new Ocupado(CASILLERO, PIEZA);
         
@@ -27,7 +26,7 @@ public class EstadoDelCasilleroAlObtenerPiezaTest extends EstadoDelCasilleroTest
     }
     
     @Test
-    public void siEstaOcupadoPorUnaBase() {
+    void siEstaOcupadoPorUnaBase() {
      
         estado = new OcupadoPorUnaBase(CASILLERO, PIEZA);
         
@@ -35,7 +34,7 @@ public class EstadoDelCasilleroAlObtenerPiezaTest extends EstadoDelCasilleroTest
     }
 
     @Test
-    public void siEstaOcupadoPorUnaBaseConNaveEnManiobras() {
+    void siEstaOcupadoPorUnaBaseConNaveEnManiobras() {
      
         estado = new OcupadoPorUnaBaseConNaveEnManiobras(CASILLERO, PIEZA, NAVE);
         

@@ -4,10 +4,10 @@ import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Nested;
 
-public class PiezaAtacableEnPartidaTest implements TestDeContrato {
+class PiezaAtacableEnPartidaTest implements TestDeContrato {
 
     @Nested
-    public class SiEsUnCazaEspacial extends TestDePiezaAtacableEnPartida<CazaEspacial> {
+    class SiEsUnCazaEspacial extends TestDePiezaAtacableEnPartida<CazaEspacial> {
 
         @Override
         protected Precondicion fueCreadaLaPieza() {
@@ -17,7 +17,7 @@ public class PiezaAtacableEnPartidaTest implements TestDeContrato {
     }
 
     @Nested
-    public class SiEsUnaBaseEspacial extends TestDePiezaAtacableEnPartida<BaseEspacial> {
+    class SiEsUnaBaseEspacial extends TestDePiezaAtacableEnPartida<BaseEspacial> {
 
         @Override
         protected Precondicion fueCreadaLaPieza() {
@@ -27,7 +27,7 @@ public class PiezaAtacableEnPartidaTest implements TestDeContrato {
     }
 
     @Nested
-    public class SiEsUnAsteroide extends TestDePiezaAtacableEnPartida<Asteroide> {
+    class SiEsUnAsteroide extends TestDePiezaAtacableEnPartida<Asteroide> {
 
         @Override
         protected Precondicion fueCreadaLaPieza() {
@@ -37,7 +37,7 @@ public class PiezaAtacableEnPartidaTest implements TestDeContrato {
     }
 
     @Nested
-    public class SiEsUnContenedorDeAntimateria extends TestDePiezaAtacableEnPartida<ContenedorDeAntimateria> {
+    class SiEsUnContenedorDeAntimateria extends TestDePiezaAtacableEnPartida<ContenedorDeAntimateria> {
 
         @Override
         protected Precondicion fueCreadaLaPieza() {
@@ -47,7 +47,7 @@ public class PiezaAtacableEnPartidaTest implements TestDeContrato {
     }
 
     @Nested
-    public class SiEsUnContenedorDeMetalDePieza extends TestDePiezaAtacableEnPartida<ContenedorDeMetal> {
+    class SiEsUnContenedorDeMetalDePieza extends TestDePiezaAtacableEnPartida<ContenedorDeMetal> {
 
         @Override
         protected Precondicion fueCreadaLaPieza() {
@@ -57,7 +57,7 @@ public class PiezaAtacableEnPartidaTest implements TestDeContrato {
     }
 
     @Nested
-    public class SiEsUnContenedorDeCristal extends TestDePiezaAtacableEnPartida<ContenedorDeCristal> {
+    class SiEsUnContenedorDeCristal extends TestDePiezaAtacableEnPartida<ContenedorDeCristal> {
 
         @Override
         protected Precondicion fueCreadaLaPieza() {

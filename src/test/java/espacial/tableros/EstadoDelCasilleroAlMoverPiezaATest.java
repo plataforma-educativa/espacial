@@ -1,15 +1,14 @@
 package espacial.tableros;
 
-import static org.mockito.Mockito.*;
-
+import espacial.test.Postcondicion;
 import org.junit.jupiter.api.Test;
 
-import espacial.test.Postcondicion;
+import static org.mockito.Mockito.*;
 
-public class EstadoDelCasilleroAlMoverPiezaATest extends EstadoDelCasilleroTest {
+class EstadoDelCasilleroAlMoverPiezaATest extends EstadoDelCasilleroTest {
     
     @Test
-    public void siEstaVacio() {
+    void siEstaVacio() {
 
         estado = new Vacio(CASILLERO);
         
@@ -18,7 +17,7 @@ public class EstadoDelCasilleroAlMoverPiezaATest extends EstadoDelCasilleroTest 
     }
 
     @Test
-    public void siEstaOcupado() {
+    void siEstaOcupado() {
         
         estado = new Ocupado(CASILLERO, PIEZA);
 
@@ -28,7 +27,7 @@ public class EstadoDelCasilleroAlMoverPiezaATest extends EstadoDelCasilleroTest 
     }
     
     @Test
-    public void siEstaOcupadoPorUnaBase() {
+    void siEstaOcupadoPorUnaBase() {
      
         estado = new OcupadoPorUnaBase(CASILLERO, PIEZA);
         
@@ -38,7 +37,7 @@ public class EstadoDelCasilleroAlMoverPiezaATest extends EstadoDelCasilleroTest 
     }
 
     @Test
-    public void siEstaOcupadoPorUnaBaseConNaveEnManiobras() {
+    void siEstaOcupadoPorUnaBaseConNaveEnManiobras() {
      
         estado = new OcupadoPorUnaBaseConNaveEnManiobras(CASILLERO, PIEZA, NAVE);
 

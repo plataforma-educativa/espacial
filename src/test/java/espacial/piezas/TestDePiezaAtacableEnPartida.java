@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
-public abstract class TestDePiezaAtacableEnPartida<T extends PiezaAtacable> implements TestDeContrato {
+abstract class TestDePiezaAtacableEnPartida<T extends PiezaAtacable> implements TestDeContrato {
 
     private final Casillero UN_CASILLERO = mock(Casillero.class, "UN_CASILLERO");
 
@@ -18,7 +18,7 @@ public abstract class TestDePiezaAtacableEnPartida<T extends PiezaAtacable> impl
     protected abstract Precondicion fueCreadaLaPieza();
 
     @Test
-    public void cuandoSeQuedaSinPuntosSeSacaDelTablero() {
+    void cuandoSeQuedaSinPuntosSeSacaDelTablero() {
 
         dadoQue(fueCreadaLaPieza());
         dadoQue(unPiezaFueColocadaEnUnCasillero());
