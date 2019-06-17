@@ -2,24 +2,35 @@ package espacial.tableros;
 
 import espacial.Ataque;
 import espacial.Casillero;
+import espacial.Coordenada;
+import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.Tablero;
 
-public class CasilleroInterior extends CasilleroDelTablero {
+public class CasilleroInterior implements Casillero {
 
+    private final Tablero tablero;
+    private final Coordenada coordenada;
     private EstadoDelCasillero estado;
 
     public CasilleroInterior(Tablero contenedor, int fila, int columna) {
-        
-        super(contenedor, fila, columna);
+
+        tablero = contenedor;
+        coordenada = Coordenada.con(fila, columna);
         estado = new Vacio(this);
     }
     
     void cambiarA(EstadoDelCasillero nuevoEstado) {
         
         estado = nuevoEstado;
+    }
+
+    @Override
+    public Casillero obtenerContiguoEn(Direccion direccionElegida) {
+
+        return tablero.obtenerCasilleroEn(direccionElegida.trasladar(coordenada));
     }
 
     @Override
