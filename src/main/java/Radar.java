@@ -3,9 +3,6 @@ import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
 import espacial.SustanciaEspacial;
 
-import java.util.EnumMap;
-import java.util.Map;
-
 /**
  * El Radar es la herramienta que provee una Nave para conocer el contexto
  * inmediato de la misma.
@@ -14,21 +11,6 @@ import java.util.Map;
  *
  */
 public class Radar {
-
-    private static final Map<EspectroEspacial, Espectro> ESPECTROS = new EnumMap<>(EspectroEspacial.class);
-    private static final Map<Sustancia, SustanciaEspacial> SUSTANCIAS = new EnumMap<>(Sustancia.class);
-
-    static {
-
-        ESPECTROS.put(EspectroEspacial.VACIO,       Espectro.VACIO);
-        ESPECTROS.put(EspectroEspacial.ASTEROIDE,   Espectro.ASTEROIDE);
-        ESPECTROS.put(EspectroEspacial.CONTENEDOR,  Espectro.CONTENEDOR);
-        ESPECTROS.put(EspectroEspacial.BASE,        Espectro.BASE);
-        ESPECTROS.put(EspectroEspacial.NAVE,        Espectro.NAVE);
-        ESPECTROS.put(EspectroEspacial.DESCONOCIDO, Espectro.DESCONOCIDO);
-
-        SUSTANCIAS.put(Sustancia.ANTIMATERIA, SustanciaEspacial.ANTIMATERIA);
-    }
 
     private NaveEspacial pieza;
 
@@ -64,12 +46,12 @@ public class Radar {
 
     private Espectro interpretar(EspectroEspacial espectroEspacial) {
 
-        return ESPECTROS.getOrDefault(espectroEspacial, Espectro.DESCONOCIDO);
+        return Traductor.DE_ESPECTROS.interpretar(espectroEspacial);
     }
 
     private SustanciaEspacial interpretar(Sustancia sustancia) {
 
-        return SUSTANCIAS.getOrDefault(sustancia, SustanciaEspacial.ANTIMATERIA);
+        return Traductor.DE_SUSTANCIAS.interpretar(sustancia);
     }
 
     public int buscarAlNorte(Sustancia sustancia) {
