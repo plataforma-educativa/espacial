@@ -1,9 +1,11 @@
 package espacial;
 
+import java.util.Objects;
+
 public class CargaIndividual implements Carga {
 
     private final int cantidad;
-    private SustanciaEspacial sustancia;
+    private final SustanciaEspacial sustancia;
 
     public CargaIndividual(int cantidad, SustanciaEspacial sustancia) {
 
@@ -32,5 +34,27 @@ public class CargaIndividual implements Carga {
     public String toString() {
 
         return String.format("%d %s", cantidad, sustancia);
+    }
+
+    @Override
+    public boolean equals(Object otro) {
+
+        boolean iguales = (this == otro);
+
+        if (!iguales && otro instanceof CargaIndividual) {
+
+            CargaIndividual otraCargaIndividual = CargaIndividual.class.cast(otro);
+
+            iguales = (cantidad == otraCargaIndividual.cantidad) &&
+                    (sustancia == otraCargaIndividual.sustancia);
+        }
+
+        return iguales;
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(cantidad, sustancia);
     }
 }
