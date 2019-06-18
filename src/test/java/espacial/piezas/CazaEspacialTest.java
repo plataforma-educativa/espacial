@@ -646,5 +646,25 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
         return postcondicion(() -> verify(casillero).entregar(sustancia.por(cantidad)));
     }
+
+    @Test
+    void obtenerNivelDeCarga() {
+
+        final int cantidad = 50;
+
+        dadoQue(fueCreadoUnCazaEspacialRecibiendo(SustanciaEspacial.METAL.por(cantidad)));
+
+        comprobarQue(elNivelDeCargaEs(cantidad));
+    }
+
+    private Postcondicion elNivelDeCargaEs(int nivel) {
+
+        return postcondicion(() ->
+
+                assertThat(unCazaEspacial.obtenerNivelDeCarga())
+                        .as("nivel de carga")
+                        .isEqualTo(nivel)
+        );
+    }
 }
 

@@ -168,4 +168,10 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
 
         recibir(unaCarga);
     }
+
+    @Override
+    public int obtenerNivelDeCarga() {
+
+        return bodega.obtenerNivelDeCarga();
+    }
 }

@@ -25,4 +25,6 @@ public interface NaveEspacial extends Pieza, Chocable {
 
         obstaculo.fueChocadaPor(this);
     }
+
+    int obtenerNivelDeCarga();
 }
