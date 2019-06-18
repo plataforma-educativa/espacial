@@ -617,4 +617,34 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
                 unCazaEspacial.recibir(SustanciaEspacial.METAL.por(cantidadDeMetal)))
         );
     }
+
+    @Test
+    void recibirDesdeElNorteUnaCarga() {
+
+        final int cantidad = 1;
+        final SustanciaEspacial sustancia = SustanciaEspacial.ANTIMATERIA;
+
+        dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasilleroConUnaPiezaCoAntimateriaAlNorte());
+
+        unCazaEspacial.cargarDesde(Direccion.NORTE, sustancia.por(cantidad));
+
+        comprobarQue(unCazaEspacialTiene(sustancia, cantidad));
+        comprobarQue(unaCargaFueEntregada(sustancia, cantidad, CASILLERO_NORTE));
+    }
+
+    private Precondicion fueCreadoUnCazaEspacialColocadoEnUnCasilleroConUnaPiezaCoAntimateriaAlNorte() {
+
+        return precondicion(() -> {
+
+            unCazaEspacial = new CazaEspacial();
+            unCazaEspacial.fueColocadaEn(UN_CASILLERO);
+
+        });
+    }
+
+    private Postcondicion unaCargaFueEntregada(SustanciaEspacial sustancia, int cantidad, Casillero casillero) {
+
+        return postcondicion(() -> verify(casillero).entregar(sustancia.por(cantidad)));
+    }
 }
+

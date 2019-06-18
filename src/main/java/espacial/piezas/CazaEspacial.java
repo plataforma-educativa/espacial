@@ -2,6 +2,7 @@ package espacial.piezas;
 
 import espacial.Amarre;
 import espacial.Ataque;
+import espacial.Carga;
 import espacial.Cargamento;
 import espacial.Casillero;
 import espacial.Direccion;
@@ -156,5 +157,15 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     public Cargamento obtenerCristal() {
 
         return bodega.CRISTAL;
+    }
+
+    @Override
+    public void cargarDesde(Direccion direccionElegida, Carga unaCarga) {
+
+        Casillero casilleroOrigen = obtenerCasillero().obtenerContiguoEn(direccionElegida);
+
+        casilleroOrigen.entregar(unaCarga);
+
+        recibir(unaCarga);
     }
 }

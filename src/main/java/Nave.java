@@ -1,5 +1,6 @@
 import espacial.Direccion;
 import espacial.NaveEspacial;
+import espacial.SustanciaEspacial;
 
 public class Nave {
 
@@ -66,6 +67,13 @@ public class Nave {
         pieza.atacarEn(Direccion.OESTE);
     }
 
+    public void cargarDesdeNorte(Sustancia sustancia, int cantidad) {
+
+        SustanciaEspacial sustanciaEspacial = Traductor.DE_SUSTANCIAS.interpretar(sustancia);
+
+        pieza.cargarDesde(Direccion.NORTE, sustanciaEspacial.por(cantidad));
+    }
+
     public Radar obtenerRadar() {
 
         return radar;
@@ -82,4 +90,6 @@ public class Nave {
         /* Devuelve un mensaje descriptivo para que se use al evaluar una variable en el intérprete */
         return "Nave a la espera de comandos";
     }
+
+
 }

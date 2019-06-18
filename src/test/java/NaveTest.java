@@ -583,7 +583,12 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion unMonitorTieneElEstadoDeUnaNave() {
 
-        return postcondicion(() -> assertThat(unMonitor).as("unMonitor").isNotNull());
+        return postcondicion(() -> {
+
+            assertThat(unMonitor).as("unMonitor").isNotNull();
+            assertThat(unMonitor.consultarNivelDeEscudos()).as("nivel de escudos").isEqualTo(100);
+            assertThat(unMonitor.consultarCantidadDeTorpedos()).as("cantidad de torpedos").isEqualTo(100);
+        });
     }
 
     @Test
@@ -600,4 +605,22 @@ class NaveTest implements TestDeContrato {
         return postcondicion(() -> assertThat(unaNave).hasToString("Nave a la espera de comandos"));
     }
 
+    @Test
+    void cargarDesdeNorteAntimateria() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(unaNaveEstaAlSurDeUnContenedor());
+
+        unaNave.cargarDesdeNorte(Sustancia.ANTIMATERIA, 1);
+
+        comprobarQue(unaNaveTieneCargado(Sustancia.ANTIMATERIA, 1));
+    }
+
+    private Postcondicion unaNaveTieneCargado(Sustancia sustancia, int cantidad) {
+
+        return postcondicion(() -> {
+
+            assertThat(batallaEspacial.obtenerTablero()).tieneNave().conAntimateria().en(3, 2);
+        });
+    }
 }
