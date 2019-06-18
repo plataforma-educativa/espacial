@@ -232,4 +232,19 @@ class BodegaTest implements TestDeContrato {
         );
     }
 
+    @Test
+    void cotabilizarNivelDeCarga() {
+
+        dadoQue(fueCreadaLaBodegaConCapacidad(500));
+        dadoQue(unaBodegaCargoCRISTAL(100));
+        dadoQue(unaBodegaCargoANTIMATERIA(100));
+        dadoQue(unaBodegaCargoMETAL(50));
+
+        comprobarQue(elNivelDeCargaEs(50));
+    }
+
+    private Postcondicion elNivelDeCargaEs(int nivel) {
+
+        return postcondicion(() -> assertThat(unaBodega.obtenerNivelDeCarga()).as("nivel de carga").isEqualTo(nivel));
+    }
 }

@@ -24,4 +24,9 @@ public class Bodega {
 
         return capacidad - contabilizarCarga();
     }
+
+    public int obtenerNivelDeCarga() {
+
+        return (contabilizarCarga() * 100) / capacidad;
+    }
 }
