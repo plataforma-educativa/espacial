@@ -1,11 +1,14 @@
 package espacial.tableros;
 
 import espacial.Ataque;
+import espacial.Carga;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.Defecto;
+import espacial.excepciones.NoPuedeEntregarUnaCarga;
+import espacial.excepciones.NoPuedeRecibirUnaCarga;
 
 public class Vacio extends EstadoDelCasillero {
 
@@ -59,6 +62,18 @@ public class Vacio extends EstadoDelCasillero {
     @Override
     public void alSerAtacadoCon(Ataque unAtaque) {
 
+    }
+
+    @Override
+    public void alEntregar(Carga unaCarga) {
+
+        throw new NoPuedeEntregarUnaCarga(unaCarga);
+    }
+
+    @Override
+    public void alRecibir(Carga unaCarga) {
+
+        throw new NoPuedeRecibirUnaCarga(unaCarga);
     }
 
     @Override

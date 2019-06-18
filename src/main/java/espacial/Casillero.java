@@ -66,4 +66,8 @@ public interface Casillero extends Objetivo {
      * @return Casillero contiguo en Dirección {@code direccion} al Casillero.
      */
     Casillero obtenerContiguoEn(Direccion direccionElegida);
+
+    void entregar(Carga unaCarga);
+
+    void recibir(Carga una_carga);
 }

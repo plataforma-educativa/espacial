@@ -1,6 +1,7 @@
 package espacial.tableros;
 
 import espacial.Ataque;
+import espacial.Carga;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
@@ -25,6 +26,7 @@ class CasilleroInteriorTest implements TestDeContrato {
     private final EspectroEspacial ESPECTRO_ESCANEADO = EspectroEspacial.BASE;
     private final int CANTIDAD_DE_SUSTANCIA_ENCONTRADA = 345;
     private final Pieza PIEZA_DEL_CASILLERO = mock(Pieza.class, "PIEZA_DEL_CASILLERO");
+    private final Carga UNA_CARGA = mock(Carga.class, "UNA_CARGA");
 
     private CasilleroInterior unCasilleroInterior;
 
@@ -173,5 +175,35 @@ class CasilleroInteriorTest implements TestDeContrato {
     private Postcondicion delegoEnElEstadoLaOperacionFueAtacadoCon() {
 
         return postcondicion(() -> verify(ESTADO).alSerAtacadoCon(UN_ATAQUE));
+    }
+
+    @Test
+    void entregar() {
+
+        dadoQue(fueCreadoUnCasilleroInteriorCon(ESTADO));
+
+        unCasilleroInterior.entregar(UNA_CARGA);
+
+        comprobarQue(delegoEnElEstadoLaOperacionEntregar());
+    }
+
+    private Postcondicion delegoEnElEstadoLaOperacionEntregar() {
+
+        return postcondicion(() -> verify(ESTADO).alEntregar(UNA_CARGA));
+    }
+
+    @Test
+    void recibir() {
+
+        dadoQue(fueCreadoUnCasilleroInteriorCon(ESTADO));
+
+        unCasilleroInterior.recibir(UNA_CARGA);
+
+        comprobarQue(delegoEnElEstadoLaOperacionRecibir());
+    }
+
+    private Postcondicion delegoEnElEstadoLaOperacionRecibir() {
+
+        return postcondicion(() -> verify(ESTADO).alRecibir(UNA_CARGA));
     }
 }

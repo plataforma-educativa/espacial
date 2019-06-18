@@ -11,4 +11,10 @@ public class NoPuedeEntregarUnaCarga extends ErrorEnLaBatallaEspacial {
 
         super("%s no puede entregar una carga de '%s'", unaPieza.escanear(), unaCarga);
     }
+
+    public NoPuedeEntregarUnaCarga(Carga unaCarga) {
+
+        super("No puede entregar una carga de '%s'", unaCarga);
+    }
+
 }

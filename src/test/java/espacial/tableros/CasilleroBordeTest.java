@@ -8,6 +8,8 @@ import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.Tablero;
 import espacial.excepciones.LaOperacionNoEstaSoportada;
+import espacial.excepciones.NoPuedeEntregarUnaCarga;
+import espacial.excepciones.NoPuedeRecibirUnaCarga;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
@@ -96,20 +98,10 @@ class CasilleroBordeTest implements TestDeContrato {
 
         dadoQue(fueCreadoUnCasilleroBorde());
 
-        comprobarQue(generaExcepcionPorqueLaOperacionNoEstaSoportada(() ->
+        comprobarQue(generaExcepcion(LaOperacionNoEstaSoportada.class, () ->
 
                 unCasilleroBorde.moverPiezaA(OTRO_CASILLERO)
         ));
-    }
-
-    private Postcondicion generaExcepcionPorqueLaOperacionNoEstaSoportada(Ejecutable ejecutable) {
-
-        return postcondicion(() ->
-
-                assertThatThrownBy(ejecutable::ejecutar)
-                        .as("excepción generada")
-                        .isInstanceOf(LaOperacionNoEstaSoportada.class)
-        );
     }
 
     @Test
@@ -117,7 +109,7 @@ class CasilleroBordeTest implements TestDeContrato {
 
         dadoQue(fueCreadoUnCasilleroBorde());
 
-        comprobarQue(generaExcepcionPorqueLaOperacionNoEstaSoportada(() ->
+        comprobarQue(generaExcepcion(LaOperacionNoEstaSoportada.class, () ->
 
                 unCasilleroBorde.ocuparCon(UNA_PIEZA)
         ));
@@ -128,7 +120,7 @@ class CasilleroBordeTest implements TestDeContrato {
 
         dadoQue(fueCreadoUnCasilleroBorde());
 
-        comprobarQue(generaExcepcionPorqueLaOperacionNoEstaSoportada(() ->
+        comprobarQue(generaExcepcion(LaOperacionNoEstaSoportada.class, () ->
 
                 unCasilleroBorde.desocupar()
         ));
@@ -181,5 +173,37 @@ class CasilleroBordeTest implements TestDeContrato {
     private Postcondicion unChocableChocoControalElBordeDelTablero() {
 
         return postcondicion(() -> verify(UN_CHOCABLE).chocoContraElBordeDelTablero());
+    }
+
+    @Test
+    void entregar() {
+
+        dadoQue(fueCreadoUnCasilleroBorde());
+
+        comprobarQue(generaExcepcion(NoPuedeEntregarUnaCarga.class, () ->
+
+                unCasilleroBorde.entregar(SustanciaEspacial.ANTIMATERIA.por(1))
+        ));
+    }
+
+    @Test
+    void recibir() {
+
+        dadoQue(fueCreadoUnCasilleroBorde());
+
+        comprobarQue(generaExcepcion(NoPuedeRecibirUnaCarga.class, () ->
+
+                unCasilleroBorde.recibir(SustanciaEspacial.METAL.por(1))
+        ));
+    }
+
+    private Postcondicion generaExcepcion(Class<?> claseExcepcion, Ejecutable ejecutable) {
+
+        return postcondicion(() ->
+
+                assertThatThrownBy(ejecutable::ejecutar)
+                        .as("excepción generada")
+                        .isInstanceOf(claseExcepcion)
+        );
     }
 }

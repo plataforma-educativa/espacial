@@ -1,6 +1,7 @@
 package espacial.tableros;
 
 import espacial.Ataque;
+import espacial.Carga;
 import espacial.Casillero;
 import espacial.Coordenada;
 import espacial.Direccion;
@@ -80,5 +81,17 @@ public class CasilleroInterior implements Casillero {
     public void fueAtacadoCon(Ataque unAtaque) {
 
         estado.alSerAtacadoCon(unAtaque);
+    }
+
+    @Override
+    public void entregar(Carga unaCarga) {
+
+        estado.alEntregar(unaCarga);
+    }
+
+    @Override
+    public void recibir(Carga unaCarga) {
+
+        estado.alRecibir(unaCarga);
     }
 }

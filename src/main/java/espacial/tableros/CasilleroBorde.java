@@ -1,5 +1,6 @@
 package espacial.tableros;
 
+import espacial.Carga;
 import espacial.Casillero;
 import espacial.Chocable;
 import espacial.Direccion;
@@ -9,6 +10,8 @@ import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.Tablero;
 import espacial.excepciones.LaOperacionNoEstaSoportada;
+import espacial.excepciones.NoPuedeEntregarUnaCarga;
+import espacial.excepciones.NoPuedeRecibirUnaCarga;
 
 public class CasilleroBorde implements Casillero, Obstaculo {
     
@@ -67,5 +70,17 @@ public class CasilleroBorde implements Casillero, Obstaculo {
     public void fueChocadaPor(Chocable chocable) {
         
         chocable.chocoContraElBordeDelTablero();
+    }
+
+    @Override
+    public void entregar(Carga unaCarga) {
+
+        throw new NoPuedeEntregarUnaCarga(unaCarga);
+    }
+
+    @Override
+    public void recibir(Carga unaCarga) {
+
+        throw new NoPuedeRecibirUnaCarga(unaCarga);
     }
 }
