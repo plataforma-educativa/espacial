@@ -226,6 +226,7 @@ class NaveTest implements TestDeContrato {
     void noPuedeAvanzarSiExisteUnAsteroideEnElCasilleroDestino() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
         dadoQue(unaNaveEstaAlEsteDeUnAsteroide());
 
         unaNave.avanzarAlOeste();
@@ -238,8 +239,6 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            unaNave = new Nave();
-            unaNave.despegar();
             unaNave.avanzarAlNorte();
             unaNave.avanzarAlOeste();
             unaNave.avanzarAlOeste();
@@ -279,6 +278,7 @@ class NaveTest implements TestDeContrato {
     void noPuedeAvanzarSiExisteUnContenedorEnElCasilleroDestino() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
         dadoQue(unaNaveEstaAlSurDeUnContenedor());
 
         unaNave.avanzarAlNorte();
@@ -291,8 +291,6 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            unaNave = new Nave();
-            unaNave.despegar();
             IntStream.range(0, 2).forEach(n -> unaNave.avanzarAlEste());
             IntStream.range(0, 3).forEach(n -> unaNave.avanzarAlNorte());
         });
@@ -312,6 +310,7 @@ class NaveTest implements TestDeContrato {
     void noPuedeAvanzarSiElCasilleroDestinoEsElBordeDelTablero() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
         dadoQue(unaNaveEstaEnElBordeSurDelTablero());
 
         unaNave.avanzarAlSur();
@@ -324,8 +323,6 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            unaNave = new Nave();
-            unaNave.despegar();
             unaNave.avanzarAlOeste();
             IntStream.range(0, 10).forEach(n -> unaNave.avanzarAlSur());
             unaNave.avanzarAlEste();
@@ -346,6 +343,7 @@ class NaveTest implements TestDeContrato {
     void noPuedeAvanzarSiExisteUnAgujeroNegroEnElCasilleroDestino() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
         dadoQue(unaNaveEstaAlEsteDeUnAgujeroNegro());
 
         unaNave.avanzarAlOeste();
@@ -358,8 +356,6 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            unaNave = new Nave();
-            unaNave.despegar();
             IntStream.range(0, 5).forEach(n -> unaNave.avanzarAlOeste());
             unaNave.avanzarAlNorte();
         });
@@ -374,6 +370,7 @@ class NaveTest implements TestDeContrato {
     void atacarAlSurUnAsteroide() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
         dadoQue(unaNaveEstaAlNorteDeUnAsteroide());
         dadoQue(seConoceLaCantidadDePuntosQueTieneElAsteroide());
 
@@ -387,8 +384,6 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            unaNave = new Nave();
-            unaNave.despegar();
             IntStream.range(0, 5).forEach(n -> unaNave.avanzarAlSur());
         });
     }
@@ -418,6 +413,7 @@ class NaveTest implements TestDeContrato {
     void atacarAlOesteUnContenedor() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
         dadoQue(unaNaveEstaAlEsteDeUnContenedor());
         dadoQue(seConoceLaCantidadDePuntosQueTieneElContenedor());
 
@@ -431,8 +427,6 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            unaNave = new Nave();
-            unaNave.despegar();
             IntStream.range(0, 2).forEach(n -> unaNave.avanzarAlSur());
             unaNave.avanzarAlOeste();
         });
@@ -463,6 +457,7 @@ class NaveTest implements TestDeContrato {
     void atacarAlNorteUnaBase() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
         dadoQue(unaNaveEstaAlSurDeUnaBase());
         dadoQue(seConoceLaCantidadDePuntosQueTieneLaBaseAlNorte());
 
@@ -476,8 +471,6 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            unaNave = new Nave();
-            unaNave.despegar();
             unaNave.avanzarAlSur();
         });
     }
@@ -612,6 +605,7 @@ class NaveTest implements TestDeContrato {
 
         final int cantidad = 1;
         dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
         dadoQue(unaNaveEstaAlSurDeUnContenedor());
 
         unaNave.cargarDesdeNorte(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA);
@@ -632,6 +626,7 @@ class NaveTest implements TestDeContrato {
     void cargarDesdeSurAntimateria() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
         dadoQue(unaNaveEstaAlNorteDeUnContenedor());
 
         unaNave.cargarDesdeSur(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA);
@@ -643,8 +638,6 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            unaNave = new Nave();
-            unaNave.despegar();
             IntStream.range(0, 2).forEach(n -> unaNave.avanzarAlOeste());
             unaNave.avanzarAlSur();
         });
@@ -654,6 +647,7 @@ class NaveTest implements TestDeContrato {
     void cargarDesdeEsteAntimateria() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
         dadoQue(unaNaveEstaAlOesteDeUnContenedor());
 
         unaNave.cargarDesdeEste(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA);
@@ -665,8 +659,6 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            unaNave = new Nave();
-            unaNave.despegar();
             IntStream.range(0, 4).forEach(n -> unaNave.avanzarAlNorte());
             IntStream.range(0, 1).forEach(n -> unaNave.avanzarAlEste());
         });
@@ -676,11 +668,11 @@ class NaveTest implements TestDeContrato {
     void cargarDesdeOesteAntimateria() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
         dadoQue(unaNaveEstaAlEsteDeUnContenedor());
 
         unaNave.cargarDesdeOeste(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA);
 
         comprobarQue(unaNaveTieneCargado(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA));
     }
-
 }
