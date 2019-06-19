@@ -24,6 +24,11 @@ public class Monitor {
         return pieza.obtenerNivelDeCarga();
     }
 
+    public int consultarCargaDe(Sustancia sustancia) {
+
+        return pieza.buscar(Traductor.DE_SUSTANCIAS.interpretar(sustancia));
+    }
+
     @Override
     public String toString() {
 

@@ -74,6 +74,13 @@ public class Nave {
         pieza.cargarDesde(Direccion.NORTE, sustanciaEspacial.por(cantidad));
     }
 
+    public void cargarDesdeEste(Sustancia sustancia, int cantidad) {
+
+        SustanciaEspacial sustanciaEspacial = Traductor.DE_SUSTANCIAS.interpretar(sustancia);
+
+        pieza.cargarDesde(Direccion.ESTE, sustanciaEspacial.por(cantidad));
+    }
+
     public Radar obtenerRadar() {
 
         return radar;

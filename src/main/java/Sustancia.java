@@ -1,3 +1,6 @@
 public enum Sustancia {
-    ANTIMATERIA
+
+    ANTIMATERIA,
+    METAL,
+    CRISTAL,
 }

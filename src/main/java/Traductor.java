@@ -19,6 +19,8 @@ public interface Traductor<E,S> {
         private TraductorDeSustancias() {
 
             sustancias.put(Sustancia.ANTIMATERIA, SustanciaEspacial.ANTIMATERIA);
+            sustancias.put(Sustancia.METAL, SustanciaEspacial.METAL);
+            sustancias.put(Sustancia.CRISTAL, SustanciaEspacial.CRISTAL);
         }
 
         @Override

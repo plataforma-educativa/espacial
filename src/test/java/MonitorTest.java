@@ -9,6 +9,8 @@ import static org.assertj.core.api.Assertions.*;
 
 class MonitorTest implements TestDeContrato {
 
+    private static final int CARGA_MINIMA = 1;
+
     private BatallaEspacial batallaEspacial;
     private Nave unaNave;
     private Monitor unMonitor;
@@ -145,7 +147,7 @@ class MonitorTest implements TestDeContrato {
 
         dadoQue(fueObtenidoUnMonitorDeUnaNaveQueTieneCargadaAntimateria());
 
-        comprobarQue(elNivelDeCargaEs(1));
+        comprobarQue(elNivelDeCargaEs(CARGA_MINIMA));
     }
 
     private Precondicion fueObtenidoUnMonitorDeUnaNaveQueTieneCargadaAntimateria() {
@@ -160,7 +162,7 @@ class MonitorTest implements TestDeContrato {
 
             IntStream.range(0, 3).forEach(n -> nave.avanzarAlNorte());
             IntStream.range(0, 2).forEach(n -> nave.avanzarAlEste());
-            nave.cargarDesdeNorte(Sustancia.ANTIMATERIA, 1);
+            nave.cargarDesdeNorte(Sustancia.ANTIMATERIA, CARGA_MINIMA);
         });
     }
 
@@ -173,4 +175,69 @@ class MonitorTest implements TestDeContrato {
                         .isEqualTo(nivelEsperado)
         );
     }
+
+    @Test
+    void consultarCargaDeMetal() {
+
+        dadoQue(fueObtenidoUnMonitorDeUnaNaveQueTieneCargadaMetal());
+
+        comprobarQue(laCargaEs(CARGA_MINIMA, Sustancia.METAL));
+    }
+
+    private Precondicion fueObtenidoUnMonitorDeUnaNaveQueTieneCargadaMetal() {
+
+        return pre(() -> {
+
+            new BatallaEspacial();
+            Nave nave = new Nave();
+            nave.despegar();
+
+            unMonitor = nave.obtenerMonitor();
+
+            IntStream.range(0, 24).forEach(n -> nave.avanzarAlOeste());
+            IntStream.range(0, 9).forEach(n -> nave.avanzarAlNorte());
+            nave.cargarDesdeNorte(Sustancia.METAL, CARGA_MINIMA);
+        });
+    }
+
+    private Postcondicion laCargaEs(int cantidad, Sustancia sustancia) {
+
+        return post(() ->
+
+                assertThat(unMonitor.consultarCargaDe(sustancia))
+                        .as("carga de " + sustancia)
+                        .isEqualTo(cantidad)
+        );
+    }
+
+    @Test
+    void consultarCargaDeCristal() {
+
+        dadoQue(fueObtenidoUnMonitorDeUnaNaveQueTieneCargadaCristal());
+
+        comprobarQue(laCargaEs(CARGA_MINIMA, Sustancia.CRISTAL));
+    }
+
+    private Precondicion fueObtenidoUnMonitorDeUnaNaveQueTieneCargadaCristal() {
+
+        return pre(() -> {
+
+            new BatallaEspacial();
+            Nave nave = new Nave();
+            nave.despegar();
+
+            unMonitor = nave.obtenerMonitor();
+
+            IntStream.range(0, 9).forEach(n -> nave.avanzarAlOeste());
+            IntStream.range(0, 2).forEach(n -> nave.avanzarAlNorte());
+
+            while (nave.obtenerRadar().escanearOeste() == Espectro.ASTEROIDE) {
+                nave.atacarAlEste();
+            }
+            nave.avanzarAlEste();
+
+            nave.cargarDesdeEste(Sustancia.CRISTAL, CARGA_MINIMA);
+        });
+    }
+
 }
