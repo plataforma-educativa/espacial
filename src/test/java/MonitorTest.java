@@ -1,4 +1,3 @@
-
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
@@ -139,5 +138,39 @@ class MonitorTest implements TestDeContrato {
     private Postcondicion alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro() {
 
         return postcondicion(() -> assertThat(unMonitor).hasToString("Monitor de la Nave"));
+    }
+
+    @Test
+    void consultarNivelDeCarga() {
+
+        dadoQue(fueObtenidoUnMonitorDeUnaNaveQueTieneCargadaAntimateria());
+
+        comprobarQue(elNivelDeCargaEs(1));
+    }
+
+    private Precondicion fueObtenidoUnMonitorDeUnaNaveQueTieneCargadaAntimateria() {
+
+        return precondicion(() -> {
+
+            new BatallaEspacial();
+            Nave nave = new Nave();
+            nave.despegar();
+
+            unMonitor = nave.obtenerMonitor();
+
+            IntStream.range(0, 3).forEach(n -> nave.avanzarAlNorte());
+            IntStream.range(0, 2).forEach(n -> nave.avanzarAlEste());
+            nave.cargarDesdeNorte(Sustancia.ANTIMATERIA, 1);
+        });
+    }
+
+    private Postcondicion elNivelDeCargaEs(int nivelEsperado) {
+
+        return postcondicion(() ->
+
+                assertThat(unMonitor.consultarNivelDeCarga())
+                        .as("nivel de carga")
+                        .isEqualTo(nivelEsperado)
+        );
     }
 }

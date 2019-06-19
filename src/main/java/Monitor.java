@@ -19,6 +19,11 @@ public class Monitor {
         return pieza.obtenerCantidadDeTorpedosDeFotones();
     }
 
+    public int consultarNivelDeCarga() {
+
+        return pieza.obtenerNivelDeCarga();
+    }
+
     @Override
     public String toString() {
 
