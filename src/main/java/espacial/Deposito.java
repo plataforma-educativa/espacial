@@ -1,37 +1,38 @@
 package espacial;
 
-import espacial.excepciones.LaOperacionNoEstaSoportada;
+import espacial.excepciones.NoPuedeEntregarUnaCarga;
+import espacial.excepciones.NoPuedeRecibirUnaCarga;
 
 public interface Deposito {
 
     default void cargarAntimateria(int cantidad) {
 
-        throw new LaOperacionNoEstaSoportada("cargarAntimateria(int)");
+        throw new NoPuedeRecibirUnaCarga(SustanciaEspacial.ANTIMATERIA.por(cantidad));
     }
 
     default void cargarMetal(int cantidad) {
 
-        throw new LaOperacionNoEstaSoportada("cargarMetal(int)");
+        throw new NoPuedeRecibirUnaCarga(SustanciaEspacial.METAL.por(cantidad));
     }
 
     default void cargarCristal(int cantidad) {
 
-        throw new LaOperacionNoEstaSoportada("cargarCristal(int)");
+        throw new NoPuedeRecibirUnaCarga(SustanciaEspacial.CRISTAL.por(cantidad));
     }
 
     default void descargarAntimateria(int cantidad) {
 
-        throw new LaOperacionNoEstaSoportada("descargarAntimateria(int)");
+        throw new NoPuedeEntregarUnaCarga(SustanciaEspacial.ANTIMATERIA.por(cantidad));
     }
 
     default void descargarMetal(int cantidad) {
 
-        throw new LaOperacionNoEstaSoportada("descargarMetal(int)");
+        throw new NoPuedeEntregarUnaCarga(SustanciaEspacial.METAL.por(cantidad));
     }
 
     default void descargarCristal(int cantidad) {
 
-        throw new LaOperacionNoEstaSoportada("descargarCristal(int)");
+        throw new NoPuedeEntregarUnaCarga(SustanciaEspacial.CRISTAL.por(cantidad));
     }
 
     default int contarAntimateria() {
