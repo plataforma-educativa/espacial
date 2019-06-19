@@ -69,16 +69,29 @@ public class Nave {
 
     public void cargarDesdeNorte(Sustancia sustancia, int cantidad) {
 
-        SustanciaEspacial sustanciaEspacial = Traductor.DE_SUSTANCIAS.interpretar(sustancia);
-
-        pieza.cargarDesde(Direccion.NORTE, sustanciaEspacial.por(cantidad));
+        cargarDesde(Direccion.NORTE, sustancia, cantidad);
     }
 
     public void cargarDesdeEste(Sustancia sustancia, int cantidad) {
 
+        cargarDesde(Direccion.ESTE, sustancia, cantidad);
+    }
+
+    public void cargarDesdeSur(Sustancia sustancia, int cantidad) {
+
+        cargarDesde(Direccion.SUR, sustancia, cantidad);
+    }
+
+    public void cargarDesdeOeste(Sustancia sustancia, int cantidad) {
+
+        cargarDesde(Direccion.OESTE, sustancia, cantidad);
+    }
+
+    private void cargarDesde(Direccion direccion, Sustancia sustancia, int cantidad) {
+
         SustanciaEspacial sustanciaEspacial = Traductor.DE_SUSTANCIAS.interpretar(sustancia);
 
-        pieza.cargarDesde(Direccion.ESTE, sustanciaEspacial.por(cantidad));
+        pieza.cargarDesde(direccion, sustanciaEspacial.por(cantidad));
     }
 
     public Radar obtenerRadar() {
@@ -97,6 +110,4 @@ public class Nave {
         /* Devuelve un mensaje descriptivo para que se use al evaluar una variable en el intérprete */
         return "Nave a la espera de comandos";
     }
-
-
 }

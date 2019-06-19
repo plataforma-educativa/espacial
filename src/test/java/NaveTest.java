@@ -16,6 +16,8 @@ import static org.assertj.core.api.Assertions.*;
 
 class NaveTest implements TestDeContrato {
 
+    private static final int CANTIDAD_MINIMA = 1;
+
     private BatallaEspacial batallaEspacial;
     private Nave unaNave;
     private Radar unRadar;
@@ -608,16 +610,77 @@ class NaveTest implements TestDeContrato {
     @Test
     void cargarDesdeNorteAntimateria() {
 
+        final int cantidad = 1;
         dadoQue(fueCreadaLaBatallaEspacial());
         dadoQue(unaNaveEstaAlSurDeUnContenedor());
 
-        unaNave.cargarDesdeNorte(Sustancia.ANTIMATERIA, 1);
+        unaNave.cargarDesdeNorte(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA);
 
-        comprobarQue(unaNaveTieneCargado(Sustancia.ANTIMATERIA, 1));
+        comprobarQue(unaNaveTieneCargado(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA));
     }
 
     private Postcondicion unaNaveTieneCargado(Sustancia sustancia, int cantidad) {
 
-        return post(() -> assertThat(batallaEspacial.obtenerTablero()).tieneNave().conAntimateria().en(3, 2));
+        return post(() ->
+
+                assertThat(unaNave.obtenerMonitor().consultarCargaDe(sustancia))
+                        .as("monitor.consultarCargaDe(" + sustancia + ")")
+                        .isEqualTo(cantidad));
     }
+
+    @Test
+    void cargarDesdeSurAntimateria() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(unaNaveEstaAlNorteDeUnContenedor());
+
+        unaNave.cargarDesdeSur(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA);
+
+        comprobarQue(unaNaveTieneCargado(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA));
+    }
+
+    private Precondicion unaNaveEstaAlNorteDeUnContenedor() {
+
+        return pre(() -> {
+
+            unaNave = new Nave();
+            unaNave.despegar();
+            IntStream.range(0, 2).forEach(n -> unaNave.avanzarAlOeste());
+            unaNave.avanzarAlSur();
+        });
+    }
+
+    @Test
+    void cargarDesdeEsteAntimateria() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(unaNaveEstaAlOesteDeUnContenedor());
+
+        unaNave.cargarDesdeEste(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA);
+
+        comprobarQue(unaNaveTieneCargado(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA));
+    }
+
+    private Precondicion unaNaveEstaAlOesteDeUnContenedor() {
+
+        return pre(() -> {
+
+            unaNave = new Nave();
+            unaNave.despegar();
+            IntStream.range(0, 4).forEach(n -> unaNave.avanzarAlNorte());
+            IntStream.range(0, 1).forEach(n -> unaNave.avanzarAlEste());
+        });
+    }
+
+    @Test
+    void cargarDesdeOesteAntimateria() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(unaNaveEstaAlEsteDeUnContenedor());
+
+        unaNave.cargarDesdeOeste(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA);
+
+        comprobarQue(unaNaveTieneCargado(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA));
+    }
+
 }
