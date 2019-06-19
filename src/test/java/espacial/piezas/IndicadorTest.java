@@ -24,7 +24,7 @@ class IndicadorTest implements TestDeContrato {
 
     private Postcondicion elValorInicialDeUnIndicadorEs(int esperado) {
 
-        return postcondicion(() -> assertThat(unIndicador.obtenerValor()).as("valor").isEqualTo(esperado));
+        return post(() -> assertThat(unIndicador.obtenerValor()).as("valor").isEqualTo(esperado));
     }
 
     @Test
@@ -39,12 +39,12 @@ class IndicadorTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnIndicadorConValorInicial(int valor) {
 
-        return precondicion(() -> unIndicador = new Indicador(valor));
+        return pre(() -> unIndicador = new Indicador(valor));
     }
 
     private Postcondicion elValorDeUnIndicadorEs(int esperado) {
 
-        return postcondicion(() -> assertThat(unIndicador.obtenerValor()).as("valor").isEqualTo(esperado));
+        return post(() -> assertThat(unIndicador.obtenerValor()).as("valor").isEqualTo(esperado));
     }
 
     @Test
@@ -71,7 +71,7 @@ class IndicadorTest implements TestDeContrato {
 
     private Postcondicion ejecutoUnaAccionConfigurada() {
 
-        return postcondicion(() -> verify(UNA_ACCION).ejecutar());
+        return post(() -> verify(UNA_ACCION).ejecutar());
     }
 
     @Test
@@ -96,7 +96,7 @@ class IndicadorTest implements TestDeContrato {
 
     private Postcondicion soloSeEjecutoUnaAccionUnaVez() {
 
-        return postcondicion(() -> verify(UNA_ACCION, times(1)).ejecutar());
+        return post(() -> verify(UNA_ACCION, times(1)).ejecutar());
     }
 
 }

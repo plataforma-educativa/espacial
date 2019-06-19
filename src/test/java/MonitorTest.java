@@ -23,7 +23,7 @@ class MonitorTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnMonitorDeUnaNaveEnLaBase() {
 
-        return precondicion(() -> {
+        return pre(() -> {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -35,7 +35,7 @@ class MonitorTest implements TestDeContrato {
 
     private Postcondicion obtieneElNivelDeEscudosInicial() {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThat(unMonitor.consultarNivelDeEscudos())
                         .as("nivel de escudos")
@@ -53,7 +53,7 @@ class MonitorTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnMonitorDeUnaNaveQueLuegoChocoConUnAsteroide() {
 
-        return precondicion(() -> {
+        return pre(() -> {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -68,7 +68,7 @@ class MonitorTest implements TestDeContrato {
 
     private Postcondicion obtieneElNivelDeEscudosAfectadoPorElChoque() {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThat(unMonitor.consultarNivelDeEscudos())
                         .as("nivel de escudos")
@@ -87,7 +87,7 @@ class MonitorTest implements TestDeContrato {
 
     private Postcondicion obtieneLaCantidadDeTorpedosInicial() {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThat(unMonitor.consultarCantidadDeTorpedos())
                         .as("cantidad de torpedos")
@@ -105,7 +105,7 @@ class MonitorTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnMonitorDeUnaNaveQueLuegoHizoUnAtaque() {
 
-        return precondicion(() -> {
+        return pre(() -> {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -119,7 +119,7 @@ class MonitorTest implements TestDeContrato {
 
     private Postcondicion laCantidadDeTorpedosDisminuyoLuegoDelAtaque() {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThat(unMonitor.consultarCantidadDeTorpedos())
                         .as("cantidad de torpedos")
@@ -137,7 +137,7 @@ class MonitorTest implements TestDeContrato {
 
     private Postcondicion alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro() {
 
-        return postcondicion(() -> assertThat(unMonitor).hasToString("Monitor de la Nave"));
+        return post(() -> assertThat(unMonitor).hasToString("Monitor de la Nave"));
     }
 
     @Test
@@ -150,7 +150,7 @@ class MonitorTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnMonitorDeUnaNaveQueTieneCargadaAntimateria() {
 
-        return precondicion(() -> {
+        return pre(() -> {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -166,7 +166,7 @@ class MonitorTest implements TestDeContrato {
 
     private Postcondicion elNivelDeCargaEs(int nivelEsperado) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThat(unMonitor.consultarNivelDeCarga())
                         .as("nivel de carga")

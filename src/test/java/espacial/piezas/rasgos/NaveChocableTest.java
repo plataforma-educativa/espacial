@@ -88,7 +88,7 @@ class NaveChocableTest implements TestDeContrato {
 
     private Precondicion laNaveChocadaImplementaNaveChocable() {
 
-        return precondicion(() -> naveChocada = new NaveChocable() {
+        return pre(() -> naveChocada = new NaveChocable() {
 
             @Override
             public void disminuirNivelDeEscudosEn(int diferencia) {
@@ -100,7 +100,7 @@ class NaveChocableTest implements TestDeContrato {
 
     private Postcondicion laNaveChocadaDisminuyoSuNivelDeEscudosEn(int disminucionEsperada) {
 
-        return postcondicion(() ->
+        return post(() ->
                 assertThat(nivelDeEscudosDisminuido)
                         .as("nivel de escudos disminuído")
                         .isEqualTo(disminucionEsperada));
@@ -108,6 +108,6 @@ class NaveChocableTest implements TestDeContrato {
 
     private Postcondicion unChocableFueNotificadoDelChoqueContraUnaNave() {
 
-        return postcondicion(() -> verify(UN_CHOCABLE).chocoContraUnaNave());
+        return post(() -> verify(UN_CHOCABLE).chocoContraUnaNave());
     }
 }

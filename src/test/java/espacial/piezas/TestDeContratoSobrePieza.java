@@ -36,7 +36,7 @@ abstract class TestDeContratoSobrePieza<T extends Pieza> implements TestDeContra
 
     private Postcondicion elEspectroEscaneadoEsElEsperado(EspectroEspacial espectro) {
 
-        return postcondicion(() -> assertThat(espectro).isEqualTo(espectroEsperado()));
+        return post(() -> assertThat(espectro).isEqualTo(espectroEsperado()));
     }
 
     @Test
@@ -70,7 +70,7 @@ abstract class TestDeContratoSobrePieza<T extends Pieza> implements TestDeContra
 
     private Postcondicion sePuedenObtenerLosPuntosDe(Pieza unaPieza) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThat(unaPieza.obtenerPuntos())
                         .as("puntos")

@@ -26,7 +26,7 @@ class BatallaEspacialTest implements TestDeContrato {
 
     private Postcondicion quedoRegistrada(BatallaEspacial objeto) {
 
-        return postcondicion("quedó registrada la Batalla Espacial", () ->
+        return post("quedó registrada la Batalla Espacial", () ->
 
                 assertThat(BatallaEspacial.obtener()).isSameAs(objeto));
     }
@@ -41,7 +41,7 @@ class BatallaEspacialTest implements TestDeContrato {
 
     private Postcondicion alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro() {
 
-        return postcondicion(() -> assertThat(batalla).hasToString("Batalla Espacial"));
+        return post(() -> assertThat(batalla).hasToString("Batalla Espacial"));
     }
 
     @Test
@@ -56,7 +56,7 @@ class BatallaEspacialTest implements TestDeContrato {
 
     private Postcondicion fueInicializadoEl(Tablero tablero) {
 
-        return postcondicion("fue inicializado el tablero", () -> {
+        return post("fue inicializado el tablero", () -> {
 
             assertThat(tablero.contarFilas()).as("filas del Tablero").isEqualTo(21);
             assertThat(tablero.obtenerFilaMaxima()).as("fila máxima").isEqualTo(10);
@@ -110,7 +110,7 @@ class BatallaEspacialTest implements TestDeContrato {
 
     private Postcondicion devuelveElMismo(BatallaEspacial batalla, Tablero tablero) {
 
-        return postcondicion("devuelve el mismo tablero", () -> {
+        return post("devuelve el mismo tablero", () -> {
 
             assertThat(tablero).isSameAs(batalla.obtenerTablero());
             assertThat(tablero).isSameAs(batalla.obtenerTablero());
@@ -130,12 +130,12 @@ class BatallaEspacialTest implements TestDeContrato {
 
     private Precondicion fueCreadaLaBatalla() {
 
-        return precondicion(() -> batalla = new BatallaEspacial());
+        return pre(() -> batalla = new BatallaEspacial());
     }
 
     private Postcondicion entreLasNavesDeLaBatallaEsta(Nave unaNave) {
 
-        return postcondicion("entre las Naves de la batalla está " + unaNave, () ->
+        return post("entre las Naves de la batalla está " + unaNave, () ->
 
                 assertThat(batalla.obtenerNaves())
                         .as("naves en la batalla")
@@ -145,7 +145,7 @@ class BatallaEspacialTest implements TestDeContrato {
 
     private Postcondicion enLaBaseEsta(NaveEspacial pieza) {
 
-        return postcondicion("en la base está la pieza", () -> {
+        return post("en la base está la pieza", () -> {
 
             assertThat(pieza).as("pieza").isNotNull();
 

@@ -15,23 +15,22 @@ public interface TestDeContrato {
         postcondicion.ejecutar();
     }
     
-    default Precondicion precondicion(String descripcion, Ejecutable ejecutable) {
+    default Precondicion pre(String descripcion, Ejecutable ejecutable) {
         
         return new Precondicion(new EnunciadoExplicito(descripcion), ejecutable);
     }
 
-    default Precondicion precondicion(Ejecutable ejecutable) {
+    default Precondicion pre(Ejecutable ejecutable) {
 
         return new Precondicion(new EnunciadoImplicito(), ejecutable);
     }
 
-    default Postcondicion postcondicion(String descripcion, Ejecutable ejecutable) {
+    default Postcondicion post(String descripcion, Ejecutable ejecutable) {
         
         return new Postcondicion(new EnunciadoExplicito(descripcion), ejecutable);
     }
 
-    default Postcondicion postcondicion(Ejecutable ejecutable) {
-
+    default Postcondicion post(Ejecutable ejecutable) {
 
         return new Postcondicion(new EnunciadoImplicito(), ejecutable);
     }

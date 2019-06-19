@@ -38,12 +38,12 @@ class CasilleroBordeTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnCasilleroBorde() {
 
-        return precondicion(() -> unCasilleroBorde = new CasilleroBorde(TABLERO));
+        return pre(() -> unCasilleroBorde = new CasilleroBorde(TABLERO));
     }
 
     private Postcondicion alEscanearDevuelveDesconocido() {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThat(unCasilleroBorde.escanear())
                         .as("escanear()")
@@ -61,7 +61,7 @@ class CasilleroBordeTest implements TestDeContrato {
 
     private Postcondicion alBuscarCualquierSustanciaDevuelve0() {
 
-        return postcondicion(() -> {
+        return post(() -> {
 
             for (SustanciaEspacial sustancia : SustanciaEspacial.values()) {
 
@@ -82,7 +82,7 @@ class CasilleroBordeTest implements TestDeContrato {
 
     private Postcondicion alObtenerContiguoEnCualquierDireccionDevuelveElMismoCasillero() {
 
-        return postcondicion(() -> {
+        return post(() -> {
 
             for (Direccion direccion : Direccion.values()) {
 
@@ -136,7 +136,7 @@ class CasilleroBordeTest implements TestDeContrato {
 
     private Postcondicion alObtenerPiezaDevuelveNull() {
 
-        return postcondicion(() -> assertThat(unCasilleroBorde.obtenerPieza()).as("obtenerPieza()").isNull());
+        return post(() -> assertThat(unCasilleroBorde.obtenerPieza()).as("obtenerPieza()").isNull());
     }
 
     @Test
@@ -152,12 +152,12 @@ class CasilleroBordeTest implements TestDeContrato {
 
     private Precondicion otroCasilleroTieneUnaPieza() {
 
-        return precondicion(() -> when(OTRO_CASILLERO.obtenerPieza()).thenReturn(UNA_PIEZA));
+        return pre(() -> when(OTRO_CASILLERO.obtenerPieza()).thenReturn(UNA_PIEZA));
     }
 
     private Postcondicion unaPiezaChocoControUnCasilleroBorde() {
 
-        return postcondicion(() -> verify(UNA_PIEZA).chocarCon(unCasilleroBorde));
+        return post(() -> verify(UNA_PIEZA).chocarCon(unCasilleroBorde));
     }
 
     @Test
@@ -172,7 +172,7 @@ class CasilleroBordeTest implements TestDeContrato {
 
     private Postcondicion unChocableChocoControalElBordeDelTablero() {
 
-        return postcondicion(() -> verify(UN_CHOCABLE).chocoContraElBordeDelTablero());
+        return post(() -> verify(UN_CHOCABLE).chocoContraElBordeDelTablero());
     }
 
     @Test
@@ -199,7 +199,7 @@ class CasilleroBordeTest implements TestDeContrato {
 
     private Postcondicion generaExcepcion(Class<?> claseExcepcion, Ejecutable ejecutable) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")

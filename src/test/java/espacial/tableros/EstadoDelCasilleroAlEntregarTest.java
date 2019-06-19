@@ -24,7 +24,7 @@ class EstadoDelCasilleroAlEntregarTest extends EstadoDelCasilleroTest {
 
     private Postcondicion generaExcepcionPorqueNoPuedeEntregarUnaCarga(Ejecutable ejecutable) {
 
-        return postcondicion(() ->
+        return post(() ->
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(NoPuedeEntregarUnaCarga.class)
@@ -44,7 +44,7 @@ class EstadoDelCasilleroAlEntregarTest extends EstadoDelCasilleroTest {
 
     private Postcondicion laPiezaEntregaUnaCarga() {
 
-        return postcondicion(() -> verify(PIEZA).entregar(UNA_CARGA));
+        return post(() -> verify(PIEZA).entregar(UNA_CARGA));
     }
 
     @Test

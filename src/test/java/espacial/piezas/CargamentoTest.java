@@ -12,7 +12,7 @@ class CargamentoTest implements TestDeContrato {
         @Override
         protected Precondicion fueCreadoUnCargamento(int capacidad) {
 
-            return precondicion(() -> unCargamento = new espacial.piezas.CargamentoDeSustancia(capacidad));
+            return pre(() -> unCargamento = new espacial.piezas.CargamentoDeSustancia(capacidad));
         }
     }
 
@@ -22,7 +22,7 @@ class CargamentoTest implements TestDeContrato {
         @Override
         protected Precondicion fueCreadoUnCargamento(int capacidad) {
 
-            return precondicion(() -> {
+            return pre(() -> {
 
                 Bodega bodega = new Bodega(capacidad);
                 unCargamento = new espacial.piezas.CargamentoEnBodega(bodega);

@@ -38,7 +38,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveQueNoDespego() {
 
-        return precondicion(() -> {
+        return pre(() -> {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -49,7 +49,7 @@ public class RadarTest implements TestDeContrato {
 
     private Postcondicion generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(Ejecutable ejecutable) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción lanzada")
@@ -69,7 +69,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveEnLaBase() {
 
-        return precondicion(() -> {
+        return pre(() -> {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -90,7 +90,7 @@ public class RadarTest implements TestDeContrato {
     private Postcondicion losEspectrosEscaneadosSonLosEsperados(Espectro alNorte, Espectro alSur,
                                                                 Espectro alEste, Espectro alOeste) {
 
-        return postcondicion(() -> {
+        return post(() -> {
 
             assertThat(escaneadoAlNorte).as("espectro escaneado al NORTE").isEqualTo(alNorte);
             assertThat(escaneadoAlSur).as("espectro escaneado al SUR").isEqualTo(alSur);
@@ -116,7 +116,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlOesteDeUnContenedorConAntimateria() {
 
-        return precondicion(() -> {
+        return pre(() -> {
 
             BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
@@ -145,7 +145,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlNorteDeUnaBase() {
 
-        return precondicion(() -> {
+        return pre(() -> {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -168,7 +168,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlSurDeUnAsteroide() {
 
-        return precondicion(() -> {
+        return pre(() -> {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -191,7 +191,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlEsteDeDesconocido() {
 
-        return precondicion(() -> {
+        return pre(() -> {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -213,7 +213,7 @@ public class RadarTest implements TestDeContrato {
 
     private Postcondicion alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro() {
 
-        return postcondicion(() -> assertThat(unRadar).hasToString("Radar de la Nave"));
+        return post(() -> assertThat(unRadar).hasToString("Radar de la Nave"));
     }
 
     @Test
@@ -269,7 +269,7 @@ public class RadarTest implements TestDeContrato {
                                                                   Condition<Integer> esperadoAlEste,
                                                                   Condition<Integer> esperadoAlOeste) {
 
-        return postcondicion(() -> {
+        return post(() -> {
 
             assertThat(cantidadAlNorte).as("cantidad al NORTE").is(esperadoAlNorte);
             assertThat(cantidadAlSur).as("cantidad al SUR").is(esperadoAlSur);
@@ -280,7 +280,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlEsteDeUnContenedorConAntimateria() {
 
-        return precondicion(() -> {
+        return pre(() -> {
 
             BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
@@ -299,7 +299,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlNorteDeUnContenedorConAntimateria() {
 
-        return precondicion(() -> {
+        return pre(() -> {
 
             BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
@@ -318,7 +318,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlSurDeUnContenedorConAntimateria() {
 
-        return precondicion(() -> {
+        return pre(() -> {
 
             BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();

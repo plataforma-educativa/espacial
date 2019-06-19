@@ -22,7 +22,7 @@ class EstadoDelCasilleroAlOcuparConTest extends EstadoDelCasilleroTest {
 
     private Precondicion laPiezaEsUnaNave() {
 
-        return precondicion(() ->
+        return pre(() ->
                 doAnswer(invocation -> {
 
                     invocation.getArgument(0, Visitante.class).siEsNave(PIEZA);
@@ -45,7 +45,7 @@ class EstadoDelCasilleroAlOcuparConTest extends EstadoDelCasilleroTest {
 
     private Precondicion laPiezaEsUnaBase() {
 
-        return precondicion(() ->
+        return pre(() ->
                 doAnswer(invocation -> {
 
                     invocation.getArgument(0, Visitante.class).siEsBase(PIEZA);

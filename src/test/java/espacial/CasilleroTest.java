@@ -75,7 +75,7 @@ class CasilleroTest implements TestDeContrato {
 
     private Postcondicion laPiezaFueMovidaEntreCasilleros(Casillero origen, Casillero destino) {
 
-        return postcondicion("la Nave fue movida entre los casilleros", () -> {
+        return post("la Nave fue movida entre los casilleros", () -> {
 
             assertThat(origen.escanear())
                     .as("espectro del Casillero origen")
@@ -100,7 +100,7 @@ class CasilleroTest implements TestDeContrato {
 
     private Postcondicion quedoDesocupado(Casillero casillero) {
 
-        return postcondicion(() ->
+        return post(() ->
                 assertThat(casillero.escanear())
                         .as("espectro del casillero")
                         .isEqualTo(EspectroEspacial.VACIO));
@@ -134,7 +134,7 @@ class CasilleroTest implements TestDeContrato {
 
     private Postcondicion elCasilleroEsEl(int fila, int columna, Casillero casillero) {
 
-        return postcondicion("el Casillero es el esperado", () ->
+        return post("el Casillero es el esperado", () ->
 
                 assertThat(casillero)
                         .as("casillero en [%d, %d]", fila, columna)
@@ -172,6 +172,6 @@ class CasilleroTest implements TestDeContrato {
 
     private Postcondicion elCasilleroEsMargen(Casillero contiguo) {
 
-        return postcondicion(() -> assertThat(contiguo.escanear()).isEqualTo(EspectroEspacial.DESCONOCIDO));
+        return post(() -> assertThat(contiguo.escanear()).isEqualTo(EspectroEspacial.DESCONOCIDO));
     }
 }

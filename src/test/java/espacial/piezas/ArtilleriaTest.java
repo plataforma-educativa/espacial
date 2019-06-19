@@ -28,7 +28,7 @@ class ArtilleriaTest implements TestDeContrato {
 
     private Postcondicion unArsenalTieneTorpedosDeFotones(int cantidad) {
 
-        return postcondicion(() ->
+        return post(() ->
                 assertThat(unaArtilleria.contarTorpedosDeFotones())
                         .as("cantidad de torpedos de fotones")
                         .isEqualTo(cantidad));
@@ -50,12 +50,12 @@ class ArtilleriaTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnArsenalConTorpedosDeFotones(int cantidad) {
 
-        return precondicion(() -> unaArtilleria = new Artilleria(cantidad));
+        return pre(() -> unaArtilleria = new Artilleria(cantidad));
     }
 
     private Postcondicion losAtaquesSon(int cantidadDeTorpedos, int cantidadDeLaser) {
 
-        return postcondicion(() -> {
+        return post(() -> {
 
             assertThat(ataquesRealizados)
                     .as("ataques lanzados")

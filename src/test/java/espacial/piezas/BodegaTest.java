@@ -29,7 +29,7 @@ class BodegaTest implements TestDeContrato {
 
     private Postcondicion unaBodegaTieneCargaConLugar(int cargaEsperada, int lugarEsperado) {
 
-        return postcondicion(() -> {
+        return post(() -> {
 
             assertThat(unaBodega.contabilizarCarga()).as("carga").isEqualTo(cargaEsperada);
             assertThat(unaBodega.contabilizarLugar()).as("lugar").isEqualTo(lugarEsperado);
@@ -39,7 +39,7 @@ class BodegaTest implements TestDeContrato {
 
     private Postcondicion unaBodegaTieneCargamentosVacios() {
 
-        return postcondicion(() -> {
+        return post(() -> {
 
             assertThat(unaBodega.ANTIMATERIA).as("cargamento de ANTIMATERIA").isInstanceOf(Cargamento.class);
             assertThat(unaBodega.ANTIMATERIA.contar()).as("ANTIMATERIA.contar()").isEqualTo(0);
@@ -64,12 +64,12 @@ class BodegaTest implements TestDeContrato {
 
     private Precondicion fueCreadaLaBodegaConCapacidad(int capacidad) {
 
-        return precondicion(() -> unaBodega = new Bodega(capacidad));
+        return pre(() -> unaBodega = new Bodega(capacidad));
     }
 
     private Postcondicion elCargamentoDeANTIMATERIA(int cantidadEsperada) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThat(unaBodega.ANTIMATERIA.contar())
                         .as("ANTIMATERIA.contar()")
@@ -91,7 +91,7 @@ class BodegaTest implements TestDeContrato {
 
     private Postcondicion elCargamentoDeMETAL(int cantidadEsperada) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThat(unaBodega.METAL.contar())
                         .as("METAL.contar()")
@@ -113,7 +113,7 @@ class BodegaTest implements TestDeContrato {
 
     private Postcondicion elCargamentoDeCRISTAL(int cantidadEsperada) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThat(unaBodega.CRISTAL.contar())
                         .as("CRISTAL.contar()")
@@ -187,17 +187,17 @@ class BodegaTest implements TestDeContrato {
 
     private Precondicion unaBodegaCargoANTIMATERIA(int cantidad) {
 
-        return precondicion(() -> unaBodega.ANTIMATERIA.agregar(cantidad));
+        return pre(() -> unaBodega.ANTIMATERIA.agregar(cantidad));
     }
 
     private Precondicion unaBodegaCargoMETAL(int cantidad) {
 
-        return precondicion(() -> unaBodega.METAL.agregar(cantidad));
+        return pre(() -> unaBodega.METAL.agregar(cantidad));
     }
 
     private Precondicion unaBodegaCargoCRISTAL(int cantidad) {
 
-        return precondicion(() -> unaBodega.CRISTAL.agregar(cantidad));
+        return pre(() -> unaBodega.CRISTAL.agregar(cantidad));
     }
 
     @Test
@@ -214,7 +214,7 @@ class BodegaTest implements TestDeContrato {
 
     private Postcondicion generaExcepcionPorqueExcedeLaCargaDisponible(Ejecutable ejecutable) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepcion generada")
@@ -224,7 +224,7 @@ class BodegaTest implements TestDeContrato {
 
     private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Ejecutable ejecutable) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")
@@ -245,6 +245,6 @@ class BodegaTest implements TestDeContrato {
 
     private Postcondicion elNivelDeCargaEs(int nivel) {
 
-        return postcondicion(() -> assertThat(unaBodega.obtenerNivelDeCarga()).as("nivel de carga").isEqualTo(nivel));
+        return post(() -> assertThat(unaBodega.obtenerNivelDeCarga()).as("nivel de carga").isEqualTo(nivel));
     }
 }

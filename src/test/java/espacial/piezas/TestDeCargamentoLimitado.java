@@ -106,7 +106,7 @@ abstract class TestDeCargamentoLimitado implements TestDeContrato {
 
     private Precondicion fueCreadoUnCargamento(int capacidad, int cantidad) {
 
-        return precondicion(() -> {
+        return pre(() -> {
 
             unCargamento = new CargamentoDeSustancia(capacidad);
             unCargamento.agregar(cantidad);
@@ -115,13 +115,13 @@ abstract class TestDeCargamentoLimitado implements TestDeContrato {
 
     private Postcondicion contarDevuelve(int cantidadEsperada) {
 
-        return postcondicion(() -> assertThat(unCargamento.contar()).as("contar()").isEqualTo(cantidadEsperada));
+        return post(() -> assertThat(unCargamento.contar()).as("contar()").isEqualTo(cantidadEsperada));
     }
 
     private Postcondicion generaExcepcionPorqueExcedeLaCargaDisponible(Ejecutable ejecutable,
                                                                        int retirada, int disponible) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")
@@ -133,7 +133,7 @@ abstract class TestDeCargamentoLimitado implements TestDeContrato {
     private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Ejecutable ejecutable,
                                                                        int agregada, int disponible) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")

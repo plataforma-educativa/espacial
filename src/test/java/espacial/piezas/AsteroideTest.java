@@ -38,7 +38,7 @@ class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
     @Override
     Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
-        return postcondicion(() -> verify(NAVE_ESPACIAL).chocoContraUnAsteroide());
+        return post(() -> verify(NAVE_ESPACIAL).chocoContraUnAsteroide());
     }
 
     @Test
@@ -50,12 +50,12 @@ class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
     private Precondicion fueCreadoUnAsteroide() {
 
-        return precondicion(() -> unAsteroide = new Asteroide(Dureza.MAXIMA));
+        return pre(() -> unAsteroide = new Asteroide(Dureza.MAXIMA));
     }
 
     private Postcondicion losPuntosInicialesDeUnAsteroideSonCorrectos() {
 
-        return postcondicion(() -> assertThat(unAsteroide.obtenerPuntos()).as("puntos").isEqualTo(300));
+        return post(() -> assertThat(unAsteroide.obtenerPuntos()).as("puntos").isEqualTo(300));
     }
 
     @Test
@@ -71,7 +71,7 @@ class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
     private Postcondicion generaExcepcionPorqueNoPuedeRecirCarga(Ejecutable ejecutable) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción lanzada")
@@ -92,7 +92,7 @@ class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
     private Postcondicion generaExcepcionPorqueNoPuedeEntregarUnaCarga(Ejecutable ejecutable) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")
@@ -126,12 +126,12 @@ class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
     private Precondicion fueCreadoUnAsteroideConDureza(int valorDureza) {
 
-        return precondicion(() -> unAsteroide = new Asteroide(valorDureza));
+        return pre(() -> unAsteroide = new Asteroide(valorDureza));
     }
 
     private Postcondicion losPuntosDeUnAsteroideSon(int esperados) {
 
-        return postcondicion(() -> assertThat(unAsteroide.obtenerPuntos()).as("puntos").isEqualTo(esperados));
+        return post(() -> assertThat(unAsteroide.obtenerPuntos()).as("puntos").isEqualTo(esperados));
     }
 
     @ParameterizedTest
@@ -192,12 +192,12 @@ class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
     private Postcondicion unAsteroideTieneLaDurezaEsperada(int dureza) {
 
-        return postcondicion(() -> assertThat(unAsteroide.obtenerDureza().obtener()).as("dureza").isEqualTo(dureza));
+        return post(() -> assertThat(unAsteroide.obtenerDureza().obtener()).as("dureza").isEqualTo(dureza));
     }
 
     private Postcondicion generaDefecto(Ejecutable ejecutable) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")

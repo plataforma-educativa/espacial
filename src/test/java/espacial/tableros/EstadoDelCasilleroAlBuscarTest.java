@@ -57,12 +57,12 @@ class EstadoDelCasilleroAlBuscarTest extends EstadoDelCasilleroTest {
 
     private Precondicion cuandoSobreLaPiezaSeBuscaDevuelve(SustanciaEspacial unaSustancia, int cantidad) {
 
-        return precondicion(() -> when(PIEZA.buscar(unaSustancia)).thenReturn(cantidad));
+        return pre(() -> when(PIEZA.buscar(unaSustancia)).thenReturn(cantidad));
     }
 
     private Postcondicion alBuscarDevuelve(int cantidadEsperada) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThat(estado.alBuscar(SustanciaEspacial.ANTIMATERIA))
                         .isEqualTo(cantidadEsperada)

@@ -40,7 +40,7 @@ class PiezaAtacableTest implements TestDeContrato {
 
     private Precondicion laPiezaAtacadaImplementaPiezaAtacable() {
 
-        return precondicion(() -> piezaAtacada = new PiezaAtacable() {
+        return pre(() -> piezaAtacada = new PiezaAtacable() {
 
             @Override
             public void decrementarPuntosEn(int decremento) {
@@ -77,7 +77,7 @@ class PiezaAtacableTest implements TestDeContrato {
 
     private Postcondicion laPiezaAtacadaDecrementoSusPuntosEn(int decrementoEsperado) {
 
-        return postcondicion(() ->
+        return post(() ->
                 assertThat(puntosDecrementados)
                         .as("puntos decrementados")
                         .isEqualTo(decrementoEsperado));

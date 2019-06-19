@@ -27,7 +27,7 @@ abstract class EstadoDelCasilleroTest implements TestDeContrato {
 
     protected Postcondicion noCambioElEstadoDelCasillero() {
 
-        return postcondicion(() -> verify(CASILLERO, never()).cambiarA(any()));
+        return post(() -> verify(CASILLERO, never()).cambiarA(any()));
     }
 
     protected Postcondicion cambioElEstadoDelCasilleroPorVacio() {
@@ -52,17 +52,17 @@ abstract class EstadoDelCasilleroTest implements TestDeContrato {
 
     protected Postcondicion cambioElEstadoDelCasilleroPor(Class<? extends EstadoDelCasillero> estado) {
 
-        return postcondicion(() -> verify(CASILLERO).cambiarA(any(estado)));
+        return post(() -> verify(CASILLERO).cambiarA(any(estado)));
     }
 
     protected Postcondicion generaUnDefecto(Ejecutable ejecutable) {
 
-        return postcondicion(() -> assertThatThrownBy(ejecutable::ejecutar).isInstanceOf(Defecto.class));
+        return post(() -> assertThatThrownBy(ejecutable::ejecutar).isInstanceOf(Defecto.class));
     }
 
     protected Postcondicion generaUnChoqueEntre(Pieza unaPieza, Pieza otraPieza) {
 
-        return postcondicion("genera un choque entre " + unaPieza + " y " + otraPieza, () ->
+        return post("genera un choque entre " + unaPieza + " y " + otraPieza, () ->
 
                 verify(unaPieza).chocarCon(otraPieza)
         );

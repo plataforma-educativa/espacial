@@ -56,12 +56,12 @@ class FabricaDePiezasTest implements TestDeContrato {
 
     private Precondicion fueCreadaUnaFabricaDePiezas() {
 
-        return precondicion(() -> unaFabrica = FabricaDePiezas.crear());
+        return pre(() -> unaFabrica = FabricaDePiezas.crear());
     }
 
     private Postcondicion unaPiezaEsUnContenedorCon(SustanciaEspacial sustancia) {
 
-        return postcondicion(() -> {
+        return post(() -> {
 
             assertThat(piezaCreada)
                     .as("Pieza creada").isNotNull()
@@ -93,7 +93,7 @@ class FabricaDePiezasTest implements TestDeContrato {
 
     private Postcondicion lasCargasDeLasPiezasCreadasSonDiferentes() {
 
-        return postcondicion(() -> assertThat(cargas.size() > 10).as("tiene cargas diferentes").isTrue());
+        return post(() -> assertThat(cargas.size() > 10).as("tiene cargas diferentes").isTrue());
     }
 
     @Test
@@ -154,7 +154,7 @@ class FabricaDePiezasTest implements TestDeContrato {
 
     private Postcondicion lasCargasDeLasPiezasCreadasEstanEnElRango(int desde, int hasta) {
 
-        return postcondicion(() -> assertThat(cargas).allMatch(carga -> (carga >= desde && carga <= hasta)));
+        return post(() -> assertThat(cargas).allMatch(carga -> (carga >= desde && carga <= hasta)));
     }
 
     @Test
@@ -169,7 +169,7 @@ class FabricaDePiezasTest implements TestDeContrato {
 
     private Postcondicion unaPiezasEsUnAsteoride() {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThat(piezaCreada)
                         .as("Pieza creada").isNotNull()
@@ -203,7 +203,7 @@ class FabricaDePiezasTest implements TestDeContrato {
 
     private Postcondicion lasDurezasDeLasPiezasCreadasSonDiferentes() {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThat(durezas.size() > 10)
                         .as("las durezas son diferentes")

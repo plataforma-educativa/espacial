@@ -24,7 +24,7 @@ class EstadoDelCasilleroAlRecibirTest extends EstadoDelCasilleroTest {
 
     private Postcondicion generaExcepcionPorqueNoPuedeRecibirUnaCarga(Ejecutable ejecutable) {
 
-        return postcondicion(() ->
+        return post(() ->
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(NoPuedeRecibirUnaCarga.class)
@@ -44,7 +44,7 @@ class EstadoDelCasilleroAlRecibirTest extends EstadoDelCasilleroTest {
 
     private Postcondicion laPiezaRecibeUnaCarga() {
 
-        return postcondicion(() -> verify(PIEZA).recibir(UNA_CARGA));
+        return post(() -> verify(PIEZA).recibir(UNA_CARGA));
     }
 
     @Test

@@ -33,12 +33,12 @@ class AleatorioTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnAleatorio(int desde, int hasta) {
 
-        return precondicion(() -> unAleatorio = new Aleatorio(desde, hasta));
+        return pre(() -> unAleatorio = new Aleatorio(desde, hasta));
     }
 
     private Postcondicion losValoresEstanDistribuidosEnElRango(int desde, int hasta) {
 
-        return postcondicion(() -> {
+        return post(() -> {
 
             assertThat(valores)
                     .as("valores")
@@ -66,7 +66,7 @@ class AleatorioTest implements TestDeContrato {
 
     private Postcondicion losValoresObtenidosTodosIgualesA(int unicoValor) {
 
-        return postcondicion(() -> assertThat(valores).as("valores").allMatch(valor -> valor == unicoValor));
+        return post(() -> assertThat(valores).as("valores").allMatch(valor -> valor == unicoValor));
     }
 
 }

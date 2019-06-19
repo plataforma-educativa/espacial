@@ -32,7 +32,7 @@ class AgujeroNegroTest extends TestDeContratoSobrePieza<AgujeroNegro> {
     @Override
     Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
-        return postcondicion(() -> verify(NAVE_ESPACIAL).chocoContraUnAgujeroNegro());
+        return post(() -> verify(NAVE_ESPACIAL).chocoContraUnAgujeroNegro());
     }
 
     @Test
@@ -46,12 +46,12 @@ class AgujeroNegroTest extends TestDeContratoSobrePieza<AgujeroNegro> {
 
     private Precondicion fueCreadoUnAgujeroNegro() {
 
-        return precondicion(() -> unAgujeroNegro = new AgujeroNegro());
+        return pre(() -> unAgujeroNegro = new AgujeroNegro());
     }
 
     private Postcondicion losPuntosUnAgujeroNegroSonMaximos() {
 
-        return postcondicion(() ->
+        return post(() ->
                 assertThat(unAgujeroNegro.obtenerPuntos())
                         .as("puntos")
                         .isEqualTo(Pieza.PUNTOS_MAXIMOS));
@@ -69,7 +69,7 @@ class AgujeroNegroTest extends TestDeContratoSobrePieza<AgujeroNegro> {
 
     private Postcondicion unAtaqueNoTuvoEfectoSobreUnAgujeroNegro() {
 
-        return postcondicion(() -> verifyZeroInteractions(UN_ATAQUE));
+        return post(() -> verifyZeroInteractions(UN_ATAQUE));
     }
 
     @Test
@@ -85,7 +85,7 @@ class AgujeroNegroTest extends TestDeContratoSobrePieza<AgujeroNegro> {
 
     private Postcondicion generaExcepcionPorqueNoPuedeRecibirUnaCarga(Ejecutable ejecutable) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")
@@ -106,7 +106,7 @@ class AgujeroNegroTest extends TestDeContratoSobrePieza<AgujeroNegro> {
 
     private Postcondicion generaExcepcionPorqueNoPuedeEntregarUnaCarga(Ejecutable ejecutable) {
 
-        return postcondicion(() ->
+        return post(() ->
 
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")

@@ -43,6 +43,6 @@ class EstadoDelCasilleroAlObtenerPiezaTest extends EstadoDelCasilleroTest {
     
     private Postcondicion alObtenerPiezaDevuelve(Pieza pieza) {
 
-        return postcondicion(() -> assertThat(estado.alObtenerPieza()).isSameAs(pieza));
+        return post(() -> assertThat(estado.alObtenerPieza()).isSameAs(pieza));
     }
 }

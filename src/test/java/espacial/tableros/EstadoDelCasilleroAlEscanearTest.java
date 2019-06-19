@@ -54,11 +54,11 @@ class EstadoDelCasilleroAlEscanearTest extends EstadoDelCasilleroTest {
     
     private Precondicion cuandoLaPiezaEsEscaneadaDevuelve(EspectroEspacial espectroEsperado) {
         
-        return precondicion(() -> when(PIEZA.escanear()).thenReturn(espectroEsperado));
+        return pre(() -> when(PIEZA.escanear()).thenReturn(espectroEsperado));
     }
     
     private Postcondicion alEscanearDevuelve(EspectroEspacial espectro) {
         
-        return postcondicion(() -> assertThat(estado.alEscanear()).isEqualTo(espectro));
+        return post(() -> assertThat(estado.alEscanear()).isEqualTo(espectro));
     }
 }

@@ -57,12 +57,12 @@ class EstadoDelCasilleroAlRecibirPiezaDesdeTest extends EstadoDelCasilleroTest {
 
     private Precondicion elCasilleroDeOrigenTieneUnaPieza() {
 
-        return precondicion(() -> when(CASILLERO_ORIGEN.obtenerPieza()).thenReturn(PIEZA_EN_ORIGEN));
+        return pre(() -> when(CASILLERO_ORIGEN.obtenerPieza()).thenReturn(PIEZA_EN_ORIGEN));
     }
     
     private Postcondicion laPiezaFueMovidaDelOrigenAlCasillero() {
         
-        return postcondicion(() -> {
+        return post(() -> {
             
             verify(CASILLERO_ORIGEN).desocupar();
             verify(CASILLERO).ocuparCon(PIEZA_EN_ORIGEN);
@@ -71,7 +71,7 @@ class EstadoDelCasilleroAlRecibirPiezaDesdeTest extends EstadoDelCasilleroTest {
     
     private Postcondicion laPiezaFueMovidaDelOrigen() {
         
-        return postcondicion(() -> verify(CASILLERO_ORIGEN).desocupar());
+        return post(() -> verify(CASILLERO_ORIGEN).desocupar());
     }
     
 }
