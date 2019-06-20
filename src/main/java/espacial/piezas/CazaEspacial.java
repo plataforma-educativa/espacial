@@ -29,7 +29,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
 
         nivelDeEscudos.cuandoSeAgota(this::fueDestruido);
         amarre.siEsNuloAlObtener(this::lanzarExcepcionPorqueLaNaveNoEstaEnLaBase);
-        casillero.siEsNuloAlObtener(this::lanzarExcepcionPorqueLaNaveNoEstaEnUnCasillero);
+        casillero.siEsNuloAlObtener(this::lanzarExcepcionPorqueNoDespego);
     }
 
     @Override
@@ -135,7 +135,9 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     private void fueDestruido() {
 
         obtenerCasillero().desocupar();
-        casillero.cambiar(null);
+
+        casillero.anular();
+        casillero.siEsNuloAlObtener(this::lanzarExcepcionPorqueFueDestruida);
     }
 
     private Amarre lanzarExcepcionPorqueLaNaveNoEstaEnLaBase() {
@@ -143,9 +145,14 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
         throw new LaNaveNoEstaEnLaBase();
     }
 
-    private Casillero lanzarExcepcionPorqueLaNaveNoEstaEnUnCasillero() {
+    private Casillero lanzarExcepcionPorqueNoDespego() {
 
-        throw new LaNaveNoEstaEnUnCasillero();
+        throw new LaNaveNoEstaEnUnCasillero("porque no despegó");
+    }
+
+    private Casillero lanzarExcepcionPorqueFueDestruida() {
+
+        throw new LaNaveNoEstaEnUnCasillero("porque fue destruida");
     }
 
     private Casillero obtenerCasillero() {

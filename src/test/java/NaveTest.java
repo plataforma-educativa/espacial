@@ -702,6 +702,7 @@ class NaveTest implements TestDeContrato {
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(LaNaveNoEstaEnUnCasillero.class)
+                        .hasMessageEndingWith("porque fue destruida")
         );
     }
 }

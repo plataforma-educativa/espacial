@@ -26,6 +26,12 @@ class ReferenciaRequerida<T> implements Referencia<T> {
     }
 
     @Override
+    public void anular() {
+
+        valor = null;
+    }
+
+    @Override
     public void siEsNuloAlObtener(Proveedor<T> crearExcepcion) {
 
         siValorEsNulo = crearExcepcion;

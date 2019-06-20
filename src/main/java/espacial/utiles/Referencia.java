@@ -6,6 +6,8 @@ public interface Referencia<T> {
 
     void cambiar(T valor);
 
+    void anular();
+
     void siEsNuloAlObtener(Proveedor<T> operacion);
 
     static <T> Referencia<T> conValor(T valor) {
@@ -17,5 +19,4 @@ public interface Referencia<T> {
 
         return new ReferenciaRequerida<>(null);
     }
-
 }

@@ -50,6 +50,18 @@ class ReferenciaTest implements TestDeContrato {
         }
 
         @Test
+        void anular() {
+
+            final Object valorInicial = new String("VALOR_INICIAL");
+
+            unaReferencia = Referencia.conValor(valorInicial);
+
+            unaReferencia.anular();
+
+            comprobarQue(generaUnDefecto(() -> unaReferencia.obtener()));
+        }
+
+        @Test
         void siEsNuloAlObtenerPuedeGenerarUnValor() {
 
             final Object valorGenerado = new String("VALOR_GENERADO");
