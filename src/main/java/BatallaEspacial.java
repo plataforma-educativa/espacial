@@ -17,7 +17,7 @@ public class BatallaEspacial {
     private final List<Nave> naves = new LinkedList<>();
     
     private final Tablero tablero = new Tablero();
-    
+
     public BatallaEspacial() {
 
         instancia = Opcional.con(this);

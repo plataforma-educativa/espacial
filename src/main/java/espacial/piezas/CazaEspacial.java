@@ -15,26 +15,27 @@ import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.piezas.rasgos.NaveChocable;
 import espacial.piezas.rasgos.NaveDeCarga;
 import espacial.piezas.rasgos.PiezaAtacable;
-import espacial.utiles.Opcional;
+import espacial.utiles.Referencia;
 
 public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, PiezaAtacable {
 
     private final Indicador nivelDeEscudos = new Indicador(100);
     private final Artilleria artilleria = new Artilleria(100);
     private final Bodega bodega = new Bodega(obtenerCapacidad());
-
-    private Opcional<Casillero> casillero = Opcional.sinValor();
-    private Opcional<Amarre> amarre = Opcional.sinValor();
+    private final Referencia<Amarre> amarre = Referencia.conValorNulo();
+    private final Referencia<Casillero> casillero = Referencia.conValorNulo();
 
     public CazaEspacial() {
 
         nivelDeEscudos.cuandoSeAgota(this::fueDestruido);
+        amarre.siEsNuloAlObtener(this::lanzarExcepcionPorqueLaNaveNoEstaEnLaBase);
+        casillero.siEsNuloAlObtener(this::lanzarExcepcionPorqueLaNaveNoEstaEnUnCasillero);
     }
 
     @Override
     public void despegar() {
 
-        Amarre amarreActual = amarre.obtenerPeroSiNoExisteLanzar(LaNaveNoEstaEnLaBase::new);
+        Amarre amarreActual = amarre.obtener();
 
         amarreActual.soltar();
     }
@@ -42,13 +43,13 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     @Override
     public void fueColocadaEn(Casillero unCasillero) {
         
-        casillero = Opcional.con(unCasillero);
+        casillero.cambiar(unCasillero);
     }
     
     @Override
     public void fueAmarradaCon(Amarre unAmarre) {
     
-        amarre = Opcional.con(unAmarre);
+        amarre.cambiar(unAmarre);
     }
     
     @Override
@@ -134,12 +135,22 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     private void fueDestruido() {
 
         obtenerCasillero().desocupar();
-        casillero = Opcional.sinValor();
+        casillero.cambiar(null);
+    }
+
+    private Amarre lanzarExcepcionPorqueLaNaveNoEstaEnLaBase() {
+
+        throw new LaNaveNoEstaEnLaBase();
+    }
+
+    private Casillero lanzarExcepcionPorqueLaNaveNoEstaEnUnCasillero() {
+
+        throw new LaNaveNoEstaEnUnCasillero();
     }
 
     private Casillero obtenerCasillero() {
 
-        return casillero.obtenerPeroSiNoExisteLanzar(LaNaveNoEstaEnUnCasillero::new);
+        return casillero.obtener();
     }
 
     @Override
