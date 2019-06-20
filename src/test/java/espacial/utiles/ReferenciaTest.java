@@ -23,7 +23,7 @@ class ReferenciaTest implements TestDeContrato {
 
             final Object valorReferenciado = new String("VALOR_REFERENCIADO");
 
-            unaReferencia = ReferenciaRequerida.conValor(valorReferenciado);
+            unaReferencia = Referencia.conValor(valorReferenciado);
 
             comprobarQue(unaReferenciaTiene(valorReferenciado));
         }
@@ -34,7 +34,7 @@ class ReferenciaTest implements TestDeContrato {
             final Object valorInicial = new String("VALOR_INICIAL");
             final Object valorNuevo = new String("VALOR_NUEVO");
 
-            unaReferencia = ReferenciaRequerida.conValor(valorInicial);
+            unaReferencia = Referencia.conValor(valorInicial);
 
             unaReferencia.cambiar(valorNuevo);
 
@@ -44,18 +44,32 @@ class ReferenciaTest implements TestDeContrato {
         @Test
         void crearConValorNulo() {
 
-            unaReferencia = ReferenciaRequerida.conValorNulo();
+            unaReferencia = Referencia.conValorNulo();
 
             comprobarQue(generaUnDefecto(() -> unaReferencia.obtener()));
         }
 
         @Test
-        void siEsNuloAlObtener() {
+        void siEsNuloAlObtenerPuedeGenerarUnValor() {
 
-            unaReferencia = ReferenciaRequerida.conValorNulo().siEsNuloAlObtener(() -> VALOR_REQUERIDO);
+            final Object valorGenerado = new String("VALOR_GENERADO");
+            final Proveedor<Object> generarValor = () ->  valorGenerado;
+            unaReferencia = Referencia.conValorNulo();
+
+            unaReferencia.siEsNuloAlObtener(generarValor);
+
+            comprobarQue(unaReferenciaTiene(valorGenerado));
+        }
+
+        @Test
+        void siEsNuloAlObtenerPuedeGenerarExcepcion() {
+
+            final Proveedor<Object> crearExcepcion = () ->  { throw VALOR_REQUERIDO; };
+            unaReferencia = Referencia.conValorNulo();
+
+            unaReferencia.siEsNuloAlObtener(crearExcepcion);
 
             comprobarQue(generaExcepcionUsandoElProveedor(() -> unaReferencia.obtener()));
-
         }
 
         private Postcondicion generaUnDefecto(Ejecutable ejecutable) {

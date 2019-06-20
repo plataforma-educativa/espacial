@@ -2,23 +2,13 @@ package espacial.utiles;
 
 import espacial.excepciones.Defecto;
 
-public class ReferenciaRequerida<T> implements Referencia<T> {
+class ReferenciaRequerida<T> implements Referencia<T> {
 
     private T valor;
 
-    private Proveedor<? extends RuntimeException> valorEsNulo = () -> new Defecto("El valor requerido es nulo");
+    private Proveedor<T> siValorEsNulo = () ->  { throw new Defecto("El valor requerido es nulo"); };
 
-    public static <T> ReferenciaRequerida<T> conValor(T valor) {
-
-        return new ReferenciaRequerida<>(valor);
-    }
-
-    public static <T> ReferenciaRequerida<T> conValorNulo() {
-
-        return new ReferenciaRequerida<>(null);
-    }
-
-    private ReferenciaRequerida(T valorRequerido) {
+    ReferenciaRequerida(T valorRequerido) {
 
         valor = valorRequerido;
     }
@@ -26,12 +16,7 @@ public class ReferenciaRequerida<T> implements Referencia<T> {
     @Override
     public T obtener() {
 
-        if (valor == null) {
-
-            throw valorEsNulo.obtener();
-        }
-
-        return valor;
+        return (valor != null) ? valor : siValorEsNulo.obtener();
     }
 
     @Override
@@ -40,11 +25,9 @@ public class ReferenciaRequerida<T> implements Referencia<T> {
         valor = nuevoValor;
     }
 
-    public ReferenciaRequerida<T> siEsNuloAlObtener(Proveedor<? extends  RuntimeException> crearExcepcion) {
+    @Override
+    public void siEsNuloAlObtener(Proveedor<T> crearExcepcion) {
 
-        valorEsNulo = crearExcepcion;
-
-        return this;
+        siValorEsNulo = crearExcepcion;
     }
-
 }
