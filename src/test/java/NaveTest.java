@@ -103,6 +103,7 @@ class NaveTest implements TestDeContrato {
                 assertThatThrownBy(ejecutable::ejecutar)
                         .as("excepción lanzada")
                         .isInstanceOf(LaNaveNoEstaEnUnCasillero.class)
+                        .hasMessageEndingWith(" porque no despegó")
         );
     }
 
