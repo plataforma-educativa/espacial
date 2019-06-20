@@ -77,6 +77,4 @@ public class Ocupado extends EstadoDelCasillero {
 
         return pieza;
     }
-
-
 }

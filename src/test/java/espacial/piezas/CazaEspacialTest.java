@@ -100,6 +100,12 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
         unCazaEspacial.disminuirNivelDeEscudosEn(101);
 
         comprobarQue(elNivelDeEscudosEs(0));
+        comprobarQue(esRemovidoDelTablero());
+    }
+
+    private Postcondicion esRemovidoDelTablero() {
+
+        return post(() -> verify(UN_CASILLERO).desocupar());
     }
 
     @Test
@@ -426,7 +432,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     @Test
     void buscarEnDireccionUnaSustanciaEspacial() {
 
-        dadoQue(fueCreadoUnCazaEspacialConAntimateriaAlrededor(10,0, 15, 30));
+        dadoQue(fueCreadoUnCazaEspacialConAntimateriaAlrededor(10, 0, 15, 30));
 
         comprobarQue(alBuscarAlrededorAntimateriaEncuentra(10, 0, 15, 30));
     }

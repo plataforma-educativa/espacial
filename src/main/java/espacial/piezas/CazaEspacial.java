@@ -134,6 +134,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     private void fueDestruido() {
 
         obtenerCasillero().desocupar();
+        casillero = Opcional.sinValor();
     }
 
     private Casillero obtenerCasillero() {

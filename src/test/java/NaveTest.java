@@ -675,4 +675,33 @@ class NaveTest implements TestDeContrato {
 
         comprobarQue(unaNaveTieneCargado(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA));
     }
+
+    @Test
+    void avanzarLuegoDeSerDestruida() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
+        dadoQue(fueDestruidaUnaNave());
+
+        comprobarQue(generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(() -> unaNave.avanzarAlOeste()));
+    }
+
+    private Precondicion fueDestruidaUnaNave() {
+
+        return pre(() -> {
+
+            unaNave.avanzarAlNorte();
+            IntStream.range(0, 6).forEach(n -> unaNave.avanzarAlOeste());
+        });
+    }
+
+    private Postcondicion generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(Ejecutable ejecutable) {
+
+        return post(() ->
+
+                assertThatThrownBy(ejecutable::ejecutar)
+                        .as("excepción generada")
+                        .isInstanceOf(LaNaveNoEstaEnUnCasillero.class)
+        );
+    }
 }
