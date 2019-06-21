@@ -35,9 +35,9 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     @Override
     public void despegar() {
 
-        Amarre amarreActual = amarre.obtener();
+        amarre.obtener().soltar();
 
-        amarreActual.soltar();
+        amarre.anular();
     }
 
     @Override

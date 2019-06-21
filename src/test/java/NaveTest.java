@@ -1,6 +1,7 @@
 import espacial.Casillero;
 import espacial.Coordenada;
 import espacial.Pieza;
+import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
@@ -704,6 +705,51 @@ class NaveTest implements TestDeContrato {
                         .as("excepción generada")
                         .isInstanceOf(LaNaveNoEstaEnUnCasillero.class)
                         .hasMessageEndingWith("porque fue destruida")
+        );
+    }
+
+    @Test
+    void atacarLuegoDeSerDestruida() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
+        dadoQue(fueDestruidaUnaNave());
+
+        comprobarQue(generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(() -> unaNave.atacarAlNorte()));
+    }
+
+    @Test
+    void cargarLuegoDeSerDestruida() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
+        dadoQue(fueDestruidaUnaNave());
+
+        comprobarQue(generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(() ->
+
+                unaNave.cargarDesdeNorte(Sustancia.ANTIMATERIA, 1))
+        );
+    }
+
+    @Test
+    void despegarCuandoNoEstaEnLaBase() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
+
+        unaNave.avanzarAlNorte();
+
+
+        comprobarQue(generaExcepcionPorqueLaNaveNoEstaEnLaBase(() -> unaNave.despegar()));
+    }
+
+    private Postcondicion generaExcepcionPorqueLaNaveNoEstaEnLaBase(Ejecutable ejecutable) {
+
+        return post(() ->
+
+                assertThatThrownBy(ejecutable::ejecutar)
+                        .as("excepción generada")
+                        .isInstanceOf(LaNaveNoEstaEnLaBase.class)
         );
     }
 }
