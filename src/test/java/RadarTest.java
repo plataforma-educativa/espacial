@@ -7,8 +7,6 @@ import espacial.test.TestDeContrato;
 import org.assertj.core.api.Condition;
 import org.junit.jupiter.api.Test;
 
-import java.util.stream.IntStream;
-
 import static org.assertj.core.api.Assertions.*;
 
 public class RadarTest implements TestDeContrato {
@@ -119,7 +117,7 @@ public class RadarTest implements TestDeContrato {
             BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
-            IntStream.range(0, 4).forEach(n -> nave.avanzarAlNorte());
+            repetir(4, i -> nave.avanzarAlNorte());
             nave.avanzarAlEste();
 
             batalla.obtenerTablero()
@@ -171,7 +169,7 @@ public class RadarTest implements TestDeContrato {
             new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
-            IntStream.range(0, 3).forEach(n -> nave.avanzarAlOeste());
+            repetir(3, i -> nave.avanzarAlOeste());
 
             unRadar = nave.obtenerRadar();
         });
@@ -194,7 +192,7 @@ public class RadarTest implements TestDeContrato {
             new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
-            IntStream.range(0, 5).forEach(n -> nave.avanzarAlOeste());
+            repetir(5, i -> nave.avanzarAlOeste());
             nave.avanzarAlNorte();
 
             unRadar = nave.obtenerRadar();
@@ -283,8 +281,8 @@ public class RadarTest implements TestDeContrato {
             BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
-            IntStream.range(0, 2).forEach(n -> nave.avanzarAlSur());
-            IntStream.range(0, 1).forEach(n -> nave.avanzarAlOeste());
+            repetir(2, i -> nave.avanzarAlSur());
+            repetir(1, i -> nave.avanzarAlOeste());
 
             batalla.obtenerTablero()
                     .obtenerCasilleroEn(-2, -2)
@@ -302,8 +300,8 @@ public class RadarTest implements TestDeContrato {
             BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
-            IntStream.range(0, 2).forEach(n -> nave.avanzarAlOeste());
-            IntStream.range(0, 1).forEach(n -> nave.avanzarAlSur());
+            repetir(2, i -> nave.avanzarAlOeste());
+            repetir(1, i -> nave.avanzarAlSur());
 
             batalla.obtenerTablero()
                     .obtenerCasilleroEn(-2, -2)
@@ -321,8 +319,8 @@ public class RadarTest implements TestDeContrato {
             BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
             nave.despegar();
-            IntStream.range(0, 2).forEach(n -> nave.avanzarAlEste());
-            IntStream.range(0, 3).forEach(n -> nave.avanzarAlNorte());
+            repetir(2, i -> nave.avanzarAlEste());
+            repetir(3, i -> nave.avanzarAlNorte());
 
             batalla.obtenerTablero()
                     .obtenerCasilleroEn(4, 2)
@@ -351,8 +349,8 @@ public class RadarTest implements TestDeContrato {
 
             unRadar = nave.obtenerRadar();
 
-            IntStream.range(0, 3).forEach(n -> nave.avanzarAlOeste());
-            IntStream.range(0, 4).forEach(n -> nave.avanzarAlNorte());
+            repetir(3, i -> nave.avanzarAlOeste());
+            repetir(4, i -> nave.avanzarAlNorte());
         });
     }
 

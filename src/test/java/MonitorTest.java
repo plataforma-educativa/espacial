@@ -3,8 +3,6 @@ import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
-import java.util.stream.IntStream;
-
 import static org.assertj.core.api.Assertions.*;
 
 class MonitorTest implements TestDeContrato {
@@ -65,7 +63,7 @@ class MonitorTest implements TestDeContrato {
             unMonitor = nave.obtenerMonitor();
 
             nave.avanzarAlNorte();
-            IntStream.range(0, 3).forEach(n -> nave.avanzarAlOeste());
+            repetir(3, i -> nave.avanzarAlOeste());
         });
     }
 
@@ -161,8 +159,8 @@ class MonitorTest implements TestDeContrato {
 
             unMonitor = nave.obtenerMonitor();
 
-            IntStream.range(0, 3).forEach(n -> nave.avanzarAlNorte());
-            IntStream.range(0, 2).forEach(n -> nave.avanzarAlEste());
+            repetir(3, i -> nave.avanzarAlNorte());
+            repetir(2, i -> nave.avanzarAlEste());
             nave.cargarDesdeNorte(Sustancia.ANTIMATERIA, CARGA_MINIMA);
         });
     }
@@ -195,8 +193,8 @@ class MonitorTest implements TestDeContrato {
 
             unMonitor = nave.obtenerMonitor();
 
-            IntStream.range(0, 24).forEach(n -> nave.avanzarAlOeste());
-            IntStream.range(0, 9).forEach(n -> nave.avanzarAlNorte());
+            repetir(24, i -> nave.avanzarAlOeste());
+            repetir(9, i -> nave.avanzarAlNorte());
             nave.cargarDesdeNorte(Sustancia.METAL, CARGA_MINIMA);
         });
     }
@@ -229,8 +227,8 @@ class MonitorTest implements TestDeContrato {
 
             unMonitor = nave.obtenerMonitor();
 
-            IntStream.range(0, 9).forEach(n -> nave.avanzarAlOeste());
-            IntStream.range(0, 2).forEach(n -> nave.avanzarAlNorte());
+            repetir(9, i -> nave.avanzarAlOeste());
+            repetir(2, i -> nave.avanzarAlNorte());
 
             while (nave.obtenerRadar().escanearOeste() == Espectro.ASTEROIDE) {
                 nave.atacarAlEste();
@@ -260,7 +258,7 @@ class MonitorTest implements TestDeContrato {
             unMonitor = nave.obtenerMonitor();
 
             nave.avanzarAlNorte();
-            IntStream.range(0, 6).forEach(n -> nave.avanzarAlOeste());
+            repetir(6, i -> nave.avanzarAlOeste());
         });
     }
 

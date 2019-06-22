@@ -20,8 +20,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 
-import java.util.stream.IntStream;
-
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -319,7 +317,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
         dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasilleroConOtraPiezaAlNorte());
 
-        IntStream.rangeClosed(1, TORPEDOS_DE_FOTONES + LASER).forEach(n -> unCazaEspacial.atacarEn(Direccion.NORTE));
+        repetir(TORPEDOS_DE_FOTONES + LASER, i -> unCazaEspacial.atacarEn(Direccion.NORTE));
 
         comprobarQue(otraPiezaFueAtacadaCon(TORPEDOS_DE_FOTONES, LASER));
     }

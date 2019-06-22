@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -42,8 +41,8 @@ class ArtilleriaTest implements TestDeContrato {
 
         dadoQue(fueCreadoUnArsenalConTorpedosDeFotones(CANTIDAD_DE_TORPEDOS));
 
-        IntStream.range(0, CANTIDAD_DE_TORPEDOS + CANTIDAD_DE_LASER)
-                .forEach(n -> ataquesRealizados.add(unaArtilleria.lanzarAtaque()));
+        repetir(CANTIDAD_DE_TORPEDOS + CANTIDAD_DE_LASER,
+                i -> ataquesRealizados.add(unaArtilleria.lanzarAtaque()));
 
         comprobarQue(losAtaquesSon(CANTIDAD_DE_TORPEDOS, CANTIDAD_DE_LASER));
     }
