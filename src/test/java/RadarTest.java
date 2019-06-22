@@ -16,8 +16,6 @@ public class RadarTest implements TestDeContrato {
     private static Condition<Integer> CERO = new Condition<>(valor -> valor == 0, "igual a 0");
     private static Condition<Integer> MAYOR_A_CERO = new Condition<>(valor -> valor > 0, "mayor a 0");
 
-    private static final int NADA = 0;
-
     private Radar unRadar;
     private Espectro escaneadoAlNorte;
     private Espectro escaneadoAlSur;
@@ -335,4 +333,44 @@ public class RadarTest implements TestDeContrato {
         });
     }
 
+    @Test
+    void escanearCuandoLaNaveFueDestruida() {
+
+        dadoQue(fueObtenidoUnRadarDeUnaNaveDestruidaAlSurDeUnAsteroide());
+
+        comprobarQue(generaExcepcionPorqueLaNaveFueDestruida(() -> unRadar.escanearNorte()));
+    }
+
+    private Precondicion fueObtenidoUnRadarDeUnaNaveDestruidaAlSurDeUnAsteroide() {
+
+        return pre(() -> {
+
+            new BatallaEspacial();
+            Nave nave = new Nave();
+            nave.despegar();
+
+            unRadar = nave.obtenerRadar();
+
+            IntStream.range(0, 3).forEach(n -> nave.avanzarAlOeste());
+            IntStream.range(0, 4).forEach(n -> nave.avanzarAlNorte());
+        });
+    }
+
+    private Postcondicion generaExcepcionPorqueLaNaveFueDestruida(Ejecutable ejecutable) {
+
+        return post(() ->
+
+                assertThatThrownBy(ejecutable::ejecutar)
+                        .as("excepción generada")
+                        .isInstanceOf(LaNaveNoEstaEnUnCasillero.class)
+        );
+    }
+
+    @Test
+    void buscarAntimateriaCuandoLaNaveFueDestruida() {
+
+        dadoQue(fueObtenidoUnRadarDeUnaNaveDestruidaAlSurDeUnAsteroide());
+
+        comprobarQue(generaExcepcionPorqueLaNaveFueDestruida(() -> unRadar.buscarAlNorte(Sustancia.ANTIMATERIA)));
+    }
 }
