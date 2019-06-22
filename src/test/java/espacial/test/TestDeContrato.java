@@ -34,4 +34,12 @@ public interface TestDeContrato {
 
         return new Postcondicion(new EnunciadoImplicito(), ejecutable);
     }
+
+    default void repetir(int veces, Paso paso) {
+
+        for (int i = 0; i < veces; i++) {
+
+            paso.dar(i);
+        }
+    }
 }

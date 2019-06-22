@@ -9,8 +9,6 @@ import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
-import java.util.stream.IntStream;
-
 import static espacial.test.Aserciones.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.*;
@@ -294,8 +292,8 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            IntStream.range(0, 2).forEach(n -> unaNave.avanzarAlEste());
-            IntStream.range(0, 3).forEach(n -> unaNave.avanzarAlNorte());
+            repetir(2, i -> unaNave.avanzarAlEste());
+            repetir(3, i -> unaNave.avanzarAlNorte());
         });
     }
 
@@ -327,7 +325,7 @@ class NaveTest implements TestDeContrato {
         return pre(() -> {
 
             unaNave.avanzarAlOeste();
-            IntStream.range(0, 10).forEach(n -> unaNave.avanzarAlSur());
+            repetir(10, i -> unaNave.avanzarAlSur());
             unaNave.avanzarAlEste();
         });
     }
@@ -359,7 +357,7 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            IntStream.range(0, 5).forEach(n -> unaNave.avanzarAlOeste());
+            repetir(5, i -> unaNave.avanzarAlOeste());
             unaNave.avanzarAlNorte();
         });
     }
@@ -387,7 +385,7 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            IntStream.range(0, 5).forEach(n -> unaNave.avanzarAlSur());
+            repetir(5, i -> unaNave.avanzarAlSur());
         });
     }
 
@@ -430,7 +428,7 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            IntStream.range(0, 2).forEach(n -> unaNave.avanzarAlSur());
+            repetir(2, i -> unaNave.avanzarAlSur());
             unaNave.avanzarAlOeste();
         });
     }
@@ -517,7 +515,7 @@ class NaveTest implements TestDeContrato {
 
             Nave otraNave = new Nave();
             otraNave.despegar();
-            IntStream.range(0, 2).forEach(n -> otraNave.avanzarAlEste());
+            repetir(2, i -> otraNave.avanzarAlEste());
 
             unaNave = new Nave();
             unaNave.despegar();
@@ -641,7 +639,7 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            IntStream.range(0, 2).forEach(n -> unaNave.avanzarAlOeste());
+            repetir(2, i -> unaNave.avanzarAlOeste());
             unaNave.avanzarAlSur();
         });
     }
@@ -662,8 +660,8 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            IntStream.range(0, 4).forEach(n -> unaNave.avanzarAlNorte());
-            IntStream.range(0, 1).forEach(n -> unaNave.avanzarAlEste());
+            repetir(4, i -> unaNave.avanzarAlNorte());
+            repetir(1, i -> unaNave.avanzarAlEste());
         });
     }
 
@@ -696,7 +694,7 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            IntStream.range(0, 2).forEach(n -> unaNave.avanzarAlSur());
+            repetir(2, i -> unaNave.avanzarAlSur());
             unaNave.avanzarAlOeste();
             unaNave.cargarDesdeOeste(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA);
             unaNave.avanzarAlEste();
@@ -731,11 +729,11 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            IntStream.range(0, 4).forEach(n -> unaNave.avanzarAlNorte());
+            repetir(4, i -> unaNave.avanzarAlNorte());
             unaNave.avanzarAlEste();
             unaNave.cargarDesdeEste(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA);
             unaNave.avanzarAlOeste();
-            IntStream.range(0, 3).forEach(n -> unaNave.avanzarAlSur());
+            repetir(3, i -> unaNave.avanzarAlSur());
         });
     }
 
@@ -766,10 +764,10 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            IntStream.range(0, 2).forEach(n -> unaNave.avanzarAlEste());
-            IntStream.range(0, 3).forEach(n -> unaNave.avanzarAlNorte());
+            repetir(2, i -> unaNave.avanzarAlEste());
+            repetir(3, i -> unaNave.avanzarAlNorte());
             unaNave.cargarDesdeNorte(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA);
-            IntStream.range(0, 3).forEach(n -> unaNave.avanzarAlSur());
+            repetir(3, i -> unaNave.avanzarAlSur());
             unaNave.avanzarAlOeste();
         });
     }
@@ -799,7 +797,7 @@ class NaveTest implements TestDeContrato {
         return pre(() -> {
 
             unaNave.avanzarAlNorte();
-            IntStream.range(0, 6).forEach(n -> unaNave.avanzarAlOeste());
+            repetir(6, i -> unaNave.avanzarAlOeste());
         });
     }
 
@@ -831,7 +829,7 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            IntStream.range(0, 2).forEach(n -> unaNave.avanzarAlOeste());
+            repetir(2, i -> unaNave.avanzarAlOeste());
             unaNave.avanzarAlSur();
             unaNave.cargarDesdeSur(Sustancia.ANTIMATERIA, CANTIDAD_MINIMA);
             unaNave.avanzarAlNorte();
