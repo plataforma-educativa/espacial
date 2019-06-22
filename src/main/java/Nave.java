@@ -94,6 +94,33 @@ public class Nave {
         pieza.cargarDesde(direccion, sustanciaEspacial.por(cantidad));
     }
 
+    public void descargarEnNorte(Sustancia sustancia, int cantidad) {
+
+        descargarEn(Direccion.NORTE, sustancia, cantidad);
+    }
+
+    public void descargarEnSur(Sustancia sustancia, int cantidad) {
+
+        descargarEn(Direccion.SUR, sustancia, cantidad);
+    }
+
+    public void descargarEnEste(Sustancia sustancia, int cantidad) {
+
+        descargarEn(Direccion.ESTE, sustancia, cantidad);
+    }
+
+    public void descargarEnOeste(Sustancia sustancia, int cantidad) {
+
+        descargarEn(Direccion.OESTE, sustancia, cantidad);
+    }
+
+    private void descargarEn(Direccion direccion, Sustancia sustancia, int cantidad) {
+
+        SustanciaEspacial sustanciaEspacial = Traductor.DE_SUSTANCIAS.interpretar(sustancia);
+
+        pieza.descargarEn(direccion, sustanciaEspacial.por(cantidad));
+    }
+
     public Radar obtenerRadar() {
 
         return radar;

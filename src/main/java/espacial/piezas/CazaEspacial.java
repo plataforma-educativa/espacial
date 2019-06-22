@@ -189,6 +189,16 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     }
 
     @Override
+    public void descargarEn(Direccion direccionElegida, Carga unaCarga) {
+
+        Casillero casilleroDestino = obtenerCasillero().obtenerContiguoEn(direccionElegida);
+
+        entregar(unaCarga);
+
+        casilleroDestino.recibir(unaCarga);
+    }
+
+    @Override
     public int obtenerNivelDeCarga() {
 
         return bodega.obtenerNivelDeCarga();

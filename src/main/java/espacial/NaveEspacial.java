@@ -16,6 +16,8 @@ public interface NaveEspacial extends Pieza, Chocable {
 
     void cargarDesde(Direccion direccionElegida, Carga unaCarga);
 
+    void descargarEn(Direccion direccionElegida, Carga unaCarga);
+
     int obtenerNivelDeEscudos();
 
     void fueAmarradaCon(Amarre amarre);
