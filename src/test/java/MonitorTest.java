@@ -10,6 +10,7 @@ import static org.assertj.core.api.Assertions.*;
 class MonitorTest implements TestDeContrato {
 
     private static final int CARGA_MINIMA = 1;
+    private static final int CARGA_NULA = 0;
 
     private BatallaEspacial batallaEspacial;
     private Nave unaNave;
@@ -240,4 +241,34 @@ class MonitorTest implements TestDeContrato {
         });
     }
 
+    @Test
+    void consultarNivelDeEscudosCuandoLaNaveFueDestruida() {
+
+        dadoQue(fueObtenidoUnMonitorDeUnaNaveQueLuegoFueDestruida());
+
+        comprobarQue(elNivelDeCargaEs(0));
+    }
+
+    private Precondicion fueObtenidoUnMonitorDeUnaNaveQueLuegoFueDestruida() {
+
+        return pre(() -> {
+
+            new BatallaEspacial();
+            Nave nave = new Nave();
+            nave.despegar();
+
+            unMonitor = nave.obtenerMonitor();
+
+            nave.avanzarAlNorte();
+            IntStream.range(0, 6).forEach(n -> nave.avanzarAlOeste());
+        });
+    }
+
+    @Test
+    void consultarCargaDeCuandoLaNaveFueDestruida() {
+
+        dadoQue(fueObtenidoUnMonitorDeUnaNaveQueLuegoFueDestruida());
+
+        comprobarQue(laCargaEs(CARGA_NULA, Sustancia.CRISTAL));
+    }
 }
