@@ -38,9 +38,9 @@ class EstadoDelCasilleroAlRecibirPiezaDesdeTest extends EstadoDelCasilleroTest {
 
         estado = new OcupadoPorUnaBase(CASILLERO, PIEZA);
         estado.alRecibirPiezaDesde(CASILLERO_ORIGEN);
-        
-        comprobarQue(laPiezaFueMovidaDelOrigen());
-        comprobarQue(cambioElEstadoDelCasilleroPorOcupadoPorUnaBaseConNaveEnManiobras());
+
+        comprobarQue(generaUnChoqueEntre(PIEZA_EN_ORIGEN, PIEZA));
+        comprobarQue(noCambioElEstadoDelCasillero());
     }
 
     @Test

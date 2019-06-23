@@ -368,6 +368,24 @@ class NaveTest implements TestDeContrato {
     }
 
     @Test
+    void noPuedeAvanzarSiEstaLaBaseEnElCasilleroDestino() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
+        dadoQue(unaNaveEstaAlSurDeUnaBase());
+
+        unaNave.avanzarAlNorte();
+
+        comprobarQue(unaNaveQuedoEnElCasillero(-1, 0));
+        comprobarQue(unaNaveSufrioElChoqueContraLaBase());
+    }
+
+    private Postcondicion unaNaveSufrioElChoqueContraLaBase() {
+
+        return post(() -> assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos").isEqualTo(95));
+    }
+
+    @Test
     void atacarAlSurUnAsteroide() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
@@ -383,10 +401,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion unaNaveEstaAlNorteDeUnAsteroide() {
 
-        return pre(() -> {
-
-            repetir(5, i -> unaNave.avanzarAlSur());
-        });
+        return pre(() -> repetir(5, i -> unaNave.avanzarAlSur()));
     }
 
     private Precondicion seConoceLaCantidadDePuntosQueTieneElAsteroide() {
@@ -470,10 +485,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion unaNaveEstaAlSurDeUnaBase() {
 
-        return pre(() -> {
-
-            unaNave.avanzarAlSur();
-        });
+        return pre(() -> unaNave.avanzarAlSur());
     }
 
     private Precondicion seConoceLaCantidadDePuntosQueTieneLaBaseAlNorte() {
@@ -704,12 +716,12 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion laBaseAlNorteTieneCargado(Sustancia sustancia, int cantidad) {
 
-        return post(() -> {
+        return post(() ->
 
             assertThat(unaNave.obtenerRadar().buscarAlNorte(sustancia))
                     .as("buscarAlNorte(ANTIMATERIA)")
-                    .isEqualTo(cantidad);
-        });
+                    .isEqualTo(cantidad)
+        );
     }
 
     @Test
@@ -739,12 +751,12 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion laBaseAlSurTieneCargado(Sustancia sustancia, int cantidad) {
 
-        return post(() -> {
+        return post(() ->
 
             assertThat(unaNave.obtenerRadar().buscarAlSur(sustancia))
                     .as("buscarAlSur(ANTIMATERIA)")
-                    .isEqualTo(cantidad);
-        });
+                    .isEqualTo(cantidad)
+        );
     }
 
     @Test
@@ -774,12 +786,12 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion laBaseAlOesteTieneCargado(Sustancia sustancia, int cantidad) {
 
-        return post(() -> {
+        return post(() ->
 
             assertThat(unaNave.obtenerRadar().buscarAlOeste(sustancia))
                     .as("buscarAlOeste(ANTIMATERIA)")
-                    .isEqualTo(cantidad);
-        });
+                    .isEqualTo(cantidad)
+        );
     }
 
     @Test
@@ -839,12 +851,12 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion laBaseAlEsteTieneCargado(Sustancia sustancia, int cantidad) {
 
-        return post(() -> {
+        return post(() ->
 
             assertThat(unaNave.obtenerRadar().buscarAlEste(sustancia))
                     .as("buscarAlEste(ANTIMATERIA)")
-                    .isEqualTo(cantidad);
-        });
+                    .isEqualTo(cantidad)
+        );
     }
 
     @Test

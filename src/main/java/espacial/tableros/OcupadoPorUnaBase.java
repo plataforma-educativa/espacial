@@ -55,10 +55,8 @@ public class OcupadoPorUnaBase extends EstadoDelCasillero {
 
     @Override
     public void alRecibirPiezaDesde(Casillero origen) {
-        
-        Pieza pieza = origen.obtenerPieza();
-        origen.desocupar();
-        cambiarPor(new OcupadoPorUnaBaseConNaveEnManiobras(contexto, base, pieza));
+
+        origen.obtenerPieza().chocarCon(base);
     }
 
     @Override
