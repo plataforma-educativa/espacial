@@ -1,0 +1,42 @@
+/* Colores:
+ * 
+ * celeste  : #cce3f4
+ * amarillo : #efdd68
+ * verde    : #bfe05f
+ * 
+ */
+.split-pane {
+    -fx-border-color: rgb(255,255,255);
+}
+
+.menu .partida {
+    -fx-image: url("/img/partida.png");
+}
+
+.menu:hover .partida, .menu:showing .partida { 
+    -fx-image: url("/img/partida_seleccionado.png");
+}
+
+.menu-item .salir {
+    -fx-image: url("/img/salir.png");
+}
+
+.menu-item:hover .salir, .menu-item:focused .salir {
+    -fx-image: url("/img/salir_seleccionado.png");
+}
+
+.menu .ayuda {
+    -fx-image: url("/img/ayuda.png");
+}
+
+.menu:hover .ayuda, .menu:showing .ayuda { 
+    -fx-image: url("/img/ayuda_seleccionado.png");
+}
+
+.menu-item .documentacion {
+    -fx-image: url("/img/documentacion.png");
+}
+
+.menu-item:hover .documentacion, .menu-item:focused .documentacion {
+    -fx-image: url("/img/documentacion_seleccionado.png");
+}

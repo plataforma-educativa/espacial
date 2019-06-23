@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<VBox id="VBox" fx:id="panel" alignment="TOP_CENTER" minWidth="-1.0" prefWidth="-1.0" spacing="5.0"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="espacial.interfaz.ControladorDeInformes"/>

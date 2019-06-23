@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?scenebuilder-preview-i18n-resource contenido.properties?>
+<?scenebuilder-stylesheet estilos.css?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane minHeight="600.0" minWidth="720.0" mouseTransparent="false" pickOnBounds="true" prefHeight="400"
+            prefWidth="600" style="&#10;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="espacial.interfaz.ControladorPrincipal"
+            stylesheets="/fx/estilos.css">
+    <center>
+        <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0"
+                    prefWidth="200.0">
+            <center>
+                <ScrollPane fx:id="panelMarcoTablero" content="$null" pannable="true" prefHeight="200.0"
+                            prefWidth="200.0">
+                    <BorderPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x1"/>
+                    </BorderPane.margin>
+                </ScrollPane>
+            </center>
+            <padding>
+                <Insets/>
+            </padding>
+            <right>
+                <fx:include fx:id="panelInformes" source="informes.fxml"/>
+            </right>
+        </BorderPane>
+    </center>
+    <top>
+        <MenuBar pickOnBounds="true">
+            <menus>
+                <Menu mnemonicParsing="false" style="" text="_Partida">
+                    <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true" styleClass="partida"/>
+                    </graphic>
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Salir">
+                            <graphic>
+                                <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true"
+                                           styleClass="salir"/>
+                            </graphic>
+                        </MenuItem>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="_Ayuda">
+                    <graphic>
+                        <ImageView pickOnBounds="true" preserveRatio="true" styleClass="ayuda"/>
+                    </graphic>
+                    <items>
+                        <MenuItem fx:id="menuAyudaDocumentacion" mnemonicParsing="false"
+                                  text="Documentación">
+                            <graphic>
+                                <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true"
+                                           styleClass="documentacion"/>
+                            </graphic>
+                        </MenuItem>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+</BorderPane>
