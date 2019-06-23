@@ -68,4 +68,12 @@ class TableroTest implements TestDeContrato {
 
         assertThat(tablero.obtenerCasilleroEn(1, 4).obtenerPieza()).isSameAs(base);
     }
+
+    @Test
+    void tieneToString() {
+
+        Tablero tablero = new Tablero();
+
+        assertThat(tablero).hasToString("Tablero[-10..10][-26..26]");
+    }
 }

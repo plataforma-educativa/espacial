@@ -10,18 +10,17 @@ import espacial.utiles.Proveedor;
 /**
  * El Tablero mantiene el ordenamiento relativo de las Piezas en una Partida.
  * Cada Casillero está ocupado exclusivamente por una Pieza.
- * 
- * @author Mariano Tugnarelli
  *
+ * @author Mariano Tugnarelli
  */
 public class Tablero {
 
     private FabricaDePiezas fabrica = FabricaDePiezas.crear();
     private Casillero borde;
     private Casillero[][] casilleros;
-    
+
     public Tablero() {
-        
+
         inicializarCasilleros();
 
         colocarEnCoordenada(-2, -2, fabrica::crearContenedorDeAntimateria);
@@ -46,18 +45,18 @@ public class Tablero {
 
         borde = new CasilleroBorde(this);
         casilleros = new CasilleroInterior[contarFilas()][contarColumnas()];
-        
+
         conCadaCoordenada((fila, columna) ->
-            casilleros[indiceFila(fila)][indiceColumna(columna)] = new CasilleroInterior(this, fila, columna)
+                casilleros[indiceFila(fila)][indiceColumna(columna)] = new CasilleroInterior(this, fila, columna)
         );
     }
 
     private void colocarEntreCoordenadas(int filaInicial, int columnaInicial,
                                          int filaFinal, int columnaFinal,
                                          Proveedor<? extends Pieza> proveedorDePieza) {
-        
+
         conCadaCoordenadaEnRango(filaInicial, columnaInicial, filaFinal, columnaFinal,
-                                 (fila, columna) -> colocarEnCoordenada(fila, columna, proveedorDePieza));
+                (fila, columna) -> colocarEnCoordenada(fila, columna, proveedorDePieza));
     }
 
     private void colocarEnCoordenada(int fila, int columna, Proveedor<? extends Pieza> proveedorDePieza) {
@@ -66,15 +65,15 @@ public class Tablero {
     }
 
     private int indiceColumna(int columna) {
-        
+
         return columna - obtenerColumnaMinima();
     }
 
     private int indiceFila(int fila) {
-        
+
         return fila - obtenerFilaMinima();
     }
-    
+
     public int contarColumnas() {
 
         return obtenerColumnaMaxima() - obtenerColumnaMinima() + 1;
@@ -87,7 +86,7 @@ public class Tablero {
 
     public EspectroEspacial escanearEn(int fila, int columna) {
 
-        return obtenerCasilleroEn(fila, columna).escanear(); 
+        return obtenerCasilleroEn(fila, columna).escanear();
     }
 
     public int obtenerFilaMaxima() {
@@ -101,7 +100,7 @@ public class Tablero {
     }
 
     public int obtenerColumnaMaxima() {
-        
+
         return 26;
     }
 
@@ -111,18 +110,18 @@ public class Tablero {
     }
 
     public void conCadaCoordenada(ConsumidorDeCoordenadas consumidor) {
-        
+
         conCadaCoordenadaEnRango(obtenerFilaMinima(), obtenerColumnaMinima(),
-                                 obtenerFilaMaxima(), obtenerColumnaMaxima(),
-                                 consumidor);
+                obtenerFilaMaxima(), obtenerColumnaMaxima(),
+                consumidor);
     }
-    
+
     private void conCadaCoordenadaEnRango(int filaInicial, int columnaInicial,
                                           int filaFinal, int columnaFinal,
                                           ConsumidorDeCoordenadas consumidor) {
-        
+
         for (int fila = filaInicial; fila <= filaFinal; fila++) {
-            
+
             for (int columna = columnaInicial; columna <= columnaFinal; columna++) {
 
                 consumidor.aceptar(fila, columna);
@@ -131,17 +130,17 @@ public class Tablero {
     }
 
     public Casillero obtenerCasilleroEn(int fila, int columna) {
-        
-        return estaEnElBorde(fila, columna) ? 
+
+        return estaEnElBorde(fila, columna) ?
                 borde : casilleros[indiceFila(fila)][indiceColumna(columna)];
     }
-    
+
     private boolean estaEnElBorde(int fila, int columna) {
-        
-        return (fila < obtenerFilaMinima()) || 
-               (fila > obtenerFilaMaxima()) ||
-               (columna < obtenerColumnaMinima()) || 
-               (columna > obtenerColumnaMaxima());
+
+        return (fila < obtenerFilaMinima()) ||
+                (fila > obtenerFilaMaxima()) ||
+                (columna < obtenerColumnaMinima()) ||
+                (columna > obtenerColumnaMaxima());
     }
 
     public Casillero obtenerCasilleroEn(Coordenada coordenada) {
@@ -152,5 +151,15 @@ public class Tablero {
     public void colocarEnCasillero(int fila, int columna, BaseEspacial baseEspacial) {
 
         obtenerCasilleroEn(fila, columna).ocuparCon(baseEspacial);
+    }
+
+    @Override
+    public String toString() {
+
+        return String.format("Tablero[%d..%d][%d..%d]",
+                obtenerFilaMinima(),
+                obtenerFilaMaxima(),
+                obtenerColumnaMinima(),
+                obtenerColumnaMaxima());
     }
 }
