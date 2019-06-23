@@ -103,6 +103,22 @@ class ReferenciaTest implements TestDeContrato {
                             .isEqualTo(VALOR_REQUERIDO)
             );
         }
+
+        @Test
+        void tieneToStringCuandoEsNulo() {
+
+            unaReferencia = Referencia.conValorNulo();
+
+            assertThat(unaReferencia).hasToString("Referencia -> NULO");
+        }
+
+        @Test
+        void tieneToStringCuandoTieneValor() {
+
+            unaReferencia = Referencia.conValor("VALOR");
+
+            assertThat(unaReferencia).hasToString("Referencia -> VALOR");
+        }
     }
 
     private Postcondicion unaReferenciaTiene(Object valorReferenciado) {

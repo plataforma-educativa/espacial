@@ -36,4 +36,10 @@ public class AgujeroNegro implements Pieza {
 
         return PUNTOS_MAXIMOS;
     }
+
+    @Override
+    public String toString() {
+
+        return describir();
+    }
 }

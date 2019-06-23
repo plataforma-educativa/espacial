@@ -203,4 +203,10 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
 
         return bodega.obtenerNivelDeCarga();
     }
+
+    @Override
+    public String toString() {
+
+        return describir();
+    }
 }

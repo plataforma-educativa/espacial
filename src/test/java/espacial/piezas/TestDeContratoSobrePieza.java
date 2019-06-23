@@ -76,4 +76,17 @@ abstract class TestDeContratoSobrePieza<T extends Pieza> implements TestDeContra
                         .as("puntos")
                         .isBetween(Pieza.PUNTOS_MINIMOS, Pieza.PUNTOS_MAXIMOS));
     }
+
+    @Test
+    void tieneToString() {
+
+        Pieza unaPieza = piezaCreada();
+
+        comprobarQue(esAutoDescriptiva(unaPieza));
+    }
+
+    private Postcondicion esAutoDescriptiva(Pieza unaPieza) {
+
+        return post(() -> assertThat(unaPieza).hasToString("Pieza<" + espectroEsperado() + ">"));
+    }
 }

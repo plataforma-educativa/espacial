@@ -58,4 +58,10 @@ public abstract class ContenedorDeSustancia implements PiezaDeposito, PiezaAtaca
 
         return 1000;
     }
+
+    @Override
+    public String toString() {
+
+        return describir();
+    }
 }

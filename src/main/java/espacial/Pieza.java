@@ -79,4 +79,9 @@ public interface Pieza extends Obstaculo, Objetivo {
 
         throw new NoPuedeEntregarUnaCarga(this, unaCarga);
     }
+
+    default String describir() {
+
+        return "Pieza<" + escanear() + ">";
+    }
 }

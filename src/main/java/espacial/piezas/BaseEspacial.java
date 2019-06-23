@@ -99,6 +99,12 @@ public class BaseEspacial implements Pieza, PiezaAtacable, BaseDeposito {
         return bodega.CRISTAL;
     }
 
+    @Override
+    public String toString() {
+
+        return describir();
+    }
+
     private class AmarreConBaseEspacial implements Amarre {
         
         private final NaveEspacial pieza;

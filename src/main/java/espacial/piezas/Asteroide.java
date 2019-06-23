@@ -66,4 +66,10 @@ public class Asteroide implements Pieza, AsteroideAtacable {
 
         puntos.decrementarEn(decremento);
     }
+
+    @Override
+    public String toString() {
+
+        return describir();
+    }
 }

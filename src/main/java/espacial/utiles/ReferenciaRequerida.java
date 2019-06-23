@@ -36,4 +36,10 @@ class ReferenciaRequerida<T> implements Referencia<T> {
 
         siValorEsNulo = crearExcepcion;
     }
+
+    @Override
+    public String toString() {
+
+        return "Referencia -> " + (valor == null ? "NULO" : valor);
+    }
 }
