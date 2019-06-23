@@ -71,4 +71,12 @@ class CoordenadaTest implements TestDeContrato {
 
         assertThat(unaCoordenada).hasSameHashCodeAs(otraCoordenada);
     }
+
+    @Test
+    void tieneToString() {
+
+        Coordenada coordenada = Coordenada.con(23, 78);
+
+        assertThat(coordenada).hasToString("[23][78]");
+    }
 }

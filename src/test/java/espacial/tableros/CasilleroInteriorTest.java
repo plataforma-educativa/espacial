@@ -206,4 +206,17 @@ class CasilleroInteriorTest implements TestDeContrato {
 
         return post(() -> verify(ESTADO).alRecibir(UNA_CARGA));
     }
+
+    @Test
+    void tieneToString() {
+
+        dadoQue(fueCreadoUnCasilleroInteriorCon(ESTADO));
+
+        comprobarQue(esAutoDescriptivo());
+    }
+
+    private Postcondicion esAutoDescriptivo() {
+
+        return post(() -> assertThat(unCasilleroInterior).hasToString("Casillero[0][0] -> BASE"));
+    }
 }

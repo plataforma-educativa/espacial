@@ -206,4 +206,17 @@ class CasilleroBordeTest implements TestDeContrato {
                         .isInstanceOf(claseExcepcion)
         );
     }
+
+    @Test
+    void tieneToString() {
+
+        dadoQue(fueCreadoUnCasilleroBorde());
+
+        comprobarQue(esAutoDescriptivo());
+    }
+
+    private Postcondicion esAutoDescriptivo() {
+
+        return post(() -> assertThat(unCasilleroBorde).hasToString("Casillero BORDE"));
+    }
 }

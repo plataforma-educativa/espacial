@@ -49,4 +49,10 @@ public class Coordenada {
         
         return Objects.hash(fila, columna);
     }
+
+    @Override
+    public String toString() {
+
+        return "[" + fila + "][" + columna + "]";
+    }
 }

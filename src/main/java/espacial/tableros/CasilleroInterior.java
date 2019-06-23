@@ -94,4 +94,10 @@ public class CasilleroInterior implements Casillero {
 
         estado.alRecibir(unaCarga);
     }
+
+    @Override
+    public String toString() {
+
+        return "Casillero" + coordenada + " -> " + escanear();
+    }
 }

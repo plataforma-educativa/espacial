@@ -83,4 +83,10 @@ public class CasilleroBorde implements Casillero, Obstaculo {
 
         throw new NoPuedeRecibirUnaCarga(unaCarga);
     }
+
+    @Override
+    public String toString() {
+
+        return "Casillero BORDE";
+    }
 }
