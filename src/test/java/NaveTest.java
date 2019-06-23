@@ -718,9 +718,9 @@ class NaveTest implements TestDeContrato {
 
         return post(() ->
 
-            assertThat(unaNave.obtenerRadar().buscarAlNorte(sustancia))
-                    .as("buscarAlNorte(ANTIMATERIA)")
-                    .isEqualTo(cantidad)
+                assertThat(unaNave.obtenerRadar().buscarAlNorte(sustancia))
+                        .as("buscarAlNorte(ANTIMATERIA)")
+                        .isEqualTo(cantidad)
         );
     }
 
@@ -753,9 +753,9 @@ class NaveTest implements TestDeContrato {
 
         return post(() ->
 
-            assertThat(unaNave.obtenerRadar().buscarAlSur(sustancia))
-                    .as("buscarAlSur(ANTIMATERIA)")
-                    .isEqualTo(cantidad)
+                assertThat(unaNave.obtenerRadar().buscarAlSur(sustancia))
+                        .as("buscarAlSur(ANTIMATERIA)")
+                        .isEqualTo(cantidad)
         );
     }
 
@@ -788,9 +788,9 @@ class NaveTest implements TestDeContrato {
 
         return post(() ->
 
-            assertThat(unaNave.obtenerRadar().buscarAlOeste(sustancia))
-                    .as("buscarAlOeste(ANTIMATERIA)")
-                    .isEqualTo(cantidad)
+                assertThat(unaNave.obtenerRadar().buscarAlOeste(sustancia))
+                        .as("buscarAlOeste(ANTIMATERIA)")
+                        .isEqualTo(cantidad)
         );
     }
 
@@ -853,9 +853,9 @@ class NaveTest implements TestDeContrato {
 
         return post(() ->
 
-            assertThat(unaNave.obtenerRadar().buscarAlEste(sustancia))
-                    .as("buscarAlEste(ANTIMATERIA)")
-                    .isEqualTo(cantidad)
+                assertThat(unaNave.obtenerRadar().buscarAlEste(sustancia))
+                        .as("buscarAlEste(ANTIMATERIA)")
+                        .isEqualTo(cantidad)
         );
     }
 
@@ -903,4 +903,27 @@ class NaveTest implements TestDeContrato {
                         .isInstanceOf(LaNaveNoEstaEnLaBase.class)
         );
     }
+
+    @Test
+    void destruirAsteroide() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+        dadoQue(fueCreadaUnaNaveQueDespegoDeLaBase());
+        dadoQue(unaNaveEstaAlNorteDeUnAsteroide());
+
+        repetir(30, i -> unaNave.atacarAlSur());
+
+        comprobarQue(noExisteUnAsteroideAlSur());
+    }
+
+    private Postcondicion noExisteUnAsteroideAlSur() {
+
+        return post(() ->
+
+                assertThat(unaNave.obtenerRadar().escanearSur())
+                    .as("escanearSur()")
+                    .isEqualTo(Espectro.VACIO)
+        );
+    }
+
 }
