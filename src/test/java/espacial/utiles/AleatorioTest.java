@@ -14,10 +14,10 @@ class AleatorioTest implements TestDeContrato {
 
     private final List<Integer> valores = new LinkedList<>();
 
-    private Aleatorio unAleatorio;
+    private Aleatorio<Integer> unAleatorio;
 
     @Test
-    void obtener() {
+    void obtenerEnRango() {
 
         final int desde = 3;
         final int hasta = 90;
@@ -33,7 +33,7 @@ class AleatorioTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnAleatorio(int desde, int hasta) {
 
-        return pre(() -> unAleatorio = new Aleatorio(desde, hasta));
+        return pre(() -> unAleatorio = Aleatorio.enRango(desde, hasta));
     }
 
     private Postcondicion losValoresEstanDistribuidosEnElRango(int desde, int hasta) {
@@ -51,7 +51,7 @@ class AleatorioTest implements TestDeContrato {
     }
 
     @Test
-    void obtenerSePuedeRestringirEnUnUnicoValor() {
+    void obtenerEnRangoSePuedeRestringirEnUnUnicoValor() {
 
         final int unicoValor = 10;
 

@@ -2,20 +2,14 @@ package espacial.utiles;
 
 import java.util.Random;
 
-public class Aleatorio {
+public abstract class Aleatorio<T> {
 
-    private final int valorInicial;
-    private final int valorFinal;
-    private final Random implementacion = new Random();
+    protected final Random implementacion = new Random();
 
-    public Aleatorio(int desde, int hasta) {
+    public abstract T obtener();
 
-        valorInicial = desde;
-        valorFinal = hasta;
-    }
+    public static Aleatorio<Integer> enRango(int desde, int hasta) {
 
-    public int obtener() {
-
-        return implementacion.nextInt(valorFinal - valorInicial + 1) + valorInicial;
+        return new AleatorioEnRango(desde, hasta);
     }
 }
