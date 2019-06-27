@@ -13,8 +13,11 @@ import static org.assertj.core.api.Assertions.*;
 class AleatorioTest implements TestDeContrato {
 
     private final List<Integer> valores = new LinkedList<>();
+    private final List<String> valoresString = new LinkedList<>();
 
     private Aleatorio<Integer> unAleatorio;
+
+    private Aleatorio<String> unStringAleatorio;
 
     @Test
     void obtenerEnRango() {
@@ -69,4 +72,39 @@ class AleatorioTest implements TestDeContrato {
         return post(() -> assertThat(valores).as("valores").allMatch(valor -> valor == unicoValor));
     }
 
+    @Test
+    void obtenerEnLista() {
+
+        final String valor1 = "Luke";
+        final String valor2 = "Joda";
+        final String valor3 = "Obi-Wan";
+
+        dadoQue(fueCreadoUnAleatorio(valor1, valor2, valor3));
+
+        for (int i = 0; i < 10_000; i++) {
+            valoresString.add(unStringAleatorio.obtener());
+        }
+
+        comprobarQue(losValoresEstanDistribuidosEntre(valor1, valor2, valor3));
+
+    }
+
+    private Precondicion fueCreadoUnAleatorio(String... valores) {
+
+        return pre(() -> unStringAleatorio = Aleatorio.enLista(valores));
+    }
+
+    private Postcondicion losValoresEstanDistribuidosEntre(String... esperados) {
+
+        return post(() -> {
+
+            assertThat(valoresString)
+                    .as("valores")
+                    .containsOnly(esperados);
+
+            assertThat(valoresString.stream().distinct().count())
+                    .as("cantidad de valores diferentes generados")
+                    .isEqualTo(esperados.length);
+        });
+    }
 }

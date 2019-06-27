@@ -12,4 +12,9 @@ public abstract class Aleatorio<T> {
 
         return new AleatorioEnRango(desde, hasta);
     }
+
+    public static <T> Aleatorio<T> enLista(T... valores) {
+
+        return new AleatorioEnLista(valores);
+    }
 }
