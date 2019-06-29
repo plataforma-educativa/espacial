@@ -116,6 +116,19 @@ public class Tablero {
                 consumidor);
     }
 
+    public void conCadaCoordenadaDelBorde(ConsumidorDeCoordenadas consumidor) {
+
+        final int filaMinima = obtenerFilaMinima();
+        final int filaMaxima = obtenerFilaMaxima();
+        final int columnaMinima = obtenerColumnaMinima();
+        final int columnaMaxima = obtenerColumnaMaxima();
+
+        conCadaCoordenadaEnRango(filaMinima - 1, columnaMinima - 1, filaMinima - 1, columnaMaxima + 1, consumidor);
+        conCadaCoordenadaEnRango(filaMaxima + 1, columnaMinima - 1, filaMaxima + 1, columnaMaxima + 1, consumidor);
+        conCadaCoordenadaEnRango(filaMinima, columnaMinima - 1, filaMaxima, columnaMinima - 1, consumidor);
+        conCadaCoordenadaEnRango(filaMinima, columnaMaxima + 1, filaMaxima, columnaMaxima + 1, consumidor);
+    }
+
     private void conCadaCoordenadaEnRango(int filaInicial, int columnaInicial,
                                           int filaFinal, int columnaFinal,
                                           ConsumidorDeCoordenadas consumidor) {
