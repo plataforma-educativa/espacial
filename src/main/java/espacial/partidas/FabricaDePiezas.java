@@ -9,13 +9,13 @@ import espacial.utiles.Aleatorio;
 
 public class FabricaDePiezas {
 
-    private Aleatorio cargaAleatoria;
-    private Aleatorio durezaAleatoria;
+    private Aleatorio<Integer> cargaAleatoria;
+    private Aleatorio<Integer> durezaAleatoria;
 
     public static FabricaDePiezas crear() {
 
-        return new FabricaDePiezas(new Aleatorio(1, 250),
-                                   new Aleatorio(5, 100));
+        return new FabricaDePiezas(Aleatorio.enRango(1, 250),
+                                   Aleatorio.enRango(5, 100));
     }
 
     private FabricaDePiezas(Aleatorio cargaAleatoriaDeContenedores, Aleatorio durezaAleatoriaDeAsteroides) {
