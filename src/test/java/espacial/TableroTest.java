@@ -40,13 +40,12 @@ class TableroTest implements TestDeContrato {
     }
 
     @Test
-    void paraCadaCoodenadaDelBorde() {
+    void conCadaCoodenadaDelBorde() {
 
         Tablero tablero = new Tablero();
         final List<Coordenada> coordenadasIteradas = new LinkedList<>();
 
         tablero.conCadaCoordenadaDelBorde((fila, columna) -> coordenadasIteradas.add(Coordenada.con(fila, columna)));
-
 
         final int filaMinima = tablero.obtenerFilaMinima();
         final int filaMaxima = tablero.obtenerFilaMaxima();
