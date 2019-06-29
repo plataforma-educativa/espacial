@@ -22,7 +22,7 @@ public class Dibujante implements Visitante {
         return dibujarImagen.de(unaPieza);
     }
 
-    public Node dibujarMargen() {
+    public Node dibujarBorde() {
 
         return dibujarCasilleroBorde.ejecujar();
     }

@@ -8,4 +8,9 @@ public class Defecto extends ErrorEnLaBatallaEspacial {
 
         super(descripcion);
     }
+
+    public Defecto(String descripcion, Throwable causa) {
+
+        super(descripcion, causa);
+    }
 }

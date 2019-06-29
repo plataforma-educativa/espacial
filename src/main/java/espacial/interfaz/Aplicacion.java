@@ -1,37 +1,31 @@
 package espacial.interfaz;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
+import java.util.concurrent.CountDownLatch;
 
 public class Aplicacion extends Application {
 
-    private final FXMLLoader cargador;
-
-    public Aplicacion() {
-
-        cargador = new FXMLLoader(getClass().getResource("/fx/principal.fxml"));
-    }
+    private static final CountDownLatch cuentaRegresiva = new CountDownLatch(1);
 
     @Override
-    public void start(Stage escenario) throws Exception {
+    public void start(Stage escenario) {
 
-        Pane panel = cargador.load();
-        Scene escena = new Scene(panel, 400, 300);
-
-        escenario.setMinWidth(720);
-        escenario.setMinHeight(600);
-        escenario.getIcons().add(new Image(getClass().getResourceAsStream("/img/espacial.png")));
-        escenario.setTitle("Espacial");
-        escenario.setScene(escena);
-        escenario.show();
+        cuentaRegresiva.countDown();
     }
 
-    public static void main(String[] args) {
+    public static void iniciar() {
 
-        Application.launch(args);
+        try {
+
+            if (cuentaRegresiva.getCount() > 0) {
+
+                new Thread(() -> launch()).start();
+                cuentaRegresiva.await();
+            }
+
+        } catch (InterruptedException ignorada) {
+        }
     }
 }

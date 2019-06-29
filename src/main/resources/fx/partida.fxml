@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?scenebuilder-preview-i18n-resource contenido.properties?>
-<?scenebuilder-stylesheet estilos.css?>
-
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -12,8 +9,8 @@
 <?import javafx.scene.layout.BorderPane?>
 <BorderPane minHeight="600.0" minWidth="720.0" mouseTransparent="false" pickOnBounds="true" prefHeight="400"
             prefWidth="600" style="&#10;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="espacial.interfaz.ControladorPrincipal"
-            stylesheets="/fx/estilos.css">
+            stylesheets="/fx/estilos.css"
+            fx:controller="espacial.interfaz.ControladorDePartida">
     <center>
         <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0"
                     prefWidth="200.0">
@@ -55,7 +52,7 @@
                     </graphic>
                     <items>
                         <MenuItem fx:id="menuAyudaDocumentacion" mnemonicParsing="false"
-                                  text="Documentación">
+                                  text="Documentación" onAction="#mostrarDocumentacion">
                             <graphic>
                                 <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true"
                                            styleClass="documentacion"/>

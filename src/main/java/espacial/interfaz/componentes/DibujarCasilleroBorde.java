@@ -8,7 +8,7 @@ import javafx.scene.shape.Rectangle;
 public class DibujarCasilleroBorde {
 
     private static final Paint COLOR_MARGEN = Color.web("4e4d50");
-    private static final double DIMENSION = DibujarCasilleroInterior.DIMENSION * 0.1;
+    private static final double DIMENSION = DibujarCasilleroInterior.DIMENSION;
 
     public Node ejecujar() {
 
