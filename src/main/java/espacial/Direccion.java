@@ -17,9 +17,9 @@ public enum Direccion {
         this.versorColumna = versorColumna;
     }
     
-    public Coordenada trasladar(Coordenada coordenada) {
+    public Coordenadas trasladar(Coordenadas coordenadas) {
         
-        return Coordenada.con(coordenada.obtenerFila()    + versorFila,
-                             coordenada.obtenerColumna() + versorColumna);
+        return Coordenadas.con(coordenadas.obtenerFila()    + versorFila,
+                             coordenadas.obtenerColumna() + versorColumna);
     }
 }

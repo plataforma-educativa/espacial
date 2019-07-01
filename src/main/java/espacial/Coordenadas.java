@@ -2,17 +2,17 @@ package espacial;
 
 import java.util.Objects;
 
-public class Coordenada {
+public class Coordenadas {
 
     private final int fila;
     private final int columna;
     
-    public static Coordenada con(int fila, int columna) {
+    public static Coordenadas con(int fila, int columna) {
 
-        return new Coordenada(fila, columna);
+        return new Coordenadas(fila, columna);
     }
     
-    private Coordenada(int fila, int columna) {
+    private Coordenadas(int fila, int columna) {
 
         this.fila = fila;
         this.columna = columna;
@@ -33,12 +33,12 @@ public class Coordenada {
         
         boolean iguales = (this == otroObjeto);
         
-        if (!iguales && otroObjeto instanceof Coordenada) {
+        if (!iguales && otroObjeto instanceof Coordenadas) {
             
-            Coordenada otraCoordenada = (Coordenada) otroObjeto;
+            Coordenadas otraCoordenadas = (Coordenadas) otroObjeto;
             
-            iguales = (this.fila == otraCoordenada.fila) &&
-                      (this.columna == otraCoordenada.columna);
+            iguales = (this.fila == otraCoordenadas.fila) &&
+                      (this.columna == otraCoordenadas.columna);
         }
         
         return iguales;

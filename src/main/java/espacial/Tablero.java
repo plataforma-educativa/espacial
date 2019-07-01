@@ -156,9 +156,9 @@ public class Tablero {
                 (columna > obtenerColumnaMaxima());
     }
 
-    public Casillero obtenerCasilleroEn(Coordenada coordenada) {
+    public Casillero obtenerCasilleroEn(Coordenadas coordenadas) {
 
-        return obtenerCasilleroEn(coordenada.obtenerFila(), coordenada.obtenerColumna());
+        return obtenerCasilleroEn(coordenadas.obtenerFila(), coordenadas.obtenerColumna());
     }
 
     public void colocarEnCasillero(int fila, int columna, BaseEspacial baseEspacial) {

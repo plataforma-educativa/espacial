@@ -30,9 +30,9 @@ class TableroTest implements TestDeContrato {
     void conCadaCoordenada() {
 
         Tablero tablero = new Tablero();
-        final Set<Coordenada> coordenadasIteradas = new HashSet<>();
+        final Set<Coordenadas> coordenadasIteradas = new HashSet<>();
 
-        tablero.conCadaCoordenada((fila, columna) -> coordenadasIteradas.add(Coordenada.con(fila, columna)));
+        tablero.conCadaCoordenada((fila, columna) -> coordenadasIteradas.add(Coordenadas.con(fila, columna)));
 
         assertThat(coordenadasIteradas)
                 .as("conjunto con las coordenadas iteradas")
@@ -43,9 +43,9 @@ class TableroTest implements TestDeContrato {
     void conCadaCoodenadaDelBorde() {
 
         Tablero tablero = new Tablero();
-        final List<Coordenada> coordenadasIteradas = new LinkedList<>();
+        final List<Coordenadas> coordenadasIteradas = new LinkedList<>();
 
-        tablero.conCadaCoordenadaDelBorde((fila, columna) -> coordenadasIteradas.add(Coordenada.con(fila, columna)));
+        tablero.conCadaCoordenadaDelBorde((fila, columna) -> coordenadasIteradas.add(Coordenadas.con(fila, columna)));
 
         final int filaMinima = tablero.obtenerFilaMinima();
         final int filaMaxima = tablero.obtenerFilaMaxima();
@@ -55,10 +55,10 @@ class TableroTest implements TestDeContrato {
         assertThat(coordenadasIteradas)
                 .as("conjunto de las coordenadas iteradas")
                 .contains(
-                        Coordenada.con(filaMinima - 1, columnaMinima - 1),
-                        Coordenada.con(filaMinima - 1, columnaMaxima + 1),
-                        Coordenada.con(filaMaxima + 1, columnaMaxima + 1),
-                        Coordenada.con(filaMaxima + 1, columnaMinima - 1)
+                        Coordenadas.con(filaMinima - 1, columnaMinima - 1),
+                        Coordenadas.con(filaMinima - 1, columnaMaxima + 1),
+                        Coordenadas.con(filaMaxima + 1, columnaMaxima + 1),
+                        Coordenadas.con(filaMaxima + 1, columnaMinima - 1)
                 )
                 .hasSize(4 + (tablero.contarFilas() * 2) + (tablero.contarColumnas() * 2))
                 .hasSameElementsAs(new HashSet<>(coordenadasIteradas));
@@ -79,7 +79,7 @@ class TableroTest implements TestDeContrato {
 
         Tablero tablero = new Tablero();
 
-        Casillero casillero = tablero.obtenerCasilleroEn(Coordenada.con(4, 2));
+        Casillero casillero = tablero.obtenerCasilleroEn(Coordenadas.con(4, 2));
 
         assertThat(casillero).isEqualTo(tablero.obtenerCasilleroEn(4, 2));
         assertThat(casillero.escanear()).isEqualTo(EspectroEspacial.CONTENEDOR);

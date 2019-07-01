@@ -1,6 +1,6 @@
 package espacial.test;
 
-import espacial.Coordenada;
+import espacial.Coordenadas;
 import espacial.EspectroEspacial;
 import espacial.SustanciaEspacial;
 import espacial.Tablero;
@@ -21,7 +21,7 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
 
     private SustanciaEspacial sustanciaEsperada;
 
-    private Set<Coordenada> coordenadasAsertadas = new HashSet<>();
+    private Set<Coordenadas> coordenadasAsertadas = new HashSet<>();
     
     public AsercionSobreTablero(Tablero actual) {
         super(actual, AsercionSobreTablero.class);
@@ -98,7 +98,7 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
     
     private void comprobarEspectroEsperadoSiNoFueAsertada(int fila, int columna) {
         
-        if (! coordenadasAsertadas.contains(Coordenada.con(fila, columna))) {
+        if (! coordenadasAsertadas.contains(Coordenadas.con(fila, columna))) {
             
             comprobarEspectroEsperadoEn(fila, columna);
         }
@@ -113,7 +113,7 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
 
     private void registrarCoordenadaAsertada(int fila, int columna) {
 
-        coordenadasAsertadas.add(Coordenada.con(fila, columna));
+        coordenadasAsertadas.add(Coordenadas.con(fila, columna));
     }
     
     public AsercionSobreTablero entre(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal) {

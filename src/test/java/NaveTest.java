@@ -1,5 +1,5 @@
 import espacial.Casillero;
-import espacial.Coordenada;
+import espacial.Coordenadas;
 import espacial.Pieza;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
@@ -408,7 +408,7 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenada.con(-6, 0));
+            Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenadas.con(-6, 0));
             asteroideAlNorte = casillero.obtenerPieza();
             puntosInicialesDelAsteroide = asteroideAlNorte.obtenerPuntos();
         });
@@ -452,7 +452,7 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenada.con(-2, -2));
+            Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenadas.con(-2, -2));
             contenedorAlOeste = casillero.obtenerPieza();
             puntosInicialesDelContenedor = contenedorAlOeste.obtenerPuntos();
         });
@@ -492,7 +492,7 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenada.con(0, 0));
+            Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenadas.con(0, 0));
             baseAlNorte = casillero.obtenerPieza();
             puntosInicialesDeLaBase = baseAlNorte.obtenerPuntos();
         });
@@ -539,7 +539,7 @@ class NaveTest implements TestDeContrato {
 
         return pre(() -> {
 
-            Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenada.con(0, 2));
+            Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenadas.con(0, 2));
             naveAlEste = casillero.obtenerPieza();
             puntosInicialesDeOtraNave = naveAlEste.obtenerPuntos();
         });
