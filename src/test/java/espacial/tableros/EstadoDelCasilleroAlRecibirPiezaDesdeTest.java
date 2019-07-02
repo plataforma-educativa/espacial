@@ -1,5 +1,6 @@
 package espacial.tableros;
 
+import espacial.Visitante;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import org.junit.jupiter.api.Test;
@@ -11,18 +12,19 @@ class EstadoDelCasilleroAlRecibirPiezaDesdeTest extends EstadoDelCasilleroTest {
     @Test
     void siEstaVacio() {
 
-        dadoQue(elCasilleroDeOrigenTieneUnaPieza());
+        dadoQue(elCasilleroDeOrigenTieneUnaNave());
         
         estado = new Vacio(CASILLERO);
         estado.alRecibirPiezaDesde(CASILLERO_ORIGEN);
 
         comprobarQue(laPiezaFueMovidaDelOrigenAlCasillero());
+        comprobarQue(cambioElEstadoDelCasilleroPorOcupado());
     }
 
     @Test
     void siEstaOcupado() {
-        
-        dadoQue(elCasilleroDeOrigenTieneUnaPieza());
+
+        dadoQue(elCasilleroDeOrigenTieneUnaNave());
 
         estado = new Ocupado(CASILLERO, PIEZA);
         estado.alRecibirPiezaDesde(CASILLERO_ORIGEN);
@@ -34,7 +36,7 @@ class EstadoDelCasilleroAlRecibirPiezaDesdeTest extends EstadoDelCasilleroTest {
     @Test
     void siEstaOcupadoPorUnaBase() {
      
-        dadoQue(elCasilleroDeOrigenTieneUnaPieza());
+        dadoQue(elCasilleroDeOrigenTieneUnaNave());
 
         estado = new OcupadoPorUnaBase(CASILLERO, PIEZA);
         estado.alRecibirPiezaDesde(CASILLERO_ORIGEN);
@@ -46,7 +48,7 @@ class EstadoDelCasilleroAlRecibirPiezaDesdeTest extends EstadoDelCasilleroTest {
     @Test
     void siEstaOcupadoPorUnaBaseConNaveEnManiobras() {
      
-        dadoQue(elCasilleroDeOrigenTieneUnaPieza());
+        dadoQue(elCasilleroDeOrigenTieneUnaNave());
 
         estado = new OcupadoPorUnaBaseConNaveEnManiobras(CASILLERO, PIEZA, NAVE);
         estado.alRecibirPiezaDesde(CASILLERO_ORIGEN);
@@ -55,9 +57,20 @@ class EstadoDelCasilleroAlRecibirPiezaDesdeTest extends EstadoDelCasilleroTest {
         comprobarQue(noCambioElEstadoDelCasillero());
     }
 
-    private Precondicion elCasilleroDeOrigenTieneUnaPieza() {
+    private Precondicion elCasilleroDeOrigenTieneUnaNave() {
 
-        return pre(() -> when(CASILLERO_ORIGEN.obtenerPieza()).thenReturn(PIEZA_EN_ORIGEN));
+        return pre(() -> {
+
+            when(CASILLERO_ORIGEN.obtenerPieza()).thenReturn(PIEZA_EN_ORIGEN);
+
+            doAnswer(invocacion -> {
+
+                invocacion.getArgument(0, Visitante.class).siEsNave(PIEZA_EN_ORIGEN);
+                return null;
+
+            }).when(PIEZA_EN_ORIGEN).aceptar(any(Visitante.class));
+
+        });
     }
     
     private Postcondicion laPiezaFueMovidaDelOrigenAlCasillero() {
@@ -65,7 +78,6 @@ class EstadoDelCasilleroAlRecibirPiezaDesdeTest extends EstadoDelCasilleroTest {
         return post(() -> {
             
             verify(CASILLERO_ORIGEN).desocupar();
-            verify(CASILLERO).ocuparCon(PIEZA_EN_ORIGEN);
         });
     }
     

@@ -39,6 +39,7 @@ public class OcupadoPorUnaBase extends EstadoDelCasillero {
     public void alOcuparCon(Pieza unaPieza) {
         
         cambiarPor(new OcupadoPorUnaBaseConNaveEnManiobras(contexto, base, unaPieza));
+        unaPieza.fueColocadaEn(contexto);
     }
 
     @Override

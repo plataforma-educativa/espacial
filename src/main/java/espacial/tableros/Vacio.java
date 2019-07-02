@@ -32,11 +32,16 @@ public class Vacio extends EstadoDelCasillero {
     @Override
     public void alOcuparCon(Pieza unaPieza) {
 
+        cambiarPor(estadoResultanteSegunElTipoDe(unaPieza));
+
+        unaPieza.fueColocadaEn(contexto);
+    }
+
+    private EstadoDelCasillero estadoResultanteSegunElTipoDe(Pieza unaPieza) {
+
         OcuparCasilleroVacio ocuparCasilleroVacio = new OcuparCasilleroVacio(contexto);
-
         unaPieza.aceptar(ocuparCasilleroVacio);
-
-        cambiarPor(ocuparCasilleroVacio.obtenerEstadoResultante());
+        return ocuparCasilleroVacio.obtenerEstadoResultante();
     }
 
     @Override
@@ -56,7 +61,7 @@ public class Vacio extends EstadoDelCasillero {
 
         Pieza pieza = origen.obtenerPieza();
         origen.desocupar();
-        contexto.ocuparCon(pieza);
+        alOcuparCon(pieza);
     }
 
     @Override

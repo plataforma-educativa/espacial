@@ -32,27 +32,22 @@ abstract class EstadoDelCasilleroTest implements TestDeContrato {
 
     protected Postcondicion cambioElEstadoDelCasilleroPorVacio() {
 
-        return cambioElEstadoDelCasilleroPor(Vacio.class);
+        return post(() -> verify(CASILLERO).cambiarA(any(Vacio.class)));
     }
 
     protected Postcondicion cambioElEstadoDelCasilleroPorOcupado() {
 
-        return cambioElEstadoDelCasilleroPor(Ocupado.class);
+        return post(() -> verify(CASILLERO).cambiarA(any(Ocupado.class)));
     }
 
     protected Postcondicion cambioElEstadoDelCasilleroPorOcupadoPorUnaBase() {
 
-        return cambioElEstadoDelCasilleroPor(OcupadoPorUnaBase.class);
+        return post(() -> verify(CASILLERO).cambiarA(any(OcupadoPorUnaBase.class)));
     }
 
     protected Postcondicion cambioElEstadoDelCasilleroPorOcupadoPorUnaBaseConNaveEnManiobras() {
 
-        return cambioElEstadoDelCasilleroPor(OcupadoPorUnaBaseConNaveEnManiobras.class);
-    }
-
-    protected Postcondicion cambioElEstadoDelCasilleroPor(Class<? extends EstadoDelCasillero> estado) {
-
-        return post(() -> verify(CASILLERO).cambiarA(any(estado)));
+        return post(() -> verify(CASILLERO).cambiarA(any(OcupadoPorUnaBaseConNaveEnManiobras.class)));
     }
 
     protected Postcondicion generaUnDefecto(Ejecutable ejecutable) {

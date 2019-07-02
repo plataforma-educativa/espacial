@@ -50,7 +50,6 @@ public class CasilleroInterior implements Casillero {
     public void ocuparCon(Pieza unaPieza) {
 
         estado.alOcuparCon(unaPieza);
-        unaPieza.fueColocadaEn(this);
     }
 
     @Override

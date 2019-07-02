@@ -86,17 +86,11 @@ class CasilleroInteriorTest implements TestDeContrato {
         unCasilleroInterior.ocuparCon(UNA_PIEZA);
 
         comprobarQue(delegoEnElEstadoLaOperacionOcuparCon());
-        comprobarQue(unaPiezaEsNotificadaQueFueColocadaEnElCasillero());
     }
 
     private Postcondicion delegoEnElEstadoLaOperacionOcuparCon() {
 
         return post(() -> verify(ESTADO).alOcuparCon(UNA_PIEZA));
-    }
-
-    private Postcondicion unaPiezaEsNotificadaQueFueColocadaEnElCasillero() {
-
-        return post(() -> verify(UNA_PIEZA).fueColocadaEn(unCasilleroInterior));
     }
 
     @Test
