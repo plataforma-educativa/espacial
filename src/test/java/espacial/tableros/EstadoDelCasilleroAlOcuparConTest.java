@@ -1,6 +1,7 @@
 package espacial.tableros;
 
 import espacial.Visitante;
+import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import org.junit.jupiter.api.Test;
 
@@ -18,6 +19,12 @@ class EstadoDelCasilleroAlOcuparConTest extends EstadoDelCasilleroTest {
         estado.alOcuparCon(PIEZA);
 
         comprobarQue(cambioElEstadoDelCasilleroPorOcupado());
+        comprobarQue(laPiezaFueColocadaEnCasillero());
+    }
+
+    private Postcondicion laPiezaFueColocadaEnCasillero() {
+
+        return post(() -> verify(PIEZA).fueColocadaEn(CASILLERO));
     }
 
     private Precondicion laPiezaEsUnaNave() {
@@ -41,6 +48,7 @@ class EstadoDelCasilleroAlOcuparConTest extends EstadoDelCasilleroTest {
         estado.alOcuparCon(PIEZA);
 
         comprobarQue(cambioElEstadoDelCasilleroPorOcupadoPorUnaBase());
+        comprobarQue(laPiezaFueColocadaEnCasillero());
     }
 
     private Precondicion laPiezaEsUnaBase() {
@@ -51,7 +59,8 @@ class EstadoDelCasilleroAlOcuparConTest extends EstadoDelCasilleroTest {
                     invocation.getArgument(0, Visitante.class).siEsBase(PIEZA);
                     return null;
 
-                }).when(PIEZA).aceptar(any(Visitante.class)));
+                }).when(PIEZA).aceptar(any(Visitante.class))
+        );
     }
 
     @Test
@@ -72,6 +81,12 @@ class EstadoDelCasilleroAlOcuparConTest extends EstadoDelCasilleroTest {
         estado.alOcuparCon(NAVE);
 
         comprobarQue(cambioElEstadoDelCasilleroPorOcupadoPorUnaBaseConNaveEnManiobras());
+        comprobarQue(laNaveFueColocadaEnCasillero());
+    }
+
+    private Postcondicion laNaveFueColocadaEnCasillero() {
+
+        return post(() -> verify(NAVE).fueColocadaEn(CASILLERO));
     }
 
     @Test
