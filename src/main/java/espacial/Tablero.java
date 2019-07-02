@@ -45,10 +45,12 @@ public class Tablero {
 
         borde = new CasilleroBorde(this);
         casilleros = new CasilleroInterior[contarFilas()][contarColumnas()];
+        conCadaCoordenada(this::crearCasilleroInterior);
+    }
 
-        conCadaCoordenada((fila, columna) ->
-                casilleros[indiceFila(fila)][indiceColumna(columna)] = new CasilleroInterior(this, fila, columna)
-        );
+    private void crearCasilleroInterior(int fila, int columna) {
+
+        casilleros[indiceFila(fila)][indiceColumna(columna)] = new CasilleroInterior(this, fila, columna);
     }
 
     private void colocarEntreCoordenadas(int filaInicial, int columnaInicial,
