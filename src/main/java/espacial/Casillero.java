@@ -9,6 +9,12 @@ package espacial;
  */
 public interface Casillero extends Objetivo {
 
+    Tablero obtenerTablero();
+
+    Coordenadas obtenerCoordenadas();
+
+    int obtenerNumero();
+
     /**
      * @return EspectroEspacial de la Pieza que ocupa el Casillero, o
      *         EspectroEspacial.VACIO en caso de estar desocupado.
@@ -70,4 +76,6 @@ public interface Casillero extends Objetivo {
     void entregar(Carga unaCarga);
 
     void recibir(Carga una_carga);
+
+    void aceptar(ConsumidorDeCasilleros unConsumidor);
 }

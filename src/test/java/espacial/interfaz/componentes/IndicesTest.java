@@ -1,5 +1,6 @@
 package espacial.interfaz.componentes;
 
+import espacial.Casillero;
 import espacial.Coordenadas;
 import espacial.Tablero;
 import espacial.test.Postcondicion;
@@ -19,17 +20,28 @@ import static org.mockito.Mockito.*;
 class IndicesTest implements TestDeContrato {
 
     private final Tablero EN_TABLERO = mock(Tablero.class, "EN_TABLERO");
+    private final Casillero UN_CASILLERO = mock(Casillero.class, "UN_CASILLERO");
 
-    private Indices indices;
+    private Indices indices = Indices.para(UN_CASILLERO);
 
     @Test
-    void crearConCoordenadasDeTablero() {
+    void crearConCasillero() {
 
         dadoQue(fueCreadoUnTablero(-7, 7, -5, 5));
+        dadoQue(fueCreadoUnCasilleroEn(Coordenadas.con(0, 0)));
 
-        indices = Indices.para(Coordenadas.con(0, 0), EN_TABLERO);
+        indices = Indices.para(UN_CASILLERO);
 
         comprobarQue(losIndicesNoSonNulos());
+    }
+
+    private Precondicion fueCreadoUnCasilleroEn(Coordenadas coordenadas) {
+
+        return pre(() -> {
+
+            when(UN_CASILLERO.obtenerTablero()).thenReturn(EN_TABLERO);
+            when(UN_CASILLERO.obtenerCoordenadas()).thenReturn(coordenadas);
+        });
     }
 
     private Precondicion fueCreadoUnTablero(int filaDesde, int filaHasta, int columnaDesde, int columnaHasta) {
@@ -60,8 +72,9 @@ class IndicesTest implements TestDeContrato {
     void traducirCoordenadasDeTablero7x9Centrado(Coordenadas coordenadas, int filaEsperada, int columnaEsperada) {
 
         dadoQue(fueCreadoUnTablero(-3, 3, -4, 4));
+        dadoQue(fueCreadoUnCasilleroEn(coordenadas));
 
-        indices = Indices.para(coordenadas, EN_TABLERO);
+        indices = Indices.para(UN_CASILLERO);
 
         comprobarQue(losIndicesSon(filaEsperada, columnaEsperada));
     }
@@ -91,8 +104,9 @@ class IndicesTest implements TestDeContrato {
     void traducirCoordenadasDeTablero3x3Positivo(Coordenadas coordenadas, int filaEsperada, int columnaEsperada) {
 
         dadoQue(fueCreadoUnTablero(0, 2, 0, 2));
+        dadoQue(fueCreadoUnCasilleroEn(coordenadas));
 
-        indices = Indices.para(coordenadas, EN_TABLERO);
+        indices = Indices.para(UN_CASILLERO);
 
         comprobarQue(losIndicesSon(filaEsperada, columnaEsperada));
     }

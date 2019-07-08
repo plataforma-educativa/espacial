@@ -3,6 +3,7 @@ package espacial.tableros;
 import espacial.Ataque;
 import espacial.Carga;
 import espacial.Casillero;
+import espacial.ConsumidorDeCasilleros;
 import espacial.Coordenadas;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
@@ -22,16 +23,39 @@ public class CasilleroInterior implements Casillero {
         coordenadas = Coordenadas.con(fila, columna);
         estado = new Vacio(this);
     }
-    
+
+    @Override
+    public Tablero obtenerTablero() {
+
+        return tablero;
+    }
+
+    @Override
+    public int obtenerNumero() {
+
+        return coordenadas.obtenerFila() + coordenadas.obtenerColumna();
+    }
+
     void cambiarA(EstadoDelCasillero nuevoEstado) {
-        
+
         estado = nuevoEstado;
+    }
+
+    void agregar(Pieza unaPieza) {
+
+        tablero.fueAgregadaEn(this, unaPieza);
     }
 
     @Override
     public Casillero obtenerContiguoEn(Direccion direccionElegida) {
 
         return tablero.obtenerCasilleroEn(direccionElegida.trasladar(coordenadas));
+    }
+
+    @Override
+    public Coordenadas obtenerCoordenadas() {
+
+        return coordenadas;
     }
 
     @Override
@@ -92,6 +116,12 @@ public class CasilleroInterior implements Casillero {
     public void recibir(Carga unaCarga) {
 
         estado.alRecibir(unaCarga);
+    }
+
+    @Override
+    public void aceptar(ConsumidorDeCasilleros unConsumidor) {
+
+        estado.alAceptar(unConsumidor);
     }
 
     @Override

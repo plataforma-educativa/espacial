@@ -3,6 +3,7 @@ package espacial.tableros;
 import espacial.Ataque;
 import espacial.Carga;
 import espacial.Casillero;
+import espacial.ConsumidorDeCasilleros;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
@@ -40,4 +41,6 @@ public abstract class EstadoDelCasillero {
     public abstract void alEntregar(Carga unaCarga);
 
     public abstract void alRecibir(Carga unaCarga);
+
+    public abstract void alAceptar(ConsumidorDeCasilleros unConsumidor);
 }

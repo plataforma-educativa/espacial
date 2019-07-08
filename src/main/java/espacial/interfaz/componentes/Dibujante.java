@@ -1,6 +1,7 @@
 
 package espacial.interfaz.componentes;
 
+import espacial.Casillero;
 import espacial.Pieza;
 import espacial.Visitante;
 import javafx.scene.Node;
@@ -27,8 +28,8 @@ public class Dibujante implements Visitante {
         return dibujarCasilleroBorde.ejecujar();
     }
 
-    public Node dibujarCasillero(int fila, int columna) {
+    public Node dibujar(Casillero casillero) {
 
-        return dibujarCasilleroInterior.ejecutar(fila, columna);
+        return dibujarCasilleroInterior.ejecutar(casillero);
     }
 }

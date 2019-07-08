@@ -3,6 +3,7 @@ package espacial.tableros;
 import espacial.Ataque;
 import espacial.Carga;
 import espacial.Casillero;
+import espacial.Coordenadas;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
@@ -29,6 +30,28 @@ class CasilleroInteriorTest implements TestDeContrato {
     private final Carga UNA_CARGA = mock(Carga.class, "UNA_CARGA");
 
     private CasilleroInterior unCasilleroInterior;
+
+    @Test
+    void crearConCoordenadasDeTablero() {
+        
+        dadoQue(fueCreadoUnCasilleroInteriorEn(TABLERO, 2, 4));
+        
+        comprobarQue(elCasilleroTiene(TABLERO, Coordenadas.con(2, 4)));
+    }
+
+    private Precondicion fueCreadoUnCasilleroInteriorEn(Tablero tablero, int fila, int columna) {
+
+        return pre(() -> unCasilleroInterior = new CasilleroInterior(tablero, fila, columna));
+    }
+
+    private Postcondicion elCasilleroTiene(Tablero tablero, Coordenadas coordenadas) {
+        
+        return post(() -> {
+           
+            assertThat(unCasilleroInterior.obtenerTablero()).as("tablero").isSameAs(tablero);
+            assertThat(unCasilleroInterior.obtenerCoordenadas()).as("coordenaadas").isEqualTo(coordenadas);
+        });
+    }
 
     @Test
     void escanear() {

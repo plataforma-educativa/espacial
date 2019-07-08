@@ -18,6 +18,7 @@ public class Tablero {
     private FabricaDePiezas fabrica = FabricaDePiezas.crear();
     private Casillero borde;
     private Casillero[][] casilleros;
+    private ObservadorDelTablero observador;
 
     public Tablero() {
 
@@ -76,6 +77,19 @@ public class Tablero {
         return fila - obtenerFilaMinima();
     }
 
+    public void registrar(ObservadorDelTablero unObservador) {
+
+        observador = unObservador;
+    }
+
+    public void fueAgregadaEn(Casillero casillero, Pieza unaPieza) {
+
+        if (observador != null) {
+
+            observador.fueAgregadaEn(casillero, unaPieza);
+        }
+    }
+    
     public int contarColumnas() {
 
         return obtenerColumnaMaxima() - obtenerColumnaMinima() + 1;
@@ -109,6 +123,17 @@ public class Tablero {
     public int obtenerColumnaMinima() {
 
         return -26;
+    }
+
+    public void conCadaCasilleroAceptar(ConsumidorDeCasilleros unConsumidor) {
+
+        for (int fila = 0; fila < casilleros.length; fila++) {
+
+            for (int columa = 0; columa < casilleros[fila].length; columa++) {
+
+                casilleros[fila][columa].aceptar(unConsumidor);
+            }
+        }
     }
 
     public void conCadaCoordenada(ConsumidorDeCoordenadas consumidor) {

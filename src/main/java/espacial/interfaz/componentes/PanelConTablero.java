@@ -1,9 +1,15 @@
 package espacial.interfaz.componentes;
 
+import espacial.Casillero;
+import espacial.ObservadorDelTablero;
+import espacial.Pieza;
 import espacial.Tablero;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
+import javafx.scene.Group;
 import javafx.scene.layout.GridPane;
 
-public class PanelConTablero extends GridPane {
+public class PanelConTablero extends GridPane implements ObservadorDelTablero {
 
     private final Dibujante dibujante = new Dibujante();
 
@@ -12,35 +18,51 @@ public class PanelConTablero extends GridPane {
     public PanelConTablero(Tablero unTablero) {
 
         tablero = unTablero;
-        disponerPiezas();
+        tablero.registrar(this);
+        disponerCasilleros();
     }
 
-    private void disponerPiezas() {
+    private void disponerCasilleros() {
 
         setVgap(0);
         setHgap(0);
 
-        tablero.conCadaCoordenada(this::agregarCasillero);
-        tablero.conCadaCoordenadaDelBorde(this::agregarBorde);
+        tablero.conCadaCasilleroAceptar(this::agregar);
+        //tablero.conCadaCoordenadaDelBorde(this::agregarBorde);
+    }
+
+    private void agregar(Casillero casillero, Pieza... piezas) {
+
+        Indices indices = Indices.para(casillero);
+
+        agregar(casillero, indices);
+
+        for (Pieza pieza : piezas) {
+
+            agregar(pieza, indices);
+        }
+    }
+
+    private void agregar(Pieza pieza, Indices indices) {
+
+        Group panel = new PanelConPieza(pieza);
+        add(panel, indices.deColumna(), indices.deFila());
+        GridPane.setValignment(panel, VPos.CENTER);
+        GridPane.setHalignment(panel, HPos.CENTER);
     }
 
     private void agregarBorde(int fila, int columna) {
 
-        add(dibujante.dibujarBorde(), columnaGrilla(columna), filaGrilla(fila));
+        //add(dibujante.dibujarBorde(), columnaGrilla(columna), filaGrilla(fila));
     }
 
-    private void agregarCasillero(int fila, int columna) {
+    private void agregar(Casillero casillero, Indices indices) {
 
-        add(dibujante.dibujarCasillero(fila, columna), columnaGrilla(columna), filaGrilla(fila));
+        add(dibujante.dibujar(casillero), indices.deColumna(), indices.deFila());
     }
 
-    private int columnaGrilla(int columna) {
-        
-        return columna - (tablero.obtenerColumnaMinima() - 1);
-    }
-    
-    private int filaGrilla(int fila) {
-        
-        return fila - (tablero.obtenerFilaMinima() - 1);
+    @Override
+    public void fueAgregadaEn(Casillero casillero, Pieza unaPieza) {
+
     }
 }

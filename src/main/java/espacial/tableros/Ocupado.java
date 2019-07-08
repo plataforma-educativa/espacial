@@ -3,6 +3,7 @@ package espacial.tableros;
 import espacial.Ataque;
 import espacial.Carga;
 import espacial.Casillero;
+import espacial.ConsumidorDeCasilleros;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
@@ -70,6 +71,12 @@ public class Ocupado extends EstadoDelCasillero {
     public void alRecibir(Carga unaCarga) {
 
         pieza.recibir(unaCarga);
+    }
+
+    @Override
+    public void alAceptar(ConsumidorDeCasilleros unConsumidor) {
+
+        unConsumidor.aceptar(contexto, pieza);
     }
 
     @Override

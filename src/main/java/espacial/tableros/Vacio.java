@@ -3,6 +3,7 @@ package espacial.tableros;
 import espacial.Ataque;
 import espacial.Carga;
 import espacial.Casillero;
+import espacial.ConsumidorDeCasilleros;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
@@ -35,6 +36,8 @@ public class Vacio extends EstadoDelCasillero {
         cambiarPor(estadoResultanteSegunElTipoDe(unaPieza));
 
         unaPieza.fueColocadaEn(contexto);
+
+        contexto.agregar(unaPieza);
     }
 
     private EstadoDelCasillero estadoResultanteSegunElTipoDe(Pieza unaPieza) {
@@ -82,8 +85,14 @@ public class Vacio extends EstadoDelCasillero {
     }
 
     @Override
+    public void alAceptar(ConsumidorDeCasilleros unConsumidor) {
+
+        unConsumidor.aceptar(contexto);
+    }
+
+    @Override
     public Pieza alObtenerPieza() {
 
-        throw new Defecto("No se puede obtenerEstadoResultante Pieza en un Casillero Vacío");
+        throw new Defecto("No se puede obtener Pieza en un Casillero Vacío");
     }
 }
