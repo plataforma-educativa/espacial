@@ -78,4 +78,6 @@ public interface Casillero extends Objetivo {
     void recibir(Carga una_carga);
 
     void aceptar(ConsumidorDeCasilleros unConsumidor);
+
+    void aceptar(VisitanteDeCasilleros unVisitante);
 }

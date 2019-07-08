@@ -5,8 +5,6 @@ import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
@@ -37,31 +35,6 @@ class TableroTest implements TestDeContrato {
         assertThat(coordenadasIteradas)
                 .as("conjunto con las coordenadas iteradas")
                 .hasSize(tablero.contarFilas() * tablero.contarColumnas());
-    }
-
-    @Test
-    void conCadaCoodenadaDelBorde() {
-
-        Tablero tablero = new Tablero();
-        final List<Coordenadas> coordenadasIteradas = new LinkedList<>();
-
-        tablero.conCadaCoordenadaDelBorde((fila, columna) -> coordenadasIteradas.add(Coordenadas.con(fila, columna)));
-
-        final int filaMinima = tablero.obtenerFilaMinima();
-        final int filaMaxima = tablero.obtenerFilaMaxima();
-        final int columnaMinima = tablero.obtenerColumnaMinima();
-        final int columnaMaxima = tablero.obtenerColumnaMaxima();
-
-        assertThat(coordenadasIteradas)
-                .as("conjunto de las coordenadas iteradas")
-                .contains(
-                        Coordenadas.con(filaMinima - 1, columnaMinima - 1),
-                        Coordenadas.con(filaMinima - 1, columnaMaxima + 1),
-                        Coordenadas.con(filaMaxima + 1, columnaMaxima + 1),
-                        Coordenadas.con(filaMaxima + 1, columnaMinima - 1)
-                )
-                .hasSize(4 + (tablero.contarFilas() * 2) + (tablero.contarColumnas() * 2))
-                .hasSameElementsAs(new HashSet<>(coordenadasIteradas));
     }
 
     @Test

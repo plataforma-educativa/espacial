@@ -11,6 +11,7 @@ import espacial.Obstaculo;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.Tablero;
+import espacial.VisitanteDeCasilleros;
 import espacial.excepciones.LaOperacionNoEstaSoportada;
 import espacial.excepciones.NoPuedeEntregarUnaCarga;
 import espacial.excepciones.NoPuedeRecibirUnaCarga;
@@ -18,10 +19,17 @@ import espacial.excepciones.NoPuedeRecibirUnaCarga;
 public class CasilleroBorde implements Casillero, Obstaculo {
 
     private final Tablero tablero;
+    private final Coordenadas coordenadas;
 
     public CasilleroBorde(Tablero contenedor) {
 
+        this(contenedor, Integer.MAX_VALUE, Integer.MAX_VALUE);
+    }
+
+    public CasilleroBorde(Tablero contenedor, int fila, int columna) {
+
         tablero = contenedor;
+        coordenadas = Coordenadas.con(fila, columna);
     }
 
     @Override
@@ -33,7 +41,7 @@ public class CasilleroBorde implements Casillero, Obstaculo {
     @Override
     public Coordenadas obtenerCoordenadas() {
 
-        return null;
+        return coordenadas;
     }
 
     @Override
@@ -111,11 +119,18 @@ public class CasilleroBorde implements Casillero, Obstaculo {
     @Override
     public void aceptar(ConsumidorDeCasilleros unConsumidor) {
 
+        unConsumidor.aceptar(this);
+    }
+
+    @Override
+    public void aceptar(VisitanteDeCasilleros unVistante) {
+
+        unVistante.siEsBorde(this);
     }
 
     @Override
     public String toString() {
 
-        return "Casillero BORDE";
+        return "Casillero" + coordenadas + " -> BORDE";
     }
 }

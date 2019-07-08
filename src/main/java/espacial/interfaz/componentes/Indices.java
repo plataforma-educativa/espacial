@@ -22,11 +22,11 @@ public class Indices {
 
     public int deFila() {
 
-        return tablero.contarFilas() - (coordenadas.obtenerFila() - tablero.obtenerFilaMinima() + 1);
+        return tablero.contarFilas() + 1 - (coordenadas.obtenerFila() - tablero.obtenerFilaMinima() + 1);
     }
 
     public int deColumna() {
 
-        return coordenadas.obtenerColumna() - tablero.obtenerColumnaMinima();
+        return coordenadas.obtenerColumna() - tablero.obtenerColumnaMinima() + 1;
     }
 }

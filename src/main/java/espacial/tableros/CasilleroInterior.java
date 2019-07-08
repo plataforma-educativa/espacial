@@ -10,6 +10,7 @@ import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.Tablero;
+import espacial.VisitanteDeCasilleros;
 
 public class CasilleroInterior implements Casillero {
 
@@ -122,6 +123,12 @@ public class CasilleroInterior implements Casillero {
     public void aceptar(ConsumidorDeCasilleros unConsumidor) {
 
         estado.alAceptar(unConsumidor);
+    }
+
+    @Override
+    public void aceptar(VisitanteDeCasilleros unVistante) {
+
+        unVistante.siEsInterior(this);
     }
 
     @Override

@@ -8,9 +8,8 @@ import javafx.scene.Node;
 
 public class Dibujante implements Visitante {
 
-    private final DibujarCasilleroBorde dibujarCasilleroBorde = new DibujarCasilleroBorde();
-    private final DibujarCasilleroInterior dibujarCasilleroInterior = new DibujarCasilleroInterior();
     private final DibujarImagen dibujarImagen = new DibujarImagenPorTipo();
+    private final DibujarEspacio dibujarEspacio = new DibujarEspacio();
 
     /**
      * @post construye un dibujo que representa la Pieza dada.
@@ -23,13 +22,14 @@ public class Dibujante implements Visitante {
         return dibujarImagen.de(unaPieza);
     }
 
-    public Node dibujarBorde() {
-
-        return dibujarCasilleroBorde.ejecujar();
-    }
-
+    /**
+     * @post construye un dibujo que representa el Casillero dado.
+     *
+     * @param casillero Casillero a dibujar
+     * @return representación del casillero
+     */
     public Node dibujar(Casillero casillero) {
 
-        return dibujarCasilleroInterior.ejecutar(casillero);
+        return dibujarEspacio.de(casillero);
     }
 }

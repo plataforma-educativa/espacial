@@ -82,11 +82,11 @@ class IndicesTest implements TestDeContrato {
     static Stream<Arguments> traducirCoordenadasDeTablero7x9Centrado() {
 
         return Stream.of(
-                arguments(Coordenadas.con(3, 4), 0, 8),
-                arguments(Coordenadas.con(-3, -4), 6, 0),
-                arguments(Coordenadas.con(3, -4), 0, 0),
-                arguments(Coordenadas.con(-3, 4), 6, 8),
-                arguments(Coordenadas.con(0, 0), 3, 4)
+                arguments(Coordenadas.con(3, 4), 1, 9),
+                arguments(Coordenadas.con(-3, -4), 7, 1),
+                arguments(Coordenadas.con(3, -4), 1, 1),
+                arguments(Coordenadas.con(-3, 4), 7, 9),
+                arguments(Coordenadas.con(0, 0), 4, 5)
         );
     }
 
@@ -114,10 +114,10 @@ class IndicesTest implements TestDeContrato {
     static Stream<Arguments> traducirCoordenadasDeTablero3x3Positivo() {
 
         return Stream.of(
-                arguments(Coordenadas.con(2, 2), 0, 2),
-                arguments(Coordenadas.con(2, 0), 0, 0),
-                arguments(Coordenadas.con(0, 2), 2, 2),
-                arguments(Coordenadas.con(0, 0), 2, 0)
+                arguments(Coordenadas.con(2, 2), 1, 3),
+                arguments(Coordenadas.con(2, 0), 1, 1),
+                arguments(Coordenadas.con(0, 2), 3, 3),
+                arguments(Coordenadas.con(0, 0), 3, 1)
         );
     }
 }

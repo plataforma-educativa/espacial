@@ -44,14 +44,21 @@ public class Tablero {
 
     private void inicializarCasilleros() {
 
-        borde = new CasilleroBorde(this);
-        casilleros = new CasilleroInterior[contarFilas()][contarColumnas()];
+        borde = new CasilleroBorde(this, Integer.MAX_VALUE, Integer.MAX_VALUE);
+        casilleros = new Casillero[contarFilas() + 2][contarColumnas() + 2];
+
         conCadaCoordenada(this::crearCasilleroInterior);
+        conCadaCoordenadaDelBorde(this::crearCasilleroBorde);
     }
 
     private void crearCasilleroInterior(int fila, int columna) {
 
         casilleros[indiceFila(fila)][indiceColumna(columna)] = new CasilleroInterior(this, fila, columna);
+    }
+
+    private void crearCasilleroBorde(int fila, int columna) {
+
+        casilleros[indiceFila(fila)][indiceColumna(columna)] = new CasilleroBorde(this, fila, columna);
     }
 
     private void colocarEntreCoordenadas(int filaInicial, int columnaInicial,
@@ -69,12 +76,12 @@ public class Tablero {
 
     private int indiceColumna(int columna) {
 
-        return columna - obtenerColumnaMinima();
+        return columna - obtenerColumnaMinima() + 1;
     }
 
     private int indiceFila(int fila) {
 
-        return fila - obtenerFilaMinima();
+        return fila - obtenerFilaMinima() + 1;
     }
 
     public void registrar(ObservadorDelTablero unObservador) {
@@ -143,7 +150,7 @@ public class Tablero {
                 consumidor);
     }
 
-    public void conCadaCoordenadaDelBorde(ConsumidorDeCoordenadas consumidor) {
+    private void conCadaCoordenadaDelBorde(ConsumidorDeCoordenadas consumidor) {
 
         final int filaMinima = obtenerFilaMinima();
         final int filaMaxima = obtenerFilaMaxima();

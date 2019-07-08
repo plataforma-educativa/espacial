@@ -210,13 +210,21 @@ class CasilleroBordeTest implements TestDeContrato {
     @Test
     void tieneToString() {
 
-        dadoQue(fueCreadoUnCasilleroBorde());
+        final int fila = -100;
+        final int columna = 800;
 
-        comprobarQue(esAutoDescriptivo());
+        dadoQue(fueCreadoUnCasilleroBordeEn(fila, columna));
+
+        comprobarQue(esAutoDescriptivo(fila, columna));
     }
 
-    private Postcondicion esAutoDescriptivo() {
+    private Precondicion fueCreadoUnCasilleroBordeEn(int fila, int columna) {
 
-        return post(() -> assertThat(unCasilleroBorde).hasToString("Casillero BORDE"));
+        return pre(() -> unCasilleroBorde = new CasilleroBorde(TABLERO, fila, columna));
+    }
+
+    private Postcondicion esAutoDescriptivo(int fila, int columna) {
+
+        return post(() -> assertThat(unCasilleroBorde).hasToString("Casillero[" + fila + "][" + columna + "] -> BORDE"));
     }
 }
