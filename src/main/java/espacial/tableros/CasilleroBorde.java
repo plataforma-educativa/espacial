@@ -4,7 +4,6 @@ import espacial.Carga;
 import espacial.Casillero;
 import espacial.Chocable;
 import espacial.ConsumidorDeCasilleros;
-import espacial.Coordenadas;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Obstaculo;
@@ -16,10 +15,7 @@ import espacial.excepciones.LaOperacionNoEstaSoportada;
 import espacial.excepciones.NoPuedeEntregarUnaCarga;
 import espacial.excepciones.NoPuedeRecibirUnaCarga;
 
-public class CasilleroBorde implements Casillero, Obstaculo {
-
-    private final Tablero tablero;
-    private final Coordenadas coordenadas;
+public class CasilleroBorde extends CasilleroDelTablero implements Obstaculo {
 
     public CasilleroBorde(Tablero contenedor) {
 
@@ -28,20 +24,7 @@ public class CasilleroBorde implements Casillero, Obstaculo {
 
     public CasilleroBorde(Tablero contenedor, int fila, int columna) {
 
-        tablero = contenedor;
-        coordenadas = Coordenadas.con(fila, columna);
-    }
-
-    @Override
-    public Tablero obtenerTablero() {
-
-        return tablero;
-    }
-
-    @Override
-    public Coordenadas obtenerCoordenadas() {
-
-        return coordenadas;
+        super(contenedor, fila, columna);
     }
 
     @Override

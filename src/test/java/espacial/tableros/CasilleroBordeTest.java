@@ -2,6 +2,7 @@ package espacial.tableros;
 
 import espacial.Casillero;
 import espacial.Chocable;
+import espacial.Coordenadas;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
@@ -27,6 +28,31 @@ class CasilleroBordeTest implements TestDeContrato {
     private final Pieza UNA_PIEZA = mock(Pieza.class, "UNA_PIEZA");
     private final Chocable UN_CHOCABLE = mock(Chocable.class, "UN_CHOCABLE");
     private CasilleroBorde unCasilleroBorde;
+
+    @Test
+    void crearConCoordenadasDeTablero() {
+
+        final int fila = -90;
+        final int columna = 2;
+
+        dadoQue(fueCreadoUnCasilleroInteriorEn(TABLERO, fila, columna));
+
+        comprobarQue(elCasilleroTiene(TABLERO, Coordenadas.con(fila, columna)));
+    }
+
+    private Precondicion fueCreadoUnCasilleroInteriorEn(Tablero tablero, int fila, int columna) {
+
+        return pre(() -> unCasilleroBorde = new CasilleroBorde(tablero, fila, columna));
+    }
+
+    private Postcondicion elCasilleroTiene(Tablero tablero, Coordenadas coordenadas) {
+
+        return post(() -> {
+
+            assertThat(unCasilleroBorde.obtenerTablero()).as("tablero").isSameAs(tablero);
+            assertThat(unCasilleroBorde.obtenerCoordenadas()).as("coordenaadas").isEqualTo(coordenadas);
+        });
+    }
 
     @Test
     void escanear() {

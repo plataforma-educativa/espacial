@@ -4,7 +4,6 @@ import espacial.Ataque;
 import espacial.Carga;
 import espacial.Casillero;
 import espacial.ConsumidorDeCasilleros;
-import espacial.Coordenadas;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
@@ -12,23 +11,14 @@ import espacial.SustanciaEspacial;
 import espacial.Tablero;
 import espacial.VisitanteDeCasilleros;
 
-public class CasilleroInterior implements Casillero {
+public class CasilleroInterior extends CasilleroDelTablero {
 
-    private final Tablero tablero;
-    private final Coordenadas coordenadas;
     private EstadoDelCasillero estado;
 
     public CasilleroInterior(Tablero contenedor, int fila, int columna) {
 
-        tablero = contenedor;
-        coordenadas = Coordenadas.con(fila, columna);
+        super(contenedor, fila, columna);
         estado = new Vacio(this);
-    }
-
-    @Override
-    public Tablero obtenerTablero() {
-
-        return tablero;
     }
 
     @Override
@@ -51,12 +41,6 @@ public class CasilleroInterior implements Casillero {
     public Casillero obtenerContiguoEn(Direccion direccionElegida) {
 
         return tablero.obtenerCasilleroEn(direccionElegida.trasladar(coordenadas));
-    }
-
-    @Override
-    public Coordenadas obtenerCoordenadas() {
-
-        return coordenadas;
     }
 
     @Override
