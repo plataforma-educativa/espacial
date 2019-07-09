@@ -37,13 +37,15 @@ public class Vacio extends EstadoDelCasillero {
 
         unaPieza.fueColocadaEn(contexto);
 
-        contexto.agregar(unaPieza);
+        contexto.fueAgregadaAlTablero(unaPieza);
     }
 
     private EstadoDelCasillero estadoResultanteSegunElTipoDe(Pieza unaPieza) {
 
         OcuparCasilleroVacio ocuparCasilleroVacio = new OcuparCasilleroVacio(contexto);
+
         unaPieza.aceptar(ocuparCasilleroVacio);
+
         return ocuparCasilleroVacio.obtenerEstadoResultante();
     }
 
@@ -63,8 +65,12 @@ public class Vacio extends EstadoDelCasillero {
     public void alRecibirPiezaDesde(Casillero origen) {
 
         Pieza pieza = origen.obtenerPieza();
+
         origen.desocupar();
-        alOcuparCon(pieza);
+
+        cambiarPor(estadoResultanteSegunElTipoDe(pieza));
+
+        pieza.fueColocadaEn(contexto);
     }
 
     @Override

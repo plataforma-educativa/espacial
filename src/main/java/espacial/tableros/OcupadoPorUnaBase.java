@@ -43,7 +43,7 @@ public class OcupadoPorUnaBase extends EstadoDelCasillero {
 
         unaPieza.fueColocadaEn(contexto);
 
-        contexto.agregar(unaPieza);
+        contexto.fueAgregadaAlTablero(unaPieza);
     }
 
     @Override

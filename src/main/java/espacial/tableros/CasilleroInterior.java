@@ -26,7 +26,7 @@ public class CasilleroInterior extends CasilleroDelTablero {
         estado = nuevoEstado;
     }
 
-    void agregar(Pieza unaPieza) {
+    void fueAgregadaAlTablero(Pieza unaPieza) {
 
         tablero.fueAgregadaEn(this, unaPieza);
     }

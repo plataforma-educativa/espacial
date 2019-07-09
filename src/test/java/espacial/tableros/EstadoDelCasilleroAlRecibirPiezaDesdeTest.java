@@ -1,5 +1,6 @@
 package espacial.tableros;
 
+import espacial.Pieza;
 import espacial.Visitante;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
@@ -19,6 +20,12 @@ class EstadoDelCasilleroAlRecibirPiezaDesdeTest extends EstadoDelCasilleroTest {
 
         comprobarQue(laPiezaFueMovidaDelOrigenAlCasillero());
         comprobarQue(cambioElEstadoDelCasilleroPorOcupado());
+        comprobarQue(noSeNotificaAlCasillero());
+    }
+
+    private Postcondicion noSeNotificaAlCasillero() {
+
+        return post(() -> verify(CASILLERO, never()).fueAgregadaAlTablero(any(Pieza.class)));
     }
 
     @Test
