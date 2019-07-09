@@ -88,14 +88,14 @@ class CoordenadasTest implements TestDeContrato {
 
     @ParameterizedTest
     @MethodSource
-    void obtenerNumero(int fila, int columna, int numero) {
+    void numerar(int fila, int columna, int numero) {
 
         Coordenadas coordenadas = Coordenadas.con(fila, columna);
 
-        assertThat(coordenadas.obtenerNumero()).as("numero de Coordenadas %s", coordenadas).isEqualTo(numero);
+        assertThat(coordenadas.numerar()).as("numero de Coordenadas %s", coordenadas).isEqualTo(numero);
     }
 
-    static Stream<Arguments> obtenerNumero() {
+    static Stream<Arguments> numerar() {
 
         return Stream.of(
                 arguments(0, 1, 1),

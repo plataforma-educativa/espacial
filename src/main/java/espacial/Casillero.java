@@ -13,8 +13,6 @@ public interface Casillero extends Objetivo {
 
     Coordenadas obtenerCoordenadas();
 
-    int obtenerNumero();
-
     /**
      * @return EspectroEspacial de la Pieza que ocupa el Casillero, o
      *         EspectroEspacial.VACIO en caso de estar desocupado.

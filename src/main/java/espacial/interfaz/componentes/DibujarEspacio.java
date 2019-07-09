@@ -32,12 +32,17 @@ public class DibujarEspacio implements VisitanteDeCasilleros {
 
         Rectangle rectanguloCasillero = new Rectangle(DIMENSION, DIMENSION);
 
-        Paint pinturaCasillero = (casillero.obtenerNumero()) % 2 == 0 ? COLOR_CASILLERO_PAR : COLOR_CASILLERO_IMPAR;
+        Paint pinturaCasillero = esParElNumeroDel(casillero) ? COLOR_CASILLERO_PAR : COLOR_CASILLERO_IMPAR;
         rectanguloCasillero.setFill(pinturaCasillero);
         rectanguloCasillero.setStroke(pinturaCasillero);
         rectanguloCasillero.setStrokeWidth(6);
 
         dibujo = rectanguloCasillero;
+    }
+
+    private boolean esParElNumeroDel(Casillero casillero) {
+
+        return casillero.obtenerCoordenadas().numerar() % 2 == 0;
     }
 
     public Node de(Casillero casillero) {

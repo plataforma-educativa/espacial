@@ -21,12 +21,6 @@ public class CasilleroInterior extends CasilleroDelTablero {
         estado = new Vacio(this);
     }
 
-    @Override
-    public int obtenerNumero() {
-
-        return coordenadas.obtenerFila() + coordenadas.obtenerColumna();
-    }
-
     void cambiarA(EstadoDelCasillero nuevoEstado) {
 
         estado = nuevoEstado;

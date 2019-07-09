@@ -73,7 +73,7 @@ public class Coordenadas {
      * -4  109  72  73  74  75  76  77  78  79  80  81 122
      * -5  110 111 112 113 114 115 116 117 118 119 120 121
      */
-    public int obtenerNumero() {
+    public int numerar() {
 
         final int absFila = Math.abs(fila);
         final int absColumna = Math.abs(columna);

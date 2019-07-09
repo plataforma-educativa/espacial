@@ -28,12 +28,6 @@ public class CasilleroBorde extends CasilleroDelTablero implements Obstaculo {
     }
 
     @Override
-    public int obtenerNumero() {
-
-        return 0;
-    }
-
-    @Override
     public EspectroEspacial escanear() {
         
         return EspectroEspacial.DESCONOCIDO;
