@@ -51,11 +51,6 @@ public class PanelConTablero extends GridPane implements ObservadorDelTablero {
         GridPane.setHalignment(panel, HPos.CENTER);
     }
 
-    private void agregarBorde(int fila, int columna) {
-
-        //add(dibujante.dibujarBorde(), columnaGrilla(columna), filaGrilla(fila));
-    }
-
     private void agregar(Casillero casillero, Indices indices) {
 
         add(dibujante.dibujar(casillero), indices.deColumna(), indices.deFila());

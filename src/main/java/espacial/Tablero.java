@@ -1,7 +1,6 @@
 package espacial;
 
 import espacial.partidas.FabricaDePiezas;
-import espacial.piezas.AgujeroNegro;
 import espacial.piezas.BaseEspacial;
 import espacial.tableros.CasilleroBorde;
 import espacial.tableros.CasilleroInterior;
@@ -36,10 +35,10 @@ public class Tablero {
         colocarEnCoordenada(-2, 4, fabrica::crearAsteoride);
         colocarEnCoordenada(2, 6, fabrica::crearAsteoride);
         colocarEnCoordenada(2, -5, fabrica::crearAsteoride);
-        colocarEnCoordenada(3, -6, AgujeroNegro::new);
-        colocarEnCoordenada(2, -6, AgujeroNegro::new);
-        colocarEnCoordenada(1, -6, AgujeroNegro::new);
-        colocarEnCoordenada(1, -7, AgujeroNegro::new);
+        colocarEnCoordenada(3, -6, fabrica::crearAgujeroNegro);
+        colocarEnCoordenada(2, -6, fabrica::crearAgujeroNegro);
+        colocarEnCoordenada(1, -6, fabrica::crearAgujeroNegro);
+        colocarEnCoordenada(1, -7, fabrica::crearAgujeroNegro);
     }
 
     private void inicializarCasilleros() {

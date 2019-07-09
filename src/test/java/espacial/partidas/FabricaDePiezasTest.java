@@ -210,4 +210,24 @@ class FabricaDePiezasTest implements TestDeContrato {
                         .isTrue()
         );
     }
+
+    @Test
+    void crearAgujeroNegro() {
+
+        dadoQue(fueCreadaUnaFabricaDePiezas());
+
+        piezaCreada = unaFabrica.crearAgujeroNegro();
+
+        comprobarQue(laPiezaCreadaEsUnAgujeroNegro());
+    }
+
+    private Postcondicion laPiezaCreadaEsUnAgujeroNegro() {
+
+        return post(() ->
+
+                assertThat(piezaCreada).as("pieza creada").isNotNull()
+                    .extracting(Pieza::escanear).isEqualTo(EspectroEspacial.DESCONOCIDO)
+        );
+
+    }
 }

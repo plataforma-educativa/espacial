@@ -1,6 +1,7 @@
 package espacial.partidas;
 
 import espacial.Pieza;
+import espacial.piezas.AgujeroNegro;
 import espacial.piezas.Asteroide;
 import espacial.piezas.ContenedorDeAntimateria;
 import espacial.piezas.ContenedorDeCristal;
@@ -42,5 +43,10 @@ public class FabricaDePiezas {
     public Pieza crearAsteoride() {
 
         return new Asteroide(durezaAleatoria.obtener());
+    }
+
+    public Pieza crearAgujeroNegro() {
+
+        return new AgujeroNegro();
     }
 }
