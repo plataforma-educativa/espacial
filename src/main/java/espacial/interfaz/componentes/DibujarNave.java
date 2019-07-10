@@ -4,12 +4,11 @@ import espacial.Pieza;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.effect.BlendMode;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
 
-public class DibujarNave implements DibujarImagen {
+public class DibujarNave extends Dibujar implements DibujarImagen {
 
     public static final Paint PINTURA = Color.web("00AA22FF");
 
@@ -22,25 +21,20 @@ public class DibujarNave implements DibujarImagen {
         SVGPath casco = new SVGPath();
         casco.setFill(PINTURA);
         casco.setContent(CASCO);
-
-        DropShadow sombra = new DropShadow();
-        sombra.setOffsetY(1.0);
-        sombra.setOffsetX(1.0);
-        sombra.setWidth(3.0);
-        sombra.setHeight(3.0);
-        sombra.setColor(Color.BLACK);
-        sombra.setRadius(2.0);
-        casco.setEffect(sombra);
+        casco.setStroke(conBorde());
+        casco.setEffect(conSombraExterior());
 
         SVGPath puente = new SVGPath();
         puente.setFill(PINTURA);
         puente.setBlendMode(BlendMode.MULTIPLY);
         puente.setContent(PUENTE);
+        puente.setEffect(conSombraInterior());
 
         SVGPath escotilla = new SVGPath();
         escotilla.setFill(PINTURA);
         escotilla.setBlendMode(BlendMode.MULTIPLY);
         escotilla.setContent(ESCOTILLA);
+        escotilla.setEffect(conSombraInterior());
 
         return new Group(casco, puente, escotilla);
     }

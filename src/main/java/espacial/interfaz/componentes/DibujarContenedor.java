@@ -4,15 +4,15 @@ import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.effect.InnerShadow;
+import javafx.scene.effect.Effect;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
 
-public class DibujarContenedor implements DibujarImagen {
+public class DibujarContenedor extends Dibujar implements DibujarImagen {
 
-    private static final Paint PINTURA_ESTRUCTURA = Color.web("555555");
+    private static final Color PINTURA_ESTRUCTURA = Color.web("555555");
     private static final Paint PINTURA_INDICADOR_VACIO = Color.WHITE;
     private static final Paint PINTURA_INDICADOR_ANTIMATERIA = Color.web("ffe35b");
     private static final Paint PINTURA_INDICADOR_METAL = Color.web("dd1539");
@@ -24,12 +24,12 @@ public class DibujarContenedor implements DibujarImagen {
     public Node de(Pieza unaPieza) {
 
         SVGPath estructura = new SVGPath();
+        estructura.setStroke(conBorde());
         estructura.setFill(PINTURA_ESTRUCTURA);
         estructura.setContent(ESTRUCTURA);
+        estructura.setEffect(conSombraExterior());
 
         Paint colorIndicador = obtenerColorDeSustanciaEn(unaPieza);
-
-        InnerShadow brillo = new InnerShadow(3, Color.BLACK);
 
         Rectangle indicador1 = new Rectangle(10, 8, 16, 4);
         Rectangle indicador2 = new Rectangle(10, 15, 16, 4);
@@ -38,6 +38,8 @@ public class DibujarContenedor implements DibujarImagen {
         indicador1.setFill(colorIndicador);
         indicador2.setFill(colorIndicador);
         indicador3.setFill(colorIndicador);
+
+        Effect brillo = conSombraInterior();
         indicador1.setEffect(brillo);
         indicador2.setEffect(brillo);
         indicador3.setEffect(brillo);

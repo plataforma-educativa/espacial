@@ -10,7 +10,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.SVGPath;
 
-public class DibujarAsteroide implements DibujarImagen {
+public class DibujarAsteroide extends Dibujar implements DibujarImagen {
 
     private static final Aleatorio<Paint> PINTURA_ASTEROIDE_SUPERFICIE = Aleatorio.enLista(
             Color.web("504100"),
@@ -40,6 +40,7 @@ public class DibujarAsteroide implements DibujarImagen {
         SVGPath cuerpo = new SVGPath();
         cuerpo.setFill(PINTURA_ASTEROIDE_SUPERFICIE.obtener());
         cuerpo.setContent(CUERPO);
+        cuerpo.setStroke(conBorde());
 
         Ellipse crater1 = new Ellipse(7.759, 20.256, 0.859, 0.886);
         crater1.setFill(PINTURA_ASTEROIDE_CRATER.obtener());
@@ -70,7 +71,7 @@ public class DibujarAsteroide implements DibujarImagen {
         crater6.setBlendMode(BlendMode.COLOR_DODGE);
 
         Group dibujo = new Group(cuerpo, crater1, crater2, crater3, crater4, crater5, crater6);
-        dibujo.rotateProperty().set(Math.random() * 360);
+        dibujo.setEffect(conSombraExterior());
 
         return dibujo;
     }

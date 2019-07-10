@@ -7,12 +7,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
-public class DibujarEspacio implements VisitanteDeCasilleros {
+public class DibujarEspacio extends Dibujar implements VisitanteDeCasilleros {
 
-    private static final double DIMENSION = 30.0;
+    public static final double DIMENSION = 42.0;
     private static final Paint COLOR_BORDE = Color.web("4e4d50");
-    private static final Paint COLOR_CASILLERO_PAR = Color.web("e6e7e8");
-    private static final Paint COLOR_CASILLERO_IMPAR = Color.web("444444");
+    private static final Paint COLOR_CASILLERO_PAR = Color.web("dddddd");
+    private static final Paint COLOR_CASILLERO_IMPAR = Color.web("888888");
 
     private Node dibujo;
 
@@ -21,8 +21,7 @@ public class DibujarEspacio implements VisitanteDeCasilleros {
 
         Rectangle margen = new Rectangle(DIMENSION, DIMENSION);
         margen.setFill(COLOR_BORDE);
-        margen.setStroke(COLOR_BORDE);
-        margen.setStrokeWidth(6);
+        margen.setStrokeWidth(0);
 
         dibujo = margen;
     }
@@ -34,8 +33,7 @@ public class DibujarEspacio implements VisitanteDeCasilleros {
 
         Paint pinturaCasillero = esParElNumeroDel(casillero) ? COLOR_CASILLERO_PAR : COLOR_CASILLERO_IMPAR;
         rectanguloCasillero.setFill(pinturaCasillero);
-        rectanguloCasillero.setStroke(pinturaCasillero);
-        rectanguloCasillero.setStrokeWidth(6);
+        rectanguloCasillero.setStrokeWidth(0);
 
         dibujo = rectanguloCasillero;
     }

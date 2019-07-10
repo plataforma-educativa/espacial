@@ -4,6 +4,7 @@ import espacial.Casillero;
 import espacial.ObservadorDelTablero;
 import espacial.Pieza;
 import espacial.Tablero;
+import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
@@ -28,7 +29,6 @@ public class PanelConTablero extends GridPane implements ObservadorDelTablero {
         setHgap(0);
 
         tablero.conCadaCasilleroAceptar(this::agregar);
-        //tablero.conCadaCoordenadaDelBorde(this::agregarBorde);
     }
 
     private void agregar(Casillero casillero, Pieza... piezas) {
@@ -59,5 +59,6 @@ public class PanelConTablero extends GridPane implements ObservadorDelTablero {
     @Override
     public void fueAgregadaEn(Casillero casillero, Pieza unaPieza) {
 
+        Platform.runLater(() -> agregar(unaPieza, Indices.para(casillero)));
     }
 }
