@@ -4,7 +4,6 @@ import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.effect.Effect;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
@@ -24,10 +23,10 @@ public class DibujarContenedor extends Dibujar implements DibujarImagen {
     public Node de(Pieza unaPieza) {
 
         SVGPath estructura = new SVGPath();
-        estructura.setStroke(conBorde());
         estructura.setFill(PINTURA_ESTRUCTURA);
         estructura.setContent(ESTRUCTURA);
-        estructura.setEffect(conSombraExterior());
+        aplicarBorde(estructura);
+        aplicarSombraExteriorEn(estructura);
 
         Paint colorIndicador = obtenerColorDeSustanciaEn(unaPieza);
 
@@ -39,10 +38,9 @@ public class DibujarContenedor extends Dibujar implements DibujarImagen {
         indicador2.setFill(colorIndicador);
         indicador3.setFill(colorIndicador);
 
-        Effect brillo = conSombraInterior();
-        indicador1.setEffect(brillo);
-        indicador2.setEffect(brillo);
-        indicador3.setEffect(brillo);
+        aplicarSombraInteriorEn(indicador1);
+        aplicarSombraInteriorEn(indicador2);
+        aplicarSombraInteriorEn(indicador3);
 
         return new Group(estructura, indicador1, indicador2, indicador3);
     }

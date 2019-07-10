@@ -1,18 +1,20 @@
 package espacial.interfaz.componentes;
 
+import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Effect;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Shape;
 
 public abstract class Dibujar {
 
-    protected Color conBorde() {
+    protected void aplicarBorde(Shape dibujo) {
 
-        return Color.DARKGRAY;
+        dibujo.setStroke(Color.DARKGRAY);
+        dibujo.setStrokeWidth(1);
     }
 
-    protected Effect conSombraExterior() {
+    protected void aplicarSombraExteriorEn(Node dibujo) {
 
         DropShadow sombra = new DropShadow();
         sombra.setOffsetY(1.0);
@@ -22,10 +24,10 @@ public abstract class Dibujar {
         sombra.setColor(Color.BLACK);
         sombra.setRadius(2.0);
 
-        return sombra;
+        dibujo.setEffect(sombra);
     }
 
-    protected Effect conSombraInterior() {
+    protected void aplicarSombraInteriorEn(Node dibujo) {
 
         InnerShadow sombra = new InnerShadow();
         sombra.setOffsetY(1.0);
@@ -34,7 +36,6 @@ public abstract class Dibujar {
         sombra.setHeight(3.0);
         sombra.setColor(Color.BLACK);
         sombra.setRadius(2.0);
-
-        return sombra;
+        dibujo.setEffect(sombra);
     }
 }

@@ -21,20 +21,20 @@ public class DibujarNave extends Dibujar implements DibujarImagen {
         SVGPath casco = new SVGPath();
         casco.setFill(PINTURA);
         casco.setContent(CASCO);
-        casco.setStroke(conBorde());
-        casco.setEffect(conSombraExterior());
+        aplicarBorde(casco);
+        aplicarSombraExteriorEn(casco);
 
         SVGPath puente = new SVGPath();
         puente.setFill(PINTURA);
         puente.setBlendMode(BlendMode.MULTIPLY);
         puente.setContent(PUENTE);
-        puente.setEffect(conSombraInterior());
+        aplicarSombraInteriorEn(puente);
 
         SVGPath escotilla = new SVGPath();
         escotilla.setFill(PINTURA);
         escotilla.setBlendMode(BlendMode.MULTIPLY);
         escotilla.setContent(ESCOTILLA);
-        escotilla.setEffect(conSombraInterior());
+        aplicarSombraInteriorEn(escotilla);
 
         return new Group(casco, puente, escotilla);
     }

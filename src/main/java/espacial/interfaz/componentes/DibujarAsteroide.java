@@ -40,7 +40,8 @@ public class DibujarAsteroide extends Dibujar implements DibujarImagen {
         SVGPath cuerpo = new SVGPath();
         cuerpo.setFill(PINTURA_ASTEROIDE_SUPERFICIE.obtener());
         cuerpo.setContent(CUERPO);
-        cuerpo.setStroke(conBorde());
+        aplicarBorde(cuerpo);
+        aplicarSombraExteriorEn(cuerpo);
 
         Ellipse crater1 = new Ellipse(7.759, 20.256, 0.859, 0.886);
         crater1.setFill(PINTURA_ASTEROIDE_CRATER.obtener());
@@ -70,9 +71,6 @@ public class DibujarAsteroide extends Dibujar implements DibujarImagen {
         crater6.setContent(CRATER_6);
         crater6.setBlendMode(BlendMode.COLOR_DODGE);
 
-        Group dibujo = new Group(cuerpo, crater1, crater2, crater3, crater4, crater5, crater6);
-        dibujo.setEffect(conSombraExterior());
-
-        return dibujo;
+        return new Group(cuerpo, crater1, crater2, crater3, crater4, crater5, crater6);
     }
 }

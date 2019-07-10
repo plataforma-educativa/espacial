@@ -19,11 +19,10 @@ public class DibujarBase extends Dibujar implements DibujarImagen {
 
         Rectangle casco = new Rectangle(4, 4, DibujarEspacio.DIMENSION - 8, DibujarEspacio.DIMENSION - 8);
         casco.setFill(PINTURA);
-        casco.setStroke(conBorde());
-        casco.setStrokeWidth(1);
         casco.setArcHeight(8);
         casco.setArcWidth(8);
-        casco.setEffect(conSombraExterior());
+        aplicarBorde(casco);
+        aplicarSombraExteriorEn(casco);
 
         SVGPath cubierta = new SVGPath();
         cubierta.setFill(PINTURA);
@@ -32,7 +31,7 @@ public class DibujarBase extends Dibujar implements DibujarImagen {
         cubierta.setLayoutX(4);
         cubierta.setLayoutY(4);
 
-        cubierta.setEffect(conSombraInterior());
+        aplicarSombraInteriorEn(cubierta);
 
         return new Group(casco, cubierta);
     }
