@@ -17,11 +17,13 @@ public class VistaInformeNave implements Vista {
         contenedor = enContenedor;
     }
 
-    public void iniciar() {
+    public Vista iniciar() {
 
         Parent informe = cargar("/fx/informe-nave.fxml");
 
         contenedor.getChildren().add(informe);
+
+        return this;
     }
 
     @Override
