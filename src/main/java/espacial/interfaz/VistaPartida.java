@@ -6,6 +6,7 @@ import espacial.interfaz.rasgos.Vista;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 public class VistaPartida implements Vista {
 
     private final Stage escenario;
@@ -28,7 +29,7 @@ public class VistaPartida implements Vista {
     }
 
     @Override
-    public Controlador crearControladr(Class<?> clase) {
+    public Controlador crearControlador(Class<?> clase) {
 
         return new ControladorDePartida(partida);
     }

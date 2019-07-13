@@ -40,3 +40,12 @@
 .menu-item:hover .documentacion, .menu-item:focused .documentacion {
     -fx-image: url("/img/documentacion_seleccionado.png");
 }
+
+.panelMarcoInformes.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.panelMarcoInformes.scroll-pane {
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+}

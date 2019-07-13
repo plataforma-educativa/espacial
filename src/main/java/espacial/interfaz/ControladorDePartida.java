@@ -1,11 +1,12 @@
 package espacial.interfaz;
 
 import espacial.PartidaEspacial;
+import espacial.Pieza;
 import espacial.interfaz.componentes.PanelConTablero;
 import espacial.interfaz.rasgos.Controlador;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
-
+import javafx.scene.layout.VBox;
 
 public class ControladorDePartida implements Controlador {
 
@@ -13,6 +14,12 @@ public class ControladorDePartida implements Controlador {
 
     @FXML
     private ScrollPane panelMarcoTablero;
+
+    @FXML
+    private ScrollPane panelMarcoInformes;
+
+    @FXML
+    private VBox panelInformes;
 
     public ControladorDePartida(PartidaEspacial unaPartida) {
 
@@ -22,8 +29,7 @@ public class ControladorDePartida implements Controlador {
     @FXML
     void initialize() {
 
-        panelMarcoTablero.setContent(new PanelConTablero(partida.obtenerTablero()));
-
+        panelMarcoTablero.setContent(new PanelConTablero(this, partida.obtenerTablero()));
         centrarTablero();
     }
 
@@ -33,9 +39,15 @@ public class ControladorDePartida implements Controlador {
         panelMarcoTablero.setVvalue(panelMarcoTablero.getVmin() + panelMarcoTablero.getVmax() / 2);
     }
 
-
     public void mostrarDocumentacion() {
 
         new VistaDocumentacion().iniciar();
     }
+
+    public void fueSeleccionada(Pieza unaPieza) {
+
+        VistaInformeNave vista = new VistaInformeNave(panelInformes, unaPieza);
+        vista.iniciar();
+    }
+
 }

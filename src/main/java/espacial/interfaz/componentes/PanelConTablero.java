@@ -4,6 +4,7 @@ import espacial.Casillero;
 import espacial.ObservadorDelTablero;
 import espacial.Pieza;
 import espacial.Tablero;
+import espacial.interfaz.ControladorDePartida;
 import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -13,11 +14,12 @@ import javafx.scene.layout.GridPane;
 public class PanelConTablero extends GridPane implements ObservadorDelTablero {
 
     private final Dibujante dibujante = new Dibujante();
-
+    private final ControladorDePartida controlador;
     private final Tablero tablero;
 
-    public PanelConTablero(Tablero unTablero) {
+    public PanelConTablero(ControladorDePartida unControlador, Tablero unTablero) {
 
+        controlador = unControlador;
         tablero = unTablero;
         tablero.registrar(this);
         disponerCasilleros();
@@ -45,7 +47,7 @@ public class PanelConTablero extends GridPane implements ObservadorDelTablero {
 
     private void agregar(Pieza pieza, Indices indices) {
 
-        Group panel = new PanelConPieza(pieza);
+        Group panel = new PanelConPieza(controlador, dibujante, pieza);
         add(panel, indices.deColumna(), indices.deFila());
         GridPane.setValignment(panel, VPos.CENTER);
         GridPane.setHalignment(panel, HPos.CENTER);

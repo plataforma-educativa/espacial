@@ -24,7 +24,7 @@ public class VistaDocumentacion implements Vista {
     }
 
     @Override
-    public Controlador crearControladr(Class<?> clase) {
+    public Controlador crearControlador(Class<?> clase) {
 
         return new ControladorDeDocumentacion();
     }

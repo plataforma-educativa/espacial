@@ -7,18 +7,19 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <BorderPane minHeight="600.0" minWidth="720.0" mouseTransparent="false" pickOnBounds="true" prefHeight="400"
             prefWidth="600" style="&#10;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
             stylesheets="/fx/estilos.css"
             fx:controller="espacial.interfaz.ControladorDePartida">
     <center>
-        <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0"
+        <BorderPane fx:id="panelMarco" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0"
                     prefWidth="200.0">
             <center>
                 <ScrollPane fx:id="panelMarcoTablero" content="$null" pannable="true" prefHeight="200.0"
                             prefWidth="200.0">
                     <BorderPane.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x1"/>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                     </BorderPane.margin>
                 </ScrollPane>
             </center>
@@ -26,7 +27,12 @@
                 <Insets/>
             </padding>
             <right>
-                <fx:include fx:id="panelInformes" source="informes.fxml"/>
+                <ScrollPane fx:id="panelMarcoInformes" styleClass="panelMarcoInformes" pannable="true" vbarPolicy="NEVER" minWidth="0" >
+                    <VBox fx:id="panelInformes" alignment="TOP_CENTER" spacing="10.0"/>
+                    <BorderPane.margin>
+                        <Insets bottom="5.0" left="0.0" right="5.0" top="5.0"/>
+                    </BorderPane.margin>
+                </ScrollPane>
             </right>
         </BorderPane>
     </center>

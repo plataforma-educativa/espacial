@@ -10,7 +10,7 @@ import java.net.URL;
 
 public interface Vista {
 
-    Controlador crearControladr(Class<?> clase);
+    Controlador crearControlador(Class<?> clase);
 
     default Parent cargar(String ruta) {
 
@@ -19,7 +19,7 @@ public interface Vista {
         try {
 
             FXMLLoader cargador = new FXMLLoader(recurso);
-            cargador.setControllerFactory(this::crearControladr);
+            cargador.setControllerFactory(this::crearControlador);
             return cargador.load();
 
         } catch (Exception e) {
