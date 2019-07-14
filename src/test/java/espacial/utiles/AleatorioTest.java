@@ -1,5 +1,7 @@
 package espacial.utiles;
 
+import espacial.excepciones.ErrorEnLaBatallaEspacial;
+import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
@@ -106,5 +108,48 @@ class AleatorioTest implements TestDeContrato {
                     .as("cantidad de valores diferentes generados")
                     .isEqualTo(esperados.length);
         });
+    }
+
+    @Test
+    void consumirDeColeccion() {
+
+        final List<String> valoresDisponibles = new LinkedList<>();
+        final String valor1 = "Pickard";
+        final String valor2 = "Spock";
+        final String valor3 = "Janeway";
+        valoresDisponibles.add(valor1);
+        valoresDisponibles.add(valor2);
+        valoresDisponibles.add(valor3);
+
+        dadoQue(fueCreadoUnAleatorioConsumiendo(valoresDisponibles));
+
+        valoresString.add(unStringAleatorio.obtener());
+        valoresString.add(unStringAleatorio.obtener());
+        valoresString.add(unStringAleatorio.obtener());
+
+        comprobarQue(losValoresEstanDistribuidosEntre(valor1, valor2, valor3));
+        comprobarQue(seConsumieronTodosLos(valoresDisponibles));
+        comprobarQue(generaExcepcion(() -> unStringAleatorio.obtener()));
+    }
+
+    private Precondicion fueCreadoUnAleatorioConsumiendo(List<String> valoresDisponibles) {
+
+        return pre(() -> unStringAleatorio = Aleatorio.consumiendo(valoresDisponibles));
+    }
+
+    private Postcondicion seConsumieronTodosLos(List<String> valoresDisponibles) {
+
+        return post(() -> assertThat(valoresDisponibles).as("valores disponibles").isEmpty());
+    }
+
+    private Postcondicion generaExcepcion(Ejecutable ejecutable) {
+
+        return post(() ->
+
+                assertThatThrownBy(ejecutable::ejecutar)
+                        .as("excepción generada")
+                        .isInstanceOf(ErrorEnLaBatallaEspacial.class)
+                        .hasMessage("No quedan valores aleatorios disponibles")
+        );
     }
 }

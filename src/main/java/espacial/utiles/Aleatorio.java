@@ -1,5 +1,6 @@
 package espacial.utiles;
 
+import java.util.List;
 import java.util.Random;
 
 public abstract class Aleatorio<T> {
@@ -16,5 +17,10 @@ public abstract class Aleatorio<T> {
     public static <T> Aleatorio<T> enLista(T... valores) {
 
         return new AleatorioEnLista(valores);
+    }
+
+    public static <T> Aleatorio<T> consumiendo(List<T> disponibles) {
+
+        return new AleatorioConsumiendo(disponibles);
     }
 }
