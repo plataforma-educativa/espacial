@@ -219,8 +219,8 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     }
 
     @Override
-    public String nombrar() {
+    public Nombre nombrar() {
 
-        return nombre.obtener();
+        return nombre;
     }
 }

@@ -1,5 +1,7 @@
 package espacial;
 
+import espacial.utiles.Nombre;
+
 public interface NaveEspacial extends Pieza, Chocable {
 
     void despegar();
@@ -30,6 +32,5 @@ public interface NaveEspacial extends Pieza, Chocable {
 
     int obtenerNivelDeCarga();
 
-
-    String nombrar();
+    Nombre nombrar();
 }

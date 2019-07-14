@@ -688,7 +688,12 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Postcondicion elNombreEs(String nombreEsperado) {
 
-        return post(() -> assertThat(unCazaEspacial.nombrar()).as("nombre").isEqualTo(nombreEsperado));
+        return post(() ->
+
+                assertThat(unCazaEspacial.nombrar().obtener())
+                        .as("nombre")
+                        .isEqualTo(nombreEsperado)
+        );
     }
 }
 
