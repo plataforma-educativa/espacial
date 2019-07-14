@@ -41,11 +41,26 @@
     -fx-image: url("/img/documentacion_seleccionado.png");
 }
 
-.panelMarcoInformes.scroll-pane > .viewport {
+.scroll-pane.panelMarcoInformes > .viewport {
    -fx-background-color: transparent;
 }
 
-.panelMarcoInformes.scroll-pane {
+.scroll-pane.panelMarcoInformes {
     -fx-border-color: transparent;
     -fx-background-color: transparent;
+}
+
+
+.informe .label.nombre {
+    -fx-font-weight: normal;
+    -fx-padding: 3 5 3 3;
+}
+
+.informe .text-field.valor {
+    -fx-padding: 3 5 3 3;
+}
+
+.informe .button.explicacion {
+    -fx-padding: 3px;
+    -fx-graphic: url("/img/pregunta.png");
 }

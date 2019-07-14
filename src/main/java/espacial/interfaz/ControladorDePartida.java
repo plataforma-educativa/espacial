@@ -1,7 +1,9 @@
 package espacial.interfaz;
 
+import espacial.NaveEspacial;
 import espacial.PartidaEspacial;
 import espacial.Pieza;
+import espacial.Visitante;
 import espacial.interfaz.componentes.PanelConTablero;
 import espacial.interfaz.rasgos.Controlador;
 import espacial.interfaz.rasgos.Vista;
@@ -32,6 +34,24 @@ public class ControladorDePartida implements Controlador {
 
     @FXML
     private VBox panelInformes;
+
+    private final Visitante crearVistaInforme = new Visitante() {
+
+        @Override
+        public void siEsNave(NaveEspacial pieza) {
+
+            if (! vistaInformePorPieza.containsKey(pieza)) {
+
+                vistaInformePorPieza.put(pieza, crearVistaNave(pieza));
+            }
+        }
+
+        private Vista crearVistaNave(NaveEspacial unaNave) {
+
+            return new VistaInformeNave(panelInformes, unaNave).iniciar();
+        }
+    };
+
 
     public ControladorDePartida(PartidaEspacial unaPartida) {
 
@@ -68,11 +88,6 @@ public class ControladorDePartida implements Controlador {
 
     public void fueSeleccionada(Pieza unaPieza) {
 
-        vistaInformePorPieza.computeIfAbsent(unaPieza, this::crearVistaInforme);
-    }
-
-    private Vista crearVistaInforme(Pieza unaPieza) {
-
-        return new VistaInformeNave(panelInformes, unaPieza).iniciar();
+        unaPieza.aceptar(crearVistaInforme);
     }
 }

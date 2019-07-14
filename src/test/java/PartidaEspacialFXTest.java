@@ -17,6 +17,7 @@ class PartidaEspacialFXTest {
         nave2.despegar();
         nave2.avanzarAlSur();
         nave2.avanzarAlSur();
+        nave2.avanzarAlSur();
 
 
         //new Nave().despegar();

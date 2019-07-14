@@ -1,6 +1,6 @@
 package espacial.interfaz;
 
-import espacial.Pieza;
+import espacial.NaveEspacial;
 import espacial.interfaz.rasgos.Controlador;
 import espacial.interfaz.rasgos.Vista;
 import javafx.scene.Parent;
@@ -11,7 +11,7 @@ public class VistaInformeNave implements Vista {
     private final ControladorDeInformePieza controlador;
     private final VBox contenedor;
 
-    public VistaInformeNave(VBox enContenedor, Pieza unaPieza) {
+    public VistaInformeNave(VBox enContenedor, NaveEspacial unaPieza) {
 
         controlador = new ControladorDeInformeNave(unaPieza);
         contenedor = enContenedor;

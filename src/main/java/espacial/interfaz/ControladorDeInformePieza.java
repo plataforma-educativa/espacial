@@ -5,14 +5,14 @@ import espacial.interfaz.rasgos.Controlador;
 import javafx.fxml.FXML;
 import javafx.scene.control.TitledPane;
 
-public abstract class ControladorDeInformePieza implements Controlador {
+public abstract class ControladorDeInformePieza<T extends Pieza> implements Controlador {
 
     @FXML
     protected TitledPane panel;
     
-    protected final Pieza pieza;
+    protected final T pieza;
 
-    public ControladorDeInformePieza(Pieza unaPieza) {
+    public ControladorDeInformePieza(T unaPieza) {
 
         pieza = unaPieza;
     }
