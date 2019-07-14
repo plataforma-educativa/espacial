@@ -6,9 +6,20 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Catálogo de nombres de personalidades.
+ *
+ * Adaptado a partir de:
+ *      https://github.com/docker/engine/blob/master/pkg/namesgenerator/names-generator.go
+ *      "Docker, starting from 0.7.x, generates names from notable scientists and hackers."
+ */
 public abstract class NombresDePersonalidades extends LinkedList<Nombre> {
 
-    private static final Nombre[] NOMBRES = new Nombre[] {
+    private static final Nombre[] NOMBRES = new Nombre[]{
+
+            Nombre.es("Agnesi")
+                    .porque("Maria Gaetana Agnesi - Italian mathematician, philosopher, theologian and humanitarian. She was the first woman to write a mathematics handbook and the first woman appointed as a Mathematics Professor at a University. https://en.wikipedia.org/wiki/Maria_Gaetana_Agnesi")
+                    .obtener(),
 
             Nombre.es("Albattani")
                     .porque("Muhammad ibn Jābir al-Ḥarrānī al-Battānī was a founding father of astronomy. https://en.wikipedia.org/wiki/Mu%E1%B8%A5ammad_ibn_J%C4%81bir_al-%E1%B8%A4arr%C4%81n%C4%AB_al-Batt%C4%81n%C4%AB")
@@ -18,16 +29,13 @@ public abstract class NombresDePersonalidades extends LinkedList<Nombre> {
                     .porque("Frances E. Allen, became the first female IBM Fellow in 1989. In 2006, she became the first female recipient of the ACM's Turing Award. https://en.wikipedia.org/wiki/Frances_E._Allen")
                     .obtener(),
 
+
             Nombre.es("Almeida")
                     .porque("June Almeida - Scottish virologist who took the first pictures of the rubella virus - https://en.wikipedia.org/wiki/June_Almeida")
                     .obtener(),
 
             Nombre.es("Antonelli")
                     .porque("Kathleen Antonelli, American computer programmer and one of the six original programmers of the ENIAC - https://en.wikipedia.org/wiki/Kathleen_Antonelli")
-                    .obtener(),
-
-            Nombre.es("Agnesi")
-                    .porque("Maria Gaetana Agnesi - Italian mathematician, philosopher, theologian and humanitarian. She was the first woman to write a mathematics handbook and the first woman appointed as a Mathematics Professor at a University. https://en.wikipedia.org/wiki/Maria_Gaetana_Agnesi")
                     .obtener(),
 
             Nombre.es("Archimedes")
@@ -178,20 +186,20 @@ public abstract class NombresDePersonalidades extends LinkedList<Nombre> {
                     .porque("Asima Chatterjee was an Indian organic chemist noted for her research on vinca alkaloids, development of drugs for treatment of epilepsy and malaria - https://en.wikipedia.org/wiki/Asima_Chatterjee")
                     .obtener(),
 
-            Nombre.es("Chebyshev")
-                    .porque("Pafnuty Chebyshev - Russian mathematician. He is known fo his works on probability, statistics, mechanics, analytical geometry and number theory https://en.wikipedia.org/wiki/Pafnuty_Chebyshev")
-                    .obtener(),
-
-            Nombre.es("Cohen")
-                    .porque("Bram Cohen - American computer programmer and author of the BitTorrent peer-to-peer protocol. https://en.wikipedia.org/wiki/Bram_Cohen")
-                    .obtener(),
-
             Nombre.es("Chaum")
                     .porque("David Lee Chaum - American computer scientist and cryptographer. Known for his seminal contributions in the field of anonymous communication. https://en.wikipedia.org/wiki/David_Chaum")
                     .obtener(),
 
+            Nombre.es("Chebyshev")
+                    .porque("Pafnuty Chebyshev - Russian mathematician. He is known fo his works on probability, statistics, mechanics, analytical geometry and number theory https://en.wikipedia.org/wiki/Pafnuty_Chebyshev")
+                    .obtener(),
+
             Nombre.es("Clarke")
                     .porque("Joan Clarke - Bletchley Park code breaker during the Second World War who pioneered techniques that remained top secret for decades. Also an accomplished numismatist https://en.wikipedia.org/wiki/Joan_Clarke")
+                    .obtener(),
+
+            Nombre.es("Cohen")
+                    .porque("Bram Cohen - American computer programmer and author of the BitTorrent peer-to-peer protocol. https://en.wikipedia.org/wiki/Bram_Cohen")
                     .obtener(),
 
             Nombre.es("Colden")
@@ -206,12 +214,12 @@ public abstract class NombresDePersonalidades extends LinkedList<Nombre> {
                     .porque("Seymour Roger Cray was an American electrical engineer and supercomputer architect who designed a series of computers that were the fastest in the world for decades. https://en.wikipedia.org/wiki/Seymour_Cray")
                     .obtener(),
 
-            Nombre.es("Curran")
-                    .porque("This entry reflects a husband and wife team who worked together: Joan Curran was a Welsh scientist who developed radar and invented chaff, a radar countermeasure. https://en.wikipedia.org/wiki/Joan_Curran. Samuel Curran was an Irish physicist who worked alongside his wife during WWII and invented the proximity fuse. https://en.wikipedia.org/wiki/Samuel_Curran")
-                    .obtener(),
-
             Nombre.es("Curie")
                     .porque("Marie Curie discovered radioactivity. https://en.wikipedia.org/wiki/Marie_Curie.")
+                    .obtener(),
+
+            Nombre.es("Curran")
+                    .porque("This entry reflects a husband and wife team who worked together: Joan Curran was a Welsh scientist who developed radar and invented chaff, a radar countermeasure. https://en.wikipedia.org/wiki/Joan_Curran. Samuel Curran was an Irish physicist who worked alongside his wife during WWII and invented the proximity fuse. https://en.wikipedia.org/wiki/Samuel_Curran")
                     .obtener(),
 
             Nombre.es("Darwin")
@@ -390,12 +398,12 @@ public abstract class NombresDePersonalidades extends LinkedList<Nombre> {
                     .porque("Stephen Hawking pioneered the field of cosmology by combining general relativity and quantum mechanics. https://en.wikipedia.org/wiki/Stephen_Hawking")
                     .obtener(),
 
-            Nombre.es("Hellman")
-                    .porque("Martin Edward Hellman - American cryptologist, best known for his invention of public-key cryptography in co-operation with Whitfield Diffie and Ralph Merkle. https://en.wikipedia.org/wiki/Martin_Hellman")
-                    .obtener(),
-
             Nombre.es("Heisenberg")
                     .porque("Werner Heisenberg was a founding father of quantum mechanics. https://en.wikipedia.org/wiki/Werner_Heisenberg")
+                    .obtener(),
+
+            Nombre.es("Hellman")
+                    .porque("Martin Edward Hellman - American cryptologist, best known for his invention of public-key cryptography in co-operation with Whitfield Diffie and Ralph Merkle. https://en.wikipedia.org/wiki/Martin_Hellman")
                     .obtener(),
 
             Nombre.es("Hermann")
@@ -606,16 +614,16 @@ public abstract class NombresDePersonalidades extends LinkedList<Nombre> {
                     .porque("Kay McNulty - one of the original programmers of the ENIAC. https://en.wikipedia.org/wiki/ENIAC - https://en.wikipedia.org/wiki/Kathleen_Antonelli")
                     .obtener(),
 
+            Nombre.es("Meitner")
+                    .porque("Lise Meitner - Austrian/Swedish physicist who was involved in the discovery of nuclear fission. The element meitnerium is named after her - https://en.wikipedia.org/wiki/Lise_Meitner")
+                    .obtener(),
+
             Nombre.es("Mendel")
                     .porque("Gregor Johann Mendel - Czech scientist and founder of genetics. https://en.wikipedia.org/wiki/Gregor_Mendel")
                     .obtener(),
 
             Nombre.es("Mendeleev")
                     .porque("Dmitri Mendeleev - a chemist and inventor. He formulated the Periodic Law, created a farsighted version of the periodic table of elements, and used it to correct the properties of some already discovered elements and also to predict the properties of eight elements yet to be discovered. https://en.wikipedia.org/wiki/Dmitri_Mendeleev")
-                    .obtener(),
-
-            Nombre.es("Meitner")
-                    .porque("Lise Meitner - Austrian/Swedish physicist who was involved in the discovery of nuclear fission. The element meitnerium is named after her - https://en.wikipedia.org/wiki/Lise_Meitner")
                     .obtener(),
 
             Nombre.es("Meninsky")
@@ -638,6 +646,10 @@ public abstract class NombresDePersonalidades extends LinkedList<Nombre> {
                     .porque("Maryam Mirzakhani - an Iranian mathematician and the first woman to win the Fields Medal. https://en.wikipedia.org/wiki/Maryam_Mirzakhani")
                     .obtener(),
 
+            Nombre.es("Montalcini")
+                    .porque("Rita Levi-Montalcini - Won Nobel Prize in Physiology or Medicine jointly with colleague Stanley Cohen for the discovery of nerve growth factor (https://en.wikipedia.org/wiki/Rita_Levi-Montalcini)")
+                    .obtener(),
+
             Nombre.es("Moore")
                     .porque("Gordon Earle Moore - American engineer, Silicon Valley founding father, author of Moore's law. https://en.wikipedia.org/wiki/Gordon_Moore")
                     .obtener(),
@@ -646,116 +658,112 @@ public abstract class NombresDePersonalidades extends LinkedList<Nombre> {
                     .porque("Samuel Morse - contributed to the invention of a single-wire telegraph system based on European telegraphs and was a co-developer of the Morse code - https://en.wikipedia.org/wiki/Samuel_Morse")
                     .obtener(),
 
-            Nombre.es("Murdock")
-                    .porque("Ian Murdock - founder of the Debian project - https://en.wikipedia.org/wiki/Ian_Murdock")
-                    .obtener(),
-
             Nombre.es("Moser")
                     .porque("May-Britt Moser - Nobel prize winner neuroscientist who contributed to the discovery of grid cells in the brain. https://en.wikipedia.org/wiki/May-Britt_Moser")
                     .obtener(),
 
-            Nombre.es("napier")
+            Nombre.es("Murdock")
+                    .porque("Ian Murdock - founder of the Debian project - https://en.wikipedia.org/wiki/Ian_Murdock")
+                    .obtener(),
+
+            Nombre.es("Napier")
                     .porque("John Napier of Merchiston - Scottish landowner known as an astronomer, mathematician and physicist. Best known for his discovery of logarithms. https://en.wikipedia.org/wiki/John_Napier")
                     .obtener(),
 
-            Nombre.es("nash")
+            Nombre.es("Nash")
                     .porque("John Forbes Nash, Jr. - American mathematician who made fundamental contributions to game theory, differential geometry, and the study of partial differential equations. https://en.wikipedia.org/wiki/John_Forbes_Nash_Jr.")
                     .obtener(),
 
-            Nombre.es("neumann")
+            Nombre.es("Neumann")
                     .porque("John von Neumann - todays computer architectures are based on the von Neumann architecture. https://en.wikipedia.org/wiki/Von_Neumann_architecture")
                     .obtener(),
 
-            Nombre.es("newton")
+            Nombre.es("Newton")
                     .porque("Isaac Newton invented classic mechanics and modern optics. https://en.wikipedia.org/wiki/Isaac_Newton")
                     .obtener(),
 
-            Nombre.es("nightingale")
+            Nombre.es("Nightingale")
                     .porque("Florence Nightingale, more prominently known as a nurse, was also the first female member of the Royal Statistical Society and a pioneer in statistical graphics https://en.wikipedia.org/wiki/Florence_Nightingale#Statistics_and_sanitary_reform")
                     .obtener(),
 
-            Nombre.es("nobel")
+            Nombre.es("Nobel")
                     .porque("Alfred Nobel - a Swedish chemist, engineer, innovator, and armaments manufacturer (inventor of dynamite) - https://en.wikipedia.org/wiki/Alfred_Nobel")
                     .obtener(),
 
-            Nombre.es("noether")
+            Nombre.es("Noether")
                     .porque("Emmy Noether, German mathematician. Noether's Theorem is named after her. https://en.wikipedia.org/wiki/Emmy_Noether")
                     .obtener(),
 
-            Nombre.es("northcutt")
+            Nombre.es("Northcutt")
                     .porque("Poppy Northcutt. Poppy Northcutt was the first woman to work as part of NASA’s Mission Control. http://www.businessinsider.com/poppy-northcutt-helped-apollo-astronauts-2014-12?op=1")
                     .obtener(),
 
-            Nombre.es("noyce")
+            Nombre.es("Noyce")
                     .porque("Robert Noyce invented silicone integrated circuits and gave Silicon Valley its name. - https://en.wikipedia.org/wiki/Robert_Noyce")
                     .obtener(),
 
-            Nombre.es("panini")
+            Nombre.es("Panini")
                     .porque("Panini - Ancient Indian linguist and grammarian from 4th century CE who worked on the world's first formal system - https://en.wikipedia.org/wiki/P%C4%81%E1%B9%87ini#Comparison_with_modern_formal_systems")
                     .obtener(),
 
-            Nombre.es("pare")
+            Nombre.es("Pare")
                     .porque("Ambroise Pare invented modern surgery. https://en.wikipedia.org/wiki/Ambroise_Par%C3%A9")
                     .obtener(),
 
-            Nombre.es("pascal")
+            Nombre.es("Pascal")
                     .porque("Blaise Pascal, French mathematician, physicist, and inventor - https://en.wikipedia.org/wiki/Blaise_Pascal")
                     .obtener(),
 
-            Nombre.es("pasteur")
+            Nombre.es("Pasteur")
                     .porque("Louis Pasteur discovered vaccination, fermentation and pasteurization. https://en.wikipedia.org/wiki/Louis_Pasteur.")
                     .obtener(),
 
-            Nombre.es("payne")
+            Nombre.es("Payne")
                     .porque("Cecilia Payne-Gaposchkin was an astronomer and astrophysicist who, in 1925, proposed in her Ph.D. thesis an explanation for the composition of stars in terms of the relative abundances of hydrogen and helium. https://en.wikipedia.org/wiki/Cecilia_Payne-Gaposchkin")
                     .obtener(),
 
-            Nombre.es("perlman")
+            Nombre.es("Perlman")
                     .porque("Radia Perlman is a software designer and network engineer and most famous for her invention of the spanning-tree protocol (STP). https://en.wikipedia.org/wiki/Radia_Perlman")
                     .obtener(),
 
-            Nombre.es("pike")
+            Nombre.es("Pike")
                     .porque("Rob Pike was a key contributor to Unix, Plan 9, the X graphic system, utf-8, and the Go programming language. https://en.wikipedia.org/wiki/Rob_Pike")
                     .obtener(),
 
-            Nombre.es("poincare")
+            Nombre.es("Poincare")
                     .porque("Henri Poincaré made fundamental contributions in several fields of mathematics. https://en.wikipedia.org/wiki/Henri_Poincar%C3%A9")
                     .obtener(),
 
-            Nombre.es("poitras")
+            Nombre.es("Poitras")
                     .porque("Laura Poitras is a director and producer whose work, made possible by open source crypto tools, advances the causes of truth and freedom of information by reporting disclosures by whistleblowers such as Edward Snowden. https://en.wikipedia.org/wiki/Laura_Poitras")
                     .obtener(),
 
-            Nombre.es("proskuriakova")
+            Nombre.es("Proskuriakova")
                     .porque("Tat’yana Avenirovna Proskuriakova (Russian: Татья́на Авени́ровна Проскуряко́ва) (January 23 [O.S. January 10] 1909 – August 30, 1985) was a Russian-American Mayanist scholar and archaeologist who contributed significantly to the deciphering of Maya hieroglyphs, the writing system of the pre-Columbian Maya civilization of Mesoamerica. https://en.wikipedia.org/wiki/Tatiana_Proskouriakoff")
                     .obtener(),
 
-            Nombre.es("ptolemy")
+            Nombre.es("Ptolemy")
                     .porque("Claudius Ptolemy - a Greco-Egyptian writer of Alexandria, known as a mathematician, astronomer, geographer, astrologer, and poet of a single epigram in the Greek Anthology - https://en.wikipedia.org/wiki/Ptolemy")
                     .obtener(),
 
-            Nombre.es("raman")
+            Nombre.es("Raman")
                     .porque("C. V. Raman - Indian physicist who won the Nobel Prize in 1930 for proposing the Raman effect. - https://en.wikipedia.org/wiki/C._V._Raman")
                     .obtener(),
 
-            Nombre.es("ramanujan")
+            Nombre.es("Ramanujan")
                     .porque("Srinivasa Ramanujan - Indian mathematician and autodidact who made extraordinary contributions to mathematical analysis, number theory, infinite series, and continued fractions. - https://en.wikipedia.org/wiki/Srinivasa_Ramanujan")
-                    .obtener(),
-
-            Nombre.es("ride")
-                    .porque("Sally Kristen Ride was an American physicist and astronaut. She was the first American woman in space, and the youngest American astronaut. https://en.wikipedia.org/wiki/Sally_Ride")
-                    .obtener(),
-
-            Nombre.es("Montalcini")
-                    .porque("Rita Levi-Montalcini - Won Nobel Prize in Physiology or Medicine jointly with colleague Stanley Cohen for the discovery of nerve growth factor (https://en.wikipedia.org/wiki/Rita_Levi-Montalcini)")
-                    .obtener(),
-
-            Nombre.es("Ritchie")
-                    .porque("Dennis Ritchie - co-creator of UNIX and the C programming language. - https://en.wikipedia.org/wiki/Dennis_Ritchie")
                     .obtener(),
 
             Nombre.es("Rhodes")
                     .porque("Ida Rhodes - American pioneer in computer programming, designed the first computer used for Social Security. https://en.wikipedia.org/wiki/Ida_Rhodes")
+                    .obtener(),
+
+            Nombre.es("Ride")
+                    .porque("Sally Kristen Ride was an American physicist and astronaut. She was the first American woman in space, and the youngest American astronaut. https://en.wikipedia.org/wiki/Sally_Ride")
+                    .obtener(),
+
+            Nombre.es("Ritchie")
+                    .porque("Dennis Ritchie - co-creator of UNIX and the C programming language. - https://en.wikipedia.org/wiki/Dennis_Ritchie")
                     .obtener(),
 
             Nombre.es("Robinson")
@@ -894,16 +902,16 @@ public abstract class NombresDePersonalidades extends LinkedList<Nombre> {
                     .porque("Dorothy Vaughan was a NASA mathematician and computer programmer on the SCOUT launch vehicle program that put America's first satellites into space - https://en.wikipedia.org/wiki/Dorothy_Vaughan")
                     .obtener(),
 
+            Nombre.es("Villani")
+                    .porque("Cédric Villani - French mathematician, won Fields Medal, Fermat Prize and Poincaré Price for his work in differential geometry and statistical mechanics. https://en.wikipedia.org/wiki/C%C3%A9dric_Villani")
+                    .obtener(),
+
             Nombre.es("Visvesvaraya")
                     .porque("Sir Mokshagundam Visvesvaraya - is a notable Indian engineer.  He is a recipient of the Indian Republic's highest honour, the Bharat Ratna, in 1955. On his birthday, 15 September is celebrated as Engineer's Day in India in his memory - https://en.wikipedia.org/wiki/Visvesvaraya")
                     .obtener(),
 
             Nombre.es("Volhard")
                     .porque("Christiane Nüsslein-Volhard - German biologist, won Nobel Prize in Physiology or Medicine in 1995 for research on the genetic control of embryonic development. https://en.wikipedia.org/wiki/Christiane_N%C3%BCsslein-Volhard")
-                    .obtener(),
-
-            Nombre.es("Villani")
-                    .porque("Cédric Villani - French mathematician, won Fields Medal, Fermat Prize and Poincaré Price for his work in differential geometry and statistical mechanics. https://en.wikipedia.org/wiki/C%C3%A9dric_Villani")
                     .obtener(),
 
             Nombre.es("Wescoff")
