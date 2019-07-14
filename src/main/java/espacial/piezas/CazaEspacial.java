@@ -15,10 +15,12 @@ import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.piezas.rasgos.NaveChocable;
 import espacial.piezas.rasgos.NaveDeCarga;
 import espacial.piezas.rasgos.PiezaAtacable;
+import espacial.utiles.Nombre;
 import espacial.utiles.Referencia;
 
 public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, PiezaAtacable {
 
+    private final Nombre nombre;
     private final Indicador nivelDeEscudos = new Indicador(100);
     private final Artilleria artilleria = new Artilleria(100);
     private final Bodega bodega = new Bodega(obtenerCapacidad());
@@ -27,6 +29,12 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
 
     public CazaEspacial() {
 
+        this(null);
+    }
+
+    public CazaEspacial(Nombre unNombre) {
+
+        nombre = unNombre;
         nivelDeEscudos.cuandoSeAgota(this::fueDestruido);
         amarre.siEsNuloAlObtener(this::lanzarExcepcionPorqueLaNaveNoEstaEnLaBase);
         casillero.siEsNuloAlObtener(this::lanzarExcepcionPorqueNoDespego);
@@ -208,5 +216,11 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     public String toString() {
 
         return describir();
+    }
+
+    @Override
+    public String nombrar() {
+
+        return nombre.obtener();
     }
 }

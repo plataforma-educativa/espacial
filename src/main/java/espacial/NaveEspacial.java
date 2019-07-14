@@ -29,4 +29,7 @@ public interface NaveEspacial extends Pieza, Chocable {
     }
 
     int obtenerNivelDeCarga();
+
+
+    String nombrar();
 }

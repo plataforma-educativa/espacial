@@ -126,6 +126,7 @@ class BatallaEspacialTest implements TestDeContrato {
 
         comprobarQue(entreLasNavesDeLaBatallaEsta(UNA_NAVE));
         comprobarQue(enLaBaseEsta(piezaResultante));
+        comprobarQue(tieneNombre(piezaResultante));
     }
 
     private Precondicion fueCreadaLaBatalla() {
@@ -151,7 +152,40 @@ class BatallaEspacialTest implements TestDeContrato {
 
             pieza.despegar();
             pieza.moverEn(Direccion.NORTE);
+
+            assertThat(batalla.obtenerTablero()).tieneNave().en(1, 0);
         });
     }
 
+    private Postcondicion tieneNombre(NaveEspacial pieza) {
+
+        return post(() -> assertThat(pieza.nombrar()).as("nombre").isNotNull());
+    }
+
+    @Test
+    void intervenirConMultiplesNaves() {
+
+        final Nave nave1 = mock(Nave.class, "NAVE 1");
+        final Nave nave2 = mock(Nave.class, "NAVE 2");
+        final Nave nave3 = mock(Nave.class, "NAVE 3");
+        final Nave nave4 = mock(Nave.class, "NAVE 4");
+
+        dadoQue(fueCreadaLaBatalla());
+
+        NaveEspacial pieza1 = batalla.intervenirCon(nave1);
+        NaveEspacial pieza2 = batalla.intervenirCon(nave2);
+        NaveEspacial pieza3 = batalla.intervenirCon(nave3);
+        NaveEspacial pieza4 = batalla.intervenirCon(nave4);
+
+        comprobarQue(entreLasNavesDeLaBatallaEsta(nave1));
+        comprobarQue(entreLasNavesDeLaBatallaEsta(nave2));
+        comprobarQue(entreLasNavesDeLaBatallaEsta(nave3));
+        comprobarQue(entreLasNavesDeLaBatallaEsta(nave4));
+        comprobarQue(tienenNombresDiferentes(pieza1, pieza2, pieza3, pieza4));
+    }
+
+    private Postcondicion tienenNombresDiferentes(NaveEspacial... piezas) {
+
+        return post(() -> assertThat(piezas).extracting(NaveEspacial::nombrar).doesNotHaveDuplicates());
+    }
 }

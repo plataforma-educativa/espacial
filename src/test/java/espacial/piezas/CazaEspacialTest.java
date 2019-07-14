@@ -15,6 +15,7 @@ import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.test.Ejecutable;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
+import espacial.utiles.Nombre;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -669,6 +670,25 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
                         .as("nivel de carga")
                         .isEqualTo(nivel)
         );
+    }
+
+    @Test
+    void nombrar() {
+
+        final String ALFA_I = "ALFA I";
+        dadoQue(fueCreadoUnCazaEspacialConElNombre(ALFA_I));
+
+        comprobarQue(elNombreEs(ALFA_I));
+    }
+
+    private Precondicion fueCreadoUnCazaEspacialConElNombre(String nombre) {
+
+        return pre(() -> unCazaEspacial = new CazaEspacial(Nombre.es(nombre).obtener()));
+    }
+
+    private Postcondicion elNombreEs(String nombreEsperado) {
+
+        return post(() -> assertThat(unCazaEspacial.nombrar()).as("nombre").isEqualTo(nombreEsperado));
     }
 }
 
