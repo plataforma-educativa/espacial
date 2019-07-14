@@ -1,5 +1,6 @@
 package espacial.tableros;
 
+import espacial.NaveEspacial;
 import espacial.Visitante;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
@@ -32,7 +33,7 @@ class EstadoDelCasilleroAlOcuparConTest extends EstadoDelCasilleroTest {
         return pre(() ->
                 doAnswer(invocation -> {
 
-                    invocation.getArgument(0, Visitante.class).siEsNave(PIEZA);
+                    invocation.getArgument(0, Visitante.class).siEsNave((NaveEspacial) PIEZA);
                     return null;
 
                 }).when(PIEZA).aceptar(any(Visitante.class)));

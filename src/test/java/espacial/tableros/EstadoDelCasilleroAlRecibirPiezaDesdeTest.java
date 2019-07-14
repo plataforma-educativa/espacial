@@ -1,5 +1,6 @@
 package espacial.tableros;
 
+import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.Visitante;
 import espacial.test.Postcondicion;
@@ -72,7 +73,7 @@ class EstadoDelCasilleroAlRecibirPiezaDesdeTest extends EstadoDelCasilleroTest {
 
             doAnswer(invocacion -> {
 
-                invocacion.getArgument(0, Visitante.class).siEsNave(PIEZA_EN_ORIGEN);
+                invocacion.getArgument(0, Visitante.class).siEsNave((NaveEspacial) PIEZA_EN_ORIGEN);
                 return null;
 
             }).when(PIEZA_EN_ORIGEN).aceptar(any(Visitante.class));

@@ -1,5 +1,6 @@
 package espacial.interfaz.componentes;
 
+import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.Visitante;
 import javafx.scene.Node;
@@ -25,7 +26,7 @@ public class DibujarImagenPorTipo implements DibujarImagen, Visitante {
     }
 
     @Override
-    public void siEsNave(Pieza pieza) {
+    public void siEsNave(NaveEspacial pieza) {
 
         dibujo = dibujarNave.de(pieza);
     }

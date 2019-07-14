@@ -1,5 +1,6 @@
 package espacial.tableros;
 
+import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.Visitante;
 
@@ -20,10 +21,9 @@ public class OcuparCasilleroVacio implements Visitante {
     }
 
     @Override
-    public void siEsNave(Pieza pieza) {
+    public void siEsNave(NaveEspacial pieza) {
 
         estaOcupado(pieza);
-
     }
 
     @Override

@@ -6,7 +6,7 @@ public interface Visitante {
 
     }
 
-    default void siEsNave(Pieza pieza) {
+    default void siEsNave(NaveEspacial pieza) {
 
     }
 
