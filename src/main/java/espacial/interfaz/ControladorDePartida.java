@@ -16,13 +16,9 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-import java.util.Map;
-
 public class ControladorDePartida implements Controlador {
 
     private final PartidaEspacial partida;
-
-    private final Map<Pieza, Vista> vistaInformePorPieza;
 
     @FXML
     private BorderPane panelMarco;
@@ -37,6 +33,17 @@ public class ControladorDePartida implements Controlador {
     private VBox panelInformes;
 
     private final Visitante crearVistaInforme = new Visitante() {
+
+        private final ObservableMap<Pieza, Vista> vistaInformePorPieza = FXCollections.observableHashMap();
+
+        {
+            vistaInformePorPieza.addListener(this::alAgregarUnaVistaInforme);
+        }
+
+        private void alAgregarUnaVistaInforme(Change<? extends Pieza, ? extends Vista> cambio) {
+
+            panelMarco.setRight(panelMarcoInformes);
+        }
 
         @Override
         public void siEsNave(NaveEspacial pieza) {
@@ -63,15 +70,6 @@ public class ControladorDePartida implements Controlador {
     public ControladorDePartida(PartidaEspacial unaPartida) {
 
         partida = unaPartida;
-        vistaInformePorPieza = crearVistaInformePorPieza();
-    }
-
-    private Map<Pieza, Vista> crearVistaInformePorPieza() {
-
-        ObservableMap<Pieza, Vista> mapa = FXCollections.observableHashMap();
-        mapa.addListener((Change<? extends Pieza, ? extends Vista> cambio) -> panelMarco.setRight(panelMarcoInformes));
-
-        return mapa;
     }
 
     @FXML
