@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<TitledPane fx:id="panel" animated="false" xmlns:fx="http://javafx.com/fxml/1"
+            xmlns="http://javafx.com/javafx/8"
+            fx:controller="espacial.interfaz.ControladorDeInformeBase"
+            styleClass="informe">
+    <text>
+        Base
+    </text>
+    <content>
+        <GridPane id="GridPane" hgap="1">
+            <children>
+                <Separator GridPane.columnIndex="0" GridPane.rowIndex="0"
+                           GridPane.valignment="CENTER"/>
+                <Label text="Bodega" styleClass="seccion"
+                       GridPane.columnIndex="1" GridPane.rowIndex="0"
+                       GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
+                       GridPane.columnSpan="2"/>
+                <Label text="Antimateria" styleClass="nombre"
+                       GridPane.columnIndex="0" GridPane.rowIndex="1"
+                       GridPane.valignment="CENTER"/>
+                <TextField fx:id="antimateria" styleClass="valorNumero" editable="false" maxWidth="100"
+                           GridPane.columnIndex="1" GridPane.rowIndex="1"
+                           GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
+                           GridPane.columnSpan="2"/>
+                <Label text="Cristal" styleClass="nombre"
+                       GridPane.columnIndex="0" GridPane.rowIndex="2"
+                       GridPane.valignment="CENTER"/>
+                <TextField fx:id="cristal" styleClass="valorNumero" editable="false" maxWidth="100"
+                           GridPane.columnIndex="1" GridPane.rowIndex="2"
+                           GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
+                           GridPane.columnSpan="2"/>
+                <Label text="Metal" styleClass="nombre"
+                       GridPane.columnIndex="0" GridPane.rowIndex="3"
+                       GridPane.valignment="CENTER"/>
+                <TextField fx:id="metal" styleClass="valorNumero" editable="false" maxWidth="100"
+                           GridPane.columnIndex="1" GridPane.rowIndex="3"
+                           GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
+                           GridPane.columnSpan="2"/>
+            </children>
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="25.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="25.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="22.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="22.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+        </GridPane>
+    </content>
+</TitledPane>

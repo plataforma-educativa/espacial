@@ -50,6 +50,21 @@ public class ControladorDePartida implements Controlador {
 
             return new VistaInformeNave(panelInformes, unaNave).iniciar();
         }
+
+        @Override
+        public void siEsBase(Pieza pieza) {
+
+            if (! vistaInformePorPieza.containsKey(pieza)) {
+
+                vistaInformePorPieza.put(pieza, crearVistaBase(pieza));
+            }
+        }
+
+        private Vista crearVistaBase(Pieza unaBase) {
+
+            return new VistaInformeBase(panelInformes, unaBase).iniciar();
+        }
+
     };
 
 

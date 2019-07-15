@@ -42,36 +42,38 @@
                        GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
                        GridPane.columnSpan="2"/>
                 <Label text="Laser" styleClass="nombre"
-                       GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.valignment="CENTER"/>
-                <TextField fx:id="laser" text="1" styleClass="valorNumero" editable="false" maxWidth="100"
-                           GridPane.columnIndex="1" GridPane.rowIndex="3"
-                           GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
-                           GridPane.columnSpan="2"/>
+                       GridPane.columnIndex="0" GridPane.rowIndex="3"
+                       GridPane.valignment="CENTER"/>
                 <Label text="Torpedos" styleClass="nombre"
-                       GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
+                       GridPane.columnIndex="0" GridPane.rowIndex="4"
+                       GridPane.valignment="CENTER"/>
                 <TextField fx:id="torpedos" styleClass="valorNumero" editable="false" maxWidth="100"
                            GridPane.columnIndex="1" GridPane.rowIndex="4"
                            GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
                            GridPane.columnSpan="2"/>
-                <Separator GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.valignment="CENTER"/>
+                <Separator GridPane.columnIndex="0" GridPane.rowIndex="5"
+                           GridPane.valignment="CENTER"/>
                 <Label text="Bodega" styleClass="seccion"
                        GridPane.columnIndex="1" GridPane.rowIndex="5"
                        GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
                        GridPane.columnSpan="2"/>
                 <Label text="Antimateria" styleClass="nombre"
-                       GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.valignment="CENTER"/>
+                       GridPane.columnIndex="0" GridPane.rowIndex="6"
+                       GridPane.valignment="CENTER"/>
                 <TextField fx:id="antimateria" styleClass="valorNumero" editable="false" maxWidth="100"
                            GridPane.columnIndex="1" GridPane.rowIndex="6"
                            GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
                            GridPane.columnSpan="2"/>
                 <Label text="Cristal" styleClass="nombre"
-                       GridPane.columnIndex="0" GridPane.rowIndex="7" GridPane.valignment="CENTER"/>
+                       GridPane.columnIndex="0" GridPane.rowIndex="7"
+                       GridPane.valignment="CENTER"/>
                 <TextField fx:id="cristal" styleClass="valorNumero" editable="false" maxWidth="100"
                            GridPane.columnIndex="1" GridPane.rowIndex="7"
                            GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
                            GridPane.columnSpan="2"/>
                 <Label text="Metal" styleClass="nombre"
-                       GridPane.columnIndex="0" GridPane.rowIndex="8" GridPane.valignment="CENTER"/>
+                       GridPane.columnIndex="0" GridPane.rowIndex="8"
+                       GridPane.valignment="CENTER"/>
                 <TextField fx:id="metal" styleClass="valorNumero" editable="false" maxWidth="100"
                            GridPane.columnIndex="1" GridPane.rowIndex="8"
                            GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
