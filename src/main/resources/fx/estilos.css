@@ -50,14 +50,26 @@
     -fx-background-color: transparent;
 }
 
-
 .informe .label.nombre {
     -fx-font-weight: normal;
-    -fx-padding: 3 5 3 3;
 }
 
-.informe .text-field.valor {
-    -fx-padding: 3 5 3 3;
+.informe #nombre {
+    -fx-font-weight: bold;
+}
+
+.informe .label.seccion {
+    -fx-font-weight: bold;
+    -fx-font-size: 0.8em;
+    -fx-padding: 3 0 3 0;
+    -fx-text-alignment: right;
+    -fx-alignment: baseline-right;
+}
+
+.informe .text-field.valorNumero {
+    -fx-padding: 2 5 2 5;
+    -fx-alignment: baseline-right;
+    -fx-max-width: 50px;
 }
 
 .informe .button.explicacion {

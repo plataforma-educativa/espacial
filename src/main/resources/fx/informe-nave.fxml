@@ -17,39 +17,81 @@
         Nave
     </text>
     <content>
-        <GridPane id="GridPane" hgap="2">
+        <GridPane id="GridPane" hgap="1">
             <children>
-                <Label text="Nombre" styleClass="nombre"
-                       GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.valignment="CENTER"/>
-                <TextField fx:id="nombre" styleClass="valor" editable="false" maxWidth="80"
-                           GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.valignment="CENTER">
-                </TextField>
+                <Label fx:id="nombre" styleClass="nombre"
+                       GridPane.columnIndex="0" GridPane.rowIndex="0"
+                       GridPane.valignment="CENTER" GridPane.halignment="LEFT"
+                       GridPane.columnSpan="2"/>
                 <Button styleClass="explicacion"
-                        GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.valignment="CENTER"
+                        GridPane.columnIndex="2" GridPane.rowIndex="0"
+                        GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
                         onAction="#mostrarExplicacion"/>
-                <Label text="Escudos" styleClass="nombre"
-                       GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.valignment="CENTER"/>
-                <ProgressBar fx:id="nivelEscudos" maxWidth="120"
-                             GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="CENTER"
-                             GridPane.columnSpan="2"/>
-                <Label text="Arsenal" styleClass="nombre"
-                       GridPane.columnIndex="0" GridPane.rowIndex="2" GridPane.valignment="CENTER"/>
-                <Separator GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.valignment="CENTER"
-                           GridPane.columnSpan="2"/>
-                <Label text="Carga" styleClass="nombre"
+                <ProgressBar fx:id="nivelEscudos" styleClass="valorNumero" maxWidth="150" minHeight="24"
+                             GridPane.columnIndex="0" GridPane.rowIndex="1"
+                             GridPane.valignment="CENTER"
+                             GridPane.columnSpan="3"/>
+                <Label text=" Escudos" styleClass="nombre"
+                       GridPane.columnIndex="0" GridPane.rowIndex="1"
+                       GridPane.valignment="CENTER" GridPane.halignment="LEFT"
+                       GridPane.columnSpan="3"/>
+                <Separator GridPane.columnIndex="0" GridPane.rowIndex="2"
+                           GridPane.valignment="CENTER"/>
+                <Label text="Arsenal" styleClass="seccion"
+                       GridPane.columnIndex="1" GridPane.rowIndex="2"
+                       GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
+                       GridPane.columnSpan="2"/>
+                <Label text="Laser" styleClass="nombre"
                        GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.valignment="CENTER"/>
-                <Separator GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.valignment="CENTER"
+                <TextField fx:id="laser" text="1" styleClass="valorNumero" editable="false" maxWidth="100"
+                           GridPane.columnIndex="1" GridPane.rowIndex="3"
+                           GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
+                           GridPane.columnSpan="2"/>
+                <Label text="Torpedos" styleClass="nombre"
+                       GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
+                <TextField fx:id="torpedos" styleClass="valorNumero" editable="false" maxWidth="100"
+                           GridPane.columnIndex="1" GridPane.rowIndex="4"
+                           GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
+                           GridPane.columnSpan="2"/>
+                <Separator GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.valignment="CENTER"/>
+                <Label text="Bodega" styleClass="seccion"
+                       GridPane.columnIndex="1" GridPane.rowIndex="5"
+                       GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
+                       GridPane.columnSpan="2"/>
+                <Label text="Antimateria" styleClass="nombre"
+                       GridPane.columnIndex="0" GridPane.rowIndex="6" GridPane.valignment="CENTER"/>
+                <TextField fx:id="antimateria" styleClass="valorNumero" editable="false" maxWidth="100"
+                           GridPane.columnIndex="1" GridPane.rowIndex="6"
+                           GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
+                           GridPane.columnSpan="2"/>
+                <Label text="Cristal" styleClass="nombre"
+                       GridPane.columnIndex="0" GridPane.rowIndex="7" GridPane.valignment="CENTER"/>
+                <TextField fx:id="cristal" styleClass="valorNumero" editable="false" maxWidth="100"
+                           GridPane.columnIndex="1" GridPane.rowIndex="7"
+                           GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
+                           GridPane.columnSpan="2"/>
+                <Label text="Metal" styleClass="nombre"
+                       GridPane.columnIndex="0" GridPane.rowIndex="8" GridPane.valignment="CENTER"/>
+                <TextField fx:id="metal" styleClass="valorNumero" editable="false" maxWidth="100"
+                           GridPane.columnIndex="1" GridPane.rowIndex="8"
+                           GridPane.valignment="CENTER" GridPane.halignment="RIGHT"
                            GridPane.columnSpan="2"/>
             </children>
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="15.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="15.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="30.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"/>
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="25.0" vgrow="SOMETIMES"/>
                 <RowConstraints minHeight="25.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="25.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="25.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="22.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="22.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="22.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="22.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="22.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="22.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="22.0" vgrow="SOMETIMES"/>
             </rowConstraints>
         </GridPane>
     </content>

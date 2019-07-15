@@ -1,6 +1,7 @@
 package espacial.interfaz;
 
 import espacial.NaveEspacial;
+import espacial.SustanciaEspacial;
 import espacial.utiles.Nombre;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,16 +15,22 @@ import javafx.scene.layout.BorderPane;
 public class ControladorDeInformeNave extends ControladorDeInformePieza<NaveEspacial> {
 
     @FXML
-    private TextField nombre;
+    private Label nombre;
 
     @FXML
     private ProgressBar nivelEscudos;
 
     @FXML
-    private Label carga;
-    
+    private TextField torpedos;
+
     @FXML
-    private Label arsenal;
+    private TextField antimateria;
+
+    @FXML
+    private TextField cristal;
+
+    @FXML
+    private TextField metal;
 
     public ControladorDeInformeNave(NaveEspacial unaPieza) {
 
@@ -37,6 +44,15 @@ public class ControladorDeInformeNave extends ControladorDeInformePieza<NaveEspa
 
         nombre.setText(nombreDeLaNave.obtener());
         nivelEscudos.setProgress(pieza.obtenerNivelDeEscudos() / 100.0);
+        torpedos.setText(comoTexto(pieza.obtenerCantidadDeTorpedosDeFotones()));
+        antimateria.setText(comoTexto(pieza.buscar(SustanciaEspacial.ANTIMATERIA)));
+        cristal.setText(comoTexto(pieza.buscar(SustanciaEspacial.CRISTAL)));
+        metal.setText(comoTexto(pieza.buscar(SustanciaEspacial.METAL)));
+    }
+
+    private String comoTexto(int cantidad) {
+
+        return String.valueOf(cantidad);
     }
 
     public void mostrarExplicacion(ActionEvent actionEvent) {
