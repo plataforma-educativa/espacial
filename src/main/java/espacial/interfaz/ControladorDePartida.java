@@ -7,6 +7,7 @@ import espacial.Visitante;
 import espacial.interfaz.componentes.PanelConTablero;
 import espacial.interfaz.rasgos.Controlador;
 import espacial.interfaz.rasgos.Vista;
+import espacial.utiles.Proveedor;
 import javafx.collections.FXCollections;
 import javafx.collections.MapChangeListener.Change;
 import javafx.collections.ObservableMap;
@@ -40,33 +41,24 @@ public class ControladorDePartida implements Controlador {
         @Override
         public void siEsNave(NaveEspacial pieza) {
 
-            if (! vistaInformePorPieza.containsKey(pieza)) {
-
-                vistaInformePorPieza.put(pieza, crearVistaNave(pieza));
-            }
-        }
-
-        private Vista crearVistaNave(NaveEspacial unaNave) {
-
-            return new VistaInformeNave(panelInformes, unaNave).iniciar();
+            agregarVistaSiNoExiste(pieza, () -> new VistaInformeNave(panelInformes, pieza).iniciar());
         }
 
         @Override
         public void siEsBase(Pieza pieza) {
 
+            agregarVistaSiNoExiste(pieza, () -> new VistaInformeBase(panelInformes, pieza).iniciar());
+        }
+
+        private void agregarVistaSiNoExiste(Pieza pieza, Proveedor<Vista> proveedorDeVista) {
+
             if (! vistaInformePorPieza.containsKey(pieza)) {
 
-                vistaInformePorPieza.put(pieza, crearVistaBase(pieza));
+                vistaInformePorPieza.put(pieza, proveedorDeVista.obtener());
             }
         }
 
-        private Vista crearVistaBase(Pieza unaBase) {
-
-            return new VistaInformeBase(panelInformes, unaBase).iniciar();
-        }
-
     };
-
 
     public ControladorDePartida(PartidaEspacial unaPartida) {
 
