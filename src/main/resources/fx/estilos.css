@@ -58,6 +58,10 @@
     -fx-font-weight: bold;
 }
 
+.informe .progress-bar > .bar {
+    -fx-background-color: linear-gradient(to bottom, derive(#00AA22FF, -15%), #00AA22FF, derive(#00AA22FF, 30%), #00AA22FF, derive(#00AA22FF, -15%));
+}
+
 .informe .label.seccion {
     -fx-font-weight: bold;
     -fx-font-size: 0.8em;
