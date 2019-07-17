@@ -7,7 +7,7 @@ import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.ExcedeElLugarDisponible;
-import espacial.test.Ejecutable;
+import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import org.junit.jupiter.api.Test;
@@ -40,7 +40,7 @@ class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     @Override
     Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
-        return post(() -> verify(NAVE_ESPACIAL).chocoContraUnaBase());
+        return post(condicion ->  verify(NAVE_ESPACIAL).chocoContraUnaBase());
     }
 
     @Test
@@ -55,7 +55,7 @@ class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
     private Precondicion unaBaseFueCreadaYColocadaEnCasillero() {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             unaBase = new BaseEspacial();
             unaBase.fueColocadaEn(CASILLERO);
@@ -64,7 +64,7 @@ class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
     private Postcondicion unaBaseTieneAmarradaLaNave() {
 
-        return post(() -> {
+        return post(condicion ->  {
 
             Amarre amarre = unaBase.obtenerAmarres()[0];
 
@@ -91,7 +91,7 @@ class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
     private Postcondicion unaBaseTieneAmarradasLasNavesAlfaBetaGamma() {
 
-        return post(() ->
+        return post(condicion ->
 
             assertThat(unaBase.obtenerAmarres())
                     .as("amarres")
@@ -114,7 +114,7 @@ class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
     private Precondicion lasNavesAlfaBetaGammaEstanAmarradasAUnaBase() {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             unaBase.amarrar(NAVE_ALFA);
             unaBase.amarrar(NAVE_BETA);
@@ -124,7 +124,7 @@ class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
     private Postcondicion unaBaseYaNoTieneMasAmarradaLaNaveBeta() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unaBase.obtenerAmarres())
                         .as("amarres")
@@ -134,7 +134,7 @@ class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
     private Postcondicion naveBetaFueColocadaEnElCasilleroDeLaBase() {
 
-        return post(() -> verify(CASILLERO).ocuparCon(NAVE_BETA));
+        return post(condicion ->  verify(CASILLERO).ocuparCon(NAVE_BETA));
     }
 
     @Test
@@ -147,12 +147,12 @@ class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
     private Precondicion fueCreadaUnaBase() {
 
-        return pre(() -> unaBase = new BaseEspacial());
+        return pre(condicion ->  unaBase = new BaseEspacial());
     }
 
     private Postcondicion losPuntosInicialesDeUnaBaseSonCorrectos() {
 
-        return post(() -> assertThat(unaBase.obtenerPuntos()).as("puntos").isEqualTo(200));
+        return post(condicion ->  assertThat(unaBase.obtenerPuntos()).as("puntos").isEqualTo(200));
     }
 
     @Test
@@ -169,7 +169,7 @@ class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
     private Postcondicion unaBaseTiene(SustanciaEspacial sustanciaEsperada, int cantidadEsperada) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unaBase.buscar(sustanciaEsperada))
                         .as("buscar(" + sustanciaEsperada + ")")
@@ -192,7 +192,7 @@ class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
     private Precondicion fueCreadaUnaBaseRecibiendo(Carga unaCarga) {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             unaBase = new BaseEspacial();
             unaBase.recibir(unaCarga);
@@ -224,11 +224,11 @@ class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
         );
     }
 
-    private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(ExcedeElLugarDisponible.class)
         );

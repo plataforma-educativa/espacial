@@ -3,7 +3,7 @@ import espacial.Coordenadas;
 import espacial.Pieza;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
-import espacial.test.Ejecutable;
+import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
@@ -38,12 +38,12 @@ class NaveTest implements TestDeContrato {
 
         Nave unaNave = new Nave();
 
-        comprobarQue(existeEnLaBase(unaNave));
+        comprobarQue(existeEnLaBaseLaNave(unaNave));
     }
 
-    private Postcondicion existeEnLaBase(Nave unaNave) {
+    private Postcondicion existeEnLaBaseLaNave(Nave unaNave) {
 
-        return post("existe en la Base unaNave", () -> {
+        return post(condicion -> {
 
             assertThat(batallaEspacial.obtenerNaves())
                     .as("naves de la BatallaEspacial")
@@ -56,7 +56,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion fueCreadaLaBatallaEspacial() {
 
-        return pre(() -> batallaEspacial = new BatallaEspacial());
+        return pre(condicion -> batallaEspacial = new BatallaEspacial());
     }
 
     @Test
@@ -73,13 +73,15 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion existenEnLaBase(Nave primerNave, Nave segundaNave, Nave tercerNave) {
 
-        return post("existen en la Base tres Naves", () ->
+        return post(condicion -> {
 
-                assertThat(batallaEspacial.obtenerNaves())
-                        .as("naves de la BatallaEspacial")
-                        .hasSize(3)
-                        .containsExactly(primerNave, segundaNave, tercerNave)
-        );
+            condicion.es("existen en la Base tres Naves: '%s', '%s' y '%s'", primerNave, segundaNave, tercerNave);
+
+            assertThat(batallaEspacial.obtenerNaves())
+                    .as("naves de la BatallaEspacial")
+                    .hasSize(3)
+                    .containsExactly(primerNave, segundaNave, tercerNave);
+        });
     }
 
     @Test
@@ -93,14 +95,14 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion fueCreadaUnaNave() {
 
-        return pre(() -> unaNave = new Nave());
+        return pre(condicion -> unaNave = new Nave());
     }
 
-    private Postcondicion generaElErrorPorqueLaNaveNoDespego(Ejecutable ejecutable) {
+    private Postcondicion generaElErrorPorqueLaNaveNoDespego(Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción lanzada")
                         .isInstanceOf(LaNaveNoEstaEnUnCasillero.class)
                         .hasMessageEndingWith(" porque no despegó")
@@ -120,7 +122,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion fueCreadaUnaNaveQueDespegoDeLaBase() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             unaNave = new Nave();
             unaNave.despegar();
@@ -129,7 +131,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion unaNaveEstaAlNorteDeLaBase() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(batallaEspacial.obtenerTablero())
                         .tieneNave().en(1, 0)
@@ -151,7 +153,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion unaNaveEstaDosCasillerosAlNorteDeLaBase() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(batallaEspacial.obtenerTablero())
                         .tieneNave().en(3, 0)
@@ -173,7 +175,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion unaNaveEstaAlSurDeLaBase() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(batallaEspacial.obtenerTablero())
                         .tieneNave().en(-1, 0)
@@ -194,7 +196,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion unaNaveEstaAlEsteDeLaBase() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(batallaEspacial.obtenerTablero())
                         .tieneNave().en(0, 1)
@@ -215,7 +217,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion unaNaveEstaAlOesteDeLaBase() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(batallaEspacial.obtenerTablero())
                         .tieneNave().en(0, -1)
@@ -238,7 +240,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion unaNaveEstaAlEsteDeUnAsteroide() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             unaNave.avanzarAlNorte();
             unaNave.avanzarAlOeste();
@@ -248,7 +250,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion unaNaveSufrioElChoqueContraElAsteroide() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unaNave.consultarNivelDeEscudos())
                         .as("nivel de escudos")
@@ -267,7 +269,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion estaAlMaximoElNivelDeEscudos() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unaNave.consultarNivelDeEscudos())
                         .as("nivel de escudos")
@@ -290,7 +292,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion unaNaveEstaAlSurDeUnContenedor() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             repetir(2, i -> unaNave.avanzarAlEste());
             repetir(3, i -> unaNave.avanzarAlNorte());
@@ -299,12 +301,12 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion unaNaveQuedoEnElCasillero(int fila, int columna) {
 
-        return post(() -> assertThat(batallaEspacial.obtenerTablero()).tieneNave().en(fila, columna));
+        return post(condicion -> assertThat(batallaEspacial.obtenerTablero()).tieneNave().en(fila, columna));
     }
 
     private Postcondicion unaNaveSufrioElChoqueContraElContenedor() {
 
-        return post(() -> assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos").isEqualTo(90));
+        return post(condicion -> assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos").isEqualTo(90));
     }
 
     @Test
@@ -322,7 +324,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion unaNaveEstaEnElBordeSurDelTablero() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             unaNave.avanzarAlOeste();
             repetir(10, i -> unaNave.avanzarAlSur());
@@ -332,7 +334,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion unaNaveSufrioElChoqueContraElBorde() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unaNave.consultarNivelDeEscudos())
                         .as("nivel de escudos")
@@ -355,7 +357,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion unaNaveEstaAlEsteDeUnAgujeroNegro() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             repetir(5, i -> unaNave.avanzarAlOeste());
             unaNave.avanzarAlNorte();
@@ -364,7 +366,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion unaNaveSufrioElChoqueContraElAgujeroNegro() {
 
-        return post(() -> assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos").isEqualTo(25));
+        return post(condicion -> assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos").isEqualTo(25));
     }
 
     @Test
@@ -382,7 +384,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion unaNaveSufrioElChoqueContraLaBase() {
 
-        return post(() -> assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos").isEqualTo(95));
+        return post(condicion -> assertThat(unaNave.consultarNivelDeEscudos()).as("nivel de escudos").isEqualTo(95));
     }
 
     @Test
@@ -401,12 +403,12 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion unaNaveEstaAlNorteDeUnAsteroide() {
 
-        return pre(() -> repetir(5, i -> unaNave.avanzarAlSur()));
+        return pre(condicion -> repetir(5, i -> unaNave.avanzarAlSur()));
     }
 
     private Precondicion seConoceLaCantidadDePuntosQueTieneElAsteroide() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenadas.con(-6, 0));
             asteroideAlNorte = casillero.obtenerPieza();
@@ -417,7 +419,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion disminuyoLaCantidadDePuntosQueTieneElAsteroide() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(asteroideAlNorte.obtenerPuntos())
                         .as("puntos")
@@ -441,7 +443,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion unaNaveEstaAlEsteDeUnContenedor() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             repetir(2, i -> unaNave.avanzarAlSur());
             unaNave.avanzarAlOeste();
@@ -450,7 +452,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion seConoceLaCantidadDePuntosQueTieneElContenedor() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenadas.con(-2, -2));
             contenedorAlOeste = casillero.obtenerPieza();
@@ -461,7 +463,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion disminuyoLaCantidadDePuntosQueTieneElContenedor() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(contenedorAlOeste.obtenerPuntos())
                         .as("puntos")
@@ -485,12 +487,12 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion unaNaveEstaAlSurDeUnaBase() {
 
-        return pre(() -> unaNave.avanzarAlSur());
+        return pre(condicion -> unaNave.avanzarAlSur());
     }
 
     private Precondicion seConoceLaCantidadDePuntosQueTieneLaBaseAlNorte() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenadas.con(0, 0));
             baseAlNorte = casillero.obtenerPieza();
@@ -500,7 +502,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion disminuyoLaCantidadDePuntosQueTieneLaBaseAlNorte() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(baseAlNorte.obtenerPuntos())
                         .as("puntos")
@@ -523,7 +525,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion unaNaveEstaAlOesteDeOtraNave() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             Nave otraNave = new Nave();
             otraNave.despegar();
@@ -537,7 +539,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion seConoceLaCantidadDePuntosQueTieneLaNaveAlEste() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             Casillero casillero = batallaEspacial.obtenerTablero().obtenerCasilleroEn(Coordenadas.con(0, 2));
             naveAlEste = casillero.obtenerPieza();
@@ -547,7 +549,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion disminuyoLaCantidadDePuntosQueTieneLaNaveAlEste() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(naveAlEste.obtenerPuntos())
                         .as("puntos")
@@ -568,7 +570,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion unRadarEscaneaVacioAlrededorDeUnaNave() {
 
-        return post(() -> {
+        return post(condicion -> {
 
             assertThat(unRadar).as("unRadar").isNotNull();
             assertThat(unRadar.escanearNorte()).as("escanear al NORTE").isEqualTo(Espectro.VACIO);
@@ -591,7 +593,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion unMonitorTieneElEstadoDeUnaNave() {
 
-        return post(() -> {
+        return post(condicion -> {
 
             assertThat(unMonitor).as("unMonitor").isNotNull();
             assertThat(unMonitor.consultarNivelDeEscudos()).as("nivel de escudos").isEqualTo(100);
@@ -610,7 +612,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro() {
 
-        return post(() -> assertThat(unaNave).hasToString("Nave a la espera de comandos"));
+        return post(condicion -> assertThat(unaNave).hasToString("Nave a la espera de comandos"));
     }
 
     @Test
@@ -628,7 +630,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion unaNaveTieneCargado(Sustancia sustancia, int cantidad) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unaNave.obtenerMonitor().consultarCargaDe(sustancia))
                         .as("monitor.consultarCargaDe(" + sustancia + ")")
@@ -649,7 +651,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion unaNaveEstaAlNorteDeUnContenedor() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             repetir(2, i -> unaNave.avanzarAlOeste());
             unaNave.avanzarAlSur();
@@ -670,7 +672,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion unaNaveEstaAlOesteDeUnContenedor() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             repetir(4, i -> unaNave.avanzarAlNorte());
             repetir(1, i -> unaNave.avanzarAlEste());
@@ -704,7 +706,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion unaNaveConAntimateriaEstaAlSurDeLaBase() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             repetir(2, i -> unaNave.avanzarAlSur());
             unaNave.avanzarAlOeste();
@@ -716,7 +718,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion laBaseAlNorteTieneCargado(Sustancia sustancia, int cantidad) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unaNave.obtenerRadar().buscarAlNorte(sustancia))
                         .as("buscarAlNorte(ANTIMATERIA)")
@@ -739,7 +741,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion unaNaveConAntimateriaEstaAlNorteDeLaBase() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             repetir(4, i -> unaNave.avanzarAlNorte());
             unaNave.avanzarAlEste();
@@ -751,7 +753,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion laBaseAlSurTieneCargado(Sustancia sustancia, int cantidad) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unaNave.obtenerRadar().buscarAlSur(sustancia))
                         .as("buscarAlSur(ANTIMATERIA)")
@@ -774,7 +776,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion unaNaveConAntimateriaEstaAlOesteDeLaBase() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             repetir(2, i -> unaNave.avanzarAlEste());
             repetir(3, i -> unaNave.avanzarAlNorte());
@@ -786,7 +788,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion laBaseAlOesteTieneCargado(Sustancia sustancia, int cantidad) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unaNave.obtenerRadar().buscarAlOeste(sustancia))
                         .as("buscarAlOeste(ANTIMATERIA)")
@@ -806,18 +808,18 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion fueDestruidaUnaNave() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             unaNave.avanzarAlNorte();
             repetir(6, i -> unaNave.avanzarAlOeste());
         });
     }
 
-    private Postcondicion generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(LaNaveNoEstaEnUnCasillero.class)
                         .hasMessageEndingWith("porque fue destruida")
@@ -839,7 +841,7 @@ class NaveTest implements TestDeContrato {
 
     private Precondicion unaNaveConAntimateriaEstaAlEsteDeLaBase() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             repetir(2, i -> unaNave.avanzarAlOeste());
             unaNave.avanzarAlSur();
@@ -851,7 +853,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion laBaseAlEsteTieneCargado(Sustancia sustancia, int cantidad) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unaNave.obtenerRadar().buscarAlEste(sustancia))
                         .as("buscarAlEste(ANTIMATERIA)")
@@ -894,11 +896,11 @@ class NaveTest implements TestDeContrato {
         comprobarQue(generaExcepcionPorqueLaNaveNoEstaEnLaBase(() -> unaNave.despegar()));
     }
 
-    private Postcondicion generaExcepcionPorqueLaNaveNoEstaEnLaBase(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueLaNaveNoEstaEnLaBase(Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(LaNaveNoEstaEnLaBase.class)
         );
@@ -918,7 +920,7 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion noExisteUnAsteroideAlSur() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unaNave.obtenerRadar().escanearSur())
                     .as("escanearSur()")

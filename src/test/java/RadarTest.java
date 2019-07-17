@@ -1,6 +1,6 @@
 import espacial.SustanciaEspacial;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
-import espacial.test.Ejecutable;
+import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
@@ -29,12 +29,12 @@ public class RadarTest implements TestDeContrato {
 
         dadoQue(fueObtenidoUnRadarDeUnaNaveQueNoDespego());
 
-        comprobarQue(generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(() -> unRadar.escanearNorte()));
+        comprobarQue(generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(() ->  unRadar.escanearNorte()));
     }
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveQueNoDespego() {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -43,11 +43,11 @@ public class RadarTest implements TestDeContrato {
         });
     }
 
-    private Postcondicion generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción lanzada")
                         .isInstanceOf(LaNaveNoEstaEnUnCasillero.class)
         );
@@ -65,7 +65,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveEnLaBase() {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -86,7 +86,7 @@ public class RadarTest implements TestDeContrato {
     private Postcondicion losEspectrosEscaneadosSonLosEsperados(Espectro alNorte, Espectro alSur,
                                                                 Espectro alEste, Espectro alOeste) {
 
-        return post(() -> {
+        return post(condicion ->  {
 
             assertThat(escaneadoAlNorte).as("espectro escaneado al NORTE").isEqualTo(alNorte);
             assertThat(escaneadoAlSur).as("espectro escaneado al SUR").isEqualTo(alSur);
@@ -112,7 +112,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlOesteDeUnContenedorConAntimateria() {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
@@ -141,7 +141,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlNorteDeUnaBase() {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -164,7 +164,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlSurDeUnAsteroide() {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -187,7 +187,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlEsteDeDesconocido() {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -209,7 +209,7 @@ public class RadarTest implements TestDeContrato {
 
     private Postcondicion alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro() {
 
-        return post(() -> assertThat(unRadar).hasToString("Radar de la Nave"));
+        return post(condicion ->  assertThat(unRadar).hasToString("Radar de la Nave"));
     }
 
     @Test
@@ -265,7 +265,7 @@ public class RadarTest implements TestDeContrato {
                                                                   Condition<Integer> esperadoAlEste,
                                                                   Condition<Integer> esperadoAlOeste) {
 
-        return post(() -> {
+        return post(condicion ->  {
 
             assertThat(cantidadAlNorte).as("cantidad al NORTE").is(esperadoAlNorte);
             assertThat(cantidadAlSur).as("cantidad al SUR").is(esperadoAlSur);
@@ -276,7 +276,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlEsteDeUnContenedorConAntimateria() {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
@@ -295,7 +295,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlNorteDeUnContenedorConAntimateria() {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
@@ -314,7 +314,7 @@ public class RadarTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveAlSurDeUnContenedorConAntimateria() {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             BatallaEspacial batalla = new BatallaEspacial();
             Nave nave = new Nave();
@@ -336,12 +336,12 @@ public class RadarTest implements TestDeContrato {
 
         dadoQue(fueObtenidoUnRadarDeUnaNaveDestruidaAlSurDeUnAsteroide());
 
-        comprobarQue(generaExcepcionPorqueLaNaveFueDestruida(() -> unRadar.escanearNorte()));
+        comprobarQue(generaExcepcionPorqueLaNaveFueDestruida(() ->  unRadar.escanearNorte()));
     }
 
     private Precondicion fueObtenidoUnRadarDeUnaNaveDestruidaAlSurDeUnAsteroide() {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -354,11 +354,11 @@ public class RadarTest implements TestDeContrato {
         });
     }
 
-    private Postcondicion generaExcepcionPorqueLaNaveFueDestruida(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueLaNaveFueDestruida(Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(LaNaveNoEstaEnUnCasillero.class)
         );
@@ -369,6 +369,6 @@ public class RadarTest implements TestDeContrato {
 
         dadoQue(fueObtenidoUnRadarDeUnaNaveDestruidaAlSurDeUnAsteroide());
 
-        comprobarQue(generaExcepcionPorqueLaNaveFueDestruida(() -> unRadar.buscarAlNorte(Sustancia.ANTIMATERIA)));
+        comprobarQue(generaExcepcionPorqueLaNaveFueDestruida(() ->  unRadar.buscarAlNorte(Sustancia.ANTIMATERIA)));
     }
 }

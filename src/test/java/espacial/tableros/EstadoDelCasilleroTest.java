@@ -5,7 +5,7 @@ import espacial.Casillero;
 import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.excepciones.Defecto;
-import espacial.test.Ejecutable;
+import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.TestDeContrato;
 
@@ -28,40 +28,42 @@ abstract class EstadoDelCasilleroTest implements TestDeContrato {
 
     protected Postcondicion noCambioElEstadoDelCasillero() {
 
-        return post(() -> verify(CASILLERO, never()).cambiarA(any()));
+        return post(condicion -> verify(CASILLERO, never()).cambiarA(any()));
     }
 
     protected Postcondicion cambioElEstadoDelCasilleroPorVacio() {
 
-        return post(() -> verify(CASILLERO).cambiarA(any(Vacio.class)));
+        return post(condicion -> verify(CASILLERO).cambiarA(any(Vacio.class)));
     }
 
     protected Postcondicion cambioElEstadoDelCasilleroPorOcupado() {
 
-        return post(() -> verify(CASILLERO).cambiarA(any(Ocupado.class)));
+        return post(condicion -> verify(CASILLERO).cambiarA(any(Ocupado.class)));
     }
 
     protected Postcondicion cambioElEstadoDelCasilleroPorOcupadoPorUnaBase() {
 
-        return post(() -> verify(CASILLERO).cambiarA(any(OcupadoPorUnaBase.class)));
+        return post(condicion -> verify(CASILLERO).cambiarA(any(OcupadoPorUnaBase.class)));
     }
 
     protected Postcondicion cambioElEstadoDelCasilleroPorOcupadoPorUnaBaseConNaveEnManiobras() {
 
-        return post(() -> verify(CASILLERO).cambiarA(any(OcupadoPorUnaBaseConNaveEnManiobras.class)));
+        return post(condicion -> verify(CASILLERO).cambiarA(any(OcupadoPorUnaBaseConNaveEnManiobras.class)));
     }
 
-    protected Postcondicion generaUnDefecto(Ejecutable ejecutable) {
+    protected Postcondicion generaUnDefecto(Operacion operacion) {
 
-        return post(() -> assertThatThrownBy(ejecutable::ejecutar).isInstanceOf(Defecto.class));
+        return post(condicion -> assertThatThrownBy(operacion::ejecutar).isInstanceOf(Defecto.class));
     }
 
     protected Postcondicion generaUnChoqueEntre(Pieza unaPieza, Pieza otraPieza) {
 
-        return post("genera un choque entre " + unaPieza + " y " + otraPieza, () ->
+        return post(condicion -> {
 
-                verify(unaPieza).chocarCon(otraPieza)
-        );
+            condicion.es("genera un choque entre %s y %s", unaPieza, otraPieza);
+
+            verify(unaPieza).chocarCon(otraPieza);
+        });
     }
 
     abstract void siEstaVacio();

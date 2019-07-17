@@ -25,12 +25,12 @@ class CargaIndividualTest implements TestDeContrato {
 
     private Precondicion fueCreadaUnaCargaIndividualCon(int cantidad, SustanciaEspacial sustancia) {
 
-        return pre(() -> unaCarga = new CargaIndividual(cantidad, sustancia));
+        return pre(condicion ->  unaCarga = new CargaIndividual(cantidad, sustancia));
     }
 
     private Postcondicion alObtenerCantidadDevuelve(int cantidad) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unaCarga.obtenerCantidad())
                         .as("cantidad")
@@ -52,7 +52,7 @@ class CargaIndividualTest implements TestDeContrato {
 
     private Postcondicion enUnDepositoSeCargoMetalPor(int cantidad) {
 
-        return post(() -> verify(UN_DEPOSITO).cargarMetal(cantidad));
+        return post(condicion ->  verify(UN_DEPOSITO).cargarMetal(cantidad));
     }
 
     @Test
@@ -69,7 +69,7 @@ class CargaIndividualTest implements TestDeContrato {
 
     private Postcondicion enUnDepositoSeDescargoCristalPor(int cantidad) {
 
-        return post(() -> verify(UN_DEPOSITO).descargarCristal(cantidad));
+        return post(condicion ->  verify(UN_DEPOSITO).descargarCristal(cantidad));
     }
 
     @Test
@@ -84,7 +84,7 @@ class CargaIndividualTest implements TestDeContrato {
 
     private Postcondicion unaCargaTieneDescripcion(int cantidad, SustanciaEspacial sustancia) {
 
-        return post(() -> assertThat(unaCarga).hasToString(cantidad + " " + sustancia));
+        return post(condicion ->  assertThat(unaCarga).hasToString(cantidad + " " + sustancia));
     }
 
     @Test

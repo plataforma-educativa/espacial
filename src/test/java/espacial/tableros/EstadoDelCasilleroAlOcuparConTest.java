@@ -25,12 +25,12 @@ class EstadoDelCasilleroAlOcuparConTest extends EstadoDelCasilleroTest {
 
     private Postcondicion laPiezaFueColocadaEnCasillero() {
 
-        return post(() -> verify(PIEZA).fueColocadaEn(CASILLERO));
+        return post(condicion -> verify(PIEZA).fueColocadaEn(CASILLERO));
     }
 
     private Precondicion laPiezaEsUnaNave() {
 
-        return pre(() ->
+        return pre(condicion ->
                 doAnswer(invocation -> {
 
                     invocation.getArgument(0, Visitante.class).siEsNave((NaveEspacial) PIEZA);
@@ -54,7 +54,7 @@ class EstadoDelCasilleroAlOcuparConTest extends EstadoDelCasilleroTest {
 
     private Precondicion laPiezaEsUnaBase() {
 
-        return pre(() ->
+        return pre(condicion ->
                 doAnswer(invocation -> {
 
                     invocation.getArgument(0, Visitante.class).siEsBase(PIEZA);
@@ -87,7 +87,7 @@ class EstadoDelCasilleroAlOcuparConTest extends EstadoDelCasilleroTest {
 
     private Postcondicion laNaveFueColocadaEnCasillero() {
 
-        return post(() -> verify(NAVE).fueColocadaEn(CASILLERO));
+        return post(condicion -> verify(NAVE).fueColocadaEn(CASILLERO));
     }
 
     @Test

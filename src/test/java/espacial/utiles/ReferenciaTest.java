@@ -1,7 +1,7 @@
 package espacial.utiles;
 
 import espacial.excepciones.Defecto;
-import espacial.test.Ejecutable;
+import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Nested;
@@ -46,7 +46,7 @@ class ReferenciaTest implements TestDeContrato {
 
             unaReferencia = Referencia.conValorNulo();
 
-            comprobarQue(generaUnDefecto(() -> unaReferencia.obtener()));
+            comprobarQue(generaUnDefecto(() ->  unaReferencia.obtener()));
         }
 
         @Test
@@ -58,14 +58,14 @@ class ReferenciaTest implements TestDeContrato {
 
             unaReferencia.anular();
 
-            comprobarQue(generaUnDefecto(() -> unaReferencia.obtener()));
+            comprobarQue(generaUnDefecto(() ->  unaReferencia.obtener()));
         }
 
         @Test
         void siEsNuloAlObtenerPuedeGenerarUnValor() {
 
             final Object valorGenerado = new String("VALOR_GENERADO");
-            final Proveedor<Object> generarValor = () ->  valorGenerado;
+            final Proveedor<Object> generarValor = () ->   valorGenerado;
             unaReferencia = Referencia.conValorNulo();
 
             unaReferencia.siEsNuloAlObtener(generarValor);
@@ -76,29 +76,29 @@ class ReferenciaTest implements TestDeContrato {
         @Test
         void siEsNuloAlObtenerPuedeGenerarExcepcion() {
 
-            final Proveedor<Object> crearExcepcion = () ->  { throw VALOR_REQUERIDO; };
+            final Proveedor<Object> crearExcepcion = () ->   { throw VALOR_REQUERIDO; };
             unaReferencia = Referencia.conValorNulo();
 
             unaReferencia.siEsNuloAlObtener(crearExcepcion);
 
-            comprobarQue(generaExcepcionUsandoElProveedor(() -> unaReferencia.obtener()));
+            comprobarQue(generaExcepcionUsandoElProveedor(() ->  unaReferencia.obtener()));
         }
 
-        private Postcondicion generaUnDefecto(Ejecutable ejecutable) {
+        private Postcondicion generaUnDefecto(Operacion operacion) {
 
-            return post(() ->
+            return post(condicion ->
 
-                    assertThatThrownBy(ejecutable::ejecutar)
+                    assertThatThrownBy(operacion::ejecutar)
                             .as("excepción generada")
                             .isExactlyInstanceOf(Defecto.class)
             );
         }
 
-        private Postcondicion generaExcepcionUsandoElProveedor(Ejecutable ejecutable) {
+        private Postcondicion generaExcepcionUsandoElProveedor(Operacion operacion) {
 
-            return post(() ->
+            return post(condicion ->
 
-                    assertThatThrownBy(ejecutable::ejecutar)
+                    assertThatThrownBy(operacion::ejecutar)
                             .as("excepción generada")
                             .isEqualTo(VALOR_REQUERIDO)
             );
@@ -123,7 +123,7 @@ class ReferenciaTest implements TestDeContrato {
 
     private Postcondicion unaReferenciaTiene(Object valorReferenciado) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unaReferencia.obtener())
                         .as("obtener()")

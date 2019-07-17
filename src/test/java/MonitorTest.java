@@ -24,7 +24,7 @@ class MonitorTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnMonitorDeUnaNaveEnLaBase() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -36,7 +36,7 @@ class MonitorTest implements TestDeContrato {
 
     private Postcondicion obtieneElNivelDeEscudosInicial() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unMonitor.consultarNivelDeEscudos())
                         .as("nivel de escudos")
@@ -54,7 +54,7 @@ class MonitorTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnMonitorDeUnaNaveQueLuegoChocoConUnAsteroide() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -69,7 +69,7 @@ class MonitorTest implements TestDeContrato {
 
     private Postcondicion obtieneElNivelDeEscudosAfectadoPorElChoque() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unMonitor.consultarNivelDeEscudos())
                         .as("nivel de escudos")
@@ -88,7 +88,7 @@ class MonitorTest implements TestDeContrato {
 
     private Postcondicion obtieneLaCantidadDeTorpedosInicial() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unMonitor.consultarCantidadDeTorpedos())
                         .as("cantidad de torpedos")
@@ -106,7 +106,7 @@ class MonitorTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnMonitorDeUnaNaveQueLuegoHizoUnAtaque() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -120,7 +120,7 @@ class MonitorTest implements TestDeContrato {
 
     private Postcondicion laCantidadDeTorpedosDisminuyoLuegoDelAtaque() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unMonitor.consultarCantidadDeTorpedos())
                         .as("cantidad de torpedos")
@@ -138,7 +138,7 @@ class MonitorTest implements TestDeContrato {
 
     private Postcondicion alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro() {
 
-        return post(() -> assertThat(unMonitor).hasToString("Monitor de la Nave"));
+        return post(condicion -> assertThat(unMonitor).hasToString("Monitor de la Nave"));
     }
 
     @Test
@@ -151,7 +151,7 @@ class MonitorTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnMonitorDeUnaNaveQueTieneCargadaAntimateria() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -167,7 +167,7 @@ class MonitorTest implements TestDeContrato {
 
     private Postcondicion elNivelDeCargaEs(int nivelEsperado) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unMonitor.consultarNivelDeCarga())
                         .as("nivel de carga")
@@ -185,7 +185,7 @@ class MonitorTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnMonitorDeUnaNaveQueTieneCargadaMetal() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -201,7 +201,7 @@ class MonitorTest implements TestDeContrato {
 
     private Postcondicion laCargaEs(int cantidad, Sustancia sustancia) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unMonitor.consultarCargaDe(sustancia))
                         .as("carga de " + sustancia)
@@ -219,7 +219,7 @@ class MonitorTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnMonitorDeUnaNaveQueTieneCargadaCristal() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             new BatallaEspacial();
             Nave nave = new Nave();
@@ -249,7 +249,7 @@ class MonitorTest implements TestDeContrato {
 
     private Precondicion fueObtenidoUnMonitorDeUnaNaveQueLuegoFueDestruida() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             new BatallaEspacial();
             Nave nave = new Nave();

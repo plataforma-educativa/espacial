@@ -56,12 +56,12 @@ class FabricaDePiezasTest implements TestDeContrato {
 
     private Precondicion fueCreadaUnaFabricaDePiezas() {
 
-        return pre(() -> unaFabrica = FabricaDePiezas.crear());
+        return pre(condicion ->  unaFabrica = FabricaDePiezas.crear());
     }
 
     private Postcondicion unaPiezaEsUnContenedorCon(SustanciaEspacial sustancia) {
 
-        return post(() -> {
+        return post(condicion ->  {
 
             assertThat(piezaCreada)
                     .as("Pieza creada").isNotNull()
@@ -93,7 +93,7 @@ class FabricaDePiezasTest implements TestDeContrato {
 
     private Postcondicion lasCargasDeLasPiezasCreadasSonDiferentes() {
 
-        return post(() -> assertThat(cargas.size() > 10).as("tiene cargas diferentes").isTrue());
+        return post(condicion ->  assertThat(cargas.size() > 10).as("tiene cargas diferentes").isTrue());
     }
 
     @Test
@@ -154,7 +154,7 @@ class FabricaDePiezasTest implements TestDeContrato {
 
     private Postcondicion lasCargasDeLasPiezasCreadasEstanEnElRango(int desde, int hasta) {
 
-        return post(() -> assertThat(cargas).allMatch(carga -> (carga >= desde && carga <= hasta)));
+        return post(condicion ->  assertThat(cargas).allMatch(carga -> (carga >= desde && carga <= hasta)));
     }
 
     @Test
@@ -169,7 +169,7 @@ class FabricaDePiezasTest implements TestDeContrato {
 
     private Postcondicion unaPiezasEsUnAsteoride() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(piezaCreada)
                         .as("Pieza creada").isNotNull()
@@ -203,7 +203,7 @@ class FabricaDePiezasTest implements TestDeContrato {
 
     private Postcondicion lasDurezasDeLasPiezasCreadasSonDiferentes() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(durezas.size() > 10)
                         .as("las durezas son diferentes")
@@ -223,7 +223,7 @@ class FabricaDePiezasTest implements TestDeContrato {
 
     private Postcondicion laPiezaCreadaEsUnAgujeroNegro() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(piezaCreada).as("pieza creada").isNotNull()
                     .extracting(Pieza::escanear).isEqualTo(EspectroEspacial.DESCONOCIDO)

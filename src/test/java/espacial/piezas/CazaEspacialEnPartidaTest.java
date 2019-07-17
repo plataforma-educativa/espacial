@@ -26,7 +26,7 @@ class CazaEspacialEnPartidaTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnCazaEspacialColocandoloEnUnCasillero() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             unCazaEspacial = new CazaEspacial();
             unCazaEspacial.fueColocadaEn(UN_CASILLERO);
@@ -40,6 +40,6 @@ class CazaEspacialEnPartidaTest implements TestDeContrato {
 
     private Postcondicion seDesocupoElCasilleroQueOcupaba() {
 
-        return  post(() -> verify(UN_CASILLERO).desocupar());
+        return  post(condicion -> verify(UN_CASILLERO).desocupar());
     }
 }

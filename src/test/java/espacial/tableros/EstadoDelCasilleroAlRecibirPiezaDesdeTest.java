@@ -26,7 +26,7 @@ class EstadoDelCasilleroAlRecibirPiezaDesdeTest extends EstadoDelCasilleroTest {
 
     private Postcondicion noSeNotificaAlCasillero() {
 
-        return post(() -> verify(CASILLERO, never()).fueAgregadaAlTablero(any(Pieza.class)));
+        return post(condicion ->  verify(CASILLERO, never()).fueAgregadaAlTablero(any(Pieza.class)));
     }
 
     @Test
@@ -67,7 +67,7 @@ class EstadoDelCasilleroAlRecibirPiezaDesdeTest extends EstadoDelCasilleroTest {
 
     private Precondicion elCasilleroDeOrigenTieneUnaNave() {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             when(CASILLERO_ORIGEN.obtenerPieza()).thenReturn(PIEZA_EN_ORIGEN);
 
@@ -83,7 +83,7 @@ class EstadoDelCasilleroAlRecibirPiezaDesdeTest extends EstadoDelCasilleroTest {
     
     private Postcondicion laPiezaFueMovidaDelOrigenAlCasillero() {
         
-        return post(() -> {
+        return post(condicion ->  {
             
             verify(CASILLERO_ORIGEN).desocupar();
         });
@@ -91,7 +91,7 @@ class EstadoDelCasilleroAlRecibirPiezaDesdeTest extends EstadoDelCasilleroTest {
     
     private Postcondicion laPiezaFueMovidaDelOrigen() {
         
-        return post(() -> verify(CASILLERO_ORIGEN).desocupar());
+        return post(condicion ->  verify(CASILLERO_ORIGEN).desocupar());
     }
     
 }

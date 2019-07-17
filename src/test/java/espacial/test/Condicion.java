@@ -2,21 +2,26 @@ package espacial.test;
 
 public abstract class Condicion {
 
-    protected final Enunciado enunciado;
+    protected Enunciado enunciado;
     
     private final Ejecutable ejecutable;
 
-    public Condicion(Enunciado enunciado, Ejecutable ejecutable) {
+    public Condicion(Enunciado conEnunciado, Ejecutable conEjecutable) {
 
-        this.enunciado = enunciado;
-        this.ejecutable = ejecutable;
+        enunciado = conEnunciado;
+        ejecutable = conEjecutable;
     }
 
-    public void ejecutar() {
+    public void es(String descripcion, Object... parametros) {
+
+        enunciado = new EnunciadoExplicito(descripcion, parametros);
+    }
+
+    protected void ejecutar() {
         
         try {
 
-            ejecutable.ejecutar();
+            ejecutable.ejecutar(this);
             
         } catch (Throwable excepcion) {
 

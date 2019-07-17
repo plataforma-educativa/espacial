@@ -12,7 +12,7 @@ import espacial.SustanciaEspacial;
 import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
-import espacial.test.Ejecutable;
+import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.utiles.Nombre;
@@ -61,7 +61,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     @Override
     Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
-        return post(() -> verify(NAVE_ESPACIAL).chocoContraUnaNave());
+        return post(condicion -> verify(NAVE_ESPACIAL).chocoContraUnaNave());
     }
 
     @Test
@@ -74,7 +74,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Postcondicion elNivelDeEscudosEs(int nivelEsperado) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unCazaEspacial.obtenerNivelDeEscudos())
                         .as("nivel de escudos")
@@ -104,7 +104,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Postcondicion esRemovidoDelTablero() {
 
-        return post(() -> verify(UN_CASILLERO).desocupar());
+        return post(condicion -> verify(UN_CASILLERO).desocupar());
     }
 
     @Test
@@ -125,11 +125,11 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
         comprobarQue(generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(() -> unCazaEspacial.moverEn(Direccion.NORTE)));
     }
 
-    private Postcondicion generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueLaNaveNoEstaEnUnCasillero(Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción lanzada")
                         .isInstanceOf(LaNaveNoEstaEnUnCasillero.class));
     }
@@ -146,7 +146,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Precondicion fueCreadoUnCazaEspacialColocadoEnUnCasillero() {
 
-        return pre(() -> {
+        return pre(condicion -> {
             unCazaEspacial = new CazaEspacial();
             unCazaEspacial.fueColocadaEn(UN_CASILLERO);
         });
@@ -154,7 +154,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Postcondicion unCazaEspacialSeMovioUnCasilleroEnDireccionNorte() {
 
-        return post(() -> verify(UN_CASILLERO).moverPiezaA(CASILLERO_NORTE));
+        return post(condicion -> verify(UN_CASILLERO).moverPiezaA(CASILLERO_NORTE));
     }
 
     @Test
@@ -169,12 +169,12 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Precondicion fueCreadoUnCazaEspacial() {
 
-        return pre(() -> unCazaEspacial = new CazaEspacial());
+        return pre(condicion -> unCazaEspacial = new CazaEspacial());
     }
 
     private Postcondicion elNivelDeEscudosBajoHasta(int nivelDeEscudoEsperado) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unCazaEspacial.obtenerNivelDeEscudos())
                         .as("nivel de escudos")
@@ -244,12 +244,12 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Precondicion unCazaEspacialFueAmarrado() {
 
-        return pre(() -> unCazaEspacial.fueAmarradaCon(AMARRE));
+        return pre(condicion -> unCazaEspacial.fueAmarradaCon(AMARRE));
     }
 
     private Postcondicion unCazaEspacialSoltoElAmarre() {
 
-        return post(() -> verify(AMARRE).soltar());
+        return post(condicion -> verify(AMARRE).soltar());
     }
 
     @Test
@@ -260,9 +260,9 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
         comprobarQue(generaExcepcionPorqueLaNaveNoEstaEnLaBase(() -> unCazaEspacial.despegar()));
     }
 
-    private Postcondicion generaExcepcionPorqueLaNaveNoEstaEnLaBase(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueLaNaveNoEstaEnLaBase(Operacion operacion) {
 
-        return post(() -> assertThatThrownBy(ejecutable::ejecutar).isInstanceOf(LaNaveNoEstaEnLaBase.class));
+        return post(condicion -> assertThatThrownBy(operacion::ejecutar).isInstanceOf(LaNaveNoEstaEnLaBase.class));
     }
 
     @Test
@@ -275,7 +275,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Postcondicion losPuntosInicialesDeUnCazaEspacialSonCorrectos() {
 
-        return post(() -> assertThat(unCazaEspacial.obtenerPuntos()).as("puntos").isEqualTo(100));
+        return post(condicion -> assertThat(unCazaEspacial.obtenerPuntos()).as("puntos").isEqualTo(100));
     }
 
     @Test
@@ -290,7 +290,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Precondicion fueCreadoUnCazaEspacialColocadoEnUnCasilleroConOtraPiezaAlOeste() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             unCazaEspacial = new CazaEspacial();
             unCazaEspacial.fueColocadaEn(UN_CASILLERO);
@@ -301,7 +301,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Postcondicion elCasilleroEnDireccionOesteFueAtacado() {
 
-        return post(() -> {
+        return post(condicion -> {
 
             ArgumentCaptor<Ataque> ataqueCapturado = ArgumentCaptor.forClass(Ataque.class);
 
@@ -325,7 +325,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Precondicion fueCreadoUnCazaEspacialColocadoEnUnCasilleroConOtraPiezaAlNorte() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             unCazaEspacial = new CazaEspacial();
             unCazaEspacial.fueColocadaEn(UN_CASILLERO);
@@ -334,7 +334,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Postcondicion otraPiezaFueAtacadaCon(int torpedos, int laser) {
 
-        return post(() -> {
+        return post(condicion -> {
 
             ArgumentCaptor<Ataque> captorDeAtaques = ArgumentCaptor.forClass(Ataque.class);
             verify(CASILLERO_NORTE, atLeastOnce()).fueAtacadoCon(captorDeAtaques.capture());
@@ -360,7 +360,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Precondicion fueCreadoUnCazaEspacialColocadoEnUnCasilleroRodeadoDeAsteroides() {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             unCazaEspacial = new CazaEspacial();
             unCazaEspacial.fueColocadaEn(UN_CASILLERO);
@@ -374,7 +374,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Postcondicion alEscanearAlrededorEncuentra(EspectroEspacial esperado) {
 
-        return post(() -> {
+        return post(condicion -> {
 
             assertThat(unCazaEspacial.escanearEn(Direccion.NORTE)).as("al NORTE").isEqualTo(esperado);
             assertThat(unCazaEspacial.escanearEn(Direccion.SUR)).as("al SUR").isEqualTo(esperado);
@@ -396,7 +396,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Precondicion fueCreadoUnCazaEspacialQueNoSeColocoEnNingunCasillero() {
 
-        return pre(() -> unCazaEspacial = new CazaEspacial());
+        return pre(condicion -> unCazaEspacial = new CazaEspacial());
     }
 
     @Test
@@ -420,7 +420,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Postcondicion laCantidadDeTorpedosDeFotonesEs(int esperado) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unCazaEspacial.obtenerCantidadDeTorpedosDeFotones())
                         .as("cantidad de torpedos")
@@ -438,7 +438,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Precondicion fueCreadoUnCazaEspacialConAntimateriaAlrededor(int alNorte, int alSur, int alEste, int alOeste) {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             unCazaEspacial = new CazaEspacial();
             unCazaEspacial.fueColocadaEn(UN_CASILLERO);
@@ -452,7 +452,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Postcondicion alBuscarAlrededorAntimateriaEncuentra(int alNorte, int alSur, int alEste, int alOeste) {
 
-        return post(() -> {
+        return post(condicion ->  {
 
             assertThat(unCazaEspacial.buscarEn(Direccion.NORTE, SustanciaEspacial.ANTIMATERIA))
                     .as("ANTIMATERIA al NORTE").isEqualTo(alNorte);
@@ -479,7 +479,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Postcondicion unCazaEspacialTiene(SustanciaEspacial sustanciaEsperada, int esperada) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unCazaEspacial.buscar(sustanciaEsperada))
                         .as("buscar(" + sustanciaEsperada + ")")
@@ -502,7 +502,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Precondicion fueCreadoUnCazaEspacialRecibiendo(Carga unaCarga) {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             unCazaEspacial = new CazaEspacial();
             unCazaEspacial.recibir(unaCarga);
@@ -534,11 +534,11 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
         );
     }
 
-    private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(ExcedeElLugarDisponible.class)
         );
@@ -639,7 +639,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Precondicion fueCreadoUnCazaEspacialColocadoEnUnCasilleroConUnaPiezaCoAntimateriaAlNorte() {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             unCazaEspacial = new CazaEspacial();
             unCazaEspacial.fueColocadaEn(UN_CASILLERO);
@@ -649,7 +649,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Postcondicion unaCargaFueEntregada(SustanciaEspacial sustancia, int cantidad, Casillero casillero) {
 
-        return post(() -> verify(casillero).entregar(sustancia.por(cantidad)));
+        return post(condicion ->  verify(casillero).entregar(sustancia.por(cantidad)));
     }
 
     @Test
@@ -664,7 +664,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Postcondicion elNivelDeCargaEs(int nivel) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unCazaEspacial.obtenerNivelDeCarga())
                         .as("nivel de carga")
@@ -683,12 +683,12 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Precondicion fueCreadoUnCazaEspacialConElNombre(String nombre) {
 
-        return pre(() -> unCazaEspacial = new CazaEspacial(Nombre.es(nombre).obtener()));
+        return pre(condicion ->  unCazaEspacial = new CazaEspacial(Nombre.es(nombre).obtener()));
     }
 
     private Postcondicion elNombreEs(String nombreEsperado) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unCazaEspacial.nombrar().obtener())
                         .as("nombre")

@@ -75,7 +75,7 @@ class CasilleroTest implements TestDeContrato {
 
     private Postcondicion laPiezaFueMovidaEntreCasilleros(Casillero origen, Casillero destino) {
 
-        return post("la Nave fue movida entre los casilleros", () -> {
+        return post(condicion -> {
 
             assertThat(origen.escanear())
                     .as("espectro del Casillero origen")
@@ -100,7 +100,7 @@ class CasilleroTest implements TestDeContrato {
 
     private Postcondicion quedoDesocupado(Casillero casillero) {
 
-        return post(() ->
+        return post(condicion ->
                 assertThat(casillero.escanear())
                         .as("espectro del casillero")
                         .isEqualTo(EspectroEspacial.VACIO));
@@ -115,7 +115,7 @@ class CasilleroTest implements TestDeContrato {
 
         Casillero contiguo = casillero.obtenerContiguoEn(direccionElegida);
 
-        comprobarQue(elCasilleroEsEl(filaEsperada, columnaEsperada, contiguo));
+        comprobarQue(elCasilleroEsEsperado(filaEsperada, columnaEsperada, contiguo));
     }
 
     static Stream<Arguments> contiguosPorDireccion() {
@@ -132,9 +132,9 @@ class CasilleroTest implements TestDeContrato {
         );
     }
 
-    private Postcondicion elCasilleroEsEl(int fila, int columna, Casillero casillero) {
+    private Postcondicion elCasilleroEsEsperado(int fila, int columna, Casillero casillero) {
 
-        return post("el Casillero es el esperado", () ->
+        return post(condicion ->
 
                 assertThat(casillero)
                         .as("casillero en [%d, %d]", fila, columna)
@@ -172,6 +172,6 @@ class CasilleroTest implements TestDeContrato {
 
     private Postcondicion elCasilleroEsMargen(Casillero contiguo) {
 
-        return post(() -> assertThat(contiguo.escanear()).isEqualTo(EspectroEspacial.DESCONOCIDO));
+        return post(condicion -> assertThat(contiguo.escanear()).isEqualTo(EspectroEspacial.DESCONOCIDO));
     }
 }

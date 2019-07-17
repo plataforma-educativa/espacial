@@ -3,7 +3,7 @@ package espacial.piezas;
 import espacial.Cargamento;
 import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.excepciones.ExcedeLaCargaDisponible;
-import espacial.test.Ejecutable;
+import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
@@ -63,7 +63,7 @@ abstract class TestDeCargamentoLimitado implements TestDeContrato {
         final int agregada = 90;
         dadoQue(fueCreadoUnCargamento(capacidad, inicial));
 
-        comprobarQue(generaExcepcionPorqueExcedeElLugarDisponible(() -> unCargamento.agregar(agregada),
+        comprobarQue(generaExcepcionPorqueExcedeElLugarDisponible(() ->  unCargamento.agregar(agregada),
                 agregada, capacidad - inicial));
     }
 
@@ -100,13 +100,13 @@ abstract class TestDeCargamentoLimitado implements TestDeContrato {
         final int retirada = 60;
         dadoQue(fueCreadoUnCargamento(capacidad, disponible));
 
-        comprobarQue(generaExcepcionPorqueExcedeLaCargaDisponible(() -> unCargamento.retirar(retirada),
+        comprobarQue(generaExcepcionPorqueExcedeLaCargaDisponible(() ->  unCargamento.retirar(retirada),
                 retirada, disponible));
     }
 
     private Precondicion fueCreadoUnCargamento(int capacidad, int cantidad) {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             unCargamento = new CargamentoDeSustancia(capacidad);
             unCargamento.agregar(cantidad);
@@ -115,27 +115,27 @@ abstract class TestDeCargamentoLimitado implements TestDeContrato {
 
     private Postcondicion contarDevuelve(int cantidadEsperada) {
 
-        return post(() -> assertThat(unCargamento.contar()).as("contar()").isEqualTo(cantidadEsperada));
+        return post(condicion -> assertThat(unCargamento.contar()).as("contar()").isEqualTo(cantidadEsperada));
     }
 
-    private Postcondicion generaExcepcionPorqueExcedeLaCargaDisponible(Ejecutable ejecutable,
+    private Postcondicion generaExcepcionPorqueExcedeLaCargaDisponible(Operacion operacion,
                                                                        int retirada, int disponible) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(ExcedeLaCargaDisponible.class)
                         .hasMessage("'%d' excede la carga disponible de '%d'", retirada, disponible)
         );
     }
 
-    private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Ejecutable ejecutable,
+    private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Operacion operacion,
                                                                        int agregada, int disponible) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(ExcedeElLugarDisponible.class)
                         .hasMessage("'%d' excede el lugar disponible de '%d'", agregada, disponible)

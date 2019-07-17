@@ -2,7 +2,7 @@ package espacial;
 
 import espacial.excepciones.NoPuedeEntregarUnaCarga;
 import espacial.excepciones.NoPuedeRecibirUnaCarga;
-import espacial.test.Ejecutable;
+import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
@@ -17,15 +17,15 @@ class DepositoTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnDeposito() {
 
-        return pre(() -> deposito = new Deposito() {
+        return pre(condicion ->  deposito = new Deposito() {
         });
     }
 
-    private Postcondicion generarExcepcionPorque(Class<?> claseExcepcion, Ejecutable ejecutable) {
+    private Postcondicion generarExcepcionPorque(Class<?> claseExcepcion, Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(claseExcepcion)
         );
@@ -36,7 +36,7 @@ class DepositoTest implements TestDeContrato {
 
         dadoQue(fueCreadoUnDeposito());
 
-        comprobarQue(generarExcepcionPorque(NoPuedeRecibirUnaCarga.class, () -> deposito.cargarAntimateria(CARGA)));
+        comprobarQue(generarExcepcionPorque(NoPuedeRecibirUnaCarga.class, () ->  deposito.cargarAntimateria(CARGA)));
     }
 
     @Test
@@ -44,7 +44,7 @@ class DepositoTest implements TestDeContrato {
 
         dadoQue(fueCreadoUnDeposito());
 
-        comprobarQue(generarExcepcionPorque(NoPuedeRecibirUnaCarga.class, () -> deposito.cargarMetal(CARGA)));
+        comprobarQue(generarExcepcionPorque(NoPuedeRecibirUnaCarga.class, () ->  deposito.cargarMetal(CARGA)));
     }
 
     @Test
@@ -52,7 +52,7 @@ class DepositoTest implements TestDeContrato {
 
         dadoQue(fueCreadoUnDeposito());
 
-        comprobarQue(generarExcepcionPorque(NoPuedeRecibirUnaCarga.class, () -> deposito.cargarCristal(CARGA)));
+        comprobarQue(generarExcepcionPorque(NoPuedeRecibirUnaCarga.class, () ->  deposito.cargarCristal(CARGA)));
     }
 
     @Test
@@ -60,7 +60,7 @@ class DepositoTest implements TestDeContrato {
 
         dadoQue(fueCreadoUnDeposito());
 
-        comprobarQue(generarExcepcionPorque(NoPuedeEntregarUnaCarga.class, () -> deposito.descargarAntimateria(CARGA)));
+        comprobarQue(generarExcepcionPorque(NoPuedeEntregarUnaCarga.class, () ->  deposito.descargarAntimateria(CARGA)));
     }
 
     @Test
@@ -68,7 +68,7 @@ class DepositoTest implements TestDeContrato {
 
         dadoQue(fueCreadoUnDeposito());
 
-        comprobarQue(generarExcepcionPorque(NoPuedeEntregarUnaCarga.class, () -> deposito.descargarMetal(CARGA)));
+        comprobarQue(generarExcepcionPorque(NoPuedeEntregarUnaCarga.class, () ->  deposito.descargarMetal(CARGA)));
     }
 
     @Test
@@ -76,7 +76,7 @@ class DepositoTest implements TestDeContrato {
 
         dadoQue(fueCreadoUnDeposito());
 
-        comprobarQue(generarExcepcionPorque(NoPuedeEntregarUnaCarga.class, () -> deposito.descargarCristal(CARGA)));
+        comprobarQue(generarExcepcionPorque(NoPuedeEntregarUnaCarga.class, () ->  deposito.descargarCristal(CARGA)));
     }
 
     @Test
@@ -89,7 +89,7 @@ class DepositoTest implements TestDeContrato {
 
     private Postcondicion noTieneAntimateria() {
 
-        return post(() -> assertThat(deposito.contarAntimateria()).isEqualTo(0));
+        return post(condicion ->  assertThat(deposito.contarAntimateria()).isEqualTo(0));
     }
 
     @Test
@@ -102,7 +102,7 @@ class DepositoTest implements TestDeContrato {
 
     private Postcondicion noTieneMetal() {
 
-        return post(() -> assertThat(deposito.contarMetal()).isEqualTo(0));
+        return post(condicion ->  assertThat(deposito.contarMetal()).isEqualTo(0));
     }
 
     @Test
@@ -115,6 +115,6 @@ class DepositoTest implements TestDeContrato {
 
     private Postcondicion noTieneCristal() {
 
-        return post(() -> assertThat(deposito.contarCristal()).isEqualTo(0));
+        return post(condicion ->  assertThat(deposito.contarCristal()).isEqualTo(0));
     }
 }

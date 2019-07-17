@@ -4,7 +4,7 @@ import espacial.EspectroEspacial;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.excepciones.ExcedeLaCargaDisponible;
-import espacial.test.Ejecutable;
+import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import org.junit.jupiter.api.Test;
@@ -29,7 +29,7 @@ abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustancia> ex
     @Override
     Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
-        return post(() -> verify(NAVE_ESPACIAL).chocoContraUnContenedor());
+        return post(condicion -> verify(NAVE_ESPACIAL).chocoContraUnContenedor());
     }
 
     @Test
@@ -44,7 +44,7 @@ abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustancia> ex
 
     protected Precondicion fueCreadoUnContenedorConCargaInicalDe(int cantidad) {
 
-        return pre(() -> unContenedor = piezaCreadaConCarga(cantidad));
+        return pre(condicion -> unContenedor = piezaCreadaConCarga(cantidad));
     }
 
     @Test
@@ -57,12 +57,12 @@ abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustancia> ex
 
     private Precondicion fueCreadoUnContenedor() {
 
-        return pre(() -> unContenedor = piezaCreada());
+        return pre(condicion -> unContenedor = piezaCreada());
     }
 
     private Postcondicion losPuntosInicialesDeUnContenedorDeSustanciaSonCorrectos() {
 
-        return post(() -> assertThat(unContenedor.obtenerPuntos()).as("puntos").isEqualTo(50));
+        return post(condicion -> assertThat(unContenedor.obtenerPuntos()).as("puntos").isEqualTo(50));
     }
 
     @Test
@@ -79,7 +79,7 @@ abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustancia> ex
 
     private Postcondicion unContenedorTiene(SustanciaEspacial sustanciaEsperada, int cantidadEsperada) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unContenedor.buscar(sustanciaEsperada))
                         .as("buscar(" + sustanciaEsperada + ")")
@@ -102,7 +102,7 @@ abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustancia> ex
 
     private Precondicion fueCreadoUnContenedorDeSustanciaRecibiendo(int cantidadInicial) {
 
-        return pre(() -> {
+        return pre(condicion -> {
 
             unContenedor = piezaCreada();
             unContenedor.recibir(sustanciaAlmacenada().por(cantidadInicial));
@@ -134,11 +134,11 @@ abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustancia> ex
         );
     }
 
-    private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(ExcedeElLugarDisponible.class)
         );
@@ -200,17 +200,17 @@ abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustancia> ex
 
     private Precondicion fueExtraidaDeUnContenedorDeSustanciaUnaCarga(int cantidadExtraida) {
 
-        return pre(() ->
+        return pre(condicion ->
 
                 unContenedor.entregar(sustanciaAlmacenada().por(cantidadExtraida))
         );
     }
 
-    private Postcondicion generaExcepcionPorqueExcedeLaCargaDisponible(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueExcedeLaCargaDisponible(Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(ExcedeLaCargaDisponible.class)
         );

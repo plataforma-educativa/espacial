@@ -11,7 +11,7 @@ import espacial.Tablero;
 import espacial.excepciones.LaOperacionNoEstaSoportada;
 import espacial.excepciones.NoPuedeEntregarUnaCarga;
 import espacial.excepciones.NoPuedeRecibirUnaCarga;
-import espacial.test.Ejecutable;
+import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
@@ -42,12 +42,12 @@ class CasilleroBordeTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnCasilleroInteriorEn(Tablero tablero, int fila, int columna) {
 
-        return pre(() -> unCasilleroBorde = new CasilleroBorde(tablero, fila, columna));
+        return pre(condicion ->  unCasilleroBorde = new CasilleroBorde(tablero, fila, columna));
     }
 
     private Postcondicion elCasilleroTiene(Tablero tablero, Coordenadas coordenadas) {
 
-        return post(() -> {
+        return post(condicion ->  {
 
             assertThat(unCasilleroBorde.obtenerTablero()).as("tablero").isSameAs(tablero);
             assertThat(unCasilleroBorde.obtenerCoordenadas()).as("coordenaadas").isEqualTo(coordenadas);
@@ -64,12 +64,12 @@ class CasilleroBordeTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnCasilleroBorde() {
 
-        return pre(() -> unCasilleroBorde = new CasilleroBorde(TABLERO));
+        return pre(condicion ->  unCasilleroBorde = new CasilleroBorde(TABLERO));
     }
 
     private Postcondicion alEscanearDevuelveDesconocido() {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unCasilleroBorde.escanear())
                         .as("escanear()")
@@ -87,7 +87,7 @@ class CasilleroBordeTest implements TestDeContrato {
 
     private Postcondicion alBuscarCualquierSustanciaDevuelve0() {
 
-        return post(() -> {
+        return post(condicion ->  {
 
             for (SustanciaEspacial sustancia : SustanciaEspacial.values()) {
 
@@ -108,7 +108,7 @@ class CasilleroBordeTest implements TestDeContrato {
 
     private Postcondicion alObtenerContiguoEnCualquierDireccionDevuelveElMismoCasillero() {
 
-        return post(() -> {
+        return post(condicion ->  {
 
             for (Direccion direccion : Direccion.values()) {
 
@@ -162,7 +162,7 @@ class CasilleroBordeTest implements TestDeContrato {
 
     private Postcondicion alObtenerPiezaDevuelveNull() {
 
-        return post(() -> assertThat(unCasilleroBorde.obtenerPieza()).as("obtenerPieza()").isNull());
+        return post(condicion ->  assertThat(unCasilleroBorde.obtenerPieza()).as("obtenerPieza()").isNull());
     }
 
     @Test
@@ -178,12 +178,12 @@ class CasilleroBordeTest implements TestDeContrato {
 
     private Precondicion otroCasilleroTieneUnaPieza() {
 
-        return pre(() -> when(OTRO_CASILLERO.obtenerPieza()).thenReturn(UNA_PIEZA));
+        return pre(condicion ->  when(OTRO_CASILLERO.obtenerPieza()).thenReturn(UNA_PIEZA));
     }
 
     private Postcondicion unaPiezaChocoControUnCasilleroBorde() {
 
-        return post(() -> verify(UNA_PIEZA).chocarCon(unCasilleroBorde));
+        return post(condicion ->  verify(UNA_PIEZA).chocarCon(unCasilleroBorde));
     }
 
     @Test
@@ -198,7 +198,7 @@ class CasilleroBordeTest implements TestDeContrato {
 
     private Postcondicion unChocableChocoControalElBordeDelTablero() {
 
-        return post(() -> verify(UN_CHOCABLE).chocoContraElBordeDelTablero());
+        return post(condicion ->  verify(UN_CHOCABLE).chocoContraElBordeDelTablero());
     }
 
     @Test
@@ -223,11 +223,11 @@ class CasilleroBordeTest implements TestDeContrato {
         ));
     }
 
-    private Postcondicion generaExcepcion(Class<?> claseExcepcion, Ejecutable ejecutable) {
+    private Postcondicion generaExcepcion(Class<?> claseExcepcion, Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(claseExcepcion)
         );
@@ -246,11 +246,11 @@ class CasilleroBordeTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnCasilleroBordeEn(int fila, int columna) {
 
-        return pre(() -> unCasilleroBorde = new CasilleroBorde(TABLERO, fila, columna));
+        return pre(condicion ->  unCasilleroBorde = new CasilleroBorde(TABLERO, fila, columna));
     }
 
     private Postcondicion esAutoDescriptivo(int fila, int columna) {
 
-        return post(() -> assertThat(unCasilleroBorde).hasToString("Casillero[" + fila + "][" + columna + "] -> BORDE"));
+        return post(condicion ->  assertThat(unCasilleroBorde).hasToString("Casillero[" + fila + "][" + columna + "] -> BORDE"));
     }
 }

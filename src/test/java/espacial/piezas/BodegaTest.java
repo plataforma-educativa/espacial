@@ -4,7 +4,7 @@ package espacial.piezas;
 import espacial.Cargamento;
 import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.excepciones.ExcedeLaCargaDisponible;
-import espacial.test.Ejecutable;
+import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
@@ -29,7 +29,7 @@ class BodegaTest implements TestDeContrato {
 
     private Postcondicion unaBodegaTieneCargaConLugar(int cargaEsperada, int lugarEsperado) {
 
-        return post(() -> {
+        return post(condicion ->  {
 
             assertThat(unaBodega.contabilizarCarga()).as("carga").isEqualTo(cargaEsperada);
             assertThat(unaBodega.contabilizarLugar()).as("lugar").isEqualTo(lugarEsperado);
@@ -39,7 +39,7 @@ class BodegaTest implements TestDeContrato {
 
     private Postcondicion unaBodegaTieneCargamentosVacios() {
 
-        return post(() -> {
+        return post(condicion ->  {
 
             assertThat(unaBodega.ANTIMATERIA).as("cargamento de ANTIMATERIA").isInstanceOf(Cargamento.class);
             assertThat(unaBodega.ANTIMATERIA.contar()).as("ANTIMATERIA.contar()").isEqualTo(0);
@@ -64,12 +64,12 @@ class BodegaTest implements TestDeContrato {
 
     private Precondicion fueCreadaLaBodegaConCapacidad(int capacidad) {
 
-        return pre(() -> unaBodega = new Bodega(capacidad));
+        return pre(condicion ->  unaBodega = new Bodega(capacidad));
     }
 
     private Postcondicion elCargamentoDeANTIMATERIA(int cantidadEsperada) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unaBodega.ANTIMATERIA.contar())
                         .as("ANTIMATERIA.contar()")
@@ -91,7 +91,7 @@ class BodegaTest implements TestDeContrato {
 
     private Postcondicion elCargamentoDeMETAL(int cantidadEsperada) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unaBodega.METAL.contar())
                         .as("METAL.contar()")
@@ -113,7 +113,7 @@ class BodegaTest implements TestDeContrato {
 
     private Postcondicion elCargamentoDeCRISTAL(int cantidadEsperada) {
 
-        return post(() ->
+        return post(condicion ->
 
                 assertThat(unaBodega.CRISTAL.contar())
                         .as("CRISTAL.contar()")
@@ -187,17 +187,17 @@ class BodegaTest implements TestDeContrato {
 
     private Precondicion unaBodegaCargoANTIMATERIA(int cantidad) {
 
-        return pre(() -> unaBodega.ANTIMATERIA.agregar(cantidad));
+        return pre(condicion ->  unaBodega.ANTIMATERIA.agregar(cantidad));
     }
 
     private Precondicion unaBodegaCargoMETAL(int cantidad) {
 
-        return pre(() -> unaBodega.METAL.agregar(cantidad));
+        return pre(condicion ->  unaBodega.METAL.agregar(cantidad));
     }
 
     private Precondicion unaBodegaCargoCRISTAL(int cantidad) {
 
-        return pre(() -> unaBodega.CRISTAL.agregar(cantidad));
+        return pre(condicion ->  unaBodega.CRISTAL.agregar(cantidad));
     }
 
     @Test
@@ -209,24 +209,24 @@ class BodegaTest implements TestDeContrato {
         dadoQue(fueCreadaLaBodegaConCapacidad(100));
         dadoQue(unaBodegaCargoMETAL(cargaInicial));
 
-        comprobarQue(generaExcepcionPorqueExcedeLaCargaDisponible(() -> unaBodega.METAL.retirar(cargaRetirada)));
+        comprobarQue(generaExcepcionPorqueExcedeLaCargaDisponible(() ->  unaBodega.METAL.retirar(cargaRetirada)));
     }
 
-    private Postcondicion generaExcepcionPorqueExcedeLaCargaDisponible(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueExcedeLaCargaDisponible(Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepcion generada")
                         .isInstanceOf(ExcedeLaCargaDisponible.class)
         );
     }
 
-    private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueExcedeElLugarDisponible(Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(ExcedeElLugarDisponible.class)
         );
@@ -245,6 +245,6 @@ class BodegaTest implements TestDeContrato {
 
     private Postcondicion elNivelDeCargaEs(int nivel) {
 
-        return post(() -> assertThat(unaBodega.obtenerNivelDeCarga()).as("nivel de carga").isEqualTo(nivel));
+        return post(condicion ->  assertThat(unaBodega.obtenerNivelDeCarga()).as("nivel de carga").isEqualTo(nivel));
     }
 }

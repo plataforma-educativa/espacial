@@ -1,7 +1,7 @@
 package espacial.utiles;
 
 import espacial.excepciones.ErrorEnLaBatallaEspacial;
-import espacial.test.Ejecutable;
+import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
@@ -38,12 +38,12 @@ class AleatorioTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnAleatorio(int desde, int hasta) {
 
-        return pre(() -> unAleatorio = Aleatorio.enRango(desde, hasta));
+        return pre(condicion ->  unAleatorio = Aleatorio.enRango(desde, hasta));
     }
 
     private Postcondicion losValoresEstanDistribuidosEnElRango(int desde, int hasta) {
 
-        return post(() -> {
+        return post(condicion ->  {
 
             assertThat(valores)
                     .as("valores")
@@ -71,7 +71,7 @@ class AleatorioTest implements TestDeContrato {
 
     private Postcondicion losValoresObtenidosTodosIgualesA(int unicoValor) {
 
-        return post(() -> assertThat(valores).as("valores").allMatch(valor -> valor == unicoValor));
+        return post(condicion ->  assertThat(valores).as("valores").allMatch(valor -> valor == unicoValor));
     }
 
     @Test
@@ -93,12 +93,12 @@ class AleatorioTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnAleatorio(String... valores) {
 
-        return pre(() -> unStringAleatorio = Aleatorio.enLista(valores));
+        return pre(condicion ->  unStringAleatorio = Aleatorio.enLista(valores));
     }
 
     private Postcondicion losValoresEstanDistribuidosEntre(String... esperados) {
 
-        return post(() -> {
+        return post(condicion ->  {
 
             assertThat(valoresString)
                     .as("valores")
@@ -129,24 +129,24 @@ class AleatorioTest implements TestDeContrato {
 
         comprobarQue(losValoresEstanDistribuidosEntre(valor1, valor2, valor3));
         comprobarQue(seConsumieronTodosLos(valoresDisponibles));
-        comprobarQue(generaExcepcion(() -> unStringAleatorio.obtener()));
+        comprobarQue(generaExcepcion(() ->  unStringAleatorio.obtener()));
     }
 
     private Precondicion fueCreadoUnAleatorioConsumiendo(List<String> valoresDisponibles) {
 
-        return pre(() -> unStringAleatorio = Aleatorio.consumiendo(valoresDisponibles));
+        return pre(condicion ->  unStringAleatorio = Aleatorio.consumiendo(valoresDisponibles));
     }
 
     private Postcondicion seConsumieronTodosLos(List<String> valoresDisponibles) {
 
-        return post(() -> assertThat(valoresDisponibles).as("valores disponibles").isEmpty());
+        return post(condicion ->  assertThat(valoresDisponibles).as("valores disponibles").isEmpty());
     }
 
-    private Postcondicion generaExcepcion(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcion(Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(ErrorEnLaBatallaEspacial.class)
                         .hasMessage("No quedan valores aleatorios disponibles")

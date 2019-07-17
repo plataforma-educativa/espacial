@@ -48,6 +48,6 @@ class EstadoDelCasilleroAlMoverPiezaATest extends EstadoDelCasilleroTest {
 
     private Postcondicion elCasilleroDestinoRecibeLaPiezaDesdeElContexto() {
 
-        return post(() -> verify(CASILLERO_DESTINO).recibirPiezaDesde(CASILLERO));
+        return post(condicion -> verify(CASILLERO_DESTINO).recibirPiezaDesde(CASILLERO));
     }
 }

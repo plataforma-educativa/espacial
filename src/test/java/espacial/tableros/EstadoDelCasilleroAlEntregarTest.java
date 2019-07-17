@@ -2,7 +2,7 @@ package espacial.tableros;
 
 import espacial.Carga;
 import espacial.excepciones.NoPuedeEntregarUnaCarga;
-import espacial.test.Ejecutable;
+import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import org.junit.jupiter.api.Test;
 
@@ -18,14 +18,14 @@ class EstadoDelCasilleroAlEntregarTest extends EstadoDelCasilleroTest {
 
         estado = new Vacio(CASILLERO);
 
-        comprobarQue(generaExcepcionPorqueNoPuedeEntregarUnaCarga(() -> estado.alEntregar(UNA_CARGA)));
+        comprobarQue(generaExcepcionPorqueNoPuedeEntregarUnaCarga(() ->  estado.alEntregar(UNA_CARGA)));
         comprobarQue(noCambioElEstadoDelCasillero());
     }
 
-    private Postcondicion generaExcepcionPorqueNoPuedeEntregarUnaCarga(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueNoPuedeEntregarUnaCarga(Operacion operacion) {
 
-        return post(() ->
-                assertThatThrownBy(ejecutable::ejecutar)
+        return post(condicion ->
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(NoPuedeEntregarUnaCarga.class)
         );
@@ -44,7 +44,7 @@ class EstadoDelCasilleroAlEntregarTest extends EstadoDelCasilleroTest {
 
     private Postcondicion laPiezaEntregaUnaCarga() {
 
-        return post(() -> verify(PIEZA).entregar(UNA_CARGA));
+        return post(condicion ->  verify(PIEZA).entregar(UNA_CARGA));
     }
 
     @Test

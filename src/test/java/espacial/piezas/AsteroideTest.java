@@ -5,7 +5,7 @@ import espacial.SustanciaEspacial;
 import espacial.excepciones.Defecto;
 import espacial.excepciones.NoPuedeEntregarUnaCarga;
 import espacial.excepciones.NoPuedeRecibirUnaCarga;
-import espacial.test.Ejecutable;
+import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import org.junit.jupiter.api.Test;
@@ -38,7 +38,7 @@ class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
     @Override
     Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
-        return post(() -> verify(NAVE_ESPACIAL).chocoContraUnAsteroide());
+        return post(condicion ->  verify(NAVE_ESPACIAL).chocoContraUnAsteroide());
     }
 
     @Test
@@ -50,12 +50,12 @@ class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
     private Precondicion fueCreadoUnAsteroide() {
 
-        return pre(() -> unAsteroide = new Asteroide(Dureza.MAXIMA));
+        return pre(condicion ->  unAsteroide = new Asteroide(Dureza.MAXIMA));
     }
 
     private Postcondicion losPuntosInicialesDeUnAsteroideSonCorrectos() {
 
-        return post(() -> assertThat(unAsteroide.obtenerPuntos()).as("puntos").isEqualTo(300));
+        return post(condicion ->  assertThat(unAsteroide.obtenerPuntos()).as("puntos").isEqualTo(300));
     }
 
     @Test
@@ -69,11 +69,11 @@ class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
         );
     }
 
-    private Postcondicion generaExcepcionPorqueNoPuedeRecirCarga(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueNoPuedeRecirCarga(Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción lanzada")
                         .isInstanceOf(NoPuedeRecibirUnaCarga.class)
         );
@@ -90,11 +90,11 @@ class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
         );
     }
 
-    private Postcondicion generaExcepcionPorqueNoPuedeEntregarUnaCarga(Ejecutable ejecutable) {
+    private Postcondicion generaExcepcionPorqueNoPuedeEntregarUnaCarga(Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(NoPuedeEntregarUnaCarga.class)
         );
@@ -126,12 +126,12 @@ class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
 
     private Precondicion fueCreadoUnAsteroideConDureza(int valorDureza) {
 
-        return pre(() -> unAsteroide = new Asteroide(valorDureza));
+        return pre(condicion ->  unAsteroide = new Asteroide(valorDureza));
     }
 
     private Postcondicion losPuntosDeUnAsteroideSon(int esperados) {
 
-        return post(() -> assertThat(unAsteroide.obtenerPuntos()).as("puntos").isEqualTo(esperados));
+        return post(condicion ->  assertThat(unAsteroide.obtenerPuntos()).as("puntos").isEqualTo(esperados));
     }
 
     @ParameterizedTest
@@ -181,25 +181,25 @@ class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
     @Test
     void crearConDurezaMenorAlMinimo() {
 
-        comprobarQue(generaDefecto(() -> new Asteroide(Dureza.MINIMA - 1)));
+        comprobarQue(generaDefecto(() ->  new Asteroide(Dureza.MINIMA - 1)));
     }
 
     @Test
     void crearConDurezaManorAlMaximo() {
 
-        comprobarQue(generaDefecto(() -> new Asteroide(Dureza.MAXIMA + 1)));
+        comprobarQue(generaDefecto(() ->  new Asteroide(Dureza.MAXIMA + 1)));
     }
 
     private Postcondicion unAsteroideTieneLaDurezaEsperada(int dureza) {
 
-        return post(() -> assertThat(unAsteroide.obtenerDureza().obtener()).as("dureza").isEqualTo(dureza));
+        return post(condicion ->  assertThat(unAsteroide.obtenerDureza().obtener()).as("dureza").isEqualTo(dureza));
     }
 
-    private Postcondicion generaDefecto(Ejecutable ejecutable) {
+    private Postcondicion generaDefecto(Operacion operacion) {
 
-        return post(() ->
+        return post(condicion ->
 
-                assertThatThrownBy(ejecutable::ejecutar)
+                assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
                         .isInstanceOf(Defecto.class)
         );

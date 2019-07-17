@@ -37,7 +37,7 @@ class IndicesTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnCasilleroEn(Coordenadas coordenadas) {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             when(UN_CASILLERO.obtenerTablero()).thenReturn(EN_TABLERO);
             when(UN_CASILLERO.obtenerCoordenadas()).thenReturn(coordenadas);
@@ -46,7 +46,7 @@ class IndicesTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnTablero(int filaDesde, int filaHasta, int columnaDesde, int columnaHasta) {
 
-        return pre(() -> {
+        return pre(condicion ->  {
 
             when(EN_TABLERO.contarFilas()).thenReturn(filaHasta - filaDesde + 1);
             when(EN_TABLERO.contarColumnas()).thenReturn(columnaHasta - columnaDesde + 1);
@@ -59,7 +59,7 @@ class IndicesTest implements TestDeContrato {
 
     private Postcondicion losIndicesNoSonNulos() {
 
-        return post(() -> {
+        return post(condicion ->  {
 
             assertThat(indices).isNotNull();
             assertThat(indices.deFila()).isNotNull();
@@ -92,7 +92,7 @@ class IndicesTest implements TestDeContrato {
 
     private Postcondicion losIndicesSon(int filaEsperada, int columnaEsperada) {
 
-        return post(() -> {
+        return post(condicion ->  {
 
             assertThat(indices.deFila()).as("fila").isEqualTo(filaEsperada);
             assertThat(indices.deColumna()).as("columna").isEqualTo(columnaEsperada);

@@ -12,7 +12,7 @@ class PiezaAtacableEnPartidaTest implements TestDeContrato {
         @Override
         protected Precondicion fueCreadaLaPieza() {
 
-            return pre(() -> unaPiezaAtacable = new CazaEspacial());
+            return pre(condicion ->  unaPiezaAtacable = new CazaEspacial());
         }
     }
 
@@ -22,7 +22,7 @@ class PiezaAtacableEnPartidaTest implements TestDeContrato {
         @Override
         protected Precondicion fueCreadaLaPieza() {
 
-            return pre(() -> unaPiezaAtacable = new BaseEspacial());
+            return pre(condicion ->  unaPiezaAtacable = new BaseEspacial());
         }
     }
 
@@ -32,7 +32,7 @@ class PiezaAtacableEnPartidaTest implements TestDeContrato {
         @Override
         protected Precondicion fueCreadaLaPieza() {
 
-            return pre(() -> unaPiezaAtacable = new Asteroide(100));
+            return pre(condicion ->  unaPiezaAtacable = new Asteroide(100));
         }
     }
 
@@ -42,7 +42,7 @@ class PiezaAtacableEnPartidaTest implements TestDeContrato {
         @Override
         protected Precondicion fueCreadaLaPieza() {
 
-            return pre(() -> unaPiezaAtacable = new ContenedorDeAntimateria());
+            return pre(condicion ->  unaPiezaAtacable = new ContenedorDeAntimateria());
         }
     }
 
@@ -52,7 +52,7 @@ class PiezaAtacableEnPartidaTest implements TestDeContrato {
         @Override
         protected Precondicion fueCreadaLaPieza() {
 
-            return pre(() -> unaPiezaAtacable = new ContenedorDeMetal());
+            return pre(condicion ->  unaPiezaAtacable = new ContenedorDeMetal());
         }
     }
 
@@ -62,7 +62,7 @@ class PiezaAtacableEnPartidaTest implements TestDeContrato {
         @Override
         protected Precondicion fueCreadaLaPieza() {
 
-            return pre(() -> unaPiezaAtacable = new ContenedorDeCristal());
+            return pre(condicion ->  unaPiezaAtacable = new ContenedorDeCristal());
         }
     }
 

@@ -3,6 +3,6 @@ package espacial.test;
 @FunctionalInterface
 public interface Ejecutable {
 
-    void ejecutar() throws Throwable;
+    void ejecutar(Condicion condicion) throws Throwable;
     
 }

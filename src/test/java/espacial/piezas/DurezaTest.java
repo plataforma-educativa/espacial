@@ -29,7 +29,7 @@ class DurezaTest implements TestDeContrato {
 
     private Postcondicion elValorDeUnaDurezaEs(int esperado) {
 
-        return post(() -> assertThat(unaDureza.obtener()).as("valor").isEqualTo(esperado));
+        return post(condicion ->  assertThat(unaDureza.obtener()).as("valor").isEqualTo(esperado));
     }
 
     @ParameterizedTest
@@ -58,11 +58,11 @@ class DurezaTest implements TestDeContrato {
 
     private Precondicion fueCreadaUnaDurezaDe(int valor) {
 
-        return pre(() -> unaDureza = new Dureza(valor));
+        return pre(condicion ->  unaDureza = new Dureza(valor));
     }
 
     private Postcondicion elAtaquePonderadoEsDe(int valor) {
 
-        return post(() -> assertThat(ataquePonderado).isEqualTo(valor));
+        return post(condicion ->  assertThat(ataquePonderado).isEqualTo(valor));
     }
 }

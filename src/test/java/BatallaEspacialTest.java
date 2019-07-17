@@ -26,9 +26,7 @@ class BatallaEspacialTest implements TestDeContrato {
 
     private Postcondicion quedoRegistrada(BatallaEspacial objeto) {
 
-        return post("quedó registrada la Batalla Espacial", () ->
-
-                assertThat(BatallaEspacial.obtener()).isSameAs(objeto));
+        return post(condicion -> assertThat(BatallaEspacial.obtener()).isSameAs(objeto));
     }
 
     @Test
@@ -41,7 +39,7 @@ class BatallaEspacialTest implements TestDeContrato {
 
     private Postcondicion alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro() {
 
-        return post(() -> assertThat(batalla).hasToString("Batalla Espacial"));
+        return post(condicion -> assertThat(batalla).hasToString("Batalla Espacial"));
     }
 
     @Test
@@ -56,7 +54,9 @@ class BatallaEspacialTest implements TestDeContrato {
 
     private Postcondicion fueInicializadoEl(Tablero tablero) {
 
-        return post("fue inicializado el tablero", () -> {
+        return post(condicion -> {
+
+            condicion.es("fue inicializado el tablero con las dimensiones correctas");
 
             assertThat(tablero.contarFilas()).as("filas del Tablero").isEqualTo(21);
             assertThat(tablero.obtenerFilaMaxima()).as("fila máxima").isEqualTo(10);
@@ -65,6 +65,8 @@ class BatallaEspacialTest implements TestDeContrato {
             assertThat(tablero.contarColumnas()).as("columnas del Tablero").isEqualTo(53);
             assertThat(tablero.obtenerColumnaMaxima()).as("columna máxima").isEqualTo(26);
             assertThat(tablero.obtenerColumnaMinima()).as("columna mínima").isEqualTo(-26);
+
+            condicion.es("fue inicializado el tablero con las piezas esperadas");
 
             assertThat(tablero)
                     .tieneBase()
@@ -105,12 +107,12 @@ class BatallaEspacialTest implements TestDeContrato {
 
         Tablero tablero = batalla.obtenerTablero();
 
-        comprobarQue(devuelveElMismo(batalla, tablero));
+        comprobarQue(devuelveElMismoTablero(batalla, tablero));
     }
 
-    private Postcondicion devuelveElMismo(BatallaEspacial batalla, Tablero tablero) {
+    private Postcondicion devuelveElMismoTablero(BatallaEspacial batalla, Tablero tablero) {
 
-        return post("devuelve el mismo tablero", () -> {
+        return post(condicion -> {
 
             assertThat(tablero).isSameAs(batalla.obtenerTablero());
             assertThat(tablero).isSameAs(batalla.obtenerTablero());
@@ -131,22 +133,26 @@ class BatallaEspacialTest implements TestDeContrato {
 
     private Precondicion fueCreadaLaBatalla() {
 
-        return pre(() -> batalla = new BatallaEspacial());
+        return pre(condicion -> batalla = new BatallaEspacial());
     }
 
     private Postcondicion entreLasNavesDeLaBatallaEsta(Nave unaNave) {
 
-        return post("entre las Naves de la batalla está " + unaNave, () ->
+        return post(condicion -> {
 
-                assertThat(batalla.obtenerNaves())
-                        .as("naves en la batalla")
-                        .contains(unaNave)
-        );
+            condicion.es("entre las Naves de la batalla está %s", unaNave);
+
+            assertThat(batalla.obtenerNaves())
+                    .as("naves en la batalla")
+                    .contains(unaNave);
+        });
     }
 
     private Postcondicion enLaBaseEsta(NaveEspacial pieza) {
 
-        return post("en la base está la pieza", () -> {
+        return post(condicion -> {
+
+            condicion.es("en la base está la pieza");
 
             assertThat(pieza).as("pieza").isNotNull();
 
@@ -159,7 +165,7 @@ class BatallaEspacialTest implements TestDeContrato {
 
     private Postcondicion tieneNombre(NaveEspacial pieza) {
 
-        return post(() -> assertThat(pieza.nombrar()).as("nombre").isNotNull());
+        return post(condicion -> assertThat(pieza.nombrar()).as("nombre").isNotNull());
     }
 
     @Test
@@ -186,6 +192,6 @@ class BatallaEspacialTest implements TestDeContrato {
 
     private Postcondicion tienenNombresDiferentes(NaveEspacial... piezas) {
 
-        return post(() -> assertThat(piezas).extracting(NaveEspacial::nombrar).doesNotHaveDuplicates());
+        return post(condicion -> assertThat(piezas).extracting(NaveEspacial::nombrar).doesNotHaveDuplicates());
     }
 }

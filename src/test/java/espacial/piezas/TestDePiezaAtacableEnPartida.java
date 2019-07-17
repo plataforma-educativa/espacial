@@ -30,7 +30,7 @@ abstract class TestDePiezaAtacableEnPartida<T extends PiezaAtacable> implements 
 
     private Precondicion unPiezaFueColocadaEnUnCasillero() {
 
-        return pre(() -> unaPiezaAtacable.fueColocadaEn(UN_CASILLERO));
+        return pre(condicion ->  unaPiezaAtacable.fueColocadaEn(UN_CASILLERO));
     }
 
     private void cuandoUnaPiezaEsDestruida() {
@@ -40,6 +40,6 @@ abstract class TestDePiezaAtacableEnPartida<T extends PiezaAtacable> implements 
 
     private Postcondicion seDesocupoElCasilleroQueOcupaba() {
 
-        return  post(() -> verify(UN_CASILLERO).desocupar());
+        return  post(condicion ->  verify(UN_CASILLERO).desocupar());
     }
 }

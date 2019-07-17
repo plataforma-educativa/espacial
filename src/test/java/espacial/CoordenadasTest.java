@@ -24,7 +24,7 @@ class CoordenadasTest implements TestDeContrato {
 
     private Postcondicion fueInicializada(Coordenadas coordenadas, int fila, int columna) {
 
-        return post(() -> {
+        return post(condicion ->  {
 
             assertThat(coordenadas.obtenerFila()).as("fila").isEqualTo(5);
             assertThat(coordenadas.obtenerColumna()).as("columna").isEqualTo(3);
