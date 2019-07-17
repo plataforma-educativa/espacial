@@ -683,7 +683,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Precondicion fueCreadoUnCazaEspacialConElNombre(String nombre) {
 
-        return pre(condicion ->  unCazaEspacial = new CazaEspacial(Nombre.es(nombre).obtener()));
+        return pre(condicion ->  unCazaEspacial = new CazaEspacial(Nombre.sera(nombre).obtener()));
     }
 
     private Postcondicion elNombreEs(String nombreEsperado) {

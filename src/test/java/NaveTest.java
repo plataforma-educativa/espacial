@@ -9,6 +9,8 @@ import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
+import java.util.regex.Pattern;
+
 import static espacial.test.Aserciones.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.*;
@@ -612,7 +614,11 @@ class NaveTest implements TestDeContrato {
 
     private Postcondicion alEvaluarUnaVariableEnElInterpreteSeMuestraUnMensajeClaro() {
 
-        return post(condicion -> assertThat(unaNave).hasToString("Nave a la espera de comandos"));
+        return post(condicion ->
+
+                assertThat(unaNave.toString()).matches(Pattern.compile("^Nave '.+' a la espera de comandos$"))
+
+        );
     }
 
     @Test

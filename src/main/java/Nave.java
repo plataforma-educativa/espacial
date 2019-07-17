@@ -135,6 +135,6 @@ public class Nave {
     public String toString() {
 
         /* Devuelve un mensaje descriptivo para que se use al evaluar una variable en el intérprete */
-        return "Nave a la espera de comandos";
+        return "Nave " + pieza.nombrar() + " a la espera de comandos";
     }
 }

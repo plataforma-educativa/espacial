@@ -11,7 +11,7 @@ public class Nombre {
         valor = conValor;
     }
 
-    public static Nombrando es(String valor) {
+    public static Nombrando sera(String valor) {
 
         return new Nombrando(valor);
     }
@@ -24,6 +24,12 @@ public class Nombre {
     public String explicar() {
 
         return explicacion;
+    }
+
+    @Override
+    public String toString() {
+
+        return "'" + obtener() + "'";
     }
 
     public static class Nombrando {

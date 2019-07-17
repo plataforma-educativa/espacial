@@ -61,7 +61,7 @@ public interface Pieza extends Obstaculo, Objetivo {
     int obtenerPuntos();
 
     /**
-     * @pre  la Pieza es capaz de recibir una Carga de SustanciaEspacial.
+     * @pre  la Pieza sera capaz de recibir una Carga de SustanciaEspacial.
      * @post toma la Carga indicada.
      * @param unaCarga Carga de Sustancia Espacial.
      */
@@ -71,7 +71,7 @@ public interface Pieza extends Obstaculo, Objetivo {
     }
 
     /**
-     * @pre  la Pieza es capaz de entregar una Carga de SustanciaEspacial.
+     * @pre  la Pieza sera capaz de entregar una Carga de SustanciaEspacial.
      * @post entrega la Carga indicada.
      * @param unaCarga Carga de Sustancia Espacial a entregar.
      */
