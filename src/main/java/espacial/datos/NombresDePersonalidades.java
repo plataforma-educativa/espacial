@@ -13,7 +13,7 @@ import java.util.List;
  *      https://github.com/docker/engine/blob/master/pkg/namesgenerator/names-generator.go
  *      "Docker, starting from 0.7.x, generates names from notable scientists and hackers."
  */
-public abstract class NombresDePersonalidades extends LinkedList<Nombre> {
+public abstract class NombresDePersonalidades {
 
     private static final Nombre[] NOMBRES = new Nombre[]{
 
