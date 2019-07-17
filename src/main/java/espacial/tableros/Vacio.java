@@ -64,13 +64,13 @@ public class Vacio extends EstadoDelCasillero {
     @Override
     public void alRecibirPiezaDesde(Casillero origen) {
 
-        Pieza pieza = origen.obtenerPieza();
+        Pieza piezaRecibida = origen.obtenerPieza();
 
         origen.desocupar();
 
-        cambiarPor(estadoResultanteSegunElTipoDe(pieza));
+        cambiarPor(estadoResultanteSegunElTipoDe(piezaRecibida));
 
-        pieza.fueColocadaEn(contexto);
+        piezaRecibida.fueColocadaEn(contexto);
     }
 
     @Override
