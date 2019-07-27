@@ -17,12 +17,12 @@ import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.params.provider.Arguments.*;
 import static org.mockito.Mockito.*;
 
-class IndicesTest implements TestDeContrato {
+class PosicionTest implements TestDeContrato {
 
     private final Tablero EN_TABLERO = mock(Tablero.class, "EN_TABLERO");
     private final Casillero UN_CASILLERO = mock(Casillero.class, "UN_CASILLERO");
 
-    private Indices indices = Indices.para(UN_CASILLERO);
+    private Posicion posicion = Posicion.de(UN_CASILLERO);
 
     @Test
     void crearConCasillero() {
@@ -30,7 +30,7 @@ class IndicesTest implements TestDeContrato {
         dadoQue(fueCreadoUnTablero(-7, 7, -5, 5));
         dadoQue(fueCreadoUnCasilleroEn(Coordenadas.con(0, 0)));
 
-        indices = Indices.para(UN_CASILLERO);
+        posicion = Posicion.de(UN_CASILLERO);
 
         comprobarQue(losIndicesNoSonNulos());
     }
@@ -61,9 +61,9 @@ class IndicesTest implements TestDeContrato {
 
         return post(condicion ->  {
 
-            assertThat(indices).isNotNull();
-            assertThat(indices.deFila()).isNotNull();
-            assertThat(indices.deColumna()).isNotNull();
+            assertThat(posicion).isNotNull();
+            assertThat(posicion.enFila()).isNotNull();
+            assertThat(posicion.enColumna()).isNotNull();
         });
     }
 
@@ -74,7 +74,7 @@ class IndicesTest implements TestDeContrato {
         dadoQue(fueCreadoUnTablero(-3, 3, -4, 4));
         dadoQue(fueCreadoUnCasilleroEn(coordenadas));
 
-        indices = Indices.para(UN_CASILLERO);
+        posicion = Posicion.de(UN_CASILLERO);
 
         comprobarQue(losIndicesSon(filaEsperada, columnaEsperada));
     }
@@ -94,8 +94,8 @@ class IndicesTest implements TestDeContrato {
 
         return post(condicion ->  {
 
-            assertThat(indices.deFila()).as("fila").isEqualTo(filaEsperada);
-            assertThat(indices.deColumna()).as("columna").isEqualTo(columnaEsperada);
+            assertThat(posicion.enFila()).as("fila").isEqualTo(filaEsperada);
+            assertThat(posicion.enColumna()).as("columna").isEqualTo(columnaEsperada);
         });
     }
 
@@ -106,7 +106,7 @@ class IndicesTest implements TestDeContrato {
         dadoQue(fueCreadoUnTablero(0, 2, 0, 2));
         dadoQue(fueCreadoUnCasilleroEn(coordenadas));
 
-        indices = Indices.para(UN_CASILLERO);
+        posicion = Posicion.de(UN_CASILLERO);
 
         comprobarQue(losIndicesSon(filaEsperada, columnaEsperada));
     }
@@ -119,5 +119,22 @@ class IndicesTest implements TestDeContrato {
                 arguments(Coordenadas.con(0, 2), 3, 3),
                 arguments(Coordenadas.con(0, 0), 3, 1)
         );
+    }
+
+    @Test
+    void tieneToString() {
+
+        Coordenadas coordenadas = Coordenadas.con(1, 1);
+        dadoQue(fueCreadoUnTablero(-4, 4, -6, 6));
+        dadoQue(fueCreadoUnCasilleroEn(coordenadas));
+
+        posicion = Posicion.de(UN_CASILLERO);
+
+        comprobarQue(tieneDescripcion("Posicion[4][8] -> Casillero[1][1]"));
+    }
+
+    private Postcondicion tieneDescripcion(String descripcion) {
+
+        return post(condicion -> assertThat(posicion).hasToString(descripcion));
     }
 }

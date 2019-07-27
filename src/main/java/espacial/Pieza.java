@@ -84,4 +84,13 @@ public interface Pieza extends Obstaculo, Objetivo {
 
         return "Pieza<" + escanear() + ">";
     }
+
+    default void registrar(Observador observador) {
+
+    }
+
+    interface Observador {
+
+        void fueMovida(Pieza unaPieza, Casillero aCasillero);
+    }
 }

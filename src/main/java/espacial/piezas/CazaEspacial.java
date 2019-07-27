@@ -8,6 +8,7 @@ import espacial.Casillero;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
+import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.Visitante;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
@@ -26,6 +27,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     private final Bodega bodega = new Bodega(obtenerCapacidad());
     private final Referencia<Amarre> amarre = Referencia.conValorNulo();
     private final Referencia<Casillero> casillero = Referencia.conValorNulo();
+    private final Observadores observadores = new Observadores();
 
     public CazaEspacial() {
 
@@ -52,6 +54,8 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     public void fueColocadaEn(Casillero unCasillero) {
         
         casillero.cambiar(unCasillero);
+
+        observadores.propagar(observador -> observador.fueMovida(this, unCasillero));
     }
     
     @Override
@@ -222,5 +226,11 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     public Nombre nombrar() {
 
         return nombre;
+    }
+
+    @Override
+    public void registrar(Pieza.Observador unObservador) {
+
+        observadores.registrar(unObservador);
     }
 }

@@ -33,4 +33,8 @@ public interface NaveEspacial extends Pieza, Chocable {
     int obtenerNivelDeCarga();
 
     Nombre nombrar();
+
+    interface Observador extends Pieza.Observador {
+
+    }
 }

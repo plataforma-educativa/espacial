@@ -4,10 +4,12 @@ import espacial.NaveEspacial;
 import espacial.PartidaEspacial;
 import espacial.Pieza;
 import espacial.Visitante;
+import espacial.interfaz.componentes.Dibujante;
 import espacial.interfaz.componentes.PanelConTablero;
 import espacial.interfaz.rasgos.Controlador;
 import espacial.interfaz.rasgos.Vista;
 import espacial.utiles.Proveedor;
+import javafx.animation.Animation;
 import javafx.collections.FXCollections;
 import javafx.collections.MapChangeListener.Change;
 import javafx.collections.ObservableMap;
@@ -19,6 +21,8 @@ import javafx.scene.layout.VBox;
 public class ControladorDePartida implements Controlador {
 
     private final PartidaEspacial partida;
+
+    private final Dibujante dibujante = new Dibujante();
 
     @FXML
     private BorderPane panelMarco;
@@ -94,5 +98,15 @@ public class ControladorDePartida implements Controlador {
     public void fueSeleccionada(Pieza unaPieza) {
 
         unaPieza.aceptar(crearVistaInforme);
+    }
+
+    public void reproducir(Animation animacion) {
+
+        animacion.play();
+    }
+
+    public Dibujante conDibujante() {
+
+        return dibujante;
     }
 }

@@ -6,61 +6,53 @@ import espacial.Pieza;
 import espacial.Tablero;
 import espacial.interfaz.ControladorDePartida;
 import javafx.application.Platform;
-import javafx.geometry.HPos;
-import javafx.geometry.VPos;
-import javafx.scene.Group;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 
-public class PanelConTablero extends GridPane implements ObservadorDelTablero {
+public class PanelConTablero extends StackPane implements ObservadorDelTablero {
 
-    private final Dibujante dibujante = new Dibujante();
+    private final GridPane grilla = new GridPane();
+    private final AnchorPane piezas = new AnchorPane();
     private final ControladorDePartida controlador;
     private final Tablero tablero;
 
     public PanelConTablero(ControladorDePartida unControlador, Tablero unTablero) {
 
+        getChildren().addAll(grilla, piezas);
+        grilla.setVgap(0);
+        grilla.setHgap(0);
         controlador = unControlador;
         tablero = unTablero;
         tablero.registrar(this);
-        disponerCasilleros();
-    }
-
-    private void disponerCasilleros() {
-
-        setVgap(0);
-        setHgap(0);
-
         tablero.conCadaCasilleroAceptar(this::agregar);
     }
 
     private void agregar(Casillero casillero, Pieza... piezas) {
 
-        Indices indices = Indices.para(casillero);
+        Posicion posicion = Posicion.de(casillero);
 
-        agregar(casillero, indices);
+        agregar(casillero, posicion);
 
         for (Pieza pieza : piezas) {
 
-            agregar(pieza, indices);
+            agregar(pieza, posicion);
         }
     }
 
-    private void agregar(Pieza pieza, Indices indices) {
+    private void agregar(Pieza pieza, Posicion posicion) {
 
-        Group panel = new PanelConPieza(controlador, dibujante, pieza);
-        add(panel, indices.deColumna(), indices.deFila());
-        GridPane.setValignment(panel, VPos.CENTER);
-        GridPane.setHalignment(panel, HPos.CENTER);
+        piezas.getChildren().add(new PanelConPieza(controlador, pieza).en(posicion));
     }
 
-    private void agregar(Casillero casillero, Indices indices) {
+    private void agregar(Casillero casillero, Posicion posicion) {
 
-        add(dibujante.dibujar(casillero), indices.deColumna(), indices.deFila());
+        grilla.add(controlador.conDibujante().dibujar(casillero), posicion.enColumna(), posicion.enFila());
     }
 
     @Override
     public void fueAgregadaEn(Casillero casillero, Pieza unaPieza) {
 
-        Platform.runLater(() -> agregar(unaPieza, Indices.para(casillero)));
+        Platform.runLater(() -> agregar(unaPieza, Posicion.de(casillero)));
     }
 }
