@@ -11,20 +11,22 @@ public class VistaPartida implements Vista {
 
     private final Stage escenario;
     private final PartidaEspacial partida;
+    private final int anchoInicial = 800;
+    private final int altoInicial = 600;
 
     public VistaPartida(PartidaEspacial unaPartida) {
 
         partida = unaPartida;
         escenario = new Stage(StageStyle.DECORATED);
-        escenario.setMinWidth(720);
-        escenario.setMinHeight(600);
+        escenario.setMinWidth(anchoInicial);
+        escenario.setMinHeight(altoInicial);
         escenario.getIcons().add(cargarImagen("/img/espacial.png"));
         escenario.setTitle(partida.obtenerNombre());
     }
 
     public void iniciar() {
 
-        escenario.setScene(new Scene(cargar("/fx/partida.fxml"), 400, 300));
+        escenario.setScene(new Scene(cargar("/fx/partida.fxml"), anchoInicial, altoInicial));
         escenario.show();
     }
 
