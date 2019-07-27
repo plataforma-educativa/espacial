@@ -1,10 +1,12 @@
 package espacial.piezas;
 
+import espacial.Accion;
 import espacial.Ataque;
 
 public class Artilleria {
 
     private int torpedosDeFotones;
+    private Accion alCambiarLasMuniciones = Accion.NINGUNA;
 
     public Artilleria(int cantidadDeTorpedos) {
 
@@ -15,10 +17,10 @@ public class Artilleria {
 
         Ataque ataque;
 
-        if (torpedosDeFotones > 0) {
+        if (tieneTorpedos()) {
 
             ataque = new AtaqueConTorpedoDeFotones();
-            torpedosDeFotones--;
+            consumirUnTorpedo();
 
         } else {
 
@@ -28,8 +30,24 @@ public class Artilleria {
         return ataque;
     }
 
+    private boolean tieneTorpedos() {
+
+        return torpedosDeFotones > 0;
+    }
+
+    private void consumirUnTorpedo() {
+
+        torpedosDeFotones--;
+        alCambiarLasMuniciones.ejecutar();
+    }
+
     public int contarTorpedosDeFotones() {
 
         return torpedosDeFotones;
+    }
+
+    public void cuandoCambianLasMunicionesEjecutar(Accion accion) {
+
+        alCambiarLasMuniciones = accion;
     }
 }

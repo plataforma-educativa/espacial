@@ -1,5 +1,6 @@
 package espacial.piezas;
 
+import espacial.Accion;
 import espacial.Ataque;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
@@ -10,9 +11,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class ArtilleriaTest implements TestDeContrato {
 
+    private final Accion UNA_ACCION = mock(Accion.class, "UNA_ACCION");
     private Artilleria unaArtilleria;
     private List<Ataque> ataquesRealizados = new LinkedList<>();
 
@@ -68,5 +71,21 @@ class ArtilleriaTest implements TestDeContrato {
                     .as("ataques con laser")
                     .hasOnlyElementsOfType(AtaqueConLaser.class);
         });
+    }
+
+    @Test
+    void cuandoCambianLasMunicionesEjecutar() {
+
+        dadoQue(fueCreadoUnArsenalConTorpedosDeFotones(5));
+
+        unaArtilleria.cuandoCambianLasMunicionesEjecutar(UNA_ACCION);
+        unaArtilleria.lanzarAtaque();
+
+        comprobarQue(ejecutoUnaAccionConfigurada());
+    }
+
+    private Postcondicion ejecutoUnaAccionConfigurada() {
+
+        return post(condicion -> verify(UNA_ACCION).ejecutar());
     }
 }
