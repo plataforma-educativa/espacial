@@ -92,5 +92,7 @@ public interface Pieza extends Obstaculo, Objetivo {
     interface Observador {
 
         void fueMovida(Pieza unaPieza, Casillero aCasillero);
+
+        void cambioElEstadoDe(Pieza unaPieza);
     }
 }

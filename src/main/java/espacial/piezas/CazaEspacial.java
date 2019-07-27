@@ -102,6 +102,8 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     public void disminuirNivelDeEscudosEn(int diferencia) {
 
         nivelDeEscudos.decrementarEn(diferencia);
+
+        observadores.propagar(observador -> observador.cambioElEstadoDe(this));
     }
 
     @Override

@@ -1,6 +1,8 @@
 package espacial.interfaz;
 
+import espacial.Casillero;
 import espacial.NaveEspacial;
+import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.utiles.Nombre;
 import javafx.event.ActionEvent;
@@ -12,7 +14,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 
-public class ControladorDeInformeNave extends ControladorDeInformePieza<NaveEspacial> {
+public class ControladorDeInformeNave extends ControladorDeInformePieza<NaveEspacial> implements Pieza.Observador {
 
     @FXML
     private Label nombre;
@@ -35,6 +37,7 @@ public class ControladorDeInformeNave extends ControladorDeInformePieza<NaveEspa
     public ControladorDeInformeNave(NaveEspacial unaPieza) {
 
         super(unaPieza);
+        pieza.registrar(this);
     }
 
     @Override
@@ -71,5 +74,16 @@ public class ControladorDeInformeNave extends ControladorDeInformePieza<NaveEspa
 
         alert.getDialogPane().setContent(new BorderPane(explicacion));
         alert.showAndWait();
+    }
+
+    @Override
+    public void fueMovida(Pieza unaPieza, Casillero aCasillero) {
+
+    }
+
+    @Override
+    public void cambioElEstadoDe(Pieza unaPieza) {
+
+        completar();
     }
 }

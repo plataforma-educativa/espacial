@@ -47,4 +47,9 @@ public class PanelConPieza extends Group implements Pieza.Observador {
 
     }
 
+    @Override
+    public void cambioElEstadoDe(Pieza unaPieza) {
+
+
+    }
 }

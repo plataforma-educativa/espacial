@@ -27,15 +27,15 @@ class PartidaEspacialFXTest {
 
         try {
 
-
             for (int i = 0; i < 10; i++) {
 
-                TimeUnit.SECONDS.sleep(5);
-                System.out.println("avanzarAlOeste " + i);
+                TimeUnit.SECONDS.sleep(1);
                 nave.avanzarAlEste();
+                TimeUnit.SECONDS.sleep(1);
+                nave.avanzarAlSur();
             }
 
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
