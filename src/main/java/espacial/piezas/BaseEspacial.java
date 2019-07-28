@@ -20,11 +20,18 @@ public class BaseEspacial implements Pieza, PiezaAtacable, BaseDeposito {
     private final Indicador puntos = new Indicador(200);
     private final Bodega bodega = new Bodega(obtenerCapacidad());
     private final List<Amarre> amarres = new LinkedList<>();
+    private final Observadores observadores = new Observadores();
     private Casillero casillero;
 
     public BaseEspacial() {
 
         puntos.cuandoSeAgota(() -> casillero.desocupar());
+        bodega.cuandoCambiaLaCarga(this::notificarQueCambioElEstado);
+    }
+
+    private void notificarQueCambioElEstado() {
+
+        observadores.propagar(observador -> observador.cambioElEstadoDe(this));
     }
 
     @Override
@@ -97,6 +104,12 @@ public class BaseEspacial implements Pieza, PiezaAtacable, BaseDeposito {
     public Cargamento obtenerCristal() {
 
         return bodega.CRISTAL;
+    }
+
+    @Override
+    public void registrar(Observador observador) {
+
+        observadores.registrar(observador);
     }
 
     @Override
