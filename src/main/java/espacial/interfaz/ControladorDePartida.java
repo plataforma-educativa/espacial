@@ -64,12 +64,7 @@ public class ControladorDePartida implements Controlador {
 
         private void agregarVistaSiNoExiste(Pieza pieza, Proveedor<VistaInforme> proveedorDeVista) {
 
-            if (! vistaInformePorPieza.containsKey(pieza)) {
-
-                vistaInformePorPieza.put(pieza, proveedorDeVista.obtener());
-            }
-
-            vistaInformePorPieza.get(pieza).seleccionar();
+            vistaInformePorPieza.computeIfAbsent(pieza, p -> proveedorDeVista.obtener()).seleccionar();
         }
 
     };
