@@ -38,6 +38,13 @@ class PartidaEspacialFXTest {
         nave2.avanzarAlNorte();
         nave2.descargarEnNorte(Sustancia.ANTIMATERIA, 1);
 
+        TimeUnit.SECONDS.sleep(1);
+        for (int i = 0; i < 20; i++) {
+
+            nave2.atacarAlNorte();
+        }
+        TimeUnit.SECONDS.sleep(1);
+
         for (int i = 0; i < 10; i++) {
 
             TimeUnit.SECONDS.sleep(1);
@@ -45,7 +52,6 @@ class PartidaEspacialFXTest {
             TimeUnit.SECONDS.sleep(1);
             nave.avanzarAlSur();
         }
-
 
     }
 

@@ -25,8 +25,19 @@ public class BaseEspacial implements Pieza, PiezaAtacable, BaseDeposito {
 
     public BaseEspacial() {
 
-        puntos.cuandoSeAgota(() -> casillero.desocupar());
+        puntos.cuandoSeAgota(this::fueDestruido);
         bodega.cuandoCambiaLaCarga(this::notificarQueCambioElEstado);
+    }
+
+    private void fueDestruido() {
+
+        casillero.desocupar();
+        notificarQueFueDestruido();
+    }
+
+    private void notificarQueFueDestruido() {
+
+        observadores.propagar(observador -> observador.fueDestruida(this));
     }
 
     private void notificarQueCambioElEstado() {
