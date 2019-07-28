@@ -22,6 +22,11 @@ public class ControladorDeInformeBase extends ControladorDeInformePieza<Pieza> {
     }
 
     @Override
+    protected void configurar() {
+
+    }
+
+    @Override
     protected void completar() {
 
         antimateria.setText(comoTexto(pieza.buscar(SustanciaEspacial.ANTIMATERIA)));

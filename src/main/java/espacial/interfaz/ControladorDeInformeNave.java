@@ -24,6 +24,12 @@ public class ControladorDeInformeNave extends ControladorDeInformePieza<NaveEspa
     private ProgressBar nivelEscudos;
 
     @FXML
+    private Label escudosActivos;
+
+    @FXML
+    private Label escudosDestruidos;
+
+    @FXML
     private TextField torpedos;
 
     @FXML
@@ -42,11 +48,16 @@ public class ControladorDeInformeNave extends ControladorDeInformePieza<NaveEspa
     }
 
     @Override
+    protected void configurar() {
+
+        nombre.setText(pieza.nombrar().obtener());
+        escudosActivos.visibleProperty().bind(panel.getContent().disabledProperty().not());
+        escudosDestruidos.visibleProperty().bind(escudosActivos.visibleProperty().not());
+    }
+
+    @Override
     protected void completar() {
 
-        Nombre nombreDeLaNave = pieza.nombrar();
-
-        nombre.setText(nombreDeLaNave.obtener());
         nivelEscudos.setProgress(pieza.obtenerNivelDeEscudos() / 100.0);
         torpedos.setText(comoTexto(pieza.obtenerCantidadDeTorpedosDeFotones()));
         antimateria.setText(comoTexto(pieza.buscar(SustanciaEspacial.ANTIMATERIA)));
@@ -91,5 +102,6 @@ public class ControladorDeInformeNave extends ControladorDeInformePieza<NaveEspa
     @Override
     public void fueDestruida(Pieza unaPieza) {
 
+        Platform.runLater(() -> panel.getContent().setDisable(true));
     }
 }

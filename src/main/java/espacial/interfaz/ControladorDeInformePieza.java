@@ -19,9 +19,12 @@ public abstract class ControladorDeInformePieza<T extends Pieza> implements Cont
 
     @FXML
     void initialize() {
-        
+
+        configurar();
         completar();
     }
-    
+
+    protected abstract void configurar();
+
     protected abstract void completar();
 }
