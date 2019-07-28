@@ -37,12 +37,12 @@ public class BaseEspacial implements Pieza, PiezaAtacable, BaseDeposito {
 
     private void notificarQueFueDestruido() {
 
-        observadores.propagar(observador -> observador.fueDestruida(this));
+        observadores.fueDestruida(this);
     }
 
     private void notificarQueCambioElEstado() {
 
-        observadores.propagar(observador -> observador.cambioElEstadoDe(this));
+        observadores.cambioElEstadoDe(this);
     }
 
     @Override
@@ -120,7 +120,7 @@ public class BaseEspacial implements Pieza, PiezaAtacable, BaseDeposito {
     @Override
     public void registrar(Observador observador) {
 
-        observadores.registrar(observador);
+        observadores.agregar(observador);
     }
 
     @Override

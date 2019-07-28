@@ -1,15 +1,16 @@
 package espacial.piezas;
 
+import espacial.Casillero;
 import espacial.Pieza;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class Observadores {
+public class Observadores implements Pieza.Observador {
 
     private List<Pieza.Observador> elementos = new LinkedList<>();
 
-    public void registrar(Pieza.Observador unObservador) {
+    public void agregar(Pieza.Observador unObservador) {
 
         elementos.add(unObservador);
     }
@@ -17,6 +18,24 @@ public class Observadores {
     public void propagar(Notificacion notificacion) {
 
         elementos.forEach(notificacion::notificar);
+    }
+
+    @Override
+    public void fueMovida(Pieza unaPieza, Casillero aCasillero) {
+
+        propagar(observador -> observador.fueMovida(unaPieza, aCasillero));
+    }
+
+    @Override
+    public void cambioElEstadoDe(Pieza unaPieza) {
+
+        propagar(observador -> observador.cambioElEstadoDe(unaPieza));
+    }
+
+    @Override
+    public void fueDestruida(Pieza unaPieza) {
+
+        propagar(observador -> observador.fueDestruida(unaPieza));
     }
 
     @FunctionalInterface

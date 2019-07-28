@@ -175,17 +175,17 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
 
     private void notificarQueCambioElEstado() {
 
-        observadores.propagar(observador -> observador.cambioElEstadoDe(this));
+        observadores.cambioElEstadoDe(this);
     }
 
     private void notificarQueFueMovidaA(Casillero unCasillero) {
 
-        observadores.propagar(observador -> observador.fueMovida(this, unCasillero));
+        observadores.fueMovida(this, unCasillero);
     }
 
     private void notificarQueFueDestruido() {
 
-        observadores.propagar(observador -> observador.fueDestruida(this));
+        observadores.fueDestruida(this);
     }
 
     private Casillero obtenerCasillero() {
@@ -252,6 +252,6 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     @Override
     public void registrar(Pieza.Observador unObservador) {
 
-        observadores.registrar(unObservador);
+        observadores.agregar(unObservador);
     }
 }
