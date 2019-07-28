@@ -1,6 +1,6 @@
 package espacial.piezas;
 
-import espacial.Accion;
+import espacial.utiles.Accion;
 
 public class Indicador {
 

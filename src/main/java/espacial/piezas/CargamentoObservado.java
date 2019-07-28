@@ -1,7 +1,7 @@
 package espacial.piezas;
 
-import espacial.Accion;
 import espacial.Cargamento;
+import espacial.utiles.Accion;
 
 public class CargamentoObservado implements Cargamento {
 

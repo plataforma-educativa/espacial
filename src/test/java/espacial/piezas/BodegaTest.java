@@ -1,7 +1,6 @@
 package espacial.piezas;
 
 
-import espacial.Accion;
 import espacial.Cargamento;
 import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.excepciones.ExcedeLaCargaDisponible;
@@ -9,6 +8,7 @@ import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
+import espacial.utiles.Accion;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;

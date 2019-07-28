@@ -1,10 +1,10 @@
 package espacial.piezas;
 
-import espacial.Accion;
 import espacial.Ataque;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
+import espacial.utiles.Accion;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;

@@ -1,7 +1,7 @@
 package espacial.piezas;
 
-import espacial.Accion;
 import espacial.Ataque;
+import espacial.utiles.Accion;
 
 public class Artilleria {
 
