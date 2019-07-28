@@ -39,7 +39,7 @@ public class ControladorDePartida implements Controlador {
 
     private final Visitante crearVistaInforme = new Visitante() {
 
-        private final ObservableMap<Pieza, Vista> vistaInformePorPieza = FXCollections.observableHashMap();
+        private final ObservableMap<Pieza, VistaInforme> vistaInformePorPieza = FXCollections.observableHashMap();
 
         {
             vistaInformePorPieza.addListener(this::alAgregarUnaVistaInforme);
@@ -62,12 +62,14 @@ public class ControladorDePartida implements Controlador {
             agregarVistaSiNoExiste(pieza, () -> new VistaInformeBase(panelInformes, pieza).iniciar());
         }
 
-        private void agregarVistaSiNoExiste(Pieza pieza, Proveedor<Vista> proveedorDeVista) {
+        private void agregarVistaSiNoExiste(Pieza pieza, Proveedor<VistaInforme> proveedorDeVista) {
 
             if (! vistaInformePorPieza.containsKey(pieza)) {
 
                 vistaInformePorPieza.put(pieza, proveedorDeVista.obtener());
             }
+
+            vistaInformePorPieza.get(pieza).seleccionar();
         }
 
     };

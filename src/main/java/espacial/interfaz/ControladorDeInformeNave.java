@@ -65,6 +65,11 @@ public class ControladorDeInformeNave extends ControladorDeInformePieza<NaveEspa
         metal.setText(comoTexto(pieza.buscar(SustanciaEspacial.METAL)));
     }
 
+    private void deshabilitar() {
+
+        panel.getContent().setDisable(true);
+    }
+
     private String comoTexto(int cantidad) {
 
         return String.valueOf(cantidad);
@@ -102,6 +107,6 @@ public class ControladorDeInformeNave extends ControladorDeInformePieza<NaveEspa
     @Override
     public void fueDestruida(Pieza unaPieza) {
 
-        Platform.runLater(() -> panel.getContent().setDisable(true));
+        Platform.runLater(this::deshabilitar);
     }
 }

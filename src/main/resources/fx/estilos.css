@@ -50,6 +50,14 @@
     -fx-background-color: transparent;
 }
 
+.informe {
+    -fx-padding: 2;
+}
+
+.informe:focused {
+  -fx-effect: dropshadow(gaussian, -fx-focus-color, 5, 0, 0, 0);
+}
+
 .informe .label.nombre {
     -fx-font-weight: normal;
 }

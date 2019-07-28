@@ -12,7 +12,7 @@ public interface Vista {
 
     Controlador crearControlador(Class<?> clase);
 
-    default Parent cargar(String ruta) {
+    default <T extends Parent> T cargar(String ruta) {
 
         URL recurso = cargarRecurso(ruta);
 

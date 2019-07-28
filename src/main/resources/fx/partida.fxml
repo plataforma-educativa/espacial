@@ -26,9 +26,9 @@
             </padding>
             <right>
                 <ScrollPane fx:id="panelMarcoInformes" styleClass="panelMarcoInformes" pannable="true" vbarPolicy="NEVER" minWidth="0" >
-                    <VBox fx:id="panelInformes" alignment="TOP_CENTER" spacing="10.0"/>
+                    <VBox fx:id="panelInformes" alignment="TOP_CENTER" spacing="7.0"/>
                     <BorderPane.margin>
-                        <Insets bottom="5.0" left="0.0" right="5.0" top="5.0"/>
+                        <Insets bottom="3.0" left="0.0" right="3.0" top="3.0"/>
                     </BorderPane.margin>
                 </ScrollPane>
             </right>

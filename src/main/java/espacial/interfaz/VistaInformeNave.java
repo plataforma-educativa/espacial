@@ -1,34 +1,18 @@
 package espacial.interfaz;
 
 import espacial.NaveEspacial;
-import espacial.interfaz.rasgos.Controlador;
-import espacial.interfaz.rasgos.Vista;
-import javafx.scene.Parent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.Pane;
 
-public class VistaInformeNave implements Vista {
+public class VistaInformeNave extends VistaInforme {
 
-    private final ControladorDeInformePieza controlador;
-    private final VBox contenedor;
+    public VistaInformeNave(Pane enContenedor, NaveEspacial unaNave) {
 
-    public VistaInformeNave(VBox enContenedor, NaveEspacial unaPieza) {
-
-        controlador = new ControladorDeInformeNave(unaPieza);
-        contenedor = enContenedor;
-    }
-
-    public Vista iniciar() {
-
-        Parent informe = cargar("/fx/informe-nave.fxml");
-
-        contenedor.getChildren().add(informe);
-
-        return this;
+        super(enContenedor, new ControladorDeInformeNave(unaNave));
     }
 
     @Override
-    public Controlador crearControlador(Class<?> clase) {
+    protected String conInforme() {
 
-        return controlador;
+        return "/fx/informe-nave.fxml";
     }
 }
