@@ -109,4 +109,18 @@ class CazaEspacialObservadoTest implements TestDeContrato {
         return post(condicion -> verify(UN_OBSERVADOR, times(2)).cambioElEstadoDe(unCazaEspacial));
     }
 
+    @Test
+    void fueDestruida() {
+
+        dadoQue(fueCreadoUnCazaEspacialRegistrando(UN_OBSERVADOR));
+
+        repetir(10, i -> unCazaEspacial.fueAtacadoCon(new AtaqueConTorpedoDeFotones()));
+
+        comprobarQue(notificoAlObservorDeLaDestruccion());
+    }
+
+    private Postcondicion notificoAlObservorDeLaDestruccion() {
+
+        return post(condicion -> verify(UN_OBSERVADOR).fueDestruida(unCazaEspacial));
+    }
 }

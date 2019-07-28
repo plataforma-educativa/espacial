@@ -94,5 +94,7 @@ public interface Pieza extends Obstaculo, Objetivo {
         void fueMovida(Pieza unaPieza, Casillero aCasillero);
 
         void cambioElEstadoDe(Pieza unaPieza);
+
+        void fueDestruida(Pieza unaPieza);
     }
 }

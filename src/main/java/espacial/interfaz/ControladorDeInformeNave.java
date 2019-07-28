@@ -87,4 +87,9 @@ public class ControladorDeInformeNave extends ControladorDeInformePieza<NaveEspa
 
         Platform.runLater(this::completar);
     }
+
+    @Override
+    public void fueDestruida(Pieza unaPieza) {
+
+    }
 }

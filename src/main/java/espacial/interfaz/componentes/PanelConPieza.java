@@ -4,6 +4,7 @@ import espacial.Casillero;
 import espacial.Pieza;
 import espacial.interfaz.ControladorDePartida;
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.util.Duration;
@@ -50,6 +51,11 @@ public class PanelConPieza extends Group implements Pieza.Observador {
     @Override
     public void cambioElEstadoDe(Pieza unaPieza) {
 
+    }
 
+    @Override
+    public void fueDestruida(Pieza unaPieza) {
+
+        Platform.runLater(() -> setVisible(false));
     }
 }

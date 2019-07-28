@@ -154,6 +154,8 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
 
         casillero.anular();
         casillero.siEsNuloAlObtener(this::lanzarExcepcionPorqueFueDestruida);
+
+        notificarQueFueDestruido();
     }
 
     private Amarre lanzarExcepcionPorqueLaNaveNoEstaEnLaBase() {
@@ -179,6 +181,11 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     private void notificarQueFueMovidaA(Casillero unCasillero) {
 
         observadores.propagar(observador -> observador.fueMovida(this, unCasillero));
+    }
+
+    private void notificarQueFueDestruido() {
+
+        observadores.propagar(observador -> observador.fueDestruida(this));
     }
 
     private Casillero obtenerCasillero() {
