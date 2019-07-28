@@ -4,6 +4,7 @@ import espacial.Casillero;
 import espacial.Direccion;
 import espacial.NaveEspacial;
 import espacial.Pieza;
+import espacial.SustanciaEspacial;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
@@ -39,7 +40,7 @@ class CazaEspacialObservadoTest implements TestDeContrato {
 
         unCazaEspacial.fueColocadaEn(UN_CASILLERO);
 
-        comprobarQue(notificoFueMovidaSobreUnObservador());
+        comprobarQue(notificoAlObservadorDelMovimiento());
     }
 
     private Precondicion fueCreadoUnCazaEspacialRegistrando(Pieza.Observador un_observador) {
@@ -52,7 +53,7 @@ class CazaEspacialObservadoTest implements TestDeContrato {
         });
     }
 
-    private Postcondicion notificoFueMovidaSobreUnObservador() {
+    private Postcondicion notificoAlObservadorDelMovimiento() {
 
         return post(condicion -> verify(UN_OBSERVADOR).fueMovida(unCazaEspacial, UN_CASILLERO));
     }
@@ -64,10 +65,10 @@ class CazaEspacialObservadoTest implements TestDeContrato {
 
         unCazaEspacial.fueAtacadoCon(new AtaqueConLaser());
 
-        comprobarQue(notificoCambioElEstadoSobreUnObservador());
+        comprobarQue(notificoAlObservadoDelCambioDeEstado());
     }
 
-    private Postcondicion notificoCambioElEstadoSobreUnObservador() {
+    private Postcondicion notificoAlObservadoDelCambioDeEstado() {
 
         return post(condicion -> verify(UN_OBSERVADOR).cambioElEstadoDe(unCazaEspacial));
     }
@@ -79,6 +80,33 @@ class CazaEspacialObservadoTest implements TestDeContrato {
 
         unCazaEspacial.atacarEn(Direccion.NORTE);
 
-        comprobarQue(notificoCambioElEstadoSobreUnObservador());
+        comprobarQue(notificoAlObservadoDelCambioDeEstado());
     }
+
+    @Test
+    void cambioElEstadoCuandoRecibeUnaCarga() {
+
+        dadoQue(fueCreadoUnCazaEspacialRegistrando(UN_OBSERVADOR));
+
+        unCazaEspacial.recibir(SustanciaEspacial.ANTIMATERIA.por(19));
+
+        comprobarQue(notificoAlObservadoDelCambioDeEstado());
+    }
+
+    @Test
+    void cambioElEstadoCuandoEntregaUnaCarga() {
+
+        dadoQue(fueCreadoUnCazaEspacialRegistrando(UN_OBSERVADOR));
+
+        unCazaEspacial.recibir(SustanciaEspacial.ANTIMATERIA.por(10));
+        unCazaEspacial.entregar(SustanciaEspacial.ANTIMATERIA.por(5));
+
+        comprobarQue(notificoAlObservadoDelCambioDeEstadoDosVeces());
+    }
+
+    private Postcondicion notificoAlObservadoDelCambioDeEstadoDosVeces() {
+
+        return post(condicion -> verify(UN_OBSERVADOR, times(2)).cambioElEstadoDe(unCazaEspacial));
+    }
+
 }

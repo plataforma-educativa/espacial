@@ -18,7 +18,7 @@ class PartidaEspacialFXTest {
         nave2.avanzarAlSur();
         nave2.avanzarAlSur();
         nave2.avanzarAlSur();
-
+        nave2.avanzarAlOeste();
 
         //new Nave().despegar();
 
@@ -32,6 +32,8 @@ class PartidaEspacialFXTest {
         TimeUnit.SECONDS.sleep(5);
         atacante.atacarAlSur();
         TimeUnit.SECONDS.sleep(1);
+
+        nave2.cargarDesdeOeste(Sustancia.ANTIMATERIA, 1);
 
         for (int i = 0; i < 10; i++) {
 

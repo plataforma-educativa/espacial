@@ -39,6 +39,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
         nombre = unNombre;
         nivelDeEscudos.cuandoSeAgota(this::fueDestruido);
         artilleria.cuandoCambianLasMuniciones(this::notificarQueCambioElEstado);
+        bodega.cuandoCambiaLaCarga(this::notificarQueCambioElEstado);
         amarre.siEsNuloAlObtener(this::lanzarExcepcionPorqueLaNaveNoEstaEnLaBase);
         casillero.siEsNuloAlObtener(this::lanzarExcepcionPorqueNoDespego);
     }
