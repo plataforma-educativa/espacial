@@ -1,19 +1,12 @@
 package espacial.interfaz;
 
-import espacial.NaveEspacial;
 import espacial.PartidaEspacial;
 import espacial.Pieza;
-import espacial.Visitante;
 import espacial.interfaz.componentes.Dibujante;
 import espacial.interfaz.componentes.PanelConTablero;
 import espacial.interfaz.rasgos.Controlador;
-import espacial.interfaz.rasgos.Vista;
-import espacial.utiles.Proveedor;
 import javafx.animation.Animation;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.MapChangeListener.Change;
-import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
@@ -37,38 +30,7 @@ public class ControladorDePartida implements Controlador {
     @FXML
     private VBox panelInformes;
 
-    private final Visitante crearVistaInforme = new Visitante() {
-
-        private final ObservableMap<Pieza, VistaInforme> vistaInformePorPieza = FXCollections.observableHashMap();
-
-        {
-            vistaInformePorPieza.addListener(this::alAgregarUnaVistaInforme);
-        }
-
-        private void alAgregarUnaVistaInforme(Change<? extends Pieza, ? extends Vista> cambio) {
-
-            panelMarco.setRight(panelMarcoInformes);
-        }
-
-        @Override
-        public void siEsNave(NaveEspacial nave) {
-
-            agregarVistaSiNoExiste(nave, () -> new VistaInformeNave(panelInformes, nave));
-        }
-
-        @Override
-        public void siEsBase(Pieza pieza) {
-
-            agregarVistaSiNoExiste(pieza, () -> new VistaInformeBase(panelInformes, pieza));
-        }
-
-        private void agregarVistaSiNoExiste(Pieza pieza, Proveedor<VistaInforme> proveedorDeVista) {
-
-            VistaInforme vista = vistaInformePorPieza.computeIfAbsent(pieza, p -> proveedorDeVista.obtener());
-
-            vista.seleccionar();
-        }
-    };
+    private VistaListaInformes vistaListaInformes;
 
     public ControladorDePartida(PartidaEspacial unaPartida) {
 
@@ -78,6 +40,7 @@ public class ControladorDePartida implements Controlador {
     @FXML
     void initialize() {
 
+        vistaListaInformes = new VistaListaInformes(panelInformes, this::mostrarInformes);
         panelMarcoTablero.setContent(new PanelConTablero(this, partida.obtenerTablero()));
         panelMarco.setRight(null);
         centrarTablero();
@@ -89,6 +52,11 @@ public class ControladorDePartida implements Controlador {
         panelMarcoTablero.setVvalue(panelMarcoTablero.getVmin() + panelMarcoTablero.getVmax() / 2);
     }
 
+    private void mostrarInformes(VistaInforme vistaInforme) {
+
+        panelMarco.setRight(panelMarcoInformes);
+    }
+
     public void mostrarDocumentacion() {
 
         new VistaDocumentacion().iniciar();
@@ -96,7 +64,7 @@ public class ControladorDePartida implements Controlador {
 
     public void fueSeleccionada(Pieza unaPieza) {
 
-        unaPieza.aceptar(crearVistaInforme);
+        vistaListaInformes.mostrarInformePara(unaPieza);
     }
 
     public void reproducir(Animation animacion) {
