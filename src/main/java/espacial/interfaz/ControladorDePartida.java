@@ -51,22 +51,23 @@ public class ControladorDePartida implements Controlador {
         }
 
         @Override
-        public void siEsNave(NaveEspacial pieza) {
+        public void siEsNave(NaveEspacial nave) {
 
-            agregarVistaSiNoExiste(pieza, () -> new VistaInformeNave(panelInformes, pieza).iniciar());
+            agregarVistaSiNoExiste(nave, () -> new VistaInformeNave(panelInformes, nave));
         }
 
         @Override
         public void siEsBase(Pieza pieza) {
 
-            agregarVistaSiNoExiste(pieza, () -> new VistaInformeBase(panelInformes, pieza).iniciar());
+            agregarVistaSiNoExiste(pieza, () -> new VistaInformeBase(panelInformes, pieza));
         }
 
         private void agregarVistaSiNoExiste(Pieza pieza, Proveedor<VistaInforme> proveedorDeVista) {
 
-            vistaInformePorPieza.computeIfAbsent(pieza, p -> proveedorDeVista.obtener()).seleccionar();
-        }
+            VistaInforme vista = vistaInformePorPieza.computeIfAbsent(pieza, p -> proveedorDeVista.obtener());
 
+            vista.seleccionar();
+        }
     };
 
     public ControladorDePartida(PartidaEspacial unaPartida) {

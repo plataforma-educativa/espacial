@@ -10,26 +10,22 @@ public abstract class VistaInforme implements Vista {
 
     private final Controlador controlador;
     private final Pane contenedor;
-    private TitledPane informe;
+    private final TitledPane informe;
 
     public VistaInforme(Pane enContenedor, Controlador conControlador) {
 
         contenedor = enContenedor;
         controlador = conControlador;
-    }
-
-    public VistaInforme iniciar() {
 
         informe = cargar(conInforme());
-
         contenedor.getChildren().add(informe);
-
-        return this;
     }
 
-    public void seleccionar() {
+    public VistaInforme seleccionar() {
 
         Platform.runLater(this::expandirCapturandoFoco);
+
+        return this;
     }
 
     private void expandirCapturandoFoco() {
