@@ -74,11 +74,11 @@ class ArtilleriaTest implements TestDeContrato {
     }
 
     @Test
-    void cuandoCambianLasMunicionesEjecutar() {
+    void cuandoCambianLasMuniciones() {
 
         dadoQue(fueCreadoUnArsenalConTorpedosDeFotones(5));
 
-        unaArtilleria.cuandoCambianLasMunicionesEjecutar(UNA_ACCION);
+        unaArtilleria.cuandoCambianLasMuniciones(UNA_ACCION);
         unaArtilleria.lanzarAtaque();
 
         comprobarQue(ejecutoUnaAccionConfigurada());

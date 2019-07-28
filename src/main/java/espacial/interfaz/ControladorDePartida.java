@@ -10,6 +10,7 @@ import espacial.interfaz.rasgos.Controlador;
 import espacial.interfaz.rasgos.Vista;
 import espacial.utiles.Proveedor;
 import javafx.animation.Animation;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.MapChangeListener.Change;
 import javafx.collections.ObservableMap;
@@ -102,7 +103,7 @@ public class ControladorDePartida implements Controlador {
 
     public void reproducir(Animation animacion) {
 
-        animacion.play();
+        Platform.runLater(animacion::play);
     }
 
     public Dibujante conDibujante() {

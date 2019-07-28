@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 class PartidaEspacialFXTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         BatallaEspacial batalla = new BatallaEspacial();
         Nave nave = new Nave();
@@ -25,19 +25,23 @@ class PartidaEspacialFXTest {
         PartidaEspacialFX partidaEspacial = new PartidaEspacialFX(batalla.obtenerTablero());
         partidaEspacial.iniciar();
 
-        try {
+        Nave atacante = new Nave();
+        atacante.despegar();
+        TimeUnit.SECONDS.sleep(1);
+        atacante.avanzarAlNorte();
+        TimeUnit.SECONDS.sleep(5);
+        atacante.atacarAlSur();
+        TimeUnit.SECONDS.sleep(1);
 
-            for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++) {
 
-                TimeUnit.SECONDS.sleep(1);
-                nave.avanzarAlEste();
-                TimeUnit.SECONDS.sleep(1);
-                nave.avanzarAlSur();
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+            TimeUnit.SECONDS.sleep(1);
+            nave.avanzarAlEste();
+            TimeUnit.SECONDS.sleep(1);
+            nave.avanzarAlSur();
         }
+
+
     }
 
 }

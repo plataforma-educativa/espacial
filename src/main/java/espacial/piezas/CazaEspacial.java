@@ -38,6 +38,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
 
         nombre = unNombre;
         nivelDeEscudos.cuandoSeAgota(this::fueDestruido);
+        artilleria.cuandoCambianLasMuniciones(this::notificarQueCambioElEstado);
         amarre.siEsNuloAlObtener(this::lanzarExcepcionPorqueLaNaveNoEstaEnLaBase);
         casillero.siEsNuloAlObtener(this::lanzarExcepcionPorqueNoDespego);
     }
@@ -55,7 +56,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
         
         casillero.cambiar(unCasillero);
 
-        observadores.propagar(observador -> observador.fueMovida(this, unCasillero));
+        notificarQueFueMovidaA(unCasillero);
     }
     
     @Override
@@ -103,7 +104,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
 
         nivelDeEscudos.decrementarEn(diferencia);
 
-        observadores.propagar(observador -> observador.cambioElEstadoDe(this));
+        notificarQueCambioElEstado();
     }
 
     @Override
@@ -167,6 +168,16 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     private Casillero lanzarExcepcionPorqueFueDestruida() {
 
         throw new LaNaveNoEstaEnUnCasillero("porque fue destruida");
+    }
+
+    private void notificarQueCambioElEstado() {
+
+        observadores.propagar(observador -> observador.cambioElEstadoDe(this));
+    }
+
+    private void notificarQueFueMovidaA(Casillero unCasillero) {
+
+        observadores.propagar(observador -> observador.fueMovida(this, unCasillero));
     }
 
     private Casillero obtenerCasillero() {

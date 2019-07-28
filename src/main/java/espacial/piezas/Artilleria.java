@@ -46,7 +46,7 @@ public class Artilleria {
         return torpedosDeFotones;
     }
 
-    public void cuandoCambianLasMunicionesEjecutar(Accion accion) {
+    public void cuandoCambianLasMuniciones(Accion accion) {
 
         alCambiarLasMuniciones = accion;
     }

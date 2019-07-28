@@ -5,6 +5,7 @@ import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.utiles.Nombre;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -84,6 +85,6 @@ public class ControladorDeInformeNave extends ControladorDeInformePieza<NaveEspa
     @Override
     public void cambioElEstadoDe(Pieza unaPieza) {
 
-        completar();
+        Platform.runLater(this::completar);
     }
 }
