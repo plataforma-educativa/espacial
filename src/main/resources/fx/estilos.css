@@ -59,7 +59,7 @@
 }
 
 .informe .progress-bar > .bar {
-    -fx-background-color: linear-gradient(to bottom, derive(#00AA22FF, -15%), #00AA22FF, derive(#00AA22FF, 30%), #00AA22FF, derive(#00AA22FF, -15%));
+    -fx-background-color: linear-gradient(to bottom, #67bf78, #69d07e, #67bf78);
 }
 
 .informe .label.seccion {
