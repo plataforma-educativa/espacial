@@ -1,5 +1,6 @@
 package espacial;
 
+import espacial.piezas.CargaIndividual;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;

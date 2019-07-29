@@ -1,4 +1,8 @@
-package espacial;
+package espacial.piezas;
+
+import espacial.Carga;
+import espacial.Deposito;
+import espacial.SustanciaEspacial;
 
 import java.util.Objects;
 

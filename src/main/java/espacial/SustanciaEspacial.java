@@ -1,6 +1,7 @@
 package espacial;
 
 import espacial.excepciones.ParametroInvalido;
+import espacial.piezas.CargaIndividual;
 
 public enum SustanciaEspacial {
 
