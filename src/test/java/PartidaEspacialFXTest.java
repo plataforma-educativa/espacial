@@ -34,6 +34,14 @@ class PartidaEspacialFXTest {
         TimeUnit.SECONDS.sleep(1);
 
         nave2.cargarDesdeOeste(Sustancia.ANTIMATERIA, 2);
+
+        Radar radar2 = nave2.obtenerRadar();
+
+        while (radar2.escanearOeste() == Espectro.CONTENEDOR) {
+
+            nave2.atacarAlOeste();
+        }
+
         nave2.avanzarAlEste();
         nave2.avanzarAlNorte();
         nave2.descargarEnNorte(Sustancia.ANTIMATERIA, 1);

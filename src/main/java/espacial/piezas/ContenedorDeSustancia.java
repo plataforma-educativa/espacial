@@ -12,6 +12,8 @@ public abstract class ContenedorDeSustancia implements PiezaDeposito, PiezaAtaca
 
     private final Indicador puntos = new Indicador(50);
 
+    protected final Observadores observadores = new Observadores();
+
     @Override
     public EspectroEspacial escanear() {
 
@@ -21,7 +23,11 @@ public abstract class ContenedorDeSustancia implements PiezaDeposito, PiezaAtaca
     @Override
     public void fueColocadaEn(Casillero casillero) {
 
-        puntos.cuandoSeAgota(() -> casillero.desocupar());
+        puntos.cuandoSeAgota(() -> {
+
+            casillero.desocupar();
+            observadores.fueDestruida(this);
+        });
     }
 
     @Override
@@ -57,6 +63,12 @@ public abstract class ContenedorDeSustancia implements PiezaDeposito, PiezaAtaca
     protected int obtenerCapacidad() {
 
         return 1000;
+    }
+
+    @Override
+    public void registrar(Observador observador) {
+
+        observadores.agregar(observador);
     }
 
     @Override
