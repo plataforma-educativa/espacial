@@ -45,6 +45,18 @@ class PartidaEspacialFXTest {
         }
         TimeUnit.SECONDS.sleep(1);
 
+
+        nave.avanzarAlEste();
+        nave.avanzarAlEste();
+        nave.avanzarAlEste();
+        nave.avanzarAlEste();
+
+        Radar radar = nave.obtenerRadar();
+
+        while(radar.escanearNorte() == Espectro.ASTEROIDE) {
+            nave.atacarAlNorte();
+        }
+
         for (int i = 0; i < 10; i++) {
 
             TimeUnit.SECONDS.sleep(1);

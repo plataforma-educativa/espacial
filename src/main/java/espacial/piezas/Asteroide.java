@@ -14,6 +14,8 @@ public class Asteroide implements Pieza, AsteroideAtacable {
 
     private final Dureza dureza;
 
+    private final Observadores observadores = new Observadores();
+
     public Asteroide(int valorDureza) {
 
         dureza = new Dureza(valorDureza);
@@ -34,7 +36,11 @@ public class Asteroide implements Pieza, AsteroideAtacable {
     @Override
     public void fueColocadaEn(Casillero casillero) {
 
-        puntos.cuandoSeAgota(casillero::desocupar);
+        puntos.cuandoSeAgota(() -> {
+
+            casillero.desocupar();
+            observadores.fueDestruida(this);
+        });
     }
 
     @Override
@@ -65,6 +71,12 @@ public class Asteroide implements Pieza, AsteroideAtacable {
     public void decrementarPuntosEn(int decremento) {
 
         puntos.decrementarEn(decremento);
+    }
+
+    @Override
+    public void registrar(Observador observador) {
+
+        observadores.agregar(observador);
     }
 
     @Override
