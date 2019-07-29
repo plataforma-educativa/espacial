@@ -31,11 +31,11 @@
                              GridPane.columnIndex="0" GridPane.rowIndex="1"
                              GridPane.valignment="CENTER"
                              GridPane.columnSpan="3"/>
-                <Label fx:id="escudosActivos" text=" Escudos" styleClass="nombre"
+                <Label fx:id="escudosActivos" text="  Escudos" styleClass="nombre"
                        GridPane.columnIndex="0" GridPane.rowIndex="1"
                        GridPane.valignment="CENTER" GridPane.halignment="LEFT"
                        GridPane.columnSpan="3"/>
-                <Label fx:id="escudosDestruidos" text="D E S T R U I D A" textAlignment="CENTER" textFill="RED"
+                <Label fx:id="escudosDestruidos" text="D E S T R U I D A" textAlignment="CENTER"
                        GridPane.columnIndex="0" GridPane.rowIndex="1"
                        GridPane.valignment="CENTER" GridPane.halignment="CENTER"
                        GridPane.columnSpan="3"/>

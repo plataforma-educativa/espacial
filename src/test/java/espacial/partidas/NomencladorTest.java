@@ -27,18 +27,26 @@ class NomencladorTest implements TestDeContrato {
 
     private Postcondicion laNaveFueNombradaCorrectamente(String nombre) {
 
-        return post(condicion ->
+        return post(condicion -> {
 
-                assertThat(nombre).as("nombre")
-                        .doesNotContainAnyWhitespaces()
-                        .containsPattern(Pattern.compile("^[A-Z][a-z]+$"))
-                        .isNotNull()
-        );
+            assertThat(nombre).as("nombre")
+                    .isNotNull()
+                    .containsWhitespaces();
+
+            String[] partes = nombre.split(" ");
+            assertThat(partes).as("partes del nombre")
+                    .hasSize(2);
+
+            assertThat(partes[0]).as("prefijo")
+                    .doesNotContainAnyWhitespaces()
+                    .containsPattern(Pattern.compile("^[A-Z][a-z]+$"))
+                    .isNotNull();
+        });
     }
 
     private Precondicion fueCreadoUnNomenclador() {
 
-        return pre(condicion ->  unNomenclador = new Nomenclador());
+        return pre(condicion -> unNomenclador = new Nomenclador());
     }
 
     @Test
@@ -57,6 +65,6 @@ class NomencladorTest implements TestDeContrato {
 
     private Postcondicion todasLasNavesFueronNombradasCorrectamente(List<String> nombres) {
 
-        return post(condicion ->  assertThat(nombres).as("nombres").doesNotHaveDuplicates());
+        return post(condicion -> assertThat(nombres).as("nombres").doesNotHaveDuplicates());
     }
 }
