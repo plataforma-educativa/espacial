@@ -5,14 +5,14 @@ import espacial.SustanciaEspacial;
 import espacial.test.Precondicion;
 import org.junit.jupiter.api.Test;
 
-class BaseEspacialObservadaTest extends TestDePiezaObservada {
+class EstacionCentralObservadaTest extends TestDePiezaObservada {
 
-    private BaseEspacial unaBaseEspacial;
+    private EstacionCentral unaEstacionCentral;
 
     @Override
     protected Pieza unaPieza() {
 
-        return unaBaseEspacial;
+        return unaEstacionCentral;
     }
 
     @Test
@@ -21,7 +21,7 @@ class BaseEspacialObservadaTest extends TestDePiezaObservada {
         dadoQue(fueCreadaUnaBaseEspacial());
         dadoQue(fueRegistradoUnObservador());
 
-        unaBaseEspacial.recibir(SustanciaEspacial.ANTIMATERIA.por(19));
+        unaEstacionCentral.recibir(SustanciaEspacial.ANTIMATERIA.por(19));
 
         comprobarQue(notificoAlObservadoDelCambioDeEstado());
     }
@@ -30,8 +30,8 @@ class BaseEspacialObservadaTest extends TestDePiezaObservada {
 
         return pre(condicion -> {
 
-            unaBaseEspacial = new BaseEspacial();
-            unaBaseEspacial.fueColocadaEn(UN_CASILLERO);
+            unaEstacionCentral = new EstacionCentral();
+            unaEstacionCentral.fueColocadaEn(UN_CASILLERO);
         });
     }
 
@@ -41,7 +41,7 @@ class BaseEspacialObservadaTest extends TestDePiezaObservada {
         dadoQue(fueCreadaUnaBaseEspacial());
         dadoQue(fueRegistradoUnObservador());
 
-        unaBaseEspacial.recibir(SustanciaEspacial.ANTIMATERIA.por(19));
+        unaEstacionCentral.recibir(SustanciaEspacial.ANTIMATERIA.por(19));
 
         comprobarQue(notificoAlObservadoDelCambioDeEstado());
     }
@@ -52,7 +52,7 @@ class BaseEspacialObservadaTest extends TestDePiezaObservada {
         dadoQue(fueCreadaUnaBaseEspacial());
         dadoQue(fueRegistradoUnObservador());
 
-        repetir(20, i -> unaBaseEspacial.fueAtacadoCon(new AtaqueConTorpedoDeFotones()));
+        repetir(20, i -> unaEstacionCentral.fueAtacadoCon(new AtaqueConTorpedoDeFotones()));
 
         comprobarQue(notificoAlObservorDeLaDestruccion());
     }

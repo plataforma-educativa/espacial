@@ -15,7 +15,7 @@ import espacial.piezas.rasgos.PiezaAtacable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class BaseEspacial implements Pieza, PiezaAtacable, BaseDeposito {
+public class EstacionCentral implements Pieza, PiezaAtacable, BaseDeposito {
 
     private final Indicador puntos = new Indicador(200);
     private final Bodega bodega = new Bodega(obtenerCapacidad());
@@ -23,7 +23,7 @@ public class BaseEspacial implements Pieza, PiezaAtacable, BaseDeposito {
     private final Observadores observadores = new Observadores();
     private Casillero casillero;
 
-    public BaseEspacial() {
+    public EstacionCentral() {
 
         puntos.cuandoSeAgota(this::fueDestruido);
         bodega.cuandoCambiaLaCarga(this::notificarQueCambioElEstado);

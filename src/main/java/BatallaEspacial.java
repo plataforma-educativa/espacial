@@ -2,8 +2,8 @@ import espacial.NaveEspacial;
 import espacial.Tablero;
 import espacial.excepciones.NoExisteBatallaEspacial;
 import espacial.partidas.Nomenclador;
-import espacial.piezas.BaseEspacial;
 import espacial.piezas.CazaEspacial;
+import espacial.piezas.EstacionCentral;
 import espacial.utiles.Opcional;
 
 import java.util.LinkedList;
@@ -15,7 +15,7 @@ public class BatallaEspacial {
 
     private final Nomenclador nomenclador = new Nomenclador();
 
-    private final BaseEspacial base;
+    private final EstacionCentral base;
     
     private final List<Nave> naves = new LinkedList<>();
     
@@ -24,7 +24,7 @@ public class BatallaEspacial {
     public BatallaEspacial() {
 
         instancia = Opcional.con(this);
-        base = new BaseEspacial();
+        base = new EstacionCentral();
         tablero.colocarEnCasillero(0, 0, base);
     }
 

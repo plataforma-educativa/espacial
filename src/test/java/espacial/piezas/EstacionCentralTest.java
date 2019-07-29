@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
+class EstacionCentralTest extends TestDeContratoSobrePieza<EstacionCentral> {
 
     private final NaveEspacial NAVE = mock(NaveEspacial.class, "NAVE");
     private final NaveEspacial NAVE_ALFA = mock(NaveEspacial.class, "NAVE_ALFA");
@@ -23,12 +23,12 @@ class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
     private final NaveEspacial NAVE_GAMMA = mock(NaveEspacial.class, "NAVE_GAMMA");
     private final Casillero CASILLERO = mock(Casillero.class, "CASILLERO");
 
-    private BaseEspacial unaBase;
+    private EstacionCentral unaBase;
 
     @Override
-    BaseEspacial piezaCreada() {
+    EstacionCentral piezaCreada() {
 
-        return new BaseEspacial();
+        return new EstacionCentral();
     }
 
     @Override
@@ -57,7 +57,7 @@ class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
         return pre(condicion ->  {
 
-            unaBase = new BaseEspacial();
+            unaBase = new EstacionCentral();
             unaBase.fueColocadaEn(CASILLERO);
         });
     }
@@ -147,7 +147,7 @@ class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
     private Precondicion fueCreadaUnaBase() {
 
-        return pre(condicion ->  unaBase = new BaseEspacial());
+        return pre(condicion ->  unaBase = new EstacionCentral());
     }
 
     private Postcondicion losPuntosInicialesDeUnaBaseSonCorrectos() {
@@ -194,7 +194,7 @@ class BaseEspacialTest extends TestDeContratoSobrePieza<BaseEspacial> {
 
         return pre(condicion ->  {
 
-            unaBase = new BaseEspacial();
+            unaBase = new EstacionCentral();
             unaBase.recibir(unaCarga);
         });
     }

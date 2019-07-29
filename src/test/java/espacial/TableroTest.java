@@ -1,6 +1,6 @@
 package espacial;
 
-import espacial.piezas.BaseEspacial;
+import espacial.piezas.EstacionCentral;
 import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
@@ -61,7 +61,7 @@ class TableroTest implements TestDeContrato {
     @Test
     void colocarEnCasilleroUnaBase() {
 
-        final BaseEspacial base = new BaseEspacial();
+        final EstacionCentral base = new EstacionCentral();
         Tablero tablero = new Tablero();
 
         tablero.colocarEnCasillero(1, 4, base);

@@ -1,7 +1,7 @@
 package espacial;
 
 import espacial.partidas.FabricaDePiezas;
-import espacial.piezas.BaseEspacial;
+import espacial.piezas.EstacionCentral;
 import espacial.tableros.CasilleroBorde;
 import espacial.tableros.CasilleroInterior;
 import espacial.utiles.Proveedor;
@@ -194,9 +194,9 @@ public class Tablero {
         return obtenerCasilleroEn(coordenadas.obtenerFila(), coordenadas.obtenerColumna());
     }
 
-    public void colocarEnCasillero(int fila, int columna, BaseEspacial baseEspacial) {
+    public void colocarEnCasillero(int fila, int columna, EstacionCentral estacionCentral) {
 
-        obtenerCasilleroEn(fila, columna).ocuparCon(baseEspacial);
+        obtenerCasilleroEn(fila, columna).ocuparCon(estacionCentral);
     }
 
     @Override
