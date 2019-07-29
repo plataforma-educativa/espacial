@@ -1,6 +1,7 @@
 package espacial.piezas;
 
 import espacial.Ataque;
+import espacial.Cargamento;
 import espacial.Casillero;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
@@ -69,6 +70,16 @@ public abstract class ContenedorDeSustancia implements PiezaDeposito, PiezaAtaca
     public void registrar(Observador observador) {
 
         observadores.agregar(observador);
+    }
+
+    private void notificarQueCambioElEstado() {
+
+        observadores.cambioElEstadoDe(this);
+    }
+
+    protected Cargamento crearCargamento() {
+
+        return new CargamentoObservado(new CargamentoDeSustancia(obtenerCapacidad()), this::notificarQueCambioElEstado);
     }
 
     @Override

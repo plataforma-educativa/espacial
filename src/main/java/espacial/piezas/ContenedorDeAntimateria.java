@@ -5,7 +5,7 @@ import espacial.piezas.rasgos.DepositoDeAntimateria;
 
 public class ContenedorDeAntimateria extends ContenedorDeSustancia implements DepositoDeAntimateria {
 
-    private final Cargamento antimateria = new CargamentoDeSustancia(obtenerCapacidad());
+    private final Cargamento antimateria = crearCargamento();
 
     public ContenedorDeAntimateria() {
 
@@ -21,4 +21,5 @@ public class ContenedorDeAntimateria extends ContenedorDeSustancia implements De
 
         return antimateria;
     }
+
 }

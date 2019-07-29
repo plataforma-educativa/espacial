@@ -5,7 +5,7 @@ import espacial.piezas.rasgos.DepositoDeCristal;
 
 public class ContenedorDeCristal extends ContenedorDeSustancia implements DepositoDeCristal {
 
-    private final Cargamento cristal = new CargamentoDeSustancia(obtenerCapacidad());
+    private final Cargamento cristal = crearCargamento();
 
     public ContenedorDeCristal() {
 

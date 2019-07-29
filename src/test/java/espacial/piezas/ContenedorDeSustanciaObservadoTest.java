@@ -2,6 +2,7 @@ package espacial.piezas;
 
 import espacial.Casillero;
 import espacial.Pieza;
+import espacial.SustanciaEspacial;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
@@ -41,4 +42,68 @@ class ContenedorDeSustanciaObservadoTest implements TestDeContrato {
         return post(condicion -> verify(UN_OBSERVADOR).fueDestruida(unContenedor));
     }
 
+    @Test
+    void cambioElEstadoDeUnContenedorDeAntimateria() {
+
+        dadoQue(fueCreadoUnContenedorDeAntimateriaRegistrando(UN_OBSERVADOR));
+
+        unContenedor.recibir(SustanciaEspacial.ANTIMATERIA.por(20));
+
+        comprobarQue(notificoAlObservadoDelCambioDeEstado());
+    }
+
+    private Precondicion fueCreadoUnContenedorDeAntimateriaRegistrando(Pieza.Observador unObservador) {
+
+        return pre(condicion -> {
+
+            unContenedor = new ContenedorDeAntimateria(100);
+            unContenedor.fueColocadaEn(UN_CASILLERO);
+            unContenedor.registrar(unObservador);
+        });
+    }
+
+    private Postcondicion notificoAlObservadoDelCambioDeEstado() {
+
+        return post(condicion -> verify(UN_OBSERVADOR).cambioElEstadoDe(unContenedor));
+    }
+
+    @Test
+    void cambioElEstadoDeUnContenedorDeMetal() {
+
+        dadoQue(fueCreadoUnContenedorDeMetalRegistrando(UN_OBSERVADOR));
+
+        unContenedor.recibir(SustanciaEspacial.METAL.por(50));
+
+        comprobarQue(notificoAlObservadoDelCambioDeEstado());
+    }
+
+    private Precondicion fueCreadoUnContenedorDeMetalRegistrando(Pieza.Observador unObservador) {
+
+        return pre(condicion -> {
+
+            unContenedor = new ContenedorDeMetal();
+            unContenedor.fueColocadaEn(UN_CASILLERO);
+            unContenedor.registrar(unObservador);
+        });
+    }
+
+    @Test
+    void cambioElEstadoDeUnContenedorDeCristal() {
+
+        dadoQue(fueCreadoUnContenedorDeCristalRegistrando(UN_OBSERVADOR));
+
+        unContenedor.recibir(SustanciaEspacial.CRISTAL.por(50));
+
+        comprobarQue(notificoAlObservadoDelCambioDeEstado());
+    }
+
+    private Precondicion fueCreadoUnContenedorDeCristalRegistrando(Pieza.Observador unObservador) {
+
+        return pre(condicion -> {
+
+            unContenedor = new ContenedorDeCristal();
+            unContenedor.fueColocadaEn(UN_CASILLERO);
+            unContenedor.registrar(unObservador);
+        });
+    }
 }
