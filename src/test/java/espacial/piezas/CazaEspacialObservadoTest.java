@@ -7,22 +7,25 @@ import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
-import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
-class CazaEspacialObservadoTest implements TestDeContrato {
+class CazaEspacialObservadoTest extends TestDePiezaObservada {
 
-    private final Pieza.Observador UN_OBSERVADOR = mock(Pieza.Observador.class, "UN_OBSERVADOR");
-    private final Casillero UN_CASILLERO = mock(Casillero.class, "UN_CASILLERO");
     private final Casillero CASILLERO_NORTE = mock(Casillero.class, "CASILLERO_NORTE");
     private final Casillero CASILLERO_SUR = mock(Casillero.class, "CASILLERO_SUR");
     private final Casillero CASILLERO_ESTE = mock(Casillero.class, "CASILLERO_ESTE");
     private final Casillero CASILLERO_OESTE = mock(Casillero.class, "CASILLERO_OESTE");
 
     private NaveEspacial unCazaEspacial;
+
+    @Override
+    protected Pieza unaPieza() {
+
+        return unCazaEspacial;
+    }
 
     @BeforeEach
     void simularCasillero() {
@@ -36,47 +39,39 @@ class CazaEspacialObservadoTest implements TestDeContrato {
     @Test
     void fueMovida() {
 
-        dadoQue(fueCreadoUnCazaEspacialRegistrando(UN_OBSERVADOR));
+        dadoQue(fueCreadoUnCazaEspacial());
+        dadoQue(fueRegistradoUnObservador());
 
         unCazaEspacial.fueColocadaEn(UN_CASILLERO);
 
         comprobarQue(notificoAlObservadorDelMovimiento());
     }
 
-    private Precondicion fueCreadoUnCazaEspacialRegistrando(Pieza.Observador un_observador) {
+    private Precondicion fueCreadoUnCazaEspacial() {
 
         return pre(condicion -> {
 
             unCazaEspacial = new CazaEspacial();
             unCazaEspacial.fueColocadaEn(UN_CASILLERO);
-            unCazaEspacial.registrar(UN_OBSERVADOR);
         });
-    }
-
-    private Postcondicion notificoAlObservadorDelMovimiento() {
-
-        return post(condicion -> verify(UN_OBSERVADOR).fueMovida(unCazaEspacial, UN_CASILLERO));
     }
 
     @Test
     void cambioElEstacoCuandoDecrementoEscudo() {
 
-        dadoQue(fueCreadoUnCazaEspacialRegistrando(UN_OBSERVADOR));
+        dadoQue(fueCreadoUnCazaEspacial());
+        dadoQue(fueRegistradoUnObservador());
 
         unCazaEspacial.fueAtacadoCon(new AtaqueConLaser());
 
         comprobarQue(notificoAlObservadoDelCambioDeEstado());
     }
 
-    private Postcondicion notificoAlObservadoDelCambioDeEstado() {
-
-        return post(condicion -> verify(UN_OBSERVADOR).cambioElEstadoDe(unCazaEspacial));
-    }
-
     @Test
     void cambioElEstadoCuandoConsumeUnTorpedo() {
 
-        dadoQue(fueCreadoUnCazaEspacialRegistrando(UN_OBSERVADOR));
+        dadoQue(fueCreadoUnCazaEspacial());
+        dadoQue(fueRegistradoUnObservador());
 
         unCazaEspacial.atacarEn(Direccion.NORTE);
 
@@ -86,7 +81,8 @@ class CazaEspacialObservadoTest implements TestDeContrato {
     @Test
     void cambioElEstadoCuandoRecibeUnaCarga() {
 
-        dadoQue(fueCreadoUnCazaEspacialRegistrando(UN_OBSERVADOR));
+        dadoQue(fueCreadoUnCazaEspacial());
+        dadoQue(fueRegistradoUnObservador());
 
         unCazaEspacial.recibir(SustanciaEspacial.ANTIMATERIA.por(19));
 
@@ -96,7 +92,8 @@ class CazaEspacialObservadoTest implements TestDeContrato {
     @Test
     void cambioElEstadoCuandoEntregaUnaCarga() {
 
-        dadoQue(fueCreadoUnCazaEspacialRegistrando(UN_OBSERVADOR));
+        dadoQue(fueCreadoUnCazaEspacial());
+        dadoQue(fueRegistradoUnObservador());
 
         unCazaEspacial.recibir(SustanciaEspacial.ANTIMATERIA.por(10));
         unCazaEspacial.entregar(SustanciaEspacial.ANTIMATERIA.por(5));
@@ -112,15 +109,12 @@ class CazaEspacialObservadoTest implements TestDeContrato {
     @Test
     void fueDestruida() {
 
-        dadoQue(fueCreadoUnCazaEspacialRegistrando(UN_OBSERVADOR));
+        dadoQue(fueCreadoUnCazaEspacial());
+        dadoQue(fueRegistradoUnObservador());
 
         repetir(10, i -> unCazaEspacial.fueAtacadoCon(new AtaqueConTorpedoDeFotones()));
 
         comprobarQue(notificoAlObservorDeLaDestruccion());
     }
 
-    private Postcondicion notificoAlObservorDeLaDestruccion() {
-
-        return post(condicion -> verify(UN_OBSERVADOR).fueDestruida(unCazaEspacial));
-    }
 }
