@@ -1,17 +1,22 @@
 package espacial.partidas;
 
+import espacial.BaseEspacial;
+import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.piezas.AgujeroNegro;
 import espacial.piezas.Asteroide;
+import espacial.piezas.CazaEspacial;
 import espacial.piezas.ContenedorDeAntimateria;
 import espacial.piezas.ContenedorDeCristal;
 import espacial.piezas.ContenedorDeMetal;
+import espacial.piezas.EstacionCentral;
 import espacial.utiles.Aleatorio;
 
 public class FabricaDePiezas {
 
-    private Aleatorio<Integer> cargaAleatoria;
-    private Aleatorio<Integer> durezaAleatoria;
+    private final Nomenclador nomenclador = new Nomenclador();
+    private final Aleatorio<Integer> cargaAleatoria;
+    private final Aleatorio<Integer> durezaAleatoria;
 
     public static FabricaDePiezas crear() {
 
@@ -48,5 +53,15 @@ public class FabricaDePiezas {
     public Pieza crearAgujeroNegro() {
 
         return new AgujeroNegro();
+    }
+
+    public NaveEspacial crearNaveEspacial() {
+
+        return new CazaEspacial(nomenclador.nombrarNave());
+    }
+
+    public BaseEspacial crearBaseEspacial() {
+
+        return new EstacionCentral();
     }
 }

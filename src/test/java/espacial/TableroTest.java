@@ -1,6 +1,5 @@
 package espacial;
 
-import espacial.piezas.EstacionCentral;
 import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
 
@@ -61,10 +60,9 @@ class TableroTest implements TestDeContrato {
     @Test
     void colocarEnCasilleroUnaBase() {
 
-        final EstacionCentral base = new EstacionCentral();
         Tablero tablero = new Tablero();
 
-        tablero.colocarEnCasillero(1, 4, base);
+        BaseEspacial base = tablero.colocarBaseEnCasillero(1, 4);
 
         assertThat(tablero.obtenerCasilleroEn(1, 4).obtenerPieza()).isSameAs(base);
     }

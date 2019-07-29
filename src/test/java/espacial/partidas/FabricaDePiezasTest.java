@@ -2,6 +2,7 @@ package espacial.partidas;
 
 import espacial.Atacable;
 import espacial.EspectroEspacial;
+import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.test.Postcondicion;
@@ -56,12 +57,12 @@ class FabricaDePiezasTest implements TestDeContrato {
 
     private Precondicion fueCreadaUnaFabricaDePiezas() {
 
-        return pre(condicion ->  unaFabrica = FabricaDePiezas.crear());
+        return pre(condicion -> unaFabrica = FabricaDePiezas.crear());
     }
 
     private Postcondicion unaPiezaEsUnContenedorCon(SustanciaEspacial sustancia) {
 
-        return post(condicion ->  {
+        return post(condicion -> {
 
             assertThat(piezaCreada)
                     .as("Pieza creada").isNotNull()
@@ -93,7 +94,7 @@ class FabricaDePiezasTest implements TestDeContrato {
 
     private Postcondicion lasCargasDeLasPiezasCreadasSonDiferentes() {
 
-        return post(condicion ->  assertThat(cargas.size() > 10).as("tiene cargas diferentes").isTrue());
+        return post(condicion -> assertThat(cargas.size() > 10).as("tiene cargas diferentes").isTrue());
     }
 
     @Test
@@ -154,7 +155,7 @@ class FabricaDePiezasTest implements TestDeContrato {
 
     private Postcondicion lasCargasDeLasPiezasCreadasEstanEnElRango(int desde, int hasta) {
 
-        return post(condicion ->  assertThat(cargas).allMatch(carga -> (carga >= desde && carga <= hasta)));
+        return post(condicion -> assertThat(cargas).allMatch(carga -> (carga >= desde && carga <= hasta)));
     }
 
     @Test
@@ -226,8 +227,49 @@ class FabricaDePiezasTest implements TestDeContrato {
         return post(condicion ->
 
                 assertThat(piezaCreada).as("pieza creada").isNotNull()
-                    .extracting(Pieza::escanear).isEqualTo(EspectroEspacial.DESCONOCIDO)
+                        .extracting(Pieza::escanear).isEqualTo(EspectroEspacial.DESCONOCIDO)
         );
+    }
 
+    @Test
+    void crearNaveEspacial() {
+
+        dadoQue(fueCreadaUnaFabricaDePiezas());
+
+        piezaCreada = unaFabrica.crearNaveEspacial();
+
+        comprobarQue(laPiezaCreadaEsUnaNave());
+    }
+
+    private Postcondicion laPiezaCreadaEsUnaNave() {
+
+        return post(condicion -> {
+
+            assertThat(piezaCreada).as("pieza creada").isNotNull()
+                    .extracting(Pieza::escanear).isEqualTo(EspectroEspacial.NAVE);
+
+            assertThat(NaveEspacial.class.cast(piezaCreada)).as("nave")
+                    .extracting(NaveEspacial::nombrar).isNotNull();
+        });
+    }
+
+    @Test
+    void crearBaseEspacial() {
+
+        dadoQue(fueCreadaUnaFabricaDePiezas());
+
+        piezaCreada = unaFabrica.crearBaseEspacial();
+
+        comprobarQue(laPiezaCreadaEsUnaBase());
+
+    }
+
+    private Postcondicion laPiezaCreadaEsUnaBase() {
+
+        return post(condicion ->
+
+                assertThat(piezaCreada).as("pieza creada").isNotNull()
+                        .extracting(Pieza::escanear).isEqualTo(EspectroEspacial.BASE)
+        );
     }
 }

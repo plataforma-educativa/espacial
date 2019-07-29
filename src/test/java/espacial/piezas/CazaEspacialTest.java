@@ -695,5 +695,13 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
                         .isEqualTo(nombreEsperado)
         );
     }
+
+    @Test
+    void crearSinEspecificarElNombre() {
+
+        unCazaEspacial = new CazaEspacial();
+
+        comprobarQue(elNombreEs("Algoritmico I"));
+    }
 }
 

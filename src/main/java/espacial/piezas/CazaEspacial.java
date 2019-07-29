@@ -31,7 +31,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
 
     public CazaEspacial() {
 
-        this(null);
+        this(Nombre.sera("Algoritmico I").porque("Nombre por defecto").obtener());
     }
 
     public CazaEspacial(Nombre unNombre) {

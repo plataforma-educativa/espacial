@@ -1,9 +1,7 @@
+import espacial.BaseEspacial;
 import espacial.NaveEspacial;
 import espacial.Tablero;
 import espacial.excepciones.NoExisteBatallaEspacial;
-import espacial.partidas.Nomenclador;
-import espacial.piezas.CazaEspacial;
-import espacial.piezas.EstacionCentral;
 import espacial.utiles.Opcional;
 
 import java.util.LinkedList;
@@ -13,9 +11,7 @@ public class BatallaEspacial {
 
     private static Opcional<BatallaEspacial> instancia = Opcional.sinValor();
 
-    private final Nomenclador nomenclador = new Nomenclador();
-
-    private final EstacionCentral base;
+    private final BaseEspacial base;
     
     private final List<Nave> naves = new LinkedList<>();
     
@@ -24,8 +20,7 @@ public class BatallaEspacial {
     public BatallaEspacial() {
 
         instancia = Opcional.con(this);
-        base = new EstacionCentral();
-        tablero.colocarEnCasillero(0, 0, base);
+        base = tablero.colocarBaseEnCasillero(0, 0);
     }
 
     public static BatallaEspacial obtener() {
@@ -47,11 +42,11 @@ public class BatallaEspacial {
 
         naves.add(unaNave);
 
-        CazaEspacial cazaEspacial = new CazaEspacial(nomenclador.nombrarNave());
+        NaveEspacial naveEspacial = tablero.crearNave();
 
-        base.amarrar(cazaEspacial);
+        base.amarrar(naveEspacial);
 
-        return cazaEspacial;
+        return naveEspacial;
     }
 
     @Override

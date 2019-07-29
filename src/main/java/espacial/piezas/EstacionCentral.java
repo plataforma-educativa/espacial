@@ -2,12 +2,12 @@ package espacial.piezas;
 
 import espacial.Amarre;
 import espacial.Ataque;
+import espacial.BaseEspacial;
 import espacial.Cargamento;
 import espacial.Casillero;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
-import espacial.Pieza;
 import espacial.Visitante;
 import espacial.piezas.rasgos.BaseDeposito;
 import espacial.piezas.rasgos.PiezaAtacable;
@@ -15,7 +15,7 @@ import espacial.piezas.rasgos.PiezaAtacable;
 import java.util.LinkedList;
 import java.util.List;
 
-public class EstacionCentral implements Pieza, PiezaAtacable, BaseDeposito {
+public class EstacionCentral implements BaseEspacial, PiezaAtacable, BaseDeposito {
 
     private final Indicador puntos = new Indicador(200);
     private final Bodega bodega = new Bodega(obtenerCapacidad());
@@ -63,6 +63,7 @@ public class EstacionCentral implements Pieza, PiezaAtacable, BaseDeposito {
         return EspectroEspacial.BASE;
     }
 
+    @Override
     public void amarrar(NaveEspacial pieza) {
         
         Amarre amarre = new AmarreConBaseEspacial(pieza);
