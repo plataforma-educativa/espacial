@@ -703,5 +703,58 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
         comprobarQue(elNombreEs("Algoritmico I"));
     }
+
+    @Test
+    void obtenerRumbo() {
+
+        dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasillero());
+
+        comprobarQue(tieneRumbo(Direccion.NORTE));
+    }
+
+    private Postcondicion tieneRumbo(Direccion rumboEsperado) {
+
+        return post(condicion -> assertThat(unCazaEspacial.obtenerRumbo()).as("rumbo").isEqualTo(rumboEsperado));
+    }
+
+    @Test
+    void obtenerRumboDespuesMoverseAlNorte() {
+
+        dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasillero());
+
+        unCazaEspacial.moverEn(Direccion.NORTE);
+
+        comprobarQue(tieneRumbo(Direccion.NORTE));
+    }
+
+    @Test
+    void obtenerRumboDespuesMoverseAlSur() {
+
+        dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasillero());
+
+        unCazaEspacial.moverEn(Direccion.SUR);
+
+        comprobarQue(tieneRumbo(Direccion.SUR));
+    }
+
+    @Test
+    void obtenerRumboDespuesMoverseAlEste() {
+
+        dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasillero());
+
+        unCazaEspacial.moverEn(Direccion.ESTE);
+
+        comprobarQue(tieneRumbo(Direccion.ESTE));
+    }
+
+    @Test
+    void obtenerRumboDespuesMoverseAlOeste() {
+
+        dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasillero());
+
+        unCazaEspacial.moverEn(Direccion.OESTE);
+
+        comprobarQue(tieneRumbo(Direccion.OESTE));
+    }
 }
 

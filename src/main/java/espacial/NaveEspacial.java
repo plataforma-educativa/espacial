@@ -22,6 +22,8 @@ public interface NaveEspacial extends Pieza, Chocable {
 
     int obtenerNivelDeEscudos();
 
+    Direccion obtenerRumbo();
+
     void fueAmarradaCon(Amarre amarre);
 
     @Override

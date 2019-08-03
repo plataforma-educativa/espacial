@@ -28,6 +28,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     private final Referencia<Amarre> amarre = Referencia.conValorNulo();
     private final Referencia<Casillero> casillero = Referencia.conValorNulo();
     private final Observadores observadores = new Observadores();
+    private Direccion rumbo = Direccion.NORTE;
 
     public CazaEspacial() {
 
@@ -74,7 +75,9 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
 
     @Override
     public void moverEn(Direccion direccionElegida) {
-        
+
+        rumbo = direccionElegida;
+
         Casillero origen = obtenerCasillero();
         
         Casillero destino = origen.obtenerContiguoEn(direccionElegida);
@@ -253,5 +256,10 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     public void registrar(Pieza.Observador unObservador) {
 
         observadores.agregar(unObservador);
+    }
+
+    public Direccion obtenerRumbo() {
+
+        return rumbo;
     }
 }
