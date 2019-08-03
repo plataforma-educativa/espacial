@@ -2,11 +2,11 @@ package espacial.interfaz;
 
 import espacial.PartidaEspacial;
 import espacial.Pieza;
+import espacial.interfaz.animaciones.Reproducir;
 import espacial.interfaz.componentes.Dibujante;
 import espacial.interfaz.componentes.PanelConTablero;
 import espacial.interfaz.rasgos.Controlador;
 import javafx.animation.Animation;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
@@ -69,7 +69,7 @@ public class ControladorDePartida implements Controlador {
 
     public void reproducir(Animation animacion) {
 
-        Platform.runLater(animacion::play);
+        new Reproducir(animacion).esperando();
     }
 
     public Dibujante conDibujante() {

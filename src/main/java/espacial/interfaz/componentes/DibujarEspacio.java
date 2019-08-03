@@ -3,9 +3,11 @@ package espacial.interfaz.componentes;
 import espacial.Casillero;
 import espacial.VisitanteDeCasilleros;
 import javafx.scene.Node;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 public class DibujarEspacio extends Dibujar implements VisitanteDeCasilleros {
 
@@ -35,12 +37,17 @@ public class DibujarEspacio extends Dibujar implements VisitanteDeCasilleros {
         rectanguloCasillero.setFill(pinturaCasillero);
         rectanguloCasillero.setStrokeWidth(0);
 
-        dibujo = rectanguloCasillero;
+        dibujo = new StackPane(rectanguloCasillero, numeroDe(casillero));
     }
 
     private boolean esParElNumeroDel(Casillero casillero) {
 
         return casillero.obtenerCoordenadas().numerar() % 2 == 0;
+    }
+
+    private Node numeroDe(Casillero casillero) {
+
+        return new Text(String.valueOf(casillero.obtenerCoordenadas().numerar()));
     }
 
     public Node de(Casillero casillero) {

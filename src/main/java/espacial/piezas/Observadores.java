@@ -3,12 +3,12 @@ package espacial.piezas;
 import espacial.Casillero;
 import espacial.Pieza;
 
-import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Observadores implements Pieza.Observador {
 
-    private List<Pieza.Observador> elementos = new LinkedList<>();
+    private List<Pieza.Observador> elementos = new CopyOnWriteArrayList<>();
 
     public void agregar(Pieza.Observador unObservador) {
 

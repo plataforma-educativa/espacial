@@ -7,6 +7,18 @@ class PartidaEspacialFXTest {
     public static void main(String[] args) throws InterruptedException {
 
         BatallaEspacial batalla = new BatallaEspacial();
+
+        PartidaEspacialFX partidaEspacial = new PartidaEspacialFX(batalla.obtenerTablero());
+        partidaEspacial.iniciar();
+
+        TimeUnit.SECONDS.sleep(5);
+
+        Nave alfa = new Nave();
+        alfa.despegar();
+        alfa.avanzarAlNorte();
+        alfa.avanzarAlNorte();
+
+
         Nave nave = new Nave();
         nave.despegar();
         nave.avanzarAlSur();
@@ -22,16 +34,10 @@ class PartidaEspacialFXTest {
 
         //new Nave().despegar();
 
-        PartidaEspacialFX partidaEspacial = new PartidaEspacialFX(batalla.obtenerTablero());
-        partidaEspacial.iniciar();
-
         Nave atacante = new Nave();
         atacante.despegar();
-        TimeUnit.SECONDS.sleep(1);
         atacante.avanzarAlNorte();
-        TimeUnit.SECONDS.sleep(5);
         atacante.atacarAlSur();
-        TimeUnit.SECONDS.sleep(1);
 
         nave2.cargarDesdeOeste(Sustancia.ANTIMATERIA, 2);
 
@@ -46,12 +52,10 @@ class PartidaEspacialFXTest {
         nave2.avanzarAlNorte();
         nave2.descargarEnNorte(Sustancia.ANTIMATERIA, 1);
 
-        TimeUnit.SECONDS.sleep(1);
         for (int i = 0; i < 20; i++) {
 
             nave2.atacarAlNorte();
         }
-        TimeUnit.SECONDS.sleep(1);
 
 
         nave.avanzarAlEste();
@@ -67,9 +71,7 @@ class PartidaEspacialFXTest {
 
         for (int i = 0; i < 10; i++) {
 
-            TimeUnit.SECONDS.sleep(1);
             nave.avanzarAlEste();
-            TimeUnit.SECONDS.sleep(1);
             nave.avanzarAlSur();
         }
 

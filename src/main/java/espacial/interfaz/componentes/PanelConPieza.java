@@ -45,7 +45,6 @@ public class PanelConPieza extends Group implements Pieza.Observador {
         transition.setToY(posicion.enY());
 
         controlador.reproducir(transition);
-
     }
 
     @Override
