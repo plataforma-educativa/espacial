@@ -7,6 +7,7 @@ import espacial.interfaz.componentes.Dibujante;
 import espacial.interfaz.componentes.PanelConTablero;
 import espacial.interfaz.rasgos.Controlador;
 import javafx.animation.Animation;
+import javafx.animation.SequentialTransition;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
@@ -65,6 +66,11 @@ public class ControladorDePartida implements Controlador {
     public void fueSeleccionada(Pieza unaPieza) {
 
         vistaListaInformes.mostrarInformePara(unaPieza);
+    }
+
+    public void reproducir(Animation... animaciones) {
+
+        this.reproducir(new SequentialTransition(animaciones));
     }
 
     public void reproducir(Animation animacion) {

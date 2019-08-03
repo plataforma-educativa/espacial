@@ -7,7 +7,6 @@ import espacial.Tablero;
 import espacial.interfaz.ControladorDePartida;
 import espacial.interfaz.animaciones.AgregarEnPanel;
 import javafx.animation.ScaleTransition;
-import javafx.animation.SequentialTransition;
 import javafx.animation.Transition;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -59,7 +58,7 @@ public class PanelConTablero extends StackPane implements ObservadorDelTablero {
 
         PanelConPieza panelConPieza = new PanelConPieza(controlador, unaPieza).en(Posicion.de(casillero));
 
-        Transition agregar = new AgregarEnPanel(piezas, panelConPieza);
+        Transition agregarAlTablero = new AgregarEnPanel(piezas, panelConPieza);
 
         ScaleTransition salirDeLaBase = new ScaleTransition(Duration.millis(500), panelConPieza);
         salirDeLaBase.setFromX(0);
@@ -67,6 +66,6 @@ public class PanelConTablero extends StackPane implements ObservadorDelTablero {
         salirDeLaBase.setToX(1);
         salirDeLaBase.setToY(1);
 
-        controlador.reproducir(new SequentialTransition(agregar, salirDeLaBase));
+        controlador.reproducir(agregarAlTablero, salirDeLaBase);
     }
 }

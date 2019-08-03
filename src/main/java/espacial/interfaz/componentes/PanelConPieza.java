@@ -3,8 +3,15 @@ package espacial.interfaz.componentes;
 import espacial.Casillero;
 import espacial.Pieza;
 import espacial.interfaz.ControladorDePartida;
+import javafx.animation.Animation;
+import javafx.animation.FadeTransition;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.ParallelTransition;
+import javafx.animation.ScaleTransition;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
-import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.util.Duration;
@@ -55,6 +62,36 @@ public class PanelConPieza extends Group implements Pieza.Observador {
     @Override
     public void fueDestruida(Pieza unaPieza) {
 
-        Platform.runLater(() -> setVisible(false));
+        controlador.reproducir(enParalelo(agrandar(), desvanecer()), ocultar());
+    }
+
+    private Animation enParalelo(Animation... animaciones) {
+
+        return new ParallelTransition(animaciones);
+    }
+
+    private Animation agrandar() {
+
+        ScaleTransition agrandar = new ScaleTransition(Duration.millis(500), this);
+        agrandar.setByX(5);
+        agrandar.setByY(5);
+        agrandar.setAutoReverse(true);
+
+        return agrandar;
+    }
+
+    private Animation desvanecer() {
+
+        FadeTransition desvanecer = new FadeTransition(Duration.millis(500), this);
+        desvanecer.setInterpolator(Interpolator.EASE_OUT);
+        desvanecer.setFromValue(1);
+        desvanecer.setToValue(0);
+
+        return desvanecer;
+    }
+
+    private Animation ocultar() {
+
+        return new Timeline(new KeyFrame(Duration.millis(500), new KeyValue(this.visibleProperty(), false)));
     }
 }
