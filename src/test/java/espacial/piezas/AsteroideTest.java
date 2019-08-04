@@ -211,4 +211,19 @@ class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
                         .isInstanceOf(Defecto.class)
         );
     }
+
+    @Test
+    void aceptar() {
+
+        dadoQue(fueCreadoUnAsteroide());
+
+        unAsteroide.aceptar(UN_VISITANTE);
+
+        comprobarQue(unVisitanteEsAsteroide());
+    }
+
+    private Postcondicion unVisitanteEsAsteroide() {
+
+        return post(condicion -> verify(UN_VISITANTE).siEsAsteroide(unAsteroide));
+    }
 }

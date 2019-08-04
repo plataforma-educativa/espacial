@@ -7,6 +7,7 @@ import espacial.EspectroEspacial;
 import espacial.Faccion;
 import espacial.NaveEspacial;
 import espacial.Pieza;
+import espacial.Visitante;
 import espacial.test.Postcondicion;
 import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,7 @@ abstract class TestDeContratoSobrePieza<T extends Pieza> implements TestDeContra
 
     final NaveEspacial NAVE_ESPACIAL = mock(NaveEspacial.class, "NAVE_ESPACIAL");
     final Ataque UN_ATAQUE = mock(Ataque.class, "UN_ATAQUE");
+    final Visitante UN_VISITANTE = mock(Visitante.class, "UN_VISITANTE");
 
     abstract T piezaCreada();
 

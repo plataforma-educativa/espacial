@@ -330,4 +330,19 @@ class EstacionCentralTest extends TestDeContratoSobrePieza<EstacionCentral> {
                 unaBase.recibir(SustanciaEspacial.METAL.por(cantidadDeCristal)))
         );
     }
+
+    @Test
+    void aceptar() {
+
+        dadoQue(fueCreadaUnaBase());
+
+        unaBase.aceptar(UN_VISITANTE);
+
+        comprobarQue(unVisitanteEsBase());
+    }
+
+    private Postcondicion unVisitanteEsBase() {
+
+        return post(condicion -> verify(UN_VISITANTE).siEsBase(unaBase));
+    }
 }

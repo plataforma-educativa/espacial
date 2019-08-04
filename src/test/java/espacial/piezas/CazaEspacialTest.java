@@ -803,5 +803,20 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
         comprobarQue(tieneRumbo(Direccion.OESTE));
     }
+
+    @Test
+    void aceptar() {
+
+        dadoQue(fueCreadoUnCazaEspacial());
+
+        unCazaEspacial.aceptar(UN_VISITANTE);
+
+        comprobarQue(unVisitanteEsNave());
+    }
+
+    private Postcondicion unVisitanteEsNave() {
+
+        return post(condicion -> verify(UN_VISITANTE).siEsNave(unCazaEspacial));
+    }
 }
 

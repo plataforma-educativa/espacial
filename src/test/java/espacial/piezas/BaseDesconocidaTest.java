@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
 
 class BaseDesconocidaTest extends TestDeContratoSobrePieza<BaseDesconocida> {
 
-    private BaseDesconocida unaBaseEnemiga;
+    private BaseDesconocida unaBaseDesconocida;
 
     @Override
     BaseDesconocida piezaCreada() {
@@ -44,29 +44,29 @@ class BaseDesconocidaTest extends TestDeContratoSobrePieza<BaseDesconocida> {
     @Test
     void obtenerPuntos() {
 
-        dadoQue(fueCreadaUnaBaseEnemiga());
+        dadoQue(fueCreadaUnaBaseDesconocida());
 
         comprobarQue(losPuntosInicialesDeUnaBaseSonCorrectos());
     }
 
-    private Precondicion fueCreadaUnaBaseEnemiga() {
+    private Precondicion fueCreadaUnaBaseDesconocida() {
 
-        return pre(condicion ->  unaBaseEnemiga = new BaseDesconocida());
+        return pre(condicion ->  unaBaseDesconocida = new BaseDesconocida());
     }
 
     private Postcondicion losPuntosInicialesDeUnaBaseSonCorrectos() {
 
-        return post(condicion ->  assertThat(unaBaseEnemiga.obtenerPuntos()).as("puntos").isEqualTo(200));
+        return post(condicion ->  assertThat(unaBaseDesconocida.obtenerPuntos()).as("puntos").isEqualTo(200));
     }
 
     @Test
     void recibirUnaCarga() {
 
-        dadoQue(fueCreadaUnaBaseEnemiga());
+        dadoQue(fueCreadaUnaBaseDesconocida());
 
         comprobarQue(generaExcepcionPorqueNoPuedeRecirCarga(() ->
 
-                unaBaseEnemiga.recibir(SustanciaEspacial.ANTIMATERIA.por(34)))
+                unaBaseDesconocida.recibir(SustanciaEspacial.ANTIMATERIA.por(34)))
         );
     }
 
@@ -83,11 +83,11 @@ class BaseDesconocidaTest extends TestDeContratoSobrePieza<BaseDesconocida> {
     @Test
     void extraerUnaCarga() {
 
-        dadoQue(fueCreadaUnaBaseEnemiga());
+        dadoQue(fueCreadaUnaBaseDesconocida());
 
         comprobarQue(generaExcepcionPorqueNoPuedeEntregarUnaCarga(() ->
 
-                unaBaseEnemiga.entregar(SustanciaEspacial.ANTIMATERIA.por(100)))
+                unaBaseDesconocida.entregar(SustanciaEspacial.ANTIMATERIA.por(100)))
         );
     }
 
@@ -104,25 +104,39 @@ class BaseDesconocidaTest extends TestDeContratoSobrePieza<BaseDesconocida> {
     @Test
     void atacadoConLaser() {
 
-        dadoQue(fueCreadaUnaBaseEnemiga());
+        dadoQue(fueCreadaUnaBaseDesconocida());
 
-        unaBaseEnemiga.atacadoConLaser();
+        unaBaseDesconocida.atacadoConLaser();
 
-        comprobarQue(losPuntosDeUnaBaseEnemigaSon(195));
+        comprobarQue(losPuntosDeUnaBaseDesconocidaSon(195));
     }
-    private Postcondicion losPuntosDeUnaBaseEnemigaSon(int esperados) {
+    private Postcondicion losPuntosDeUnaBaseDesconocidaSon(int esperados) {
 
-        return post(condicion ->  assertThat(unaBaseEnemiga.obtenerPuntos()).as("puntos").isEqualTo(esperados));
+        return post(condicion ->  assertThat(unaBaseDesconocida.obtenerPuntos()).as("puntos").isEqualTo(esperados));
     }
 
     @Test
     void atacadoConUnTopedoDeFotones() {
 
-        dadoQue(fueCreadaUnaBaseEnemiga());
+        dadoQue(fueCreadaUnaBaseDesconocida());
 
-        unaBaseEnemiga.atacadoConTorpedoDeFotones();
+        unaBaseDesconocida.atacadoConTorpedoDeFotones();
 
-        comprobarQue(losPuntosDeUnaBaseEnemigaSon(190));
+        comprobarQue(losPuntosDeUnaBaseDesconocidaSon(190));
     }
 
+    @Test
+    void aceptar() {
+
+        dadoQue(fueCreadaUnaBaseDesconocida());
+
+        unaBaseDesconocida.aceptar(UN_VISITANTE);
+
+        comprobarQue(unVisitanteEsBase());
+    }
+
+    private Postcondicion unVisitanteEsBase() {
+
+        return post(condicion -> verify(UN_VISITANTE).siEsBase(unaBaseDesconocida));
+    }
 }

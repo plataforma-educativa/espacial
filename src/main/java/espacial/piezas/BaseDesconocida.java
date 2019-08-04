@@ -28,6 +28,7 @@ public class BaseDesconocida implements PiezaAtacable, Neutral {
     @Override
     public void aceptar(Visitante visitante) {
 
+        visitante.siEsBase(this);
     }
 
     @Override

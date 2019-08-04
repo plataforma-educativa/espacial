@@ -26,6 +26,7 @@ public class Tablero {
         colocarEnCoordenada(4, 2, fabrica::crearContenedorDeAntimateria);
         colocarEnCoordenada(2, -7, fabrica::crearContenedorDeCristal);
         colocarEnCoordenada(10, -24, fabrica::crearContenedorDeMetal);
+        colocarEnCoordenada(-10, 14, fabrica::crearBaseDesconocida);
         colocarEnCoordenada(1, -3, fabrica::crearAsteoride);
         colocarEntreCoordenadas(7, -1, 7, 0, fabrica::crearAsteoride);
         colocarEntreCoordenadas(8, -3, 8, 3, fabrica::crearAsteoride);

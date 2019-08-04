@@ -222,4 +222,19 @@ abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustancia> ex
                         .isInstanceOf(ExcedeLaCargaDisponible.class)
         );
     }
+
+    @Test
+    void aceptar() {
+
+        dadoQue(fueCreadoUnContenedor());
+
+        unContenedor.aceptar(UN_VISITANTE);
+
+        comprobarQue(unVisitanteEsContenedor());
+    }
+
+    private Postcondicion unVisitanteEsContenedor() {
+
+        return post(condicion -> verify(UN_VISITANTE).siEsContenedor(unContenedor));
+    }
 }

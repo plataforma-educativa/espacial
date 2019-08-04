@@ -96,6 +96,8 @@ class BatallaEspacialTest implements TestDeContrato {
                     .en(2, -6)
                     .en(1, -6)
                     .en(1, -7)
+                    .tieneBase()
+                    .en(-10, 14)
                     .yTieneVacioEnElResto();
         });
     }

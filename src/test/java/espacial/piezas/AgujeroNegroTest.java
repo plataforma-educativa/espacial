@@ -121,4 +121,18 @@ class AgujeroNegroTest extends TestDeContratoSobrePieza<AgujeroNegro> {
         );
     }
 
+    @Test
+    void aceptar() {
+
+        dadoQue(fueCreadoUnAgujeroNegro());
+
+        unAgujeroNegro.aceptar(UN_VISITANTE);
+
+        comprobarQue(unVisitanteEsAgujeroNegro());
+    }
+
+    private Postcondicion unVisitanteEsAgujeroNegro() {
+
+        return post(condicion -> verify(UN_VISITANTE).siEsAgujeroNegro(unAgujeroNegro));
+    }
 }
