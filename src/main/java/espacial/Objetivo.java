@@ -11,7 +11,5 @@ public interface Objetivo {
      * @pre el Objetivo fue atacado con {@code ataque}.
      * @param ataque
      */
-    default void fueAtacadoCon(Ataque ataque) {
-
-    }
+    void fueAtacadoCon(Ataque ataque);
 }

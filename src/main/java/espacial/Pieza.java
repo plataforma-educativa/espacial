@@ -44,15 +44,6 @@ public interface Pieza extends Obstaculo, Objetivo {
         throw new LaOperacionNoEstaSoportada("Pieza.chocoCon(Obstaculo)");
     }
 
-    /**
-     * @pre la Pieza fue atacada con {@code unAtaque}.
-     * @param unAtaque
-     */
-    default void fueAtacadoCon(Ataque unAtaque) {
-
-        throw new LaOperacionNoEstaSoportada("Pieza.fueAtacadoCon(Ataque)");
-    }
-
     void aceptar(Visitante visitante);
 
     /**

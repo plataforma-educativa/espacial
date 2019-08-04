@@ -1,7 +1,6 @@
 package espacial.piezas;
 
 import espacial.Amarre;
-import espacial.Ataque;
 import espacial.BaseEspacial;
 import espacial.Cargamento;
 import espacial.Casillero;
@@ -49,12 +48,6 @@ public class EstacionCentral implements BaseEspacial, PiezaAtacable, BaseDeposit
     public void fueColocadaEn(Casillero casillero) {
      
         this.casillero = casillero;
-    }
-
-    @Override
-    public void fueAtacadoCon(Ataque ataque) {
-
-        ataque.aplicarSobre(this);
     }
 
     @Override

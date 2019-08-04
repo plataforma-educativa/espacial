@@ -3,11 +3,10 @@ package espacial.piezas;
 import espacial.Casillero;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
-import espacial.Pieza;
 import espacial.Visitante;
 import espacial.piezas.rasgos.PiezaAtacable;
 
-public class BaseDesconocida implements Pieza, PiezaAtacable {
+public class BaseDesconocida implements PiezaAtacable {
 
     private final Indicador puntos = new Indicador(200);
 

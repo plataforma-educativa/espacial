@@ -1,6 +1,5 @@
 package espacial.piezas;
 
-import espacial.Ataque;
 import espacial.Casillero;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
@@ -47,12 +46,6 @@ public class Asteroide implements Pieza, AsteroideAtacable {
     public void fueChocadaPor(Chocable chocable) {
 
         chocable.chocoContraUnAsteroide();
-    }
-
-    @Override
-    public void fueAtacadoCon(Ataque ataque) {
-
-        ataque.aplicarSobre(this);
     }
 
     @Override

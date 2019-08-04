@@ -23,6 +23,7 @@ public class AgujeroNegro implements Pieza {
     @Override
     public void fueAtacadoCon(Ataque ataque) {
 
+        /* No se ve afectado por ningún ataque */
     }
 
     @Override

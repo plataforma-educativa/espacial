@@ -1,5 +1,6 @@
 package espacial.tableros;
 
+import espacial.Ataque;
 import espacial.Carga;
 import espacial.Casillero;
 import espacial.Chocable;
@@ -109,5 +110,11 @@ public class CasilleroBorde extends CasilleroDelTablero implements Obstaculo {
     public String toString() {
 
         return "Casillero" + coordenadas + " -> BORDE";
+    }
+
+    @Override
+    public void fueAtacadoCon(Ataque ataque) {
+
+        /* No se ve afectado por ningún ataque */
     }
 }

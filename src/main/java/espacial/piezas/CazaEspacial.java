@@ -1,7 +1,6 @@
 package espacial.piezas;
 
 import espacial.Amarre;
-import espacial.Ataque;
 import espacial.Carga;
 import espacial.Cargamento;
 import espacial.Casillero;
@@ -146,12 +145,6 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     public int buscarEn(Direccion direccionElegida, SustanciaEspacial unaSustancia) {
 
         return obtenerCasillero().obtenerContiguoEn(direccionElegida).buscar(unaSustancia);
-    }
-
-    @Override
-    public void fueAtacadoCon(Ataque ataque) {
-
-        ataque.aplicarSobre(this);
     }
 
     private void fueDestruido() {

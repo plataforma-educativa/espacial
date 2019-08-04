@@ -1,6 +1,5 @@
 package espacial.piezas;
 
-import espacial.Ataque;
 import espacial.Cargamento;
 import espacial.Casillero;
 import espacial.Chocable;
@@ -41,12 +40,6 @@ public abstract class ContenedorDeSustancia implements PiezaDeposito, PiezaAtaca
     public void decrementarPuntosEn(int decremento) {
 
         puntos.decrementarEn(decremento);
-    }
-
-    @Override
-    public void fueAtacadoCon(Ataque ataque) {
-
-        ataque.aplicarSobre(this);
     }
 
     @Override
