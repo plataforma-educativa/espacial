@@ -27,6 +27,16 @@ class PiezaAtacableEnPartidaTest implements TestDeContrato {
     }
 
     @Nested
+    class SiEsUnaBaseDesconocida extends TestDePiezaAtacableEnPartida<BaseDesconocida> {
+
+        @Override
+        protected Precondicion fueCreadaLaPieza() {
+
+            return pre(condicion ->  unaPiezaAtacable = new BaseDesconocida());
+        }
+    }
+
+    @Nested
     class SiEsUnAsteroide extends TestDePiezaAtacableEnPartida<Asteroide> {
 
         @Override
