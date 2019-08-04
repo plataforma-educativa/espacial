@@ -17,7 +17,8 @@ class PartidaEspacialFXTest {
         alfa.despegar();
         alfa.avanzarAlNorte();
         alfa.avanzarAlNorte();
-
+        alfa.avanzarAlOeste();
+        alfa.avanzarAlSur();
 
         Nave nave = new Nave();
         nave.despegar();

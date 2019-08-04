@@ -1,7 +1,9 @@
 package espacial.interfaz.componentes;
 
 import espacial.Casillero;
+import espacial.NaveEspacial;
 import espacial.Pieza;
+import espacial.Visitante;
 import espacial.interfaz.ControladorDePartida;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
@@ -22,6 +24,19 @@ public class PanelConPieza extends Group implements Pieza.Observador {
 
     private final Pieza pieza;
 
+    private final Duration duracionDeLaAnimacion = Duration.millis(500);
+
+    private final RotacionSegunDireccion rotacion = new RotacionSegunDireccion();
+
+    private final Visitante actualizarEstado = new Visitante() {
+
+        @Override
+        public void siEsNave(NaveEspacial pieza) {
+
+            pieza.obtenerRumbo().evaluar(rotacion);
+        }
+    };
+
     public PanelConPieza(ControladorDePartida unControlador, Pieza unaPieza) {
 
         controlador = unControlador;
@@ -29,6 +44,7 @@ public class PanelConPieza extends Group implements Pieza.Observador {
         getChildren().add(controlador.conDibujante().dibujar(pieza));
         setCursor(Cursor.HAND);
         setOnMousePressed(event -> unControlador.fueSeleccionada(pieza));
+        rotateProperty().bind(rotacion);
         pieza.registrar(this);
     }
 
@@ -47,7 +63,7 @@ public class PanelConPieza extends Group implements Pieza.Observador {
 
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(this);
-        transition.setDuration(Duration.millis(1000));
+        transition.setDuration(duracionDeLaAnimacion);
         transition.setToX(posicion.enX());
         transition.setToY(posicion.enY());
 
@@ -57,6 +73,7 @@ public class PanelConPieza extends Group implements Pieza.Observador {
     @Override
     public void cambioElEstadoDe(Pieza unaPieza) {
 
+        unaPieza.aceptar(actualizarEstado);
     }
 
     @Override
@@ -72,7 +89,7 @@ public class PanelConPieza extends Group implements Pieza.Observador {
 
     private Animation agrandar() {
 
-        ScaleTransition agrandar = new ScaleTransition(Duration.millis(500), this);
+        ScaleTransition agrandar = new ScaleTransition(duracionDeLaAnimacion, this);
         agrandar.setByX(5);
         agrandar.setByY(5);
         agrandar.setAutoReverse(true);
@@ -82,7 +99,7 @@ public class PanelConPieza extends Group implements Pieza.Observador {
 
     private Animation desvanecer() {
 
-        FadeTransition desvanecer = new FadeTransition(Duration.millis(500), this);
+        FadeTransition desvanecer = new FadeTransition(duracionDeLaAnimacion, this);
         desvanecer.setInterpolator(Interpolator.EASE_OUT);
         desvanecer.setFromValue(1);
         desvanecer.setToValue(0);
@@ -92,6 +109,6 @@ public class PanelConPieza extends Group implements Pieza.Observador {
 
     private Animation ocultar() {
 
-        return new Timeline(new KeyFrame(Duration.millis(500), new KeyValue(this.visibleProperty(), false)));
+        return new Timeline(new KeyFrame(Duration.ONE, new KeyValue(this.visibleProperty(), false)));
     }
 }
