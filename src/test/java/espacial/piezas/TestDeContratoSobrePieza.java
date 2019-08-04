@@ -4,6 +4,7 @@ import espacial.Ataque;
 import espacial.Casillero;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
+import espacial.Faccion;
 import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.test.Postcondicion;
@@ -21,6 +22,8 @@ abstract class TestDeContratoSobrePieza<T extends Pieza> implements TestDeContra
     abstract T piezaCreada();
 
     abstract EspectroEspacial espectroEsperado();
+
+    abstract Faccion faccionEsperada();
 
     abstract Postcondicion laNaveEspacialFueNotificadaDelChoque();
 
@@ -88,5 +91,20 @@ abstract class TestDeContratoSobrePieza<T extends Pieza> implements TestDeContra
     private Postcondicion esAutoDescriptiva(Pieza unaPieza) {
 
         return post(condicion -> assertThat(unaPieza).hasToString("Pieza<" + espectroEsperado() + ">"));
+    }
+
+    @Test
+    void reconocer() {
+
+        Pieza pieza = piezaCreada();
+
+        Faccion faccion = pieza.reconocer();
+
+        comprobarQue(laFaccioneReconocidaEsLaEsperada(faccion));
+    }
+
+    private Postcondicion laFaccioneReconocidaEsLaEsperada(Faccion faccion) {
+
+        return post(condicion -> assertThat(faccion).isEqualTo(faccionEsperada()));
     }
 }

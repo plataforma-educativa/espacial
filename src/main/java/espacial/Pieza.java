@@ -22,6 +22,14 @@ public interface Pieza extends Obstaculo, Objetivo {
     EspectroEspacial escanear();
 
     /**
+     * @return la Facción a la que pertenece la Pieza.
+     */
+    default Faccion reconocer() {
+
+        return Faccion.NEUTRAL;
+    }
+
+    /**
      * @param unaSustancia Sustancia buscada en la Pieza.
      * @return cantidad de {@code unaSustancia} que existe dentro de la Pieza.
      */

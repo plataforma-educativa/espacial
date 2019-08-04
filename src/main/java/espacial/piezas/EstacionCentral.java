@@ -6,6 +6,7 @@ import espacial.Cargamento;
 import espacial.Casillero;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
+import espacial.Faccion;
 import espacial.NaveEspacial;
 import espacial.Visitante;
 import espacial.piezas.rasgos.BaseDeposito;
@@ -54,6 +55,12 @@ public class EstacionCentral implements BaseEspacial, PiezaAtacable, BaseDeposit
     public EspectroEspacial escanear() {
         
         return EspectroEspacial.BASE;
+    }
+
+    @Override
+    public Faccion reconocer() {
+
+        return Faccion.ALIADO;
     }
 
     @Override

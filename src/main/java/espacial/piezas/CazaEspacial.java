@@ -6,6 +6,7 @@ import espacial.Cargamento;
 import espacial.Casillero;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
+import espacial.Faccion;
 import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
@@ -257,5 +258,11 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     public Direccion obtenerRumbo() {
 
         return rumbo.obtener();
+    }
+
+    @Override
+    public Faccion reconocer() {
+
+        return Faccion.ALIADO;
     }
 }

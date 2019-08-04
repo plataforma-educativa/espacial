@@ -1,6 +1,7 @@
 package espacial.piezas;
 
 import espacial.EspectroEspacial;
+import espacial.Faccion;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.NoPuedeEntregarUnaCarga;
 import espacial.excepciones.NoPuedeRecibirUnaCarga;
@@ -12,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class BaseEnemigaTest extends TestDeContratoSobrePieza<BaseDesconocida> {
+class BaseDesconocidaTest extends TestDeContratoSobrePieza<BaseDesconocida> {
 
     private BaseDesconocida unaBaseEnemiga;
 
@@ -26,6 +27,12 @@ class BaseEnemigaTest extends TestDeContratoSobrePieza<BaseDesconocida> {
     EspectroEspacial espectroEsperado() {
 
         return EspectroEspacial.BASE;
+    }
+
+    @Override
+    Faccion faccionEsperada() {
+
+        return Faccion.NEUTRAL;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package espacial.piezas;
 
 import espacial.EspectroEspacial;
+import espacial.Faccion;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.excepciones.ExcedeLaCargaDisponible;
@@ -24,6 +25,12 @@ abstract class TestDeContratoSobreContenedor<T extends ContenedorDeSustancia> ex
     EspectroEspacial espectroEsperado() {
 
         return EspectroEspacial.CONTENEDOR;
+    }
+
+    @Override
+    Faccion faccionEsperada() {
+
+        return Faccion.NEUTRAL;
     }
 
     @Override
