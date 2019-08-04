@@ -1,9 +1,9 @@
 package espacial.piezas.rasgos;
 
 import espacial.Faccion;
-import espacial.Participante;
+import espacial.Pertenencia;
 
-public interface Aliado extends Participante {
+public interface Aliado extends Pertenencia {
 
     default Faccion reconocer() {
 

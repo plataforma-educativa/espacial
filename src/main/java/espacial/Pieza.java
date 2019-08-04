@@ -10,7 +10,7 @@ import espacial.excepciones.NoPuedeRecibirUnaCarga;
  * @author Mariano Tugnarelli
  *
  */
-public interface Pieza extends Obstaculo, Objetivo, Participante {
+public interface Pieza extends Obstaculo, Objetivo, Pertenencia {
 
     int PUNTOS_MINIMOS = 1;
     int PUNTOS_MAXIMOS = 1000;
