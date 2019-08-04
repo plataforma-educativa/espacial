@@ -5,6 +5,7 @@ import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.piezas.AgujeroNegro;
 import espacial.piezas.Asteroide;
+import espacial.piezas.BaseDesconocida;
 import espacial.piezas.CazaEspacial;
 import espacial.piezas.ContenedorDeAntimateria;
 import espacial.piezas.ContenedorDeCristal;
@@ -63,5 +64,10 @@ public class FabricaDePiezas {
     public BaseEspacial crearBaseEspacial() {
 
         return new EstacionCentral();
+    }
+
+    public Pieza crearBaseDesconocida() {
+
+        return new BaseDesconocida();
     }
 }

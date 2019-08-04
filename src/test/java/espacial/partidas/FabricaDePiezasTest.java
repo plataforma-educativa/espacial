@@ -272,4 +272,24 @@ class FabricaDePiezasTest implements TestDeContrato {
                         .extracting(Pieza::escanear).isEqualTo(EspectroEspacial.BASE)
         );
     }
+
+    @Test
+    void crearBaseDesconocida() {
+
+        dadoQue(fueCreadaUnaFabricaDePiezas());
+
+        piezaCreada = unaFabrica.crearBaseDesconocida();
+
+        comprobarQue(laPiezaCreadaEsUnaBaseDesconocida());
+
+    }
+
+    private Postcondicion laPiezaCreadaEsUnaBaseDesconocida() {
+
+        return post(condicion ->
+
+                assertThat(piezaCreada).as("pieza creada").isNotNull()
+                        .extracting(Pieza::escanear).isEqualTo(EspectroEspacial.BASE)
+        );
+    }
 }
