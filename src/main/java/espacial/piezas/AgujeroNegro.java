@@ -5,8 +5,9 @@ import espacial.Chocable;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.Visitante;
+import espacial.piezas.rasgos.Neutral;
 
-public class AgujeroNegro implements Pieza {
+public class AgujeroNegro implements Pieza, Neutral {
 
     @Override
     public EspectroEspacial escanear() {

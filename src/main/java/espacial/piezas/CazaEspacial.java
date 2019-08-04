@@ -6,20 +6,20 @@ import espacial.Cargamento;
 import espacial.Casillero;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
-import espacial.Faccion;
 import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.Visitante;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
+import espacial.piezas.rasgos.Aliado;
 import espacial.piezas.rasgos.NaveChocable;
 import espacial.piezas.rasgos.NaveDeCarga;
 import espacial.piezas.rasgos.PiezaAtacable;
 import espacial.utiles.Nombre;
 import espacial.utiles.Referencia;
 
-public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, PiezaAtacable {
+public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, PiezaAtacable, Aliado {
 
     private final Nombre nombre;
     private final Indicador nivelDeEscudos = new Indicador(100);
@@ -258,11 +258,5 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     public Direccion obtenerRumbo() {
 
         return rumbo.obtener();
-    }
-
-    @Override
-    public Faccion reconocer() {
-
-        return Faccion.ALIADO;
     }
 }

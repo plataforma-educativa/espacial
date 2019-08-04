@@ -4,9 +4,10 @@ import espacial.Casillero;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
 import espacial.Visitante;
+import espacial.piezas.rasgos.Neutral;
 import espacial.piezas.rasgos.PiezaAtacable;
 
-public class BaseDesconocida implements PiezaAtacable {
+public class BaseDesconocida implements PiezaAtacable, Neutral {
 
     private final Indicador puntos = new Indicador(200);
 

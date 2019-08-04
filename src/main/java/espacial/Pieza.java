@@ -10,7 +10,7 @@ import espacial.excepciones.NoPuedeRecibirUnaCarga;
  * @author Mariano Tugnarelli
  *
  */
-public interface Pieza extends Obstaculo, Objetivo {
+public interface Pieza extends Obstaculo, Objetivo, Participante {
 
     int PUNTOS_MINIMOS = 1;
     int PUNTOS_MAXIMOS = 1000;
@@ -20,14 +20,6 @@ public interface Pieza extends Obstaculo, Objetivo {
      *         participantes.
      */
     EspectroEspacial escanear();
-
-    /**
-     * @return la Facción a la que pertenece la Pieza.
-     */
-    default Faccion reconocer() {
-
-        return Faccion.NEUTRAL;
-    }
 
     /**
      * @param unaSustancia Sustancia buscada en la Pieza.

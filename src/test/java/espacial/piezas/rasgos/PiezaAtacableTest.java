@@ -2,6 +2,7 @@ package espacial.piezas.rasgos;
 
 import espacial.Chocable;
 import espacial.EspectroEspacial;
+import espacial.Faccion;
 import espacial.Visitante;
 import espacial.excepciones.LaOperacionNoEstaSoportada;
 import espacial.test.Postcondicion;
@@ -59,6 +60,12 @@ class PiezaAtacableTest implements TestDeContrato {
 
                 throw new LaOperacionNoEstaSoportada("escanear()");
 
+            }
+
+            @Override
+            public Faccion reconocer() {
+
+                throw new LaOperacionNoEstaSoportada("reconocer()");
             }
 
             @Override

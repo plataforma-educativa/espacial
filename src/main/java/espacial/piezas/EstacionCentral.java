@@ -6,16 +6,16 @@ import espacial.Cargamento;
 import espacial.Casillero;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
-import espacial.Faccion;
 import espacial.NaveEspacial;
 import espacial.Visitante;
+import espacial.piezas.rasgos.Aliado;
 import espacial.piezas.rasgos.BaseDeposito;
 import espacial.piezas.rasgos.PiezaAtacable;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class EstacionCentral implements BaseEspacial, PiezaAtacable, BaseDeposito {
+public class EstacionCentral implements BaseEspacial, PiezaAtacable, BaseDeposito, Aliado {
 
     private final Indicador puntos = new Indicador(200);
     private final Bodega bodega = new Bodega(obtenerCapacidad());
@@ -55,12 +55,6 @@ public class EstacionCentral implements BaseEspacial, PiezaAtacable, BaseDeposit
     public EspectroEspacial escanear() {
         
         return EspectroEspacial.BASE;
-    }
-
-    @Override
-    public Faccion reconocer() {
-
-        return Faccion.ALIADO;
     }
 
     @Override

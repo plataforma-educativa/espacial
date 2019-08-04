@@ -5,10 +5,11 @@ import espacial.Casillero;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
 import espacial.Visitante;
+import espacial.piezas.rasgos.Neutral;
 import espacial.piezas.rasgos.PiezaAtacable;
 import espacial.piezas.rasgos.PiezaDeposito;
 
-public abstract class ContenedorDeSustancia implements PiezaDeposito, PiezaAtacable {
+public abstract class ContenedorDeSustancia implements PiezaDeposito, PiezaAtacable, Neutral {
 
     private final Indicador puntos = new Indicador(50);
 

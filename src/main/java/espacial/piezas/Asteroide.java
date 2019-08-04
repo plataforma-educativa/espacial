@@ -6,8 +6,9 @@ import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.Visitante;
 import espacial.piezas.rasgos.AsteroideAtacable;
+import espacial.piezas.rasgos.Neutral;
 
-public class Asteroide implements Pieza, AsteroideAtacable {
+public class Asteroide implements Pieza, AsteroideAtacable, Neutral {
 
     private final Indicador puntos = new Indicador(300);
 
