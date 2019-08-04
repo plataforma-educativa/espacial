@@ -107,6 +107,18 @@ class CazaEspacialObservadoTest extends TestDePiezaObservada {
     }
 
     @Test
+    void cambioElEstadoCuandoSeMuevePrimeroAlNorteLuegoAlSur() {
+
+        dadoQue(fueCreadoUnCazaEspacial());
+        dadoQue(fueRegistradoUnObservador());
+
+        unCazaEspacial.moverEn(Direccion.NORTE);
+        unCazaEspacial.moverEn(Direccion.SUR);
+
+        comprobarQue(notificoAlObservadoDelCambioDeEstado());
+    }
+
+    @Test
     void fueDestruida() {
 
         dadoQue(fueCreadoUnCazaEspacial());

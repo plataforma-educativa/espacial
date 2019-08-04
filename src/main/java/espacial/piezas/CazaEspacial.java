@@ -28,7 +28,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     private final Referencia<Amarre> amarre = Referencia.conValorNulo();
     private final Referencia<Casillero> casillero = Referencia.conValorNulo();
     private final Observadores observadores = new Observadores();
-    private Direccion rumbo = Direccion.NORTE;
+    private final Rumbo rumbo = new Rumbo();
 
     public CazaEspacial() {
 
@@ -41,6 +41,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
         nivelDeEscudos.cuandoSeAgota(this::fueDestruido);
         artilleria.cuandoCambianLasMuniciones(this::notificarQueCambioElEstado);
         bodega.cuandoCambiaLaCarga(this::notificarQueCambioElEstado);
+        rumbo.cuandoCambia(this::notificarQueCambioElEstado);
         amarre.siEsNuloAlObtener(this::lanzarExcepcionPorqueLaNaveNoEstaEnLaBase);
         casillero.siEsNuloAlObtener(this::lanzarExcepcionPorqueNoDespego);
     }
@@ -76,7 +77,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     @Override
     public void moverEn(Direccion direccionElegida) {
 
-        rumbo = direccionElegida;
+        rumbo.tomar(direccionElegida);
 
         Casillero origen = obtenerCasillero();
         
@@ -260,6 +261,6 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
 
     public Direccion obtenerRumbo() {
 
-        return rumbo;
+        return rumbo.obtener();
     }
 }
