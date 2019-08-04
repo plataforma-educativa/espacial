@@ -127,6 +127,8 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     @Override
     public void atacarEn(Direccion direccionElegida) {
 
+        rumbo.tomar(direccionElegida);
+
         Casillero origen = obtenerCasillero();
 
         Casillero destino = origen.obtenerContiguoEn(direccionElegida);
