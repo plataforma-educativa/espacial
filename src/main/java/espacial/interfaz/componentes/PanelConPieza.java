@@ -1,6 +1,7 @@
 package espacial.interfaz.componentes;
 
 import espacial.Casillero;
+import espacial.Faccion;
 import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.Visitante;
@@ -18,7 +19,7 @@ import javafx.scene.Cursor;
 import javafx.scene.Group;
 import javafx.util.Duration;
 
-public class PanelConPieza extends Group implements Pieza.Observador {
+public class PanelConPieza extends Group implements Pieza.Observador, Faccion.Condicional {
 
     private final ControladorDePartida controlador;
 
@@ -43,9 +44,14 @@ public class PanelConPieza extends Group implements Pieza.Observador {
         pieza = unaPieza;
         getChildren().add(controlador.conDibujante().dibujar(pieza));
         setCursor(Cursor.HAND);
-        setOnMousePressed(event -> unControlador.fueSeleccionada(pieza));
         rotateProperty().bind(rotacion);
         pieza.registrar(this);
+    }
+
+    @Override
+    public void siEsAliado() {
+
+        setOnMousePressed(event -> controlador.fueSeleccionada(pieza));
     }
 
     public PanelConPieza en(Posicion posicion) {
