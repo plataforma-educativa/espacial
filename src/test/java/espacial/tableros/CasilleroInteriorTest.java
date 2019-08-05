@@ -5,6 +5,7 @@ import espacial.Carga;
 import espacial.Casillero;
 import espacial.Coordenadas;
 import espacial.EspectroEspacial;
+import espacial.Faccion;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.Tablero;
@@ -25,6 +26,7 @@ class CasilleroInteriorTest implements TestDeContrato {
 
     private final EstadoDelCasillero ESTADO = mock(EstadoDelCasillero.class, "ESTADO");
     private final EspectroEspacial ESPECTRO_ESCANEADO = EspectroEspacial.BASE;
+    private final Faccion FACCION_RECONOCIDA = Faccion.ALIADO;
     private final int CANTIDAD_DE_SUSTANCIA_ENCONTRADA = 345;
     private final Pieza PIEZA_DEL_CASILLERO = mock(Pieza.class, "PIEZA_DEL_CASILLERO");
     private final Carga UNA_CARGA = mock(Carga.class, "UNA_CARGA");
@@ -33,21 +35,21 @@ class CasilleroInteriorTest implements TestDeContrato {
 
     @Test
     void crearConCoordenadasDeTablero() {
-        
+
         dadoQue(fueCreadoUnCasilleroInteriorEn(TABLERO, 2, 4));
-        
+
         comprobarQue(elCasilleroTiene(TABLERO, Coordenadas.con(2, 4)));
     }
 
     private Precondicion fueCreadoUnCasilleroInteriorEn(Tablero tablero, int fila, int columna) {
 
-        return pre(condicion ->  unCasilleroInterior = new CasilleroInterior(tablero, fila, columna));
+        return pre(condicion -> unCasilleroInterior = new CasilleroInterior(tablero, fila, columna));
     }
 
     private Postcondicion elCasilleroTiene(Tablero tablero, Coordenadas coordenadas) {
-        
-        return post(condicion ->  {
-           
+
+        return post(condicion -> {
+
             assertThat(unCasilleroInterior.obtenerTablero()).as("tablero").isSameAs(tablero);
             assertThat(unCasilleroInterior.obtenerCoordenadas()).as("coordenaadas").isEqualTo(coordenadas);
         });
@@ -63,12 +65,13 @@ class CasilleroInteriorTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnCasilleroInteriorCon(EstadoDelCasillero estado) {
 
-        return pre(condicion ->  {
+        return pre(condicion -> {
 
             unCasilleroInterior = new CasilleroInterior(TABLERO, 0, 0);
             unCasilleroInterior.cambiarA(ESTADO);
             when(ESTADO.alEscanear()).thenReturn(ESPECTRO_ESCANEADO);
             when(ESTADO.alBuscar(any(SustanciaEspacial.class))).thenReturn(CANTIDAD_DE_SUSTANCIA_ENCONTRADA);
+            when(ESTADO.alReconocer()).thenReturn(FACCION_RECONOCIDA);
             when(ESTADO.alObtenerPieza()).thenReturn(PIEZA_DEL_CASILLERO);
         });
     }
@@ -80,6 +83,24 @@ class CasilleroInteriorTest implements TestDeContrato {
                 assertThat(unCasilleroInterior.escanear())
                         .as("escanear()")
                         .isEqualTo(ESPECTRO_ESCANEADO)
+        );
+    }
+
+    @Test
+    void reconocer() {
+
+        dadoQue(fueCreadoUnCasilleroInteriorCon(ESTADO));
+
+        comprobarQue(delegaEnElEstadoLaOperacionReconocer());
+    }
+
+    private Postcondicion delegaEnElEstadoLaOperacionReconocer() {
+
+        return post(condicion ->
+
+                assertThat(unCasilleroInterior.reconocer())
+                        .as("reconocer()")
+                        .isEqualTo(FACCION_RECONOCIDA)
         );
     }
 
@@ -113,7 +134,7 @@ class CasilleroInteriorTest implements TestDeContrato {
 
     private Postcondicion delegoEnElEstadoLaOperacionOcuparCon() {
 
-        return post(condicion ->  verify(ESTADO).alOcuparCon(UNA_PIEZA));
+        return post(condicion -> verify(ESTADO).alOcuparCon(UNA_PIEZA));
     }
 
     @Test
@@ -128,7 +149,7 @@ class CasilleroInteriorTest implements TestDeContrato {
 
     private Postcondicion delegoEnElEstadoLaOperacionMoverPiezaA() {
 
-        return post(condicion ->  verify(ESTADO).alMoverPiezaA(OTRO_CASILLERO));
+        return post(condicion -> verify(ESTADO).alMoverPiezaA(OTRO_CASILLERO));
     }
 
     @Test
@@ -143,7 +164,7 @@ class CasilleroInteriorTest implements TestDeContrato {
 
     private Postcondicion delegoEnElEstadoLaOperacionRecibirPiezaDesde() {
 
-        return post(condicion ->  verify(ESTADO).alRecibirPiezaDesde(OTRO_CASILLERO));
+        return post(condicion -> verify(ESTADO).alRecibirPiezaDesde(OTRO_CASILLERO));
     }
 
     @Test
@@ -158,7 +179,7 @@ class CasilleroInteriorTest implements TestDeContrato {
 
     private Postcondicion delegoEnElEstadoLaOperacionDesodupar() {
 
-        return post(condicion ->  verify(ESTADO).alDesocupar());
+        return post(condicion -> verify(ESTADO).alDesocupar());
     }
 
     @Test
@@ -191,7 +212,7 @@ class CasilleroInteriorTest implements TestDeContrato {
 
     private Postcondicion delegoEnElEstadoLaOperacionFueAtacadoCon() {
 
-        return post(condicion ->  verify(ESTADO).alSerAtacadoCon(UN_ATAQUE));
+        return post(condicion -> verify(ESTADO).alSerAtacadoCon(UN_ATAQUE));
     }
 
     @Test
@@ -206,7 +227,7 @@ class CasilleroInteriorTest implements TestDeContrato {
 
     private Postcondicion delegoEnElEstadoLaOperacionEntregar() {
 
-        return post(condicion ->  verify(ESTADO).alEntregar(UNA_CARGA));
+        return post(condicion -> verify(ESTADO).alEntregar(UNA_CARGA));
     }
 
     @Test
@@ -221,7 +242,7 @@ class CasilleroInteriorTest implements TestDeContrato {
 
     private Postcondicion delegoEnElEstadoLaOperacionRecibir() {
 
-        return post(condicion ->  verify(ESTADO).alRecibir(UNA_CARGA));
+        return post(condicion -> verify(ESTADO).alRecibir(UNA_CARGA));
     }
 
     @Test
@@ -234,6 +255,6 @@ class CasilleroInteriorTest implements TestDeContrato {
 
     private Postcondicion esAutoDescriptivo() {
 
-        return post(condicion ->  assertThat(unCasilleroInterior).hasToString("Casillero[0][0] -> BASE"));
+        return post(condicion -> assertThat(unCasilleroInterior).hasToString("Casillero[0][0] -> BASE"));
     }
 }

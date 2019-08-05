@@ -5,6 +5,7 @@ import espacial.Carga;
 import espacial.Casillero;
 import espacial.ConsumidorDeCasilleros;
 import espacial.EspectroEspacial;
+import espacial.Faccion;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.Defecto;
@@ -29,6 +30,12 @@ public class Ocupado extends EstadoDelCasillero {
     public int alBuscar(SustanciaEspacial unaSustancia) {
 
         return pieza.buscar(unaSustancia);
+    }
+
+    @Override
+    public Faccion alReconocer() {
+
+        return pieza.reconocer();
     }
 
     @Override

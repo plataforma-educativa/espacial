@@ -5,6 +5,7 @@ import espacial.Carga;
 import espacial.Casillero;
 import espacial.ConsumidorDeCasilleros;
 import espacial.EspectroEspacial;
+import espacial.Faccion;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.Defecto;
@@ -28,6 +29,12 @@ public class Vacio extends EstadoDelCasillero {
     public int alBuscar(SustanciaEspacial unaSustancia) {
 
         return 0;
+    }
+
+    @Override
+    public Faccion alReconocer() {
+
+        return Faccion.NEUTRAL;
     }
 
     @Override

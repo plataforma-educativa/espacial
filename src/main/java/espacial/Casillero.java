@@ -7,7 +7,7 @@ package espacial;
  * @author Mariano Tugnarelli
  * 
  */
-public interface Casillero extends Objetivo {
+public interface Casillero extends Objetivo, Pertenencia {
 
     Tablero obtenerTablero();
 

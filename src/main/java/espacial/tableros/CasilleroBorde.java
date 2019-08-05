@@ -7,6 +7,7 @@ import espacial.Chocable;
 import espacial.ConsumidorDeCasilleros;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
+import espacial.Faccion;
 import espacial.Obstaculo;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
@@ -30,7 +31,7 @@ public class CasilleroBorde extends CasilleroDelTablero implements Obstaculo {
 
     @Override
     public EspectroEspacial escanear() {
-        
+
         return EspectroEspacial.DESCONOCIDO;
     }
 
@@ -41,6 +42,12 @@ public class CasilleroBorde extends CasilleroDelTablero implements Obstaculo {
     }
 
     @Override
+    public Faccion reconocer() {
+
+        return null;
+    }
+
+    @Override
     public Casillero obtenerContiguoEn(Direccion direccion) {
 
         return this;
@@ -48,13 +55,13 @@ public class CasilleroBorde extends CasilleroDelTablero implements Obstaculo {
 
     @Override
     public void moverPiezaA(Casillero destino) {
-        
+
         throw new LaOperacionNoEstaSoportada("CasilleroBorde.moverPiezaA(Casillero)");
     }
-    
+
     @Override
     public void ocuparCon(Pieza unaPieza) {
-        
+
         throw new LaOperacionNoEstaSoportada("CasilleroBorde.ocuparCon(Pieza)");
     }
 
@@ -72,13 +79,13 @@ public class CasilleroBorde extends CasilleroDelTablero implements Obstaculo {
 
     @Override
     public void recibirPiezaDesde(Casillero origen) {
-        
+
         origen.obtenerPieza().chocarCon(this);
     }
 
     @Override
     public void fueChocadaPor(Chocable chocable) {
-        
+
         chocable.chocoContraElBordeDelTablero();
     }
 

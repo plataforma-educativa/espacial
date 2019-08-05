@@ -6,6 +6,7 @@ import espacial.Casillero;
 import espacial.ConsumidorDeCasilleros;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
+import espacial.Faccion;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.Tablero;
@@ -50,6 +51,12 @@ public class CasilleroInterior extends CasilleroDelTablero {
     }
 
     @Override
+    public Faccion reconocer() {
+
+        return estado.alReconocer();
+    }
+
+    @Override
     public void ocuparCon(Pieza unaPieza) {
 
         estado.alOcuparCon(unaPieza);
@@ -75,7 +82,7 @@ public class CasilleroInterior extends CasilleroDelTablero {
 
     @Override
     public Pieza obtenerPieza() {
-        
+
         return estado.alObtenerPieza();
     }
 

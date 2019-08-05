@@ -5,6 +5,7 @@ import espacial.Carga;
 import espacial.Casillero;
 import espacial.ConsumidorDeCasilleros;
 import espacial.EspectroEspacial;
+import espacial.Faccion;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 
@@ -32,6 +33,12 @@ public class OcupadoPorUnaBaseConNaveEnManiobras extends EstadoDelCasillero {
     public int alBuscar(SustanciaEspacial unaSustancia) {
 
         return base.buscar(unaSustancia);
+    }
+
+    @Override
+    public Faccion alReconocer() {
+
+        return base.reconocer();
     }
 
     @Override
