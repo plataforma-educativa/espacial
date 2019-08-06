@@ -1,5 +1,4 @@
 import espacial.Direccion;
-import espacial.Faccion;
 import espacial.NaveEspacial;
 import espacial.Tablero;
 import espacial.test.Postcondicion;
@@ -97,7 +96,7 @@ class BatallaEspacialTest implements TestDeContrato {
                     .en(2, -6)
                     .en(1, -6)
                     .en(1, -7)
-                    .tieneBase().de(Faccion.NEUTRAL)
+                    .tieneBase().esNeutral()
                     .en(-10, 14)
                     .yTieneVacioEnElResto();
         });

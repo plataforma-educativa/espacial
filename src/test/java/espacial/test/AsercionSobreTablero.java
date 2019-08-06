@@ -3,7 +3,7 @@ package espacial.test;
 import espacial.Casillero;
 import espacial.Coordenadas;
 import espacial.EspectroEspacial;
-import espacial.Faccion;
+import espacial.Partidario;
 import espacial.SustanciaEspacial;
 import espacial.Tablero;
 import org.assertj.core.api.AbstractAssert;
@@ -22,7 +22,7 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
 
     private SustanciaEspacial sustanciaEsperada;
 
-    private Faccion faccionEsperada;
+    private PartidarioEsperado partidarioEsperado;
 
     private Set<Coordenadas> coordenadasAsertadas = new HashSet<>();
 
@@ -59,6 +59,7 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
 
         espectroEsperado = espectro;
         sustanciaEsperada = null;
+        partidarioEsperado = new PartidarioEsperado();
 
         return this;
     }
@@ -85,9 +86,44 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
         return this;
     }
 
-    public AsercionSobreTablero de(Faccion faccion) {
+    public AsercionSobreTablero esAliado() {
 
-        faccionEsperada = faccion;
+        partidarioEsperado = new PartidarioEsperado( "aliado") {
+
+            @Override
+            public void siEsAliado() {
+
+                esperada = true;
+            }
+        };
+
+        return this;
+    }
+
+    public AsercionSobreTablero esNeutral() {
+
+        partidarioEsperado = new PartidarioEsperado( "neutral") {
+
+            @Override
+            public void siEsNeutral() {
+
+                esperada = true;
+            }
+        };
+
+        return this;
+    }
+
+    public AsercionSobreTablero esRival() {
+
+        partidarioEsperado = new PartidarioEsperado("rival") {
+
+            @Override
+            public void siEsRival() {
+
+                esperada = true;
+            }
+        };
 
         return this;
     }
@@ -147,7 +183,8 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
 
         comprobarEspectroEsperadoEn(casillero);
         comprobarSustanciaEsperadaEn(casillero);
-        comprobarFaccionEsperadaEn(casillero);
+
+        partidarioEsperado.comprobarEn(casillero);
 
         return this;
     }
@@ -170,12 +207,30 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
         }
     }
 
-    private void comprobarFaccionEsperadaEn(Casillero casillero) {
+    private class PartidarioEsperado implements  Partidario.Condicional {
 
-        if ((faccionEsperada != null) && (faccionEsperada != casillero.reconocer())) {
+        protected boolean esperada;
+        protected String condicion;
 
-            failWithMessage("Facción del Tablero en %s se esperaba encontrar%n <%s> %n pero fue %n <%s>",
-                    casillero.obtenerCoordenadas(), faccionEsperada, casillero.reconocer());
+        PartidarioEsperado(){
+            esperada = true;
+        }
+
+        PartidarioEsperado(String condicionEsperada) {
+
+            esperada = false;condicion = condicionEsperada;
+        }
+
+        protected void comprobarEn(Casillero casillero) {
+
+            casillero.evaluar(this);
+
+            if (!esperada) {
+
+                failWithMessage("Evaluación del Tablero en %s se esperaba encontrar%n <%s> %n",
+                        casillero.obtenerCoordenadas(), condicion);
+            }
         }
     }
+
 }

@@ -7,7 +7,6 @@ import espacial.Chocable;
 import espacial.ConsumidorDeCasilleros;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
-import espacial.Faccion;
 import espacial.Obstaculo;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
@@ -42,9 +41,9 @@ public class CasilleroBorde extends CasilleroDelTablero implements Obstaculo {
     }
 
     @Override
-    public Faccion reconocer() {
+    public void evaluar(Condicional condicional) {
 
-        return null;
+        condicional.siEsNeutral();
     }
 
     @Override

@@ -1,7 +1,6 @@
 package espacial.piezas;
 
 import espacial.EspectroEspacial;
-import espacial.Faccion;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.NoPuedeEntregarUnaCarga;
 import espacial.excepciones.NoPuedeRecibirUnaCarga;
@@ -30,9 +29,9 @@ class BaseDesconocidaTest extends TestDeContratoSobrePieza<BaseDesconocida> {
     }
 
     @Override
-    Faccion faccionEsperada() {
+    Postcondicion evaluoLaCondicionDePartidarioEsperada() {
 
-        return Faccion.NEUTRAL;
+        return evaluoQueEsNeutral();
     }
 
     @Override

@@ -5,7 +5,7 @@ import espacial.Carga;
 import espacial.Casillero;
 import espacial.ConsumidorDeCasilleros;
 import espacial.EspectroEspacial;
-import espacial.Faccion;
+import espacial.Partidario;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 
@@ -27,7 +27,7 @@ public abstract class EstadoDelCasillero {
 
     public abstract int alBuscar(SustanciaEspacial unaSustancia);
 
-    public abstract Faccion alReconocer();
+    public abstract void alEvaluar(Partidario.Condicional condicional);
 
     public abstract Pieza alObtenerPieza();
 

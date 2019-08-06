@@ -1,7 +1,6 @@
 package espacial.piezas;
 
 import espacial.EspectroEspacial;
-import espacial.Faccion;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.Defecto;
 import espacial.excepciones.NoPuedeEntregarUnaCarga;
@@ -37,9 +36,9 @@ class AsteroideTest extends TestDeContratoSobrePieza<Asteroide> {
     }
 
     @Override
-    Faccion faccionEsperada() {
+    Postcondicion evaluoLaCondicionDePartidarioEsperada() {
 
-        return Faccion.NEUTRAL;
+        return evaluoQueEsNeutral();
     }
 
     @Override

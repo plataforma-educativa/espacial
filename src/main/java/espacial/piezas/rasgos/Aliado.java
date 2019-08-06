@@ -1,12 +1,12 @@
 package espacial.piezas.rasgos;
 
-import espacial.Faccion;
-import espacial.Pertenencia;
+import espacial.Partidario;
 
-public interface Aliado extends Pertenencia {
+public interface Aliado extends Partidario {
 
-    default Faccion reconocer() {
+    @Override
+    default void evaluar(Condicional condicional) {
 
-        return Faccion.ALIADO;
+        condicional.siEsAliado();
     }
 }

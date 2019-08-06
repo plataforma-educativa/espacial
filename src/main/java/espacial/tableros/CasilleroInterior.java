@@ -6,7 +6,6 @@ import espacial.Casillero;
 import espacial.ConsumidorDeCasilleros;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
-import espacial.Faccion;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.Tablero;
@@ -51,9 +50,9 @@ public class CasilleroInterior extends CasilleroDelTablero {
     }
 
     @Override
-    public Faccion reconocer() {
+    public void evaluar(Condicional condicional) {
 
-        return estado.alReconocer();
+        estado.alEvaluar(condicional);
     }
 
     @Override

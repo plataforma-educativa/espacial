@@ -5,7 +5,7 @@ import espacial.Carga;
 import espacial.Casillero;
 import espacial.ConsumidorDeCasilleros;
 import espacial.EspectroEspacial;
-import espacial.Faccion;
+import espacial.Partidario;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.Defecto;
@@ -33,9 +33,9 @@ public class Ocupado extends EstadoDelCasillero {
     }
 
     @Override
-    public Faccion alReconocer() {
+    public void alEvaluar(Partidario.Condicional condicional) {
 
-        return pieza.reconocer();
+        pieza.evaluar(condicional);
     }
 
     @Override

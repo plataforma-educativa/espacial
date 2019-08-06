@@ -4,7 +4,6 @@ import espacial.Amarre;
 import espacial.Carga;
 import espacial.Casillero;
 import espacial.EspectroEspacial;
-import espacial.Faccion;
 import espacial.NaveEspacial;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.ExcedeElLugarDisponible;
@@ -39,9 +38,9 @@ class EstacionCentralTest extends TestDeContratoSobrePieza<EstacionCentral> {
     }
 
     @Override
-    Faccion faccionEsperada() {
+    Postcondicion evaluoLaCondicionDePartidarioEsperada() {
 
-        return Faccion.ALIADO;
+        return evaluoQueEsAliado();
     }
 
     @Override

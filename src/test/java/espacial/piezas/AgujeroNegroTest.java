@@ -1,7 +1,6 @@
 package espacial.piezas;
 
 import espacial.EspectroEspacial;
-import espacial.Faccion;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.NoPuedeEntregarUnaCarga;
@@ -31,9 +30,9 @@ class AgujeroNegroTest extends TestDeContratoSobrePieza<AgujeroNegro> {
     }
 
     @Override
-    Faccion faccionEsperada() {
+    Postcondicion evaluoLaCondicionDePartidarioEsperada() {
 
-        return Faccion.NEUTRAL;
+        return evaluoQueEsNeutral();
     }
 
     @Override

@@ -5,7 +5,7 @@ import espacial.Carga;
 import espacial.Casillero;
 import espacial.ConsumidorDeCasilleros;
 import espacial.EspectroEspacial;
-import espacial.Faccion;
+import espacial.Partidario;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.Defecto;
@@ -32,9 +32,9 @@ public class Vacio extends EstadoDelCasillero {
     }
 
     @Override
-    public Faccion alReconocer() {
+    public void alEvaluar(Partidario.Condicional condicional) {
 
-        return Faccion.NEUTRAL;
+        condicional.siEsNeutral();
     }
 
     @Override

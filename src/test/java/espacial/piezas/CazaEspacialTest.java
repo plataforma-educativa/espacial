@@ -7,7 +7,6 @@ import espacial.Carga;
 import espacial.Casillero;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
-import espacial.Faccion;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.ExcedeElLugarDisponible;
@@ -60,9 +59,9 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     }
 
     @Override
-    Faccion faccionEsperada() {
+    Postcondicion evaluoLaCondicionDePartidarioEsperada() {
 
-        return Faccion.ALIADO;
+        return evaluoQueEsAliado();
     }
 
     @Override

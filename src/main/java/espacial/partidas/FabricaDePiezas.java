@@ -25,7 +25,8 @@ public class FabricaDePiezas {
                                    Aleatorio.enRango(5, 100));
     }
 
-    private FabricaDePiezas(Aleatorio cargaAleatoriaDeContenedores, Aleatorio durezaAleatoriaDeAsteroides) {
+    private FabricaDePiezas(Aleatorio<Integer> cargaAleatoriaDeContenedores,
+                            Aleatorio<Integer> durezaAleatoriaDeAsteroides) {
 
         cargaAleatoria = cargaAleatoriaDeContenedores;
         durezaAleatoria = durezaAleatoriaDeAsteroides;

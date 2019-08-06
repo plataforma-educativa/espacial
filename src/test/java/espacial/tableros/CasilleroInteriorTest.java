@@ -5,7 +5,7 @@ import espacial.Carga;
 import espacial.Casillero;
 import espacial.Coordenadas;
 import espacial.EspectroEspacial;
-import espacial.Faccion;
+import espacial.Partidario;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.Tablero;
@@ -26,7 +26,7 @@ class CasilleroInteriorTest implements TestDeContrato {
 
     private final EstadoDelCasillero ESTADO = mock(EstadoDelCasillero.class, "ESTADO");
     private final EspectroEspacial ESPECTRO_ESCANEADO = EspectroEspacial.BASE;
-    private final Faccion FACCION_RECONOCIDA = Faccion.ALIADO;
+    private final Partidario.Condicional CONDICIONAL = mock(Partidario.Condicional.class, "CONDICIONAL");
     private final int CANTIDAD_DE_SUSTANCIA_ENCONTRADA = 345;
     private final Pieza PIEZA_DEL_CASILLERO = mock(Pieza.class, "PIEZA_DEL_CASILLERO");
     private final Carga UNA_CARGA = mock(Carga.class, "UNA_CARGA");
@@ -71,7 +71,6 @@ class CasilleroInteriorTest implements TestDeContrato {
             unCasilleroInterior.cambiarA(ESTADO);
             when(ESTADO.alEscanear()).thenReturn(ESPECTRO_ESCANEADO);
             when(ESTADO.alBuscar(any(SustanciaEspacial.class))).thenReturn(CANTIDAD_DE_SUSTANCIA_ENCONTRADA);
-            when(ESTADO.alReconocer()).thenReturn(FACCION_RECONOCIDA);
             when(ESTADO.alObtenerPieza()).thenReturn(PIEZA_DEL_CASILLERO);
         });
     }
@@ -87,21 +86,18 @@ class CasilleroInteriorTest implements TestDeContrato {
     }
 
     @Test
-    void reconocer() {
+    void evaluar() {
 
         dadoQue(fueCreadoUnCasilleroInteriorCon(ESTADO));
 
-        comprobarQue(delegaEnElEstadoLaOperacionReconocer());
+        unCasilleroInterior.evaluar(CONDICIONAL);
+
+        comprobarQue(delegoEnElEstadoLaEvaluacionDelCondicional());
     }
 
-    private Postcondicion delegaEnElEstadoLaOperacionReconocer() {
+    private Postcondicion delegoEnElEstadoLaEvaluacionDelCondicional() {
 
-        return post(condicion ->
-
-                assertThat(unCasilleroInterior.reconocer())
-                        .as("reconocer()")
-                        .isEqualTo(FACCION_RECONOCIDA)
-        );
+        return post(condicion -> verify(ESTADO).alEvaluar(CONDICIONAL));
     }
 
     @Test

@@ -4,8 +4,8 @@ import espacial.Ataque;
 import espacial.Casillero;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
-import espacial.Faccion;
 import espacial.NaveEspacial;
+import espacial.Partidario;
 import espacial.Pieza;
 import espacial.Visitante;
 import espacial.test.Postcondicion;
@@ -20,12 +20,13 @@ abstract class TestDeContratoSobrePieza<T extends Pieza> implements TestDeContra
     final NaveEspacial NAVE_ESPACIAL = mock(NaveEspacial.class, "NAVE_ESPACIAL");
     final Ataque UN_ATAQUE = mock(Ataque.class, "UN_ATAQUE");
     final Visitante UN_VISITANTE = mock(Visitante.class, "UN_VISITANTE");
+    final Partidario.Condicional SEGUN_ES_PARTIDARIO = mock(Partidario.Condicional.class, "SEGUN_ES_PARTIDARIO");
 
     abstract T piezaCreada();
 
     abstract EspectroEspacial espectroEsperado();
 
-    abstract Faccion faccionEsperada();
+    abstract Postcondicion evaluoLaCondicionDePartidarioEsperada();
 
     abstract Postcondicion laNaveEspacialFueNotificadaDelChoque();
 
@@ -96,17 +97,27 @@ abstract class TestDeContratoSobrePieza<T extends Pieza> implements TestDeContra
     }
 
     @Test
-    void reconocer() {
+    void evaluarCondicionDePartidario() {
 
         Pieza pieza = piezaCreada();
 
-        Faccion faccion = pieza.reconocer();
+        pieza.evaluar(SEGUN_ES_PARTIDARIO);
 
-        comprobarQue(laFaccioneReconocidaEsLaEsperada(faccion));
+        comprobarQue(evaluoLaCondicionDePartidarioEsperada());
     }
 
-    private Postcondicion laFaccioneReconocidaEsLaEsperada(Faccion faccion) {
+    protected Postcondicion evaluoQueEsAliado() {
 
-        return post(condicion -> assertThat(faccion).isEqualTo(faccionEsperada()));
+        return post(condicion -> verify(SEGUN_ES_PARTIDARIO).siEsAliado());
+    }
+
+    protected Postcondicion evaluoQueEsNeutral() {
+
+        return post(condicion -> verify(SEGUN_ES_PARTIDARIO).siEsNeutral());
+    }
+
+    protected Postcondicion evaluoQueEsRival() {
+
+        return post(condicion -> verify(SEGUN_ES_PARTIDARIO).siEsRival());
     }
 }

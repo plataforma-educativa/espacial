@@ -1,6 +1,6 @@
 package espacial.interfaz.componentes;
 
-import espacial.Faccion;
+import espacial.Partidario;
 import espacial.Pieza;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
 
-public class DibujarNave extends Dibujar implements DibujarImagen, Faccion.Condicional {
+public class DibujarNave extends Dibujar implements DibujarImagen, Partidario.Condicional {
 
     public static final Paint PINTURA_FACCION_ALIADO = Color.web("00AA22FF");
     public static final Paint PINTURA_FACCION_NEUTRAL = Color.web("444444FF");
@@ -23,7 +23,7 @@ public class DibujarNave extends Dibujar implements DibujarImagen, Faccion.Condi
 
     public Node de(Pieza unaPieza) {
 
-        unaPieza.reconocer().evaluar(this);
+        unaPieza.evaluar(this);
 
         SVGPath casco = new SVGPath();
         casco.setFill(pintura);

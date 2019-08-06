@@ -1,13 +1,12 @@
 package espacial.piezas.rasgos;
 
-import espacial.Faccion;
-import espacial.Pertenencia;
+import espacial.Partidario;
 
-public interface Neutral extends Pertenencia {
+public interface Neutral extends Partidario {
 
     @Override
-    default Faccion reconocer() {
+    default void evaluar(Condicional condicional) {
 
-        return Faccion.NEUTRAL;
+        condicional.siEsNeutral();
     }
 }
