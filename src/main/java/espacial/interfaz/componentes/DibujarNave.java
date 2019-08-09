@@ -43,7 +43,11 @@ public class DibujarNave extends Dibujar implements DibujarImagen, Partidario.Co
         escotilla.setContent(ESCOTILLA);
         aplicarSombraInteriorEn(escotilla);
 
-        return new Group(casco, puente, escotilla);
+        Group grupo = new Group(casco, puente, escotilla);
+        grupo.setLayoutX(3);
+        grupo.setLayoutY(3);
+
+        return grupo;
     }
 
     @Override

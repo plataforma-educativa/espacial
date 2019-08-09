@@ -69,7 +69,7 @@ class BatallaEspacialTest implements TestDeContrato {
             condicion.es("fue inicializado el tablero con las piezas esperadas");
 
             assertThat(tablero)
-                    .tieneBase()
+                    .tieneBase().esAliado()
                     .en(0, 0)
                     .tieneVacio()
                     .en(0, 1).en(0, -1)

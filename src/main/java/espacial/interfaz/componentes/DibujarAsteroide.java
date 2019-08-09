@@ -71,6 +71,9 @@ public class DibujarAsteroide extends Dibujar implements DibujarImagen {
         crater6.setContent(CRATER_6);
         crater6.setBlendMode(BlendMode.COLOR_DODGE);
 
-        return new Group(cuerpo, crater1, crater2, crater3, crater4, crater5, crater6);
+        Group grupo = new Group(cuerpo, crater1, crater2, crater3, crater4, crater5, crater6);
+        grupo.setLayoutX(3);
+        grupo.setLayoutY(2);
+        return grupo;
     }
 }

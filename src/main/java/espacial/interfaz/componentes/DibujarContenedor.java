@@ -42,7 +42,10 @@ public class DibujarContenedor extends Dibujar implements DibujarImagen {
         aplicarSombraInteriorEn(indicador2);
         aplicarSombraInteriorEn(indicador3);
 
-        return new Group(estructura, indicador1, indicador2, indicador3);
+        Group grupo = new Group(estructura, indicador1, indicador2, indicador3);
+        grupo.setLayoutX(3);
+        grupo.setLayoutY(3);
+        return grupo;
     }
 
     private Paint obtenerColorDeSustanciaEn(Pieza unaPieza) {
