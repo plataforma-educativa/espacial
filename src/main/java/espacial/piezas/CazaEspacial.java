@@ -1,6 +1,7 @@
 package espacial.piezas;
 
 import espacial.Amarre;
+import espacial.Ataque;
 import espacial.Carga;
 import espacial.Cargamento;
 import espacial.Casillero;
@@ -186,6 +187,12 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     private void notificarQueFueDestruido() {
 
         observadores.fueDestruida(this);
+    }
+
+    @Override
+    public void recibio(Ataque unAtaque) {
+
+        observadores.fueAtacada(this, unAtaque);
     }
 
     private Casillero obtenerCasillero() {

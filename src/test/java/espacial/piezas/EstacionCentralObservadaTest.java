@@ -23,7 +23,7 @@ class EstacionCentralObservadaTest extends TestDePiezaObservada {
 
         unaEstacionCentral.recibir(SustanciaEspacial.ANTIMATERIA.por(19));
 
-        comprobarQue(notificoAlObservadoDelCambioDeEstado());
+        comprobarQue(notificoAlObservadorDelCambioDeEstado());
     }
 
     private Precondicion fueCreadaUnaBaseEspacial() {
@@ -43,7 +43,7 @@ class EstacionCentralObservadaTest extends TestDePiezaObservada {
 
         unaEstacionCentral.recibir(SustanciaEspacial.ANTIMATERIA.por(19));
 
-        comprobarQue(notificoAlObservadoDelCambioDeEstado());
+        comprobarQue(notificoAlObservadorDelCambioDeEstado());
     }
 
     @Test
@@ -54,7 +54,7 @@ class EstacionCentralObservadaTest extends TestDePiezaObservada {
 
         unaEstacionCentral.fueAtacadoCon(new AtaqueConTorpedoDeFotones());
 
-        comprobarQue(notificoAlObservadoDelCambioDeEstado());
+        comprobarQue(notificoAlObservadorDelCambioDeEstado());
     }
 
     @Test
@@ -66,5 +66,16 @@ class EstacionCentralObservadaTest extends TestDePiezaObservada {
         repetir(20, i -> unaEstacionCentral.fueAtacadoCon(new AtaqueConTorpedoDeFotones()));
 
         comprobarQue(notificoAlObservorDeLaDestruccion());
+    }
+
+    @Test
+    void fueAtacado() {
+
+        dadoQue(fueCreadaUnaBaseEspacial());
+        dadoQue(fueRegistradoUnObservador());
+
+        unaEstacionCentral.fueAtacadoCon(UN_ATAQUE);
+
+        comprobarQue(notificoAlObservadorDelAtaque());
     }
 }

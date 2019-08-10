@@ -1,5 +1,6 @@
 package espacial.piezas;
 
+import espacial.Ataque;
 import espacial.Casillero;
 import espacial.Pieza;
 
@@ -24,6 +25,12 @@ public class Observadores implements Pieza.Observador {
     public void fueMovida(Pieza unaPieza, Casillero aCasillero) {
 
         propagar(observador -> observador.fueMovida(unaPieza, aCasillero));
+    }
+
+    @Override
+    public void fueAtacada(Pieza unaPieza, Ataque conAtaque) {
+
+        propagar(observador -> observador.fueAtacada(unaPieza, conAtaque));
     }
 
     @Override

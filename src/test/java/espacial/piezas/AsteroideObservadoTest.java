@@ -33,4 +33,15 @@ class AsteroideObservadoTest extends TestDePiezaObservada {
             unAsteroide.fueColocadaEn(UN_CASILLERO);
         });
     }
+
+    @Test
+    void fueAtacado() {
+
+        dadoQue(fueCreadoUnAsteroide());
+        dadoQue(fueRegistradoUnObservador());
+
+        unAsteroide.fueAtacadoCon(UN_ATAQUE);
+
+        comprobarQue(notificoAlObservadorDelAtaque());
+    }
 }

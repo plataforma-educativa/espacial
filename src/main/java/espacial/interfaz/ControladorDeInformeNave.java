@@ -1,5 +1,6 @@
 package espacial.interfaz;
 
+import espacial.Ataque;
 import espacial.Casillero;
 import espacial.NaveEspacial;
 import espacial.Pieza;
@@ -95,6 +96,11 @@ public class ControladorDeInformeNave extends ControladorDeInformePieza<NaveEspa
 
     @Override
     public void fueMovida(Pieza unaPieza, Casillero aCasillero) {
+
+    }
+
+    @Override
+    public void fueAtacada(Pieza unaPieza, Ataque conAtaque) {
 
     }
 

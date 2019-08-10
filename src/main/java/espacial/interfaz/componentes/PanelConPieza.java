@@ -1,5 +1,6 @@
 package espacial.interfaz.componentes;
 
+import espacial.Ataque;
 import espacial.Casillero;
 import espacial.NaveEspacial;
 import espacial.Partidario;
@@ -75,6 +76,12 @@ public class PanelConPieza extends Group implements Pieza.Observador, Partidario
         transition.setToY(posicion.enY());
 
         controlador.reproducir(transition);
+    }
+
+    @Override
+    public void fueAtacada(Pieza unaPieza, Ataque conAtaque) {
+
+
     }
 
     @Override

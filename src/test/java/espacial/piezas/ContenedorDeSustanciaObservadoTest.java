@@ -43,7 +43,7 @@ class ContenedorDeSustanciaObservadoTest extends TestDePiezaObservada {
 
         unContenedor.recibir(SustanciaEspacial.ANTIMATERIA.por(20));
 
-        comprobarQue(notificoAlObservadoDelCambioDeEstado());
+        comprobarQue(notificoAlObservadorDelCambioDeEstado());
     }
 
     private Precondicion fueCreadoUnContenedorDeAntimateria() {
@@ -63,7 +63,7 @@ class ContenedorDeSustanciaObservadoTest extends TestDePiezaObservada {
 
         unContenedor.recibir(SustanciaEspacial.METAL.por(50));
 
-        comprobarQue(notificoAlObservadoDelCambioDeEstado());
+        comprobarQue(notificoAlObservadorDelCambioDeEstado());
     }
 
     private Precondicion fueCreadoUnContenedorDeMetal() {
@@ -83,7 +83,7 @@ class ContenedorDeSustanciaObservadoTest extends TestDePiezaObservada {
 
         unContenedor.recibir(SustanciaEspacial.CRISTAL.por(50));
 
-        comprobarQue(notificoAlObservadoDelCambioDeEstado());
+        comprobarQue(notificoAlObservadorDelCambioDeEstado());
     }
 
     private Precondicion fueCreadoUnContenedorDeCristal() {
@@ -93,5 +93,16 @@ class ContenedorDeSustanciaObservadoTest extends TestDePiezaObservada {
             unContenedor = new ContenedorDeCristal();
             unContenedor.fueColocadaEn(UN_CASILLERO);
         });
+    }
+
+    @Test
+    void fueAtacado() {
+
+        dadoQue(fueCreadoUnContenedor());
+        dadoQue(fueRegistradoUnObservador());
+
+        unContenedor.fueAtacadoCon(UN_ATAQUE);
+
+        comprobarQue(notificoAlObservadorDelAtaque());
     }
 }

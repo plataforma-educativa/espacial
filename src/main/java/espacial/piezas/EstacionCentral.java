@@ -1,6 +1,7 @@
 package espacial.piezas;
 
 import espacial.Amarre;
+import espacial.Ataque;
 import espacial.BaseEspacial;
 import espacial.Cargamento;
 import espacial.Casillero;
@@ -99,6 +100,12 @@ public class EstacionCentral implements BaseEspacial, PiezaAtacable, BaseDeposit
     public void decrementarPuntosEn(int decremento) {
 
         puntos.decrementarEn(decremento);
+    }
+
+    @Override
+    public void recibio(Ataque unAtaque) {
+
+        observadores.fueAtacada(this, unAtaque);
     }
 
     @Override

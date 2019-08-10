@@ -33,4 +33,15 @@ class BaseDesconocidaObservadaTest extends TestDePiezaObservada {
             unaBaseDesconocida.fueColocadaEn(UN_CASILLERO);
         });
     }
+
+    @Test
+    void fueAtacado() {
+
+        dadoQue(fueCreadaUnaBaseDesconocida());
+        dadoQue(fueRegistradoUnObservador());
+
+        unaBaseDesconocida.fueAtacadoCon(UN_ATAQUE);
+
+        comprobarQue(notificoAlObservadorDelAtaque());
+    }
 }

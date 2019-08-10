@@ -64,7 +64,7 @@ class CazaEspacialObservadoTest extends TestDePiezaObservada {
 
         unCazaEspacial.fueAtacadoCon(new AtaqueConLaser());
 
-        comprobarQue(notificoAlObservadoDelCambioDeEstado());
+        comprobarQue(notificoAlObservadorDelCambioDeEstado());
     }
 
     @Test
@@ -75,7 +75,7 @@ class CazaEspacialObservadoTest extends TestDePiezaObservada {
 
         unCazaEspacial.atacarEn(Direccion.NORTE);
 
-        comprobarQue(notificoAlObservadoDelCambioDeEstado());
+        comprobarQue(notificoAlObservadorDelCambioDeEstado());
     }
 
     @Test
@@ -86,7 +86,7 @@ class CazaEspacialObservadoTest extends TestDePiezaObservada {
 
         unCazaEspacial.recibir(SustanciaEspacial.ANTIMATERIA.por(19));
 
-        comprobarQue(notificoAlObservadoDelCambioDeEstado());
+        comprobarQue(notificoAlObservadorDelCambioDeEstado());
     }
 
     @Test
@@ -115,7 +115,7 @@ class CazaEspacialObservadoTest extends TestDePiezaObservada {
         unCazaEspacial.moverEn(Direccion.NORTE);
         unCazaEspacial.moverEn(Direccion.SUR);
 
-        comprobarQue(notificoAlObservadoDelCambioDeEstado());
+        comprobarQue(notificoAlObservadorDelCambioDeEstado());
     }
 
     @Test
@@ -129,4 +129,14 @@ class CazaEspacialObservadoTest extends TestDePiezaObservada {
         comprobarQue(notificoAlObservorDeLaDestruccion());
     }
 
+    @Test
+    void fueAtacado() {
+
+        dadoQue(fueCreadoUnCazaEspacial());
+        dadoQue(fueRegistradoUnObservador());
+
+        unCazaEspacial.fueAtacadoCon(UN_ATAQUE);
+
+        comprobarQue(notificoAlObservadorDelAtaque());
+    }
 }

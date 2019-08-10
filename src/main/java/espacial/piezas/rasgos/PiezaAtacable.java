@@ -10,6 +10,8 @@ public interface PiezaAtacable extends Pieza, Atacable {
     default void fueAtacadoCon(Ataque ataque) {
 
         ataque.aplicarSobre(this);
+
+        recibio(ataque);
     }
 
     default int obtenerPuntosDeTorpedoDeFotones() {
@@ -34,5 +36,10 @@ public interface PiezaAtacable extends Pieza, Atacable {
         decrementarPuntosEn(obtenerPuntosDeLaser());
     }
 
+    default void recibio(Ataque unAtaque) {
+
+    }
+
     void decrementarPuntosEn(int decremento);
+
 }

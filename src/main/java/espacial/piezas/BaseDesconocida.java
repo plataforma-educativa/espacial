@@ -1,5 +1,6 @@
 package espacial.piezas;
 
+import espacial.Ataque;
 import espacial.BaseEspacial;
 import espacial.Cargamento;
 import espacial.Casillero;
@@ -56,6 +57,12 @@ public class BaseDesconocida implements BaseEspacial, PiezaAtacable, BaseDeposit
     public void fueChocadaPor(Chocable chocable) {
 
         chocable.chocoContraUnaBase();
+    }
+
+    @Override
+    public void recibio(Ataque unAtaque) {
+
+        observadores.fueAtacada(this, unAtaque);
     }
 
     @Override

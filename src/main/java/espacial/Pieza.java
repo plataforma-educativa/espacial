@@ -82,9 +82,11 @@ public interface Pieza extends Obstaculo, Objetivo, Partidario {
 
     interface Observador {
 
+        void cambioElEstadoDe(Pieza unaPieza);
+
         void fueMovida(Pieza unaPieza, Casillero aCasillero);
 
-        void cambioElEstadoDe(Pieza unaPieza);
+        void fueAtacada(Pieza unaPieza, Ataque conAtaque);
 
         void fueDestruida(Pieza unaPieza);
     }

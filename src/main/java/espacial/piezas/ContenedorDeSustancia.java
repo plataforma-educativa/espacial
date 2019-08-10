@@ -1,5 +1,6 @@
 package espacial.piezas;
 
+import espacial.Ataque;
 import espacial.Cargamento;
 import espacial.Casillero;
 import espacial.Chocable;
@@ -53,6 +54,12 @@ public abstract class ContenedorDeSustancia implements PiezaDeposito, PiezaAtaca
     public int obtenerPuntos() {
 
         return puntos.obtenerValor();
+    }
+
+    @Override
+    public void recibio(Ataque unAtaque) {
+
+        observadores.fueAtacada(this, unAtaque);
     }
 
     protected int obtenerCapacidad() {

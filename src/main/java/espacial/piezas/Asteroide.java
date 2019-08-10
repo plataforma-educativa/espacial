@@ -1,5 +1,6 @@
 package espacial.piezas;
 
+import espacial.Ataque;
 import espacial.Casillero;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
@@ -65,6 +66,12 @@ public class Asteroide implements Pieza, AsteroideAtacable, Neutral {
     public void decrementarPuntosEn(int decremento) {
 
         puntos.decrementarEn(decremento);
+    }
+
+    @Override
+    public void recibio(Ataque unAtaque) {
+
+        observadores.fueAtacada(this, unAtaque);
     }
 
     @Override
