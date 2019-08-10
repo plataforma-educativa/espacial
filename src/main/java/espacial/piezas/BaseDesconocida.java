@@ -1,16 +1,18 @@
 package espacial.piezas;
 
+import espacial.Cargamento;
 import espacial.Casillero;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
 import espacial.Visitante;
+import espacial.piezas.rasgos.BaseDeposito;
 import espacial.piezas.rasgos.Neutral;
 import espacial.piezas.rasgos.PiezaAtacable;
 
-public class BaseDesconocida implements PiezaAtacable, Neutral {
+public class BaseDesconocida implements PiezaAtacable, BaseDeposito, Neutral {
 
     private final Indicador puntos = new Indicador(200);
-
+    private final Bodega bodega = new Bodega(obtenerCapacidad());
     private final Observadores observadores = new Observadores();
 
     @Override
@@ -63,5 +65,23 @@ public class BaseDesconocida implements PiezaAtacable, Neutral {
     public String toString() {
 
         return describir();
+    }
+
+    @Override
+    public Cargamento obtenerAntimateria() {
+
+        return bodega.ANTIMATERIA;
+    }
+
+    @Override
+    public Cargamento obtenerCristal() {
+
+        return bodega.CRISTAL;
+    }
+
+    @Override
+    public Cargamento obtenerMetal() {
+
+        return bodega.METAL;
     }
 }

@@ -3,6 +3,7 @@ package espacial.partidas;
 import espacial.BaseEspacial;
 import espacial.NaveEspacial;
 import espacial.Pieza;
+import espacial.SustanciaEspacial;
 import espacial.piezas.AgujeroNegro;
 import espacial.piezas.Asteroide;
 import espacial.piezas.BaseDesconocida;
@@ -18,18 +19,24 @@ public class FabricaDePiezas {
     private final Nomenclador nomenclador = new Nomenclador();
     private final Aleatorio<Integer> cargaAleatoria;
     private final Aleatorio<Integer> durezaAleatoria;
+    private final Aleatorio<SustanciaEspacial> sustanciaEspacialAleatoria;
 
     public static FabricaDePiezas crear() {
 
-        return new FabricaDePiezas(Aleatorio.enRango(1, 250),
-                                   Aleatorio.enRango(5, 100));
+        return new FabricaDePiezas(
+                Aleatorio.enRango(1, 250),
+                Aleatorio.enRango(5, 100),
+                Aleatorio.enLista(SustanciaEspacial.values())
+        );
     }
 
     private FabricaDePiezas(Aleatorio<Integer> cargaAleatoriaDeContenedores,
-                            Aleatorio<Integer> durezaAleatoriaDeAsteroides) {
+                            Aleatorio<Integer> durezaAleatoriaDeAsteroides,
+                            Aleatorio<SustanciaEspacial> sustanciaEspacialAleatoriaBaseDesconocida) {
 
         cargaAleatoria = cargaAleatoriaDeContenedores;
         durezaAleatoria = durezaAleatoriaDeAsteroides;
+        sustanciaEspacialAleatoria = sustanciaEspacialAleatoriaBaseDesconocida;
     }
 
     public Pieza crearContenedorDeAntimateria() {
@@ -69,6 +76,11 @@ public class FabricaDePiezas {
 
     public Pieza crearBaseDesconocida() {
 
-        return new BaseDesconocida();
+        BaseDesconocida base = new BaseDesconocida();
+
+        base.recibir(sustanciaEspacialAleatoria.obtener().por(cargaAleatoria.obtener()));
+        base.recibir(sustanciaEspacialAleatoria.obtener().por(cargaAleatoria.obtener()));
+
+        return base;
     }
 }

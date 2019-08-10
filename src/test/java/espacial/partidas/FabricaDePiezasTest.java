@@ -281,7 +281,7 @@ class FabricaDePiezasTest implements TestDeContrato {
         piezaCreada = unaFabrica.crearBaseDesconocida();
 
         comprobarQue(laPiezaCreadaEsUnaBaseDesconocida());
-
+        comprobarQue(laPiezaCreadaTieneAlMenosUnaSustancia());
     }
 
     private Postcondicion laPiezaCreadaEsUnaBaseDesconocida() {
@@ -290,6 +290,19 @@ class FabricaDePiezasTest implements TestDeContrato {
 
                 assertThat(piezaCreada).as("pieza creada").isNotNull()
                         .extracting(Pieza::escanear).isEqualTo(EspectroEspacial.BASE)
+        );
+    }
+
+    private Postcondicion laPiezaCreadaTieneAlMenosUnaSustancia() {
+
+        return post(condicion ->
+
+                assertThat(
+                        piezaCreada.buscar(SustanciaEspacial.ANTIMATERIA) +
+                        piezaCreada.buscar(SustanciaEspacial.METAL) +
+                        piezaCreada.buscar(SustanciaEspacial.CRISTAL))
+                        .as("sustancia")
+                        .isGreaterThan(0)
         );
     }
 }
