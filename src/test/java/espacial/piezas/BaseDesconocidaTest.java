@@ -3,7 +3,7 @@ package espacial.piezas;
 import espacial.Carga;
 import espacial.EspectroEspacial;
 import espacial.SustanciaEspacial;
-import espacial.excepciones.ErrorEnLaBatallaEspacial;
+import espacial.excepciones.ErrorEspacial;
 import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.test.Operacion;
 import espacial.test.Postcondicion;
@@ -309,7 +309,7 @@ class BaseDesconocidaTest extends TestDeContratoSobrePieza<BaseDesconocida> {
 
                 assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
-                        .isInstanceOf(ErrorEnLaBatallaEspacial.class)
+                        .isInstanceOf(ErrorEspacial.class)
         );
     }
 

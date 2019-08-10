@@ -1,6 +1,6 @@
 package espacial.interfaz.animaciones;
 
-import espacial.excepciones.ErrorEnLaBatallaEspacial;
+import espacial.excepciones.ErrorEspacial;
 import javafx.animation.Animation;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -38,7 +38,7 @@ public class Reproducir {
 
         } catch (InterruptedException e) {
 
-            throw new ErrorEnLaBatallaEspacial("Animación interrumpida", e);
+            throw new ErrorEspacial("Animación interrumpida", e);
         }
     }
 

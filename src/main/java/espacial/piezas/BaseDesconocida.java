@@ -7,7 +7,7 @@ import espacial.Chocable;
 import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
 import espacial.Visitante;
-import espacial.excepciones.ErrorEnLaBatallaEspacial;
+import espacial.excepciones.ErrorEspacial;
 import espacial.piezas.rasgos.BaseDeposito;
 import espacial.piezas.rasgos.Neutral;
 import espacial.piezas.rasgos.PiezaAtacable;
@@ -97,6 +97,6 @@ public class BaseDesconocida implements BaseEspacial, PiezaAtacable, BaseDeposit
     @Override
     public void amarrar(NaveEspacial pieza) {
 
-        throw new ErrorEnLaBatallaEspacial("No se puede amarrar una NAVE porque esta BASE está fuera de servicio");
+        throw new ErrorEspacial("No se puede amarrar una NAVE porque esta BASE está fuera de servicio");
     }
 }

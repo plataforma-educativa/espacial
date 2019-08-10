@@ -1,6 +1,6 @@
 package espacial.utiles;
 
-import espacial.excepciones.ErrorEnLaBatallaEspacial;
+import espacial.excepciones.ErrorEspacial;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ class AleatorioConsumiendo<T> extends Aleatorio<T> {
 
         if (valores.isEmpty()) {
 
-            throw new ErrorEnLaBatallaEspacial("No quedan valores aleatorios disponibles");
+            throw new ErrorEspacial("No quedan valores aleatorios disponibles");
         }
 
         return valores.remove(implementacion.nextInt(valores.size()));

@@ -1,6 +1,6 @@
 package espacial.excepciones;
 
-public class LaNaveNoEstaEnUnCasillero extends ErrorEnLaBatallaEspacial {
+public class LaNaveNoEstaEnUnCasillero extends ErrorEspacial {
 
     private static final long serialVersionUID = 915399678995724747L;
 

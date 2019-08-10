@@ -3,7 +3,7 @@ package espacial.excepciones;
 import espacial.Carga;
 import espacial.Pieza;
 
-public class NoPuedeRecibirUnaCarga extends ErrorEnLaBatallaEspacial {
+public class NoPuedeRecibirUnaCarga extends ErrorEspacial {
 
     private static final long serialVersionUID = 3320138903445440461L;
 

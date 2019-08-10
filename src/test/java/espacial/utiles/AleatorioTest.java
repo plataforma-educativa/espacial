@@ -1,6 +1,6 @@
 package espacial.utiles;
 
-import espacial.excepciones.ErrorEnLaBatallaEspacial;
+import espacial.excepciones.ErrorEspacial;
 import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
@@ -148,7 +148,7 @@ class AleatorioTest implements TestDeContrato {
 
                 assertThatThrownBy(operacion::ejecutar)
                         .as("excepción generada")
-                        .isInstanceOf(ErrorEnLaBatallaEspacial.class)
+                        .isInstanceOf(ErrorEspacial.class)
                         .hasMessage("No quedan valores aleatorios disponibles")
         );
     }

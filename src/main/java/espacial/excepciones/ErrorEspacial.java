@@ -6,26 +6,26 @@ package espacial.excepciones;
  * @author Mariano Tugnarelli
  *
  */
-public class ErrorEnLaBatallaEspacial extends RuntimeException {
+public class ErrorEspacial extends RuntimeException {
 
     private static final long serialVersionUID = 7082586363556448877L;
 
-    public ErrorEnLaBatallaEspacial() {
+    public ErrorEspacial() {
 
         super();
     }
 
-    public ErrorEnLaBatallaEspacial(String mensaje, Throwable causa) {
+    public ErrorEspacial(String mensaje, Throwable causa) {
 
         super(mensaje, causa);
     }
 
-    public ErrorEnLaBatallaEspacial(String mensaje, Object... argumentos) {
+    public ErrorEspacial(String mensaje, Object... argumentos) {
 
         super(String.format(mensaje, argumentos));
     }
 
-    public ErrorEnLaBatallaEspacial(Throwable causa) {
+    public ErrorEspacial(Throwable causa) {
 
         super(causa);
     }

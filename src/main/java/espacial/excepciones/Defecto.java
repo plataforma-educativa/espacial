@@ -1,6 +1,6 @@
 package espacial.excepciones;
 
-public class Defecto extends ErrorEnLaBatallaEspacial {
+public class Defecto extends ErrorEspacial {
 
     private static final long serialVersionUID = 4799227336999502123L;
 
