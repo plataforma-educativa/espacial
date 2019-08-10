@@ -30,13 +30,14 @@ public interface NaveEspacial extends Pieza, Chocable {
     default void chocarCon(Obstaculo obstaculo) {
 
         obstaculo.fueChocadaPor(this);
+        choco(obstaculo);
+    }
+
+    default void choco(Obstaculo obstaculo) {
+
     }
 
     int obtenerNivelDeCarga();
 
     Nombre nombrar();
-
-    interface Observador extends Pieza.Observador {
-
-    }
 }

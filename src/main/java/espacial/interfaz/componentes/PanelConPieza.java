@@ -3,6 +3,7 @@ package espacial.interfaz.componentes;
 import espacial.Ataque;
 import espacial.Casillero;
 import espacial.NaveEspacial;
+import espacial.Obstaculo;
 import espacial.Partidario;
 import espacial.Pieza;
 import espacial.Visitante;
@@ -22,7 +23,7 @@ import javafx.util.Duration;
 
 public class PanelConPieza extends Group implements Pieza.Observador, Partidario.Condicional {
 
-    private static final Duration DURACION_MOVIMIENTO = Duration.millis(500);
+    private static final Duration DURACION_MOVIMIENTO = Duration.millis(300);
     private static final Duration DURACION_DESTRUCCION = Duration.millis(500);
     private static final Duration DURACION_ATAQUE = Duration.millis(50);
 
@@ -82,6 +83,12 @@ public class PanelConPieza extends Group implements Pieza.Observador, Partidario
 
     @Override
     public void fueAtacada(Pieza unaPieza, Ataque conAtaque) {
+
+        controlador.reproducir(parpadear());
+    }
+
+    @Override
+    public void fueChocada(Pieza unaPieza, Obstaculo conObstaculo) {
 
         controlador.reproducir(parpadear());
     }

@@ -2,6 +2,7 @@ package espacial.piezas;
 
 import espacial.Ataque;
 import espacial.Casillero;
+import espacial.Obstaculo;
 import espacial.Pieza;
 
 import java.util.List;
@@ -31,6 +32,12 @@ public class Observadores implements Pieza.Observador {
     public void fueAtacada(Pieza unaPieza, Ataque conAtaque) {
 
         propagar(observador -> observador.fueAtacada(unaPieza, conAtaque));
+    }
+
+    @Override
+    public void fueChocada(Pieza unaPieza, Obstaculo contraObstaculo) {
+
+        propagar(observador -> observador.fueChocada(unaPieza, contraObstaculo));
     }
 
     @Override

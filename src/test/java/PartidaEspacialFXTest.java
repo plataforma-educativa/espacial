@@ -58,7 +58,6 @@ class PartidaEspacialFXTest {
             nave2.atacarAlNorte();
         }
 
-
         nave.avanzarAlEste();
         nave.avanzarAlEste();
         nave.avanzarAlEste();
@@ -75,7 +74,6 @@ class PartidaEspacialFXTest {
             nave.avanzarAlEste();
             nave.avanzarAlSur();
         }
-
     }
 
 }

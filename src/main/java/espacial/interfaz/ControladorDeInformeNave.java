@@ -3,6 +3,7 @@ package espacial.interfaz;
 import espacial.Ataque;
 import espacial.Casillero;
 import espacial.NaveEspacial;
+import espacial.Obstaculo;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.utiles.Nombre;
@@ -101,6 +102,11 @@ public class ControladorDeInformeNave extends ControladorDeInformePieza<NaveEspa
 
     @Override
     public void fueAtacada(Pieza unaPieza, Ataque conAtaque) {
+
+    }
+
+    @Override
+    public void fueChocada(Pieza unaPieza, Obstaculo conObstaculo) {
 
     }
 

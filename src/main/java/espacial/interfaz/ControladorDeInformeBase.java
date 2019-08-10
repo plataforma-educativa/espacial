@@ -3,6 +3,7 @@ package espacial.interfaz;
 import espacial.Ataque;
 import espacial.BaseEspacial;
 import espacial.Casillero;
+import espacial.Obstaculo;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import javafx.application.Platform;
@@ -70,6 +71,11 @@ public class ControladorDeInformeBase extends ControladorDeInformePieza<BaseEspa
 
     @Override
     public void fueAtacada(Pieza unaPieza, Ataque conAtaque) {
+
+    }
+
+    @Override
+    public void fueChocada(Pieza unaPieza, Obstaculo conObstaculo) {
 
     }
 

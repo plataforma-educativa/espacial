@@ -139,4 +139,15 @@ class CazaEspacialObservadoTest extends TestDePiezaObservada {
 
         comprobarQue(notificoAlObservadorDelAtaque());
     }
+
+    @Test
+    void fueChocada() {
+
+        dadoQue(fueCreadoUnCazaEspacial());
+        dadoQue(fueRegistradoUnObservador());
+
+        unCazaEspacial.chocarCon(UN_OBSTACULO);
+
+        comprobarQue(notificoAlObservadorDelChoque());
+    }
 }

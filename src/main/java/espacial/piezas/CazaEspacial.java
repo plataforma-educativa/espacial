@@ -8,6 +8,7 @@ import espacial.Casillero;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
+import espacial.Obstaculo;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.Visitante;
@@ -242,6 +243,12 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     public int obtenerNivelDeCarga() {
 
         return bodega.obtenerNivelDeCarga();
+    }
+
+    @Override
+    public void choco(Obstaculo contraObstaculo) {
+
+        observadores.fueChocada(this, contraObstaculo);
     }
 
     @Override

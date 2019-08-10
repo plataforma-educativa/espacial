@@ -88,6 +88,8 @@ public interface Pieza extends Obstaculo, Objetivo, Partidario {
 
         void fueAtacada(Pieza unaPieza, Ataque conAtaque);
 
+        void fueChocada(Pieza unaPieza, Obstaculo contraObstaculo);
+
         void fueDestruida(Pieza unaPieza);
     }
 }
