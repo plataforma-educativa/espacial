@@ -53,8 +53,9 @@ class PartidaEspacialFXTest {
         nave2.avanzarAlNorte();
         nave2.descargarEnNorte(Sustancia.ANTIMATERIA, 1);
 
-        for (int i = 0; i < 20; i++) {
+        while(radar2.escanearNorte() == Espectro.BASE) {
 
+            System.out.println("Atacado");
             nave2.atacarAlNorte();
         }
 

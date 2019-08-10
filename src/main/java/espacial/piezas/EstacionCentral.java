@@ -26,6 +26,7 @@ public class EstacionCentral implements BaseEspacial, PiezaAtacable, BaseDeposit
     public EstacionCentral() {
 
         puntos.cuandoSeAgota(this::fueDestruido);
+        puntos.cuandoCambia(this::notificarQueCambioElEstado);
         bodega.cuandoCambiaLaCarga(this::notificarQueCambioElEstado);
     }
 

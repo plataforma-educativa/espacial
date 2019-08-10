@@ -47,6 +47,17 @@ class EstacionCentralObservadaTest extends TestDePiezaObservada {
     }
 
     @Test
+    void cambioElEstadoCuandoEsAtacada() {
+
+        dadoQue(fueCreadaUnaBaseEspacial());
+        dadoQue(fueRegistradoUnObservador());
+
+        unaEstacionCentral.fueAtacadoCon(new AtaqueConTorpedoDeFotones());
+
+        comprobarQue(notificoAlObservadoDelCambioDeEstado());
+    }
+
+    @Test
     void fueDestruida() {
 
         dadoQue(fueCreadaUnaBaseEspacial());
