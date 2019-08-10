@@ -148,4 +148,15 @@ class IndicadorTest implements TestDeContrato {
         comprobarQue(unIndicadorTieneUnNivelDe(66));
     }
 
+
+    @Test
+    void cuandoCambia() {
+
+        dadoQue(fueCreadoUnIndicadorConValorInicial(23));
+
+        unIndicador.cuandoCambia(UNA_ACCION);
+        unIndicador.decrementarEn(1);
+
+        comprobarQue(ejecutoUnaAccionConfigurada());
+    }
 }

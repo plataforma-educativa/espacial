@@ -5,6 +5,7 @@ import espacial.utiles.Accion;
 public class Indicador {
 
     private Accion alAgotar = Accion.NINGUNA;
+    private Accion alCambiar = Accion.NINGUNA;
 
     private final int inicial;
     private int valor;
@@ -22,14 +23,27 @@ public class Indicador {
 
     public void decrementarEn(int decremento) {
 
-        valor = (valor > decremento) ? (valor - decremento) : 0;
-
+        cambiarA((valor > decremento) ? (valor - decremento) : 0);
         siSeAgoto();
+    }
+
+    private void cambiarA(int nuevoValor) {
+
+        if (nuevoValor != valor) {
+
+            valor = nuevoValor;
+            alCambiar.ejecutar();
+        }
     }
 
     public void cuandoSeAgota(Accion accion) {
 
         alAgotar = accion;
+    }
+
+    public void cuandoCambia(Accion accion) {
+
+        alCambiar = accion;
     }
 
     private void siSeAgoto() {
