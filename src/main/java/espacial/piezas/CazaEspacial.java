@@ -22,7 +22,7 @@ import espacial.utiles.Referencia;
 public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, PiezaAtacable, Aliado {
 
     private final Nombre nombre;
-    private final Indicador nivelDeEscudos = new Indicador(100);
+    private final Indicador escudos = new Indicador(100);
     private final Artilleria artilleria = new Artilleria(100);
     private final Bodega bodega = new Bodega(obtenerCapacidad());
     private final Referencia<Amarre> amarre = Referencia.conValorNulo();
@@ -38,7 +38,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     public CazaEspacial(Nombre unNombre) {
 
         nombre = unNombre;
-        nivelDeEscudos.cuandoSeAgota(this::fueDestruido);
+        escudos.cuandoSeAgota(this::fueDestruido);
         artilleria.cuandoCambianLasMuniciones(this::notificarQueCambioElEstado);
         bodega.cuandoCambiaLaCarga(this::notificarQueCambioElEstado);
         rumbo.cuandoCambia(this::notificarQueCambioElEstado);
@@ -89,7 +89,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     @Override
     public int obtenerNivelDeEscudos() {
 
-        return nivelDeEscudos.obtenerValor();
+        return escudos.obtenerNivel();
     }
 
     @Override
@@ -107,7 +107,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     @Override
     public void disminuirNivelDeEscudosEn(int diferencia) {
 
-        nivelDeEscudos.decrementarEn(diferencia);
+        escudos.decrementarEn(diferencia);
 
         notificarQueCambioElEstado();
     }

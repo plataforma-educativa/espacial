@@ -24,7 +24,7 @@ class IndicadorTest implements TestDeContrato {
 
     private Postcondicion elValorInicialDeUnIndicadorEs(int esperado) {
 
-        return post(condicion ->  assertThat(unIndicador.obtenerValor()).as("valor").isEqualTo(esperado));
+        return post(condicion -> assertThat(unIndicador.obtenerValor()).as("valor").isEqualTo(esperado));
     }
 
     @Test
@@ -39,12 +39,12 @@ class IndicadorTest implements TestDeContrato {
 
     private Precondicion fueCreadoUnIndicadorConValorInicial(int valor) {
 
-        return pre(condicion ->  unIndicador = new Indicador(valor));
+        return pre(condicion -> unIndicador = new Indicador(valor));
     }
 
     private Postcondicion elValorDeUnIndicadorEs(int esperado) {
 
-        return post(condicion ->  assertThat(unIndicador.obtenerValor()).as("valor").isEqualTo(esperado));
+        return post(condicion -> assertThat(unIndicador.obtenerValor()).as("valor").isEqualTo(esperado));
     }
 
     @Test
@@ -71,7 +71,7 @@ class IndicadorTest implements TestDeContrato {
 
     private Postcondicion ejecutoUnaAccionConfigurada() {
 
-        return post(condicion ->  verify(UNA_ACCION).ejecutar());
+        return post(condicion -> verify(UNA_ACCION).ejecutar());
     }
 
     @Test
@@ -96,7 +96,56 @@ class IndicadorTest implements TestDeContrato {
 
     private Postcondicion soloSeEjecutoUnaAccionUnaVez() {
 
-        return post(condicion ->  verify(UNA_ACCION, times(1)).ejecutar());
+        return post(condicion -> verify(UNA_ACCION, times(1)).ejecutar());
+    }
+
+    @Test
+    void obtenerNivelLuegoDeDecrementarALaMitad() {
+
+        dadoQue(fueCreadoUnIndicadorConValorInicial(40));
+
+        unIndicador.decrementarEn(20);
+
+        comprobarQue(unIndicadorTieneUnNivelDe(50));
+
+    }
+
+    private Postcondicion unIndicadorTieneUnNivelDe(int nivelEsperado) {
+
+        return post(condicion ->
+
+                assertThat(unIndicador.obtenerNivel())
+                        .as("porcentaje")
+                        .isEqualTo(nivelEsperado)
+        );
+    }
+
+    @Test
+    void obtenerNivelInicial() {
+
+        dadoQue(fueCreadoUnIndicadorConValorInicial(453));
+
+        comprobarQue(unIndicadorTieneUnNivelDe(100));
+    }
+
+    @Test
+    void obtenerNivelCuandoEsCero() {
+
+        dadoQue(fueCreadoUnIndicadorConValorInicial(13));
+
+        unIndicador.decrementarEn(13);
+
+        comprobarQue(unIndicadorTieneUnNivelDe(0));
+    }
+
+    @Test
+    void obtenerNivelCuandoUnTercio() {
+
+        dadoQue(fueCreadoUnIndicadorConValorInicial(99));
+
+        unIndicador.decrementarEn(33);
+
+        comprobarQue(unIndicadorTieneUnNivelDe(66));
     }
 
 }

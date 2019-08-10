@@ -46,7 +46,7 @@ class EstacionCentralTest extends TestDeContratoSobrePieza<EstacionCentral> {
     @Override
     Postcondicion laNaveEspacialFueNotificadaDelChoque() {
 
-        return post(condicion ->  verify(NAVE_ESPACIAL).chocoContraUnaBase());
+        return post(condicion -> verify(NAVE_ESPACIAL).chocoContraUnaBase());
     }
 
     @Test
@@ -61,7 +61,7 @@ class EstacionCentralTest extends TestDeContratoSobrePieza<EstacionCentral> {
 
     private Precondicion unaBaseFueCreadaYColocadaEnCasillero() {
 
-        return pre(condicion ->  {
+        return pre(condicion -> {
 
             unaBase = new EstacionCentral();
             unaBase.fueColocadaEn(CASILLERO);
@@ -70,7 +70,7 @@ class EstacionCentralTest extends TestDeContratoSobrePieza<EstacionCentral> {
 
     private Postcondicion unaBaseTieneAmarradaLaNave() {
 
-        return post(condicion ->  {
+        return post(condicion -> {
 
             Amarre amarre = unaBase.obtenerAmarres()[0];
 
@@ -99,10 +99,10 @@ class EstacionCentralTest extends TestDeContratoSobrePieza<EstacionCentral> {
 
         return post(condicion ->
 
-            assertThat(unaBase.obtenerAmarres())
-                    .as("amarres")
-                    .extracting(Amarre::obtenerPieza)
-                    .containsExactly(NAVE_ALFA, NAVE_BETA, NAVE_GAMMA)
+                assertThat(unaBase.obtenerAmarres())
+                        .as("amarres")
+                        .extracting(Amarre::obtenerPieza)
+                        .containsExactly(NAVE_ALFA, NAVE_BETA, NAVE_GAMMA)
         );
     }
 
@@ -120,7 +120,7 @@ class EstacionCentralTest extends TestDeContratoSobrePieza<EstacionCentral> {
 
     private Precondicion lasNavesAlfaBetaGammaEstanAmarradasAUnaBase() {
 
-        return pre(condicion ->  {
+        return pre(condicion -> {
 
             unaBase.amarrar(NAVE_ALFA);
             unaBase.amarrar(NAVE_BETA);
@@ -140,7 +140,7 @@ class EstacionCentralTest extends TestDeContratoSobrePieza<EstacionCentral> {
 
     private Postcondicion naveBetaFueColocadaEnElCasilleroDeLaBase() {
 
-        return post(condicion ->  verify(CASILLERO).ocuparCon(NAVE_BETA));
+        return post(condicion -> verify(CASILLERO).ocuparCon(NAVE_BETA));
     }
 
     @Test
@@ -153,12 +153,12 @@ class EstacionCentralTest extends TestDeContratoSobrePieza<EstacionCentral> {
 
     private Precondicion fueCreadaUnaBase() {
 
-        return pre(condicion ->  unaBase = new EstacionCentral());
+        return pre(condicion -> unaBase = new EstacionCentral());
     }
 
     private Postcondicion losPuntosInicialesDeUnaBaseSonCorrectos() {
 
-        return post(condicion ->  assertThat(unaBase.obtenerPuntos()).as("puntos").isEqualTo(200));
+        return post(condicion -> assertThat(unaBase.obtenerPuntos()).as("puntos").isEqualTo(200));
     }
 
     @Test
@@ -198,7 +198,7 @@ class EstacionCentralTest extends TestDeContratoSobrePieza<EstacionCentral> {
 
     private Precondicion fueCreadaUnaBaseRecibiendo(Carga unaCarga) {
 
-        return pre(condicion ->  {
+        return pre(condicion -> {
 
             unaBase = new EstacionCentral();
             unaBase.recibir(unaCarga);
@@ -344,4 +344,33 @@ class EstacionCentralTest extends TestDeContratoSobrePieza<EstacionCentral> {
 
         return post(condicion -> verify(UN_VISITANTE).siEsBase(unaBase));
     }
+
+    @Test
+    void obtenerNivelDeDefensasIniciales() {
+
+        dadoQue(fueCreadaUnaBase());
+
+        comprobarQue(unaBaseTieneDefensasEnNivel(100));
+    }
+
+    private Postcondicion unaBaseTieneDefensasEnNivel(int nivelEsperado) {
+
+        return post(condicion ->
+
+                assertThat(unaBase.obtenerNivelDeDefensas())
+                        .as("nivel de defensas")
+                        .isEqualTo(nivelEsperado)
+        );
+    }
+
+    @Test
+    void obtenerNivelesDeEscudosLuegoDeRecibirUnAtaque() {
+
+        dadoQue(fueCreadaUnaBase());
+
+        unaBase.fueAtacadoCon(new AtaqueConTorpedoDeFotones());
+
+        comprobarQue(unaBaseTieneDefensasEnNivel(95));
+    }
+
 }

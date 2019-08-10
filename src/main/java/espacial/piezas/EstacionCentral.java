@@ -58,6 +58,12 @@ public class EstacionCentral implements BaseEspacial, PiezaAtacable, BaseDeposit
     }
 
     @Override
+    public int obtenerNivelDeDefensas() {
+
+        return puntos.obtenerNivel();
+    }
+
+    @Override
     public void amarrar(NaveEspacial pieza) {
         
         Amarre amarre = new AmarreConBaseEspacial(pieza);
