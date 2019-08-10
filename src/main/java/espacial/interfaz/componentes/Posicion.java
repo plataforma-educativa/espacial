@@ -3,6 +3,7 @@ package espacial.interfaz.componentes;
 import espacial.Casillero;
 import espacial.Coordenadas;
 import espacial.Tablero;
+import espacial.interfaz.componentes.dibujos.DibujoEspacial;
 
 public class Posicion {
 
@@ -32,12 +33,12 @@ public class Posicion {
 
     public double enX() {
 
-        return DibujarEspacio.DIMENSION * enColumna();
+        return DibujoEspacial.DIMENSION * enColumna();
     }
 
     public double enY() {
 
-        return DibujarEspacio.DIMENSION * enFila();
+        return DibujoEspacial.DIMENSION * enFila();
     }
 
     @Override

@@ -1,15 +1,14 @@
-package espacial.interfaz.componentes;
+package espacial.interfaz.componentes.dibujos;
 
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.SVGPath;
 
-public class DibujarContenedor extends Dibujar implements DibujarImagen {
+public class DibujoEspacialDeContenedor extends Group implements DibujoEspacial {
 
     private static final Color PINTURA_ESTRUCTURA = Color.web("555555");
     private static final Paint PINTURA_INDICADOR_VACIO = Color.WHITE;
@@ -19,8 +18,19 @@ public class DibujarContenedor extends Dibujar implements DibujarImagen {
 
     private static final String ESTRUCTURA = "M28,4H8C6.9,4,6,4.9,6,6v23.001c0,1.1,0.9,2,2,2h20c1.101,0,2-0.9,2-2V6C30,4.9,29.101,4,28,4z";
 
-    @Override
-    public Node de(Pieza unaPieza) {
+    private Paint colorIndicador;
+
+    public DibujoEspacialDeContenedor(Pieza unaPieza) {
+
+        colorIndicador = obtenerColorDeSustanciaEn(unaPieza);;
+        conEstructura();
+        conIndicadores();
+
+        setLayoutX(3);
+        setLayoutY(3);
+    }
+
+    private void conEstructura() {
 
         SVGPath estructura = new SVGPath();
         estructura.setFill(PINTURA_ESTRUCTURA);
@@ -28,7 +38,10 @@ public class DibujarContenedor extends Dibujar implements DibujarImagen {
         aplicarBorde(estructura);
         aplicarSombraExteriorEn(estructura);
 
-        Paint colorIndicador = obtenerColorDeSustanciaEn(unaPieza);
+        getChildren().addAll(estructura);
+    }
+
+    private void conIndicadores() {
 
         Rectangle indicador1 = new Rectangle(10, 8, 16, 4);
         Rectangle indicador2 = new Rectangle(10, 15, 16, 4);
@@ -42,10 +55,7 @@ public class DibujarContenedor extends Dibujar implements DibujarImagen {
         aplicarSombraInteriorEn(indicador2);
         aplicarSombraInteriorEn(indicador3);
 
-        Group grupo = new Group(estructura, indicador1, indicador2, indicador3);
-        grupo.setLayoutX(3);
-        grupo.setLayoutY(3);
-        return grupo;
+        getChildren().addAll(indicador1, indicador2, indicador3);
     }
 
     private Paint obtenerColorDeSustanciaEn(Pieza unaPieza) {

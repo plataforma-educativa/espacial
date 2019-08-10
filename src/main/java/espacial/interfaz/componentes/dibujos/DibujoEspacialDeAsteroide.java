@@ -1,16 +1,15 @@
-package espacial.interfaz.componentes;
+package espacial.interfaz.componentes.dibujos;
 
 import espacial.Pieza;
 import espacial.utiles.Aleatorio;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.SVGPath;
 
-public class DibujarAsteroide extends Dibujar implements DibujarImagen {
+public class DibujoEspacialDeAsteroide extends Group implements DibujoEspacial {
 
     private static final Aleatorio<Paint> PINTURA_ASTEROIDE_SUPERFICIE = Aleatorio.enLista(
             Color.web("504100"),
@@ -34,14 +33,27 @@ public class DibujarAsteroide extends Dibujar implements DibujarImagen {
     private static final String CRATER_5 = "M26.819,15.82c0.577,0,1.047,0.486,1.047,1.082c0,0.602-0.47,1.087-1.047,1.087s-1.049-0.489-1.049-1.087C25.771,16.306,26.242,15.82,26.819,15.82z";
     private static final String CRATER_6 = "M20.778,11.917c0-1.1,1.126-1.992,2.518-1.992c1.385,0,2.517,0.892,2.517,1.992c0,1.096-1.132,1.988-2.517,1.988C21.904,13.905,20.778,13.013,20.778,11.917z";
 
-    @Override
-    public Node de(Pieza unaPieza) {
+
+    public DibujoEspacialDeAsteroide(Pieza unaPieza) {
+
+        conCuerpo();
+        conCrateres();
+        setLayoutX(3);
+        setLayoutY(2);
+    }
+
+    private void conCuerpo() {
 
         SVGPath cuerpo = new SVGPath();
         cuerpo.setFill(PINTURA_ASTEROIDE_SUPERFICIE.obtener());
         cuerpo.setContent(CUERPO);
         aplicarBorde(cuerpo);
         aplicarSombraExteriorEn(cuerpo);
+
+        getChildren().add(cuerpo);
+    }
+
+    private void conCrateres() {
 
         Ellipse crater1 = new Ellipse(7.759, 20.256, 0.859, 0.886);
         crater1.setFill(PINTURA_ASTEROIDE_CRATER.obtener());
@@ -71,9 +83,6 @@ public class DibujarAsteroide extends Dibujar implements DibujarImagen {
         crater6.setContent(CRATER_6);
         crater6.setBlendMode(BlendMode.COLOR_DODGE);
 
-        Group grupo = new Group(cuerpo, crater1, crater2, crater3, crater4, crater5, crater6);
-        grupo.setLayoutX(3);
-        grupo.setLayoutY(2);
-        return grupo;
+        getChildren().addAll(crater1, crater2, crater3, crater4, crater5, crater6);
     }
 }

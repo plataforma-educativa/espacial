@@ -2,14 +2,20 @@
 package espacial.interfaz.componentes;
 
 import espacial.Casillero;
+import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.Visitante;
+import espacial.interfaz.componentes.dibujos.DibujoDeAgujeroNegro;
+import espacial.interfaz.componentes.dibujos.DibujoEspacialDeAsteroide;
+import espacial.interfaz.componentes.dibujos.DibujoEspacialDeBase;
+import espacial.interfaz.componentes.dibujos.DibujoEspacialDeCasillero;
+import espacial.interfaz.componentes.dibujos.DibujoEspacialDeContenedor;
+import espacial.interfaz.componentes.dibujos.DibujoEspacialDeNave;
 import javafx.scene.Node;
 
 public class Dibujante implements Visitante {
 
-    private final DibujarImagen dibujarImagen = new DibujarImagenPorTipo();
-    private final DibujarEspacio dibujarEspacio = new DibujarEspacio();
+    private Node dibujo;
 
     /**
      * @post construye un dibujo que representa la Pieza dada.
@@ -19,7 +25,11 @@ public class Dibujante implements Visitante {
      */
     public Node dibujar(Pieza unaPieza) {
 
-        return dibujarImagen.de(unaPieza);
+        dibujo = null;
+
+        unaPieza.aceptar(this);
+
+        return dibujo;
     }
 
     /**
@@ -30,6 +40,36 @@ public class Dibujante implements Visitante {
      */
     public Node dibujar(Casillero casillero) {
 
-        return dibujarEspacio.de(casillero);
+        return new DibujoEspacialDeCasillero(casillero);
+    }
+
+    @Override
+    public void siEsNave(NaveEspacial pieza) {
+
+        dibujo = new DibujoEspacialDeNave(pieza);
+    }
+
+    @Override
+    public void siEsBase(Pieza pieza) {
+
+        dibujo = new DibujoEspacialDeBase(pieza);
+    }
+
+    @Override
+    public void siEsAsteroide(Pieza pieza) {
+
+        dibujo = new DibujoEspacialDeAsteroide(pieza);
+    }
+
+    @Override
+    public void siEsContenedor(Pieza pieza) {
+
+        dibujo = new DibujoEspacialDeContenedor(pieza);
+    }
+
+    @Override
+    public void siEsAgujeroNegro(Pieza pieza) {
+
+        dibujo = new DibujoDeAgujeroNegro();
     }
 }

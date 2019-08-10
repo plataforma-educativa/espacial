@@ -1,15 +1,13 @@
-package espacial.interfaz.componentes;
+package espacial.interfaz.componentes.dibujos;
 
-import espacial.Partidario;
 import espacial.Pieza;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.SVGPath;
 
-public class DibujarNave extends Dibujar implements DibujarImagen, Partidario.Condicional {
+public class DibujoEspacialDeNave extends Group implements DibujoEspacialPartidario {
 
     public static final Paint PINTURA_FACCION_ALIADO = Color.web("00AA22FF");
     public static final Paint PINTURA_FACCION_NEUTRAL = Color.web("444444FF");
@@ -21,9 +19,18 @@ public class DibujarNave extends Dibujar implements DibujarImagen, Partidario.Co
 
     private Paint pintura;
 
-    public Node de(Pieza unaPieza) {
+    public DibujoEspacialDeNave(Pieza unaPieza) {
 
+        super();
         unaPieza.evaluar(this);
+        conCaso();
+        conPuente();
+        conEscotilla();
+        setLayoutX(3);
+        setLayoutY(3);
+    }
+
+    private void conCaso() {
 
         SVGPath casco = new SVGPath();
         casco.setFill(pintura);
@@ -31,11 +38,21 @@ public class DibujarNave extends Dibujar implements DibujarImagen, Partidario.Co
         aplicarBorde(casco);
         aplicarSombraExteriorEn(casco);
 
+        getChildren().add(casco);
+    }
+
+    private void conPuente() {
+
         SVGPath puente = new SVGPath();
         puente.setFill(pintura);
         puente.setBlendMode(BlendMode.MULTIPLY);
         puente.setContent(PUENTE);
         aplicarSombraInteriorEn(puente);
+
+        getChildren().add(puente);
+    }
+
+    private void conEscotilla() {
 
         SVGPath escotilla = new SVGPath();
         escotilla.setFill(pintura);
@@ -43,11 +60,13 @@ public class DibujarNave extends Dibujar implements DibujarImagen, Partidario.Co
         escotilla.setContent(ESCOTILLA);
         aplicarSombraInteriorEn(escotilla);
 
-        Group grupo = new Group(casco, puente, escotilla);
-        grupo.setLayoutX(3);
-        grupo.setLayoutY(3);
+        getChildren().add(escotilla);
+    }
 
-        return grupo;
+    @Override
+    public void cambiarPinturaPor(Paint nuevaPintura) {
+
+        pintura = nuevaPintura;
     }
 
     @Override

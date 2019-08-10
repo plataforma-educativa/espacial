@@ -1,4 +1,4 @@
-package espacial.interfaz.componentes;
+package espacial.interfaz.componentes.dibujos;
 
 import javafx.scene.Node;
 import javafx.scene.effect.DropShadow;
@@ -6,15 +6,17 @@ import javafx.scene.effect.InnerShadow;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
-public abstract class Dibujar {
+public interface DibujoEspacial {
 
-    protected void aplicarBorde(Shape dibujo) {
+    double DIMENSION = 42.0;
+
+    default void aplicarBorde(Shape dibujo) {
 
         dibujo.setStroke(Color.DARKGRAY);
         dibujo.setStrokeWidth(1);
     }
 
-    protected void aplicarSombraExteriorEn(Node dibujo) {
+    default void aplicarSombraExteriorEn(Node dibujo) {
 
         DropShadow sombra = new DropShadow();
         sombra.setOffsetY(1.0);
@@ -27,7 +29,7 @@ public abstract class Dibujar {
         dibujo.setEffect(sombra);
     }
 
-    protected void aplicarSombraInteriorEn(Node dibujo) {
+    default void aplicarSombraInteriorEn(Node dibujo) {
 
         InnerShadow sombra = new InnerShadow();
         sombra.setOffsetY(1.0);
