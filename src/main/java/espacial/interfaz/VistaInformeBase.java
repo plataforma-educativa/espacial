@@ -1,11 +1,11 @@
 package espacial.interfaz;
 
-import espacial.Pieza;
+import espacial.BaseEspacial;
 import javafx.scene.layout.Pane;
 
 public class VistaInformeBase extends VistaInforme {
 
-    public VistaInformeBase(Pane enContenedor, Pieza unaPieza) {
+    public VistaInformeBase(Pane enContenedor, BaseEspacial unaPieza) {
 
         super(enContenedor, new ControladorDeInformeBase(unaPieza));
     }

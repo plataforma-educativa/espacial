@@ -1,5 +1,6 @@
 package espacial.interfaz;
 
+import espacial.BaseEspacial;
 import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.Visitante;
@@ -29,7 +30,7 @@ public class VistaListaInformes implements Visitante {
     }
 
     @Override
-    public void siEsBase(Pieza pieza) {
+    public void siEsBase(BaseEspacial pieza) {
 
         obtenerVista(pieza, () -> new VistaInformeBase(panel, pieza)).seleccionar();
     }

@@ -1,15 +1,18 @@
 package espacial.piezas;
 
+import espacial.BaseEspacial;
 import espacial.Cargamento;
 import espacial.Casillero;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
+import espacial.NaveEspacial;
 import espacial.Visitante;
+import espacial.excepciones.ErrorEnLaBatallaEspacial;
 import espacial.piezas.rasgos.BaseDeposito;
 import espacial.piezas.rasgos.Neutral;
 import espacial.piezas.rasgos.PiezaAtacable;
 
-public class BaseDesconocida implements PiezaAtacable, BaseDeposito, Neutral {
+public class BaseDesconocida implements BaseEspacial, PiezaAtacable, BaseDeposito, Neutral {
 
     private final Indicador puntos = new Indicador(200);
     private final Bodega bodega = new Bodega(obtenerCapacidad());
@@ -83,5 +86,17 @@ public class BaseDesconocida implements PiezaAtacable, BaseDeposito, Neutral {
     public Cargamento obtenerMetal() {
 
         return bodega.METAL;
+    }
+
+    @Override
+    public int obtenerNivelDeDefensas() {
+
+        return puntos.obtenerNivel();
+    }
+
+    @Override
+    public void amarrar(NaveEspacial pieza) {
+
+        throw new ErrorEnLaBatallaEspacial("No se puede amarrar una NAVE porque esta BASE está fuera de servicio");
     }
 }

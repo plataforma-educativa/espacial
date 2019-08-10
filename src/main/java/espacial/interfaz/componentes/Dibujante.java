@@ -1,6 +1,7 @@
 
 package espacial.interfaz.componentes;
 
+import espacial.BaseEspacial;
 import espacial.Casillero;
 import espacial.NaveEspacial;
 import espacial.Pieza;
@@ -50,7 +51,7 @@ public class Dibujante implements Visitante {
     }
 
     @Override
-    public void siEsBase(Pieza pieza) {
+    public void siEsBase(BaseEspacial pieza) {
 
         dibujo = new DibujoEspacialDeBase(pieza);
     }

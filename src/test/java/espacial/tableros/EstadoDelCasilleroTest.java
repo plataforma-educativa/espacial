@@ -1,6 +1,7 @@
 package espacial.tableros;
 
 import espacial.Ataque;
+import espacial.BaseEspacial;
 import espacial.Casillero;
 import espacial.NaveEspacial;
 import espacial.Pieza;
@@ -20,6 +21,7 @@ abstract class EstadoDelCasilleroTest implements TestDeContrato {
     protected final Casillero CASILLERO_DESTINO = mock(Casillero.class, "CASILLERO_DESTINO");
     protected final Pieza PIEZA = mock(NaveEspacial.class, "PIEZA");
     protected final Pieza NAVE = mock(NaveEspacial.class, "NAVE");
+    protected final Pieza BASE = mock(BaseEspacial.class, "BASE");
     protected final Pieza OTRA_PIEZA = mock(Pieza.class, "OTRA_PIEZA");
     protected final Pieza PIEZA_EN_ORIGEN = mock(NaveEspacial.class, "PIEZA_EN_ORIGEN");
     protected final Ataque UN_ATAQUE = mock(Ataque.class, "UN_ATAQUE");

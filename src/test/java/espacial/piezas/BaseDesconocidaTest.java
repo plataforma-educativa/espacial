@@ -3,6 +3,7 @@ package espacial.piezas;
 import espacial.Carga;
 import espacial.EspectroEspacial;
 import espacial.SustanciaEspacial;
+import espacial.excepciones.ErrorEnLaBatallaEspacial;
 import espacial.excepciones.ExcedeElLugarDisponible;
 import espacial.test.Operacion;
 import espacial.test.Postcondicion;
@@ -263,6 +264,52 @@ class BaseDesconocidaTest extends TestDeContratoSobrePieza<BaseDesconocida> {
         comprobarQue(generaExcepcionPorqueExcedeElLugarDisponible(() ->
 
                 unaBaseDesconocida.recibir(SustanciaEspacial.METAL.por(cantidadDeCristal)))
+        );
+    }
+
+    @Test
+    void obtenerNivelDeDefensasIniciales() {
+
+        dadoQue(fueCreadaUnaBaseDesconocida());
+
+        comprobarQue(unaBaseTieneDefensasEnNivel(100));
+    }
+
+    private Postcondicion unaBaseTieneDefensasEnNivel(int nivelEsperado) {
+
+        return post(condicion ->
+
+                assertThat(unaBaseDesconocida.obtenerNivelDeDefensas())
+                        .as("nivel de defensas")
+                        .isEqualTo(nivelEsperado)
+        );
+    }
+
+    @Test
+    void obtenerNivelesDeEscudosLuegoDeRecibirUnAtaque() {
+
+        dadoQue(fueCreadaUnaBaseDesconocida());
+
+        unaBaseDesconocida.fueAtacadoCon(new AtaqueConTorpedoDeFotones());
+
+        comprobarQue(unaBaseTieneDefensasEnNivel(95));
+    }
+
+    @Test
+    void amarrar() {
+
+        dadoQue(fueCreadaUnaBaseDesconocida());
+
+        comprobarQue(generaExcepcionPorqueNoSePuedeAmarrar(() -> unaBaseDesconocida.amarrar(NAVE_ESPACIAL)));
+    }
+
+    private Postcondicion generaExcepcionPorqueNoSePuedeAmarrar(Operacion operacion) {
+
+        return post(condicion ->
+
+                assertThatThrownBy(operacion::ejecutar)
+                        .as("excepción generada")
+                        .isInstanceOf(ErrorEnLaBatallaEspacial.class)
         );
     }
 

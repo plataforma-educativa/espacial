@@ -1,5 +1,6 @@
 package espacial.tableros;
 
+import espacial.BaseEspacial;
 import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.Visitante;
@@ -15,7 +16,7 @@ public class OcuparCasilleroVacio implements Visitante {
     }
 
     @Override
-    public void siEsBase(Pieza pieza) {
+    public void siEsBase(BaseEspacial pieza) {
 
         estaOcupadoPorUnaBase(pieza);
     }

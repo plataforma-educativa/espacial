@@ -1,5 +1,6 @@
 package espacial.tableros;
 
+import espacial.BaseEspacial;
 import espacial.NaveEspacial;
 import espacial.Visitante;
 import espacial.test.Postcondicion;
@@ -46,10 +47,10 @@ class EstadoDelCasilleroAlOcuparConTest extends EstadoDelCasilleroTest {
 
         estado = new Vacio(CASILLERO);
 
-        estado.alOcuparCon(PIEZA);
+        estado.alOcuparCon(BASE);
 
         comprobarQue(cambioElEstadoDelCasilleroPorOcupadoPorUnaBase());
-        comprobarQue(laPiezaFueColocadaEnCasillero());
+        comprobarQue(laBaseFueColocadaEnCasillero());
     }
 
     private Precondicion laPiezaEsUnaBase() {
@@ -57,11 +58,16 @@ class EstadoDelCasilleroAlOcuparConTest extends EstadoDelCasilleroTest {
         return pre(condicion ->
                 doAnswer(invocation -> {
 
-                    invocation.getArgument(0, Visitante.class).siEsBase(PIEZA);
+                    invocation.getArgument(0, Visitante.class).siEsBase((BaseEspacial) BASE);
                     return null;
 
-                }).when(PIEZA).aceptar(any(Visitante.class))
+                }).when(BASE).aceptar(any(Visitante.class))
         );
+    }
+
+    private Postcondicion laBaseFueColocadaEnCasillero() {
+
+        return post(condicion -> verify(BASE).fueColocadaEn(CASILLERO));
     }
 
     @Test

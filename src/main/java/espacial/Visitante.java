@@ -2,7 +2,7 @@ package espacial;
 
 public interface Visitante {
 
-    default void siEsBase(Pieza pieza) {
+    default void siEsBase(BaseEspacial pieza) {
 
     }
 
