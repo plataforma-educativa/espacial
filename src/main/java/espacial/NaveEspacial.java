@@ -30,10 +30,10 @@ public interface NaveEspacial extends Pieza, Chocable {
     default void chocarCon(Obstaculo obstaculo) {
 
         obstaculo.fueChocadaPor(this);
-        choco(obstaculo);
+        despuesDeChocarContra(obstaculo);
     }
 
-    default void choco(Obstaculo obstaculo) {
+    default void despuesDeChocarContra(Obstaculo obstaculo) {
 
     }
 

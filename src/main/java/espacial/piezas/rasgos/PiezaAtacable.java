@@ -11,7 +11,7 @@ public interface PiezaAtacable extends Pieza, Atacable {
 
         ataque.aplicarSobre(this);
 
-        recibio(ataque);
+        despuesDeSerAtacadoCon(ataque);
     }
 
     default int obtenerPuntosDeTorpedoDeFotones() {
@@ -36,7 +36,7 @@ public interface PiezaAtacable extends Pieza, Atacable {
         decrementarPuntosEn(obtenerPuntosDeLaser());
     }
 
-    default void recibio(Ataque unAtaque) {
+    default void despuesDeSerAtacadoCon(Ataque unAtaque) {
 
     }
 

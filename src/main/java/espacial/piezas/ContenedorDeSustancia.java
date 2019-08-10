@@ -57,7 +57,7 @@ public abstract class ContenedorDeSustancia implements PiezaDeposito, PiezaAtaca
     }
 
     @Override
-    public void recibio(Ataque unAtaque) {
+    public void despuesDeSerAtacadoCon(Ataque unAtaque) {
 
         observadores.fueAtacada(this, unAtaque);
     }

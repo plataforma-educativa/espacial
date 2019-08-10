@@ -191,7 +191,7 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     }
 
     @Override
-    public void recibio(Ataque unAtaque) {
+    public void despuesDeSerAtacadoCon(Ataque unAtaque) {
 
         observadores.fueAtacada(this, unAtaque);
     }
@@ -246,9 +246,9 @@ public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, Pi
     }
 
     @Override
-    public void choco(Obstaculo contraObstaculo) {
+    public void despuesDeChocarContra(Obstaculo obstaculo) {
 
-        observadores.fueChocada(this, contraObstaculo);
+        observadores.fueChocada(this, obstaculo);
     }
 
     @Override

@@ -69,7 +69,7 @@ public class Asteroide implements Pieza, AsteroideAtacable, Neutral {
     }
 
     @Override
-    public void recibio(Ataque unAtaque) {
+    public void despuesDeSerAtacadoCon(Ataque unAtaque) {
 
         observadores.fueAtacada(this, unAtaque);
     }

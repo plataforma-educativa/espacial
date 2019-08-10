@@ -60,7 +60,7 @@ public class BaseDesconocida implements BaseEspacial, PiezaAtacable, BaseDeposit
     }
 
     @Override
-    public void recibio(Ataque unAtaque) {
+    public void despuesDeSerAtacadoCon(Ataque unAtaque) {
 
         observadores.fueAtacada(this, unAtaque);
     }
