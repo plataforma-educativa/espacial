@@ -55,7 +55,6 @@ class PartidaEspacialFXTest {
 
         while(radar2.escanearNorte() == Espectro.BASE) {
 
-            System.out.println("Atacado");
             nave2.atacarAlNorte();
         }
 

@@ -22,11 +22,13 @@ import javafx.util.Duration;
 
 public class PanelConPieza extends Group implements Pieza.Observador, Partidario.Condicional {
 
+    private static final Duration DURACION_MOVIMIENTO = Duration.millis(500);
+    private static final Duration DURACION_DESTRUCCION = Duration.millis(500);
+    private static final Duration DURACION_ATAQUE = Duration.millis(50);
+
     private final ControladorDePartida controlador;
 
     private final Pieza pieza;
-
-    private final Duration duracionDeLaAnimacion = Duration.millis(500);
 
     private final RotacionSegunDireccion rotacion = new RotacionSegunDireccion();
 
@@ -71,7 +73,7 @@ public class PanelConPieza extends Group implements Pieza.Observador, Partidario
 
         TranslateTransition transition = new TranslateTransition();
         transition.setNode(this);
-        transition.setDuration(duracionDeLaAnimacion);
+        transition.setDuration(DURACION_MOVIMIENTO);
         transition.setToX(posicion.enX());
         transition.setToY(posicion.enY());
 
@@ -81,7 +83,7 @@ public class PanelConPieza extends Group implements Pieza.Observador, Partidario
     @Override
     public void fueAtacada(Pieza unaPieza, Ataque conAtaque) {
 
-
+        controlador.reproducir(parpadear());
     }
 
     @Override
@@ -103,7 +105,7 @@ public class PanelConPieza extends Group implements Pieza.Observador, Partidario
 
     private Animation agrandar() {
 
-        ScaleTransition agrandar = new ScaleTransition(duracionDeLaAnimacion, this);
+        ScaleTransition agrandar = new ScaleTransition(DURACION_DESTRUCCION, this);
         agrandar.setByX(5);
         agrandar.setByY(5);
         agrandar.setAutoReverse(true);
@@ -111,9 +113,19 @@ public class PanelConPieza extends Group implements Pieza.Observador, Partidario
         return agrandar;
     }
 
+    private Animation parpadear() {
+
+        FadeTransition parpadear = new FadeTransition(DURACION_ATAQUE, this);
+        parpadear.setAutoReverse(true);
+        parpadear.setCycleCount(2);
+        parpadear.setToValue(.5);
+
+        return parpadear;
+    }
+
     private Animation desvanecer() {
 
-        FadeTransition desvanecer = new FadeTransition(duracionDeLaAnimacion, this);
+        FadeTransition desvanecer = new FadeTransition(DURACION_DESTRUCCION, this);
         desvanecer.setInterpolator(Interpolator.EASE_OUT);
         desvanecer.setFromValue(1);
         desvanecer.setToValue(0);
