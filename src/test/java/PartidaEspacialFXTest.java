@@ -1,3 +1,4 @@
+import espacial.partidas.EscenarioEspacial;
 import espacial.partidas.PartidaEspacialFX;
 
 import java.util.concurrent.TimeUnit;
@@ -6,9 +7,9 @@ class PartidaEspacialFXTest {
 
     public static void main(String[] args) throws InterruptedException {
 
-        BatallaEspacial batalla = new BatallaEspacial();
+        EscenarioEspacial escenario = new BatallaEspacial();
 
-        PartidaEspacialFX partidaEspacial = new PartidaEspacialFX(batalla.obtenerTablero());
+        PartidaEspacialFX partidaEspacial = new PartidaEspacialFX(escenario.obtenerTablero());
         partidaEspacial.iniciar();
 
         TimeUnit.SECONDS.sleep(5);
@@ -69,11 +70,15 @@ class PartidaEspacialFXTest {
             nave.atacarAlNorte();
         }
 
+
         for (int i = 0; i < 10; i++) {
 
             nave.avanzarAlEste();
             nave.avanzarAlSur();
         }
+
+
+
     }
 
 }

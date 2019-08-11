@@ -1,14 +1,14 @@
 import espacial.BaseEspacial;
 import espacial.partidas.EscenarioEspacial;
-import espacial.tableros.TableroBatallaEspacial;
+import espacial.tableros.TableroDesierto;
 
-public class BatallaEspacial extends EscenarioEspacial {
+public class DesiertoEspacial extends EscenarioEspacial {
 
     private final BaseEspacial base;
-    
-    public BatallaEspacial() {
 
-        super(new TableroBatallaEspacial());
+    public DesiertoEspacial() {
+
+        super(new TableroDesierto());
         base = obtenerTablero().colocarBaseEnCasillero(0, 0);
         cuandoCrearNaveEspacial(base::amarrar);
     }
@@ -16,6 +16,6 @@ public class BatallaEspacial extends EscenarioEspacial {
     @Override
     public String obtenerNombre() {
 
-        return "Batalla Espacial";
+        return "Desierto Espacial";
     }
 }

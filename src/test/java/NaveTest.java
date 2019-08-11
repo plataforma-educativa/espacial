@@ -47,7 +47,7 @@ class NaveTest implements TestDeContrato {
 
         return post(condicion -> {
 
-            assertThat(batallaEspacial.obtenerNaves())
+            assertThat(batallaEspacial.obtenerParticipantes())
                     .as("naves de la BatallaEspacial")
                     .hasSize(1)
                     .containsExactly(unaNave);
@@ -79,7 +79,7 @@ class NaveTest implements TestDeContrato {
 
             condicion.es("existen en la Base tres Naves: '%s', '%s' y '%s'", primerNave, segundaNave, tercerNave);
 
-            assertThat(batallaEspacial.obtenerNaves())
+            assertThat(batallaEspacial.obtenerParticipantes())
                     .as("naves de la BatallaEspacial")
                     .hasSize(3)
                     .containsExactly(primerNave, segundaNave, tercerNave);

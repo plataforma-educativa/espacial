@@ -1,18 +1,17 @@
 import espacial.Direccion;
 import espacial.NaveEspacial;
 import espacial.SustanciaEspacial;
+import espacial.partidas.Participante;
 
-public class Nave {
+public class Nave extends Participante {
 
-    private final BatallaEspacial partida;
     private final NaveEspacial pieza;
     private final Radar radar;
     private final Monitor monitor;
     
     public Nave() {
 
-        partida = BatallaEspacial.obtener();
-        pieza = partida.intervenirCon(this);
+        pieza = crearNaveEspacial();
         radar = new Radar(pieza);
         monitor = new Monitor(pieza);
     }
