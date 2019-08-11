@@ -5,7 +5,6 @@ import espacial.Casillero;
 import espacial.ConsumidorDeCasilleros;
 import espacial.ConsumidorDeCoordenadas;
 import espacial.NaveEspacial;
-import espacial.ObservadorDelTablero;
 import espacial.Pieza;
 import espacial.partidas.FabricaDePiezas;
 import espacial.utiles.Proveedor;
@@ -15,7 +14,7 @@ public abstract class TableroEspacial implements TableroContenedor {
     protected final FabricaDePiezas fabrica = FabricaDePiezas.crear();
     private Casillero borde;
     private Casillero[][] casilleros;
-    private ObservadorDelTablero observador;
+    private Observador observador;
 
     public TableroEspacial() {
 
@@ -68,7 +67,7 @@ public abstract class TableroEspacial implements TableroContenedor {
     }
 
     @Override
-    public void registrar(ObservadorDelTablero unObservador) {
+    public void registrar(Observador unObservador) {
 
         observador = unObservador;
     }

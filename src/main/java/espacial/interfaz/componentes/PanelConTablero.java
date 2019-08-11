@@ -1,7 +1,6 @@
 package espacial.interfaz.componentes;
 
 import espacial.Casillero;
-import espacial.ObservadorDelTablero;
 import espacial.Pieza;
 import espacial.Tablero;
 import espacial.interfaz.ControladorDePartida;
@@ -13,7 +12,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 
-public class PanelConTablero extends StackPane implements ObservadorDelTablero {
+public class PanelConTablero extends StackPane implements Tablero.Observador {
 
     private final GridPane grilla = new GridPane();
     private final AnchorPane piezas = new AnchorPane();

@@ -53,5 +53,10 @@ public interface Tablero {
 
     NaveEspacial crearNave();
 
-    void registrar(ObservadorDelTablero unObservador);
+    void registrar(Observador unObservador);
+
+    interface Observador {
+
+        void fueAgregadaEn(Casillero casillero, Pieza unaPieza);
+    }
 }
