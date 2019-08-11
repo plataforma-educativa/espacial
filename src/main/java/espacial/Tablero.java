@@ -27,11 +27,6 @@ public interface Tablero {
         return obtenerCasilleroEn(coordenadas.obtenerFila(), coordenadas.obtenerColumna());
     }
 
-    default EspectroEspacial escanearEn(int fila, int columna) {
-
-        return obtenerCasilleroEn(fila, columna).escanear();
-    }
-
     void conCadaCasilleroAceptar(ConsumidorDeCasilleros unConsumidor);
 
     default void conCadaCoordenada(ConsumidorDeCoordenadas consumidor) {
