@@ -14,13 +14,14 @@ public abstract class Aleatorio<T> {
         return new AleatorioEnRango(desde, hasta);
     }
 
+    @SafeVarargs
     public static <T> Aleatorio<T> enLista(T... valores) {
 
-        return new AleatorioEnLista(valores);
+        return new AleatorioEnLista<>(valores);
     }
 
     public static <T> Aleatorio<T> consumiendo(List<T> disponibles) {
 
-        return new AleatorioConsumiendo(disponibles);
+        return new AleatorioConsumiendo<>(disponibles);
     }
 }

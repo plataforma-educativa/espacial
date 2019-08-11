@@ -7,6 +7,7 @@ public class AleatorioEnLista<T> extends Aleatorio<T> {
 
     private final List<T> valores;
 
+    @SafeVarargs
     public AleatorioEnLista(T... valoresPosibles) {
 
         valores = Arrays.asList(valoresPosibles);
