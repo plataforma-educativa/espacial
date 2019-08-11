@@ -6,10 +6,10 @@ import espacial.Tablero;
 
 public abstract class CasilleroDelTablero implements Casillero {
 
-    protected final Tablero tablero;
+    protected final TableroContenedor tablero;
     protected final Coordenadas coordenadas;
 
-    public CasilleroDelTablero(Tablero contenedor, int fila, int columna) {
+    public CasilleroDelTablero(TableroContenedor contenedor, int fila, int columna) {
 
         tablero = contenedor;
         coordenadas = Coordenadas.con(fila, columna);

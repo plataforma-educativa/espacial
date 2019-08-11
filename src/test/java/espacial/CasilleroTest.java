@@ -3,6 +3,7 @@ package espacial;
 import espacial.piezas.Asteroide;
 import espacial.piezas.CazaEspacial;
 import espacial.piezas.ContenedorDeAntimateria;
+import espacial.tableros.TableroBatallaEspacial;
 import espacial.test.Postcondicion;
 import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,7 +30,7 @@ class CasilleroTest implements TestDeContrato {
     @BeforeEach
     void crearTablero() {
 
-        tablero = new Tablero();
+        tablero = new TableroBatallaEspacial();
     }
 
     @Test

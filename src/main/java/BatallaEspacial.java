@@ -2,6 +2,7 @@ import espacial.BaseEspacial;
 import espacial.NaveEspacial;
 import espacial.Tablero;
 import espacial.excepciones.NoExisteBatallaEspacial;
+import espacial.tableros.TableroBatallaEspacial;
 import espacial.utiles.Opcional;
 
 import java.util.LinkedList;
@@ -15,11 +16,12 @@ public class BatallaEspacial {
     
     private final List<Nave> naves = new LinkedList<>();
     
-    private final Tablero tablero = new Tablero();
+    private final Tablero tablero;
 
     public BatallaEspacial() {
 
         instancia = Opcional.con(this);
+        tablero = new TableroBatallaEspacial();
         base = tablero.colocarBaseEnCasillero(0, 0);
     }
 

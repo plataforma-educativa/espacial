@@ -10,7 +10,6 @@ import espacial.EspectroEspacial;
 import espacial.Obstaculo;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
-import espacial.Tablero;
 import espacial.VisitanteDeCasilleros;
 import espacial.excepciones.LaOperacionNoEstaSoportada;
 import espacial.excepciones.NoPuedeEntregarUnaCarga;
@@ -18,12 +17,12 @@ import espacial.excepciones.NoPuedeRecibirUnaCarga;
 
 public class CasilleroBorde extends CasilleroDelTablero implements Obstaculo {
 
-    public CasilleroBorde(Tablero contenedor) {
+    public CasilleroBorde(TableroContenedor contenedor) {
 
         this(contenedor, Integer.MAX_VALUE, Integer.MAX_VALUE);
     }
 
-    public CasilleroBorde(Tablero contenedor, int fila, int columna) {
+    public CasilleroBorde(TableroContenedor contenedor, int fila, int columna) {
 
         super(contenedor, fila, columna);
     }

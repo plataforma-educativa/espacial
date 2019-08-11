@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 
 class CasilleroInteriorTest implements TestDeContrato {
 
-    private final Tablero TABLERO = mock(Tablero.class, "TABLERO");
+    private final TableroContenedor TABLERO = mock(TableroContenedor.class, "TABLERO");
     private final Pieza UNA_PIEZA = mock(Pieza.class, "UNA_PIEZA");
     private final Casillero OTRO_CASILLERO = mock(Casillero.class, "OTRO_CASILLERO");
     private final Ataque UN_ATAQUE = mock(Ataque.class, "UN_ATAQUE");
@@ -41,7 +41,7 @@ class CasilleroInteriorTest implements TestDeContrato {
         comprobarQue(elCasilleroTiene(TABLERO, Coordenadas.con(2, 4)));
     }
 
-    private Precondicion fueCreadoUnCasilleroInteriorEn(Tablero tablero, int fila, int columna) {
+    private Precondicion fueCreadoUnCasilleroInteriorEn(TableroContenedor tablero, int fila, int columna) {
 
         return pre(condicion -> unCasilleroInterior = new CasilleroInterior(tablero, fila, columna));
     }
@@ -68,10 +68,10 @@ class CasilleroInteriorTest implements TestDeContrato {
         return pre(condicion -> {
 
             unCasilleroInterior = new CasilleroInterior(TABLERO, 0, 0);
-            unCasilleroInterior.cambiarA(ESTADO);
-            when(ESTADO.alEscanear()).thenReturn(ESPECTRO_ESCANEADO);
-            when(ESTADO.alBuscar(any(SustanciaEspacial.class))).thenReturn(CANTIDAD_DE_SUSTANCIA_ENCONTRADA);
-            when(ESTADO.alObtenerPieza()).thenReturn(PIEZA_DEL_CASILLERO);
+            unCasilleroInterior.cambiarA(estado);
+            when(estado.alEscanear()).thenReturn(ESPECTRO_ESCANEADO);
+            when(estado.alBuscar(any(SustanciaEspacial.class))).thenReturn(CANTIDAD_DE_SUSTANCIA_ENCONTRADA);
+            when(estado.alObtenerPieza()).thenReturn(PIEZA_DEL_CASILLERO);
         });
     }
 

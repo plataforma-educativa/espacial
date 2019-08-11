@@ -8,14 +8,13 @@ import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
-import espacial.Tablero;
 import espacial.VisitanteDeCasilleros;
 
 public class CasilleroInterior extends CasilleroDelTablero {
 
     private EstadoDelCasillero estado;
 
-    public CasilleroInterior(Tablero contenedor, int fila, int columna) {
+    public CasilleroInterior(TableroContenedor contenedor, int fila, int columna) {
 
         super(contenedor, fila, columna);
         estado = new Vacio(this);

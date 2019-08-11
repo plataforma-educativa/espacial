@@ -23,7 +23,7 @@ import static org.mockito.Mockito.*;
 
 class CasilleroBordeTest implements TestDeContrato {
 
-    private final Tablero TABLERO = mock(Tablero.class, "TABLERO");
+    private final TableroContenedor TABLERO = mock(TableroContenedor.class, "TABLERO");
     private final Casillero OTRO_CASILLERO = mock(Casillero.class, "OTRO_CASILLERO");
     private final Pieza UNA_PIEZA = mock(Pieza.class, "UNA_PIEZA");
     private final Chocable UN_CHOCABLE = mock(Chocable.class, "UN_CHOCABLE");
@@ -40,7 +40,7 @@ class CasilleroBordeTest implements TestDeContrato {
         comprobarQue(elCasilleroTiene(TABLERO, Coordenadas.con(fila, columna)));
     }
 
-    private Precondicion fueCreadoUnCasilleroInteriorEn(Tablero tablero, int fila, int columna) {
+    private Precondicion fueCreadoUnCasilleroInteriorEn(TableroContenedor tablero, int fila, int columna) {
 
         return pre(condicion ->  unCasilleroBorde = new CasilleroBorde(tablero, fila, columna));
     }
