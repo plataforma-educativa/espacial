@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class DesiertoEspacialTest implements TestDeContrato {
+class DesiertoEspacialTest extends TestDeBatallaEspacial implements TestDeContrato {
 
     private final Nave UNA_NAVE = mock(Nave.class, "UNA_NAVE");
 

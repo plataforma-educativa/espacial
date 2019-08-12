@@ -15,7 +15,7 @@ import static espacial.test.Aserciones.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.*;
 
-class NaveTest implements TestDeContrato {
+class NaveTest extends TestDeBatallaEspacial implements TestDeContrato {
 
     private static final int CANTIDAD_MINIMA = 1;
     private static final int NADA = 0;

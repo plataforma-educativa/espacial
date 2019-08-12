@@ -5,7 +5,7 @@ import javafx.stage.Stage;
 
 import java.util.concurrent.CountDownLatch;
 
-public class Aplicacion extends Application {
+public class AplicacionFX extends Application {
 
     private static final CountDownLatch cuentaRegresiva = new CountDownLatch(1);
 

@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static espacial.test.Aserciones.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 
-class BatallaEspacialTest implements TestDeContrato {
+class BatallaEspacialTest extends TestDeBatallaEspacial implements TestDeContrato {
 
     private BatallaEspacial batalla;
 

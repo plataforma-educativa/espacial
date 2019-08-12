@@ -1,16 +1,10 @@
-import espacial.partidas.EscenarioEspacial;
-import espacial.partidas.PartidaEspacialFX;
-
 import java.util.concurrent.TimeUnit;
 
 class PartidaEspacialFXTest {
 
     public static void main(String[] args) throws InterruptedException {
 
-        EscenarioEspacial escenario = new BatallaEspacial();
-
-        PartidaEspacialFX partidaEspacial = new PartidaEspacialFX(escenario.obtenerTablero());
-        partidaEspacial.iniciar();
+        new BatallaEspacial();
 
         TimeUnit.SECONDS.sleep(5);
 

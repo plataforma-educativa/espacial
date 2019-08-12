@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class RadarTest implements TestDeContrato {
+public class RadarTest extends TestDeBatallaEspacial implements TestDeContrato {
 
     private static Condition<Integer> CERO = new Condition<>(valor -> valor == 0, "igual a 0");
     private static Condition<Integer> MAYOR_A_CERO = new Condition<>(valor -> valor > 0, "mayor a 0");

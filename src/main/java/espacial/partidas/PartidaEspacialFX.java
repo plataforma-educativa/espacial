@@ -1,39 +1,20 @@
 package espacial.partidas;
 
-import espacial.PartidaEspacial;
-import espacial.Tablero;
-import espacial.interfaz.Aplicacion;
+import espacial.interfaz.AplicacionFX;
 import espacial.interfaz.VistaPartida;
 import javafx.application.Platform;
 
-public class PartidaEspacialFX implements PartidaEspacial {
+public class PartidaEspacialFX extends PartidaEnEscenarioEspacial {
 
-    private final Tablero tablero;
+    public PartidaEspacialFX(EscenarioEspacial escenarioUsado) {
 
-    public PartidaEspacialFX(Tablero tableroUsado) {
-
-        Aplicacion.iniciar();
-        tablero = tableroUsado;
+        super(escenarioUsado);
+        AplicacionFX.iniciar();
+        Platform.runLater(this::crearVista);
     }
 
-    public void iniciar() {
+    private void crearVista() {
 
-        Platform.runLater(() -> {
-
-            VistaPartida vistaPartida = new VistaPartida(this);
-            vistaPartida.iniciar();
-        });
-    }
-
-    @Override
-    public String obtenerNombre() {
-
-        return "Batalla Espacial";
-    }
-
-    @Override
-    public Tablero obtenerTablero() {
-
-        return tablero;
+        new VistaPartida(this).iniciar();
     }
 }

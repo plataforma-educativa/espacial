@@ -1,16 +1,11 @@
-import espacial.BaseEspacial;
-import espacial.partidas.EscenarioEspacial;
+import espacial.partidas.EscenarioEspacialConBaseCentral;
 import espacial.tableros.TableroDesierto;
 
-public class DesiertoEspacial extends EscenarioEspacial {
-
-    private final BaseEspacial base;
+public class DesiertoEspacial extends EscenarioEspacialConBaseCentral {
 
     public DesiertoEspacial() {
 
         super(new TableroDesierto());
-        base = obtenerTablero().colocarBaseEnCasillero(0, 0);
-        cuandoCrearNaveEspacial(base::amarrar);
     }
 
     @Override

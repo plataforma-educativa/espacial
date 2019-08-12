@@ -1,16 +1,11 @@
-import espacial.BaseEspacial;
-import espacial.partidas.EscenarioEspacial;
+import espacial.partidas.EscenarioEspacialConBaseCentral;
 import espacial.tableros.TableroBatallaEspacial;
 
-public class BatallaEspacial extends EscenarioEspacial {
+public class BatallaEspacial extends EscenarioEspacialConBaseCentral {
 
-    private final BaseEspacial base;
-    
     public BatallaEspacial() {
 
         super(new TableroBatallaEspacial());
-        base = obtenerTablero().colocarBaseEnCasillero(0, 0);
-        cuandoCrearNaveEspacial(base::amarrar);
     }
 
     @Override

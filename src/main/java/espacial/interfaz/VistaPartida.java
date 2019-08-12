@@ -3,6 +3,7 @@ package espacial.interfaz;
 import espacial.PartidaEspacial;
 import espacial.interfaz.rasgos.Controlador;
 import espacial.interfaz.rasgos.Vista;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -28,6 +29,12 @@ public class VistaPartida implements Vista {
 
         escenario.setScene(new Scene(cargar("/fx/partida.fxml"), anchoInicial, altoInicial));
         escenario.show();
+        escenario.setOnCloseRequest(evento -> terminar());
+    }
+
+    private void terminar() {
+
+        Platform.exit();
     }
 
     @Override

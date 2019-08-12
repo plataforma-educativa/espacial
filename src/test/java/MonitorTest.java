@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
-class MonitorTest implements TestDeContrato {
+class MonitorTest extends TestDeBatallaEspacial implements TestDeContrato {
 
     private static final int CARGA_MINIMA = 1;
     private static final int CARGA_NULA = 0;
