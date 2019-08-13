@@ -1,12 +1,14 @@
-import espacial.PartidaEspacial;
-import espacial.partidas.PartidaEspacialConsola;
+import espacial.Espacial;
+import espacial.Interfaz;
 import org.junit.jupiter.api.BeforeAll;
 
 public class TestDeBatallaEspacial {
 
-    @BeforeAll
-    static void configurarPartida() {
+    private static final Interfaz INTERFAZ_SIMULADA = partida -> { };
 
-        PartidaEspacial.FABRICA.cambiar(PartidaEspacialConsola::new);
+    @BeforeAll
+    static void configurarInterfaz() {
+
+        Espacial.usar(() -> INTERFAZ_SIMULADA);
     }
 }

@@ -1,7 +1,7 @@
-import espacial.partidas.EscenarioEspacialConBaseCentral;
+import espacial.partidas.PartidaEspacialConBaseCentral;
 import espacial.tableros.TableroBatallaEspacial;
 
-public class BatallaEspacial extends EscenarioEspacialConBaseCentral {
+public class BatallaEspacial extends PartidaEspacialConBaseCentral {
 
     public BatallaEspacial() {
 

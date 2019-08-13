@@ -4,15 +4,15 @@ import espacial.NaveEspacial;
 
 public abstract class Participante {
 
-    private final EscenarioEspacial escenario;
+    private final PartidaEspacial partida;
 
     public Participante() {
 
-        escenario = EscenarioEspacial.obtener();
+        partida = PartidaEspacial.obtener();
     }
 
     protected NaveEspacial crearNaveEspacial() {
 
-        return escenario.crearNaveEspacialPara(this);
+        return partida.crearNaveEspacialPara(this);
     }
 }

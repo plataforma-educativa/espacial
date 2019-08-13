@@ -1,7 +1,7 @@
 package espacial.partidas;
 
+import espacial.Espacial;
 import espacial.NaveEspacial;
-import espacial.PartidaEspacial;
 import espacial.Tablero;
 import espacial.excepciones.NoExisteBatallaEspacial;
 import espacial.utiles.Opcional;
@@ -9,14 +9,14 @@ import espacial.utiles.Opcional;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class EscenarioEspacial {
+public abstract class PartidaEspacial implements espacial.Partida {
 
-    private static Opcional<EscenarioEspacial> instancia = Opcional.sinValor();
+    private static Opcional<PartidaEspacial> instancia = Opcional.sinValor();
 
     private final Tablero tablero;
     private final List<Participante> participantes = new LinkedList<>();
 
-    public EscenarioEspacial(Tablero unTablero) {
+    public PartidaEspacial(Tablero unTablero) {
 
         tablero = unTablero;
         instancia = Opcional.con(this);
@@ -51,12 +51,12 @@ public abstract class EscenarioEspacial {
 
     public void inicializar() {
 
-        PartidaEspacial.iniciar(this);
+        Espacial.crearInterfaz(this);
     }
 
     public abstract String obtenerNombre();
 
-    public static EscenarioEspacial obtener() {
+    public static PartidaEspacial obtener() {
 
         return instancia.obtenerPeroSiNoExisteLanzar(NoExisteBatallaEspacial::new);
     }

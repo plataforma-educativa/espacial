@@ -1,6 +1,6 @@
 package espacial.interfaz;
 
-import espacial.PartidaEspacial;
+import espacial.Partida;
 import espacial.interfaz.rasgos.Controlador;
 import espacial.interfaz.rasgos.Vista;
 import javafx.application.Platform;
@@ -11,11 +11,11 @@ import javafx.stage.StageStyle;
 public class VistaPartida implements Vista {
 
     private final Stage escenario;
-    private final PartidaEspacial partida;
+    private final Partida partida;
     private final int anchoInicial = 800;
     private final int altoInicial = 600;
 
-    public VistaPartida(PartidaEspacial unaPartida) {
+    public VistaPartida(Partida unaPartida) {
 
         partida = unaPartida;
         escenario = new Stage(StageStyle.DECORATED);

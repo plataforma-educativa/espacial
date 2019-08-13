@@ -8,9 +8,20 @@ class ReferenciaRequerida<T> implements Referencia<T> {
 
     private Proveedor<T> siValorEsNulo = () ->  { throw new Defecto("El valor requerido es nulo"); };
 
+    ReferenciaRequerida() {
+
+        valor = null;
+    }
+
     ReferenciaRequerida(T valorRequerido) {
 
         valor = valorRequerido;
+    }
+
+    ReferenciaRequerida(Proveedor<T> generarValor) {
+
+        valor = null;
+        siValorEsNulo = generarValor;
     }
 
     @Override
@@ -32,9 +43,9 @@ class ReferenciaRequerida<T> implements Referencia<T> {
     }
 
     @Override
-    public void siEsNuloAlObtener(Proveedor<T> crearExcepcion) {
+    public void siEsNuloAlObtener(Proveedor<T> usarProveedor) {
 
-        siValorEsNulo = crearExcepcion;
+        siValorEsNulo = usarProveedor;
     }
 
     @Override

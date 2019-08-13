@@ -50,6 +50,17 @@ class ReferenciaTest implements TestDeContrato {
         }
 
         @Test
+        void crearConProveedor() {
+
+            final Object valorGenerado = new String("VALOR_GENERADO");
+            final Proveedor<Object> proveedor = () -> valorGenerado;
+
+            unaReferencia = Referencia.con(proveedor);
+
+            comprobarQue(unaReferenciaTiene(valorGenerado));
+        }
+
+        @Test
         void anular() {
 
             final Object valorInicial = new String("VALOR_INICIAL");

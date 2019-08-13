@@ -4,11 +4,11 @@ import espacial.BaseEspacial;
 import espacial.NaveEspacial;
 import espacial.Tablero;
 
-public abstract class EscenarioEspacialConBaseCentral extends EscenarioEspacial {
+public abstract class PartidaEspacialConBaseCentral extends PartidaEspacial {
 
     private BaseEspacial base;
 
-    public EscenarioEspacialConBaseCentral(Tablero tablero) {
+    public PartidaEspacialConBaseCentral(Tablero tablero) {
 
         super(tablero);
     }

@@ -1,6 +1,6 @@
 package espacial.interfaz;
 
-import espacial.PartidaEspacial;
+import espacial.Partida;
 import espacial.Pieza;
 import espacial.interfaz.animaciones.Reproducir;
 import espacial.interfaz.componentes.Dibujante;
@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
 
 public class ControladorDePartida implements Controlador {
 
-    private final PartidaEspacial partida;
+    private final Partida partida;
 
     private final Dibujante dibujante = new Dibujante();
 
@@ -33,7 +33,7 @@ public class ControladorDePartida implements Controlador {
 
     private VistaListaInformes vistaListaInformes;
 
-    public ControladorDePartida(PartidaEspacial unaPartida) {
+    public ControladorDePartida(Partida unaPartida) {
 
         partida = unaPartida;
     }

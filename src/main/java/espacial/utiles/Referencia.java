@@ -17,6 +17,11 @@ public interface Referencia<T> {
 
     static <T> Referencia<T> conValorNulo() {
 
-        return new ReferenciaRequerida<>(null);
+        return new ReferenciaRequerida<>();
+    }
+
+    static <T> Referencia<T> con(Proveedor<T> usarProveedor) {
+
+        return new ReferenciaRequerida<T>(usarProveedor);
     }
 }

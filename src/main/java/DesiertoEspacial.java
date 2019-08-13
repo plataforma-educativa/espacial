@@ -1,7 +1,7 @@
-import espacial.partidas.EscenarioEspacialConBaseCentral;
+import espacial.partidas.PartidaEspacialConBaseCentral;
 import espacial.tableros.TableroDesierto;
 
-public class DesiertoEspacial extends EscenarioEspacialConBaseCentral {
+public class DesiertoEspacial extends PartidaEspacialConBaseCentral {
 
     public DesiertoEspacial() {
 
