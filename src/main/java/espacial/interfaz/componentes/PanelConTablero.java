@@ -27,7 +27,7 @@ public class PanelConTablero extends StackPane implements Tablero.Observador {
         controlador = unControlador;
         tablero = unTablero;
         tablero.registrar(this);
-        tablero.conCadaCasilleroAceptar(this::agregar);
+        tablero.conCadaCasillero(this::agregar);
     }
 
     private void agregar(Casillero casillero, Pieza... piezas) {

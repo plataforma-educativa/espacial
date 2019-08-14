@@ -27,7 +27,7 @@ public interface Tablero {
         return obtenerCasilleroEn(coordenadas.obtenerFila(), coordenadas.obtenerColumna());
     }
 
-    void conCadaCasilleroAceptar(ConsumidorDeCasilleros unConsumidor);
+    void conCadaCasillero(ConsumidorDeCasilleros unConsumidor);
 
     default void conCadaCoordenada(ConsumidorDeCoordenadas consumidor) {
 

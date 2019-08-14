@@ -97,7 +97,7 @@ class TableroProgramableTest implements TestDeContrato {
         
         dadoQue(unTableroFueCreadoConDimensiones(10, 10));
   
-        unTablero.conCadaCasilleroAceptar((casillero, piezas) -> casillerosIterados.add(casillero));
+        unTablero.conCadaCasillero((casillero, piezas) -> casillerosIterados.add(casillero));
 
         comprobarQue(losCasillerosIteradosSon(144));
     }

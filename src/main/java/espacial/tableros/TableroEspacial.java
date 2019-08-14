@@ -83,7 +83,7 @@ public abstract class TableroEspacial implements TableroContenedor {
     }
 
     @Override
-    public void conCadaCasilleroAceptar(ConsumidorDeCasilleros unConsumidor) {
+    public void conCadaCasillero(ConsumidorDeCasilleros unConsumidor) {
 
         for (int fila = 0; fila < casilleros.length; fila++) {
 
