@@ -7,6 +7,11 @@ package espacial.tableros;
  */
 public class TableroBatallaEspacial extends TableroEspacial {
 
+    public TableroBatallaEspacial() {
+
+        super(new Dimensiones(-10, 10, -26, 26));
+    }
+
     @Override
     protected void inicializarPiezas() {
 
@@ -27,29 +32,5 @@ public class TableroBatallaEspacial extends TableroEspacial {
         colocarEnCoordenada(2, -6, fabrica::crearAgujeroNegro);
         colocarEnCoordenada(1, -6, fabrica::crearAgujeroNegro);
         colocarEnCoordenada(1, -7, fabrica::crearAgujeroNegro);
-    }
-
-    @Override
-    public int obtenerFilaMaxima() {
-
-        return 10;
-    }
-
-    @Override
-    public int obtenerFilaMinima() {
-
-        return -10;
-    }
-
-    @Override
-    public int obtenerColumnaMaxima() {
-
-        return 26;
-    }
-
-    @Override
-    public int obtenerColumnaMinima() {
-
-        return -26;
     }
 }

@@ -7,32 +7,14 @@ package espacial.tableros;
  */
 public class TableroDesierto extends TableroEspacial {
 
+    public TableroDesierto() {
+
+        super(new Dimensiones(-10, 10, -10, 10));
+    }
+
     @Override
     protected void inicializarPiezas() {
 
-    }
-
-    @Override
-    public int obtenerFilaMaxima() {
-
-        return 10;
-    }
-
-    @Override
-    public int obtenerFilaMinima() {
-
-        return -10;
-    }
-
-    @Override
-    public int obtenerColumnaMaxima() {
-
-        return 10;
-    }
-
-    @Override
-    public int obtenerColumnaMinima() {
-
-        return -10;
+        /* No tiene ninguna Pieza */
     }
 }

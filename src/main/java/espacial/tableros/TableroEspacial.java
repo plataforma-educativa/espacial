@@ -12,12 +12,14 @@ import espacial.utiles.Proveedor;
 public abstract class TableroEspacial implements TableroContenedor {
 
     protected final FabricaDePiezas fabrica = FabricaDePiezas.crear();
+    private final Dimensiones dimensiones;
     private Casillero borde;
     private Casillero[][] casilleros;
     private Observador observador;
 
-    public TableroEspacial() {
+    public TableroEspacial(Dimensiones dimensionesDelTablero) {
 
+        dimensiones = dimensionesDelTablero;
         inicializarCasilleros();
         inicializarPiezas();
     }
@@ -81,18 +83,6 @@ public abstract class TableroEspacial implements TableroContenedor {
     }
 
     @Override
-    public int contarColumnas() {
-
-        return obtenerColumnaMaxima() - obtenerColumnaMinima() + 1;
-    }
-
-    @Override
-    public int contarFilas() {
-
-        return obtenerFilaMaxima() - obtenerFilaMinima() + 1;
-    }
-
-    @Override
     public void conCadaCasilleroAceptar(ConsumidorDeCasilleros unConsumidor) {
 
         for (int fila = 0; fila < casilleros.length; fila++) {
@@ -144,6 +134,42 @@ public abstract class TableroEspacial implements TableroContenedor {
     public NaveEspacial crearNave() {
 
         return fabrica.crearNaveEspacial();
+    }
+
+    @Override
+    public int contarFilas() {
+
+        return dimensiones.contarFilas();
+    }
+
+    @Override
+    public int contarColumnas() {
+
+        return dimensiones.contarColumnas();
+    }
+
+    @Override
+    public int obtenerFilaMinima() {
+
+        return dimensiones.obtenerFilaMinima();
+    }
+
+    @Override
+    public int obtenerColumnaMinima() {
+
+        return dimensiones.obtenerColumnaMinima();
+    }
+
+    @Override
+    public int obtenerFilaMaxima() {
+
+        return dimensiones.obtenerFilaMaxima();
+    }
+
+    @Override
+    public int obtenerColumnaMaxima() {
+
+        return dimensiones.obtenerColumnaMaxima();
     }
 
     @Override
