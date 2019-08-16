@@ -54,7 +54,7 @@ public class FabricaDePiezas {
         return new ContenedorDeCristal(cargaAleatoria.obtener());
     }
 
-    public Pieza crearAsteoride() {
+    public Pieza crearAsteroide() {
 
         return new Asteroide(durezaAleatoria.obtener());
     }
@@ -64,12 +64,12 @@ public class FabricaDePiezas {
         return new AgujeroNegro();
     }
 
-    public NaveEspacial crearNaveEspacial() {
+    public NaveEspacial crearNave() {
 
         return new CazaEspacial(nomenclador.nombrarNave());
     }
 
-    public BaseEspacial crearBaseEspacial() {
+    public BaseEspacial crearBase() {
 
         return new EstacionCentral();
     }

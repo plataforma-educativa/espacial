@@ -9,9 +9,11 @@ import espacial.Chocable;
 import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
 import espacial.Visitante;
+import espacial.excepciones.LaBaseNoEstaEnUnCasillero;
 import espacial.piezas.rasgos.Aliado;
 import espacial.piezas.rasgos.BaseDeposito;
 import espacial.piezas.rasgos.PiezaAtacable;
+import espacial.utiles.Referencia;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,18 +24,19 @@ public class EstacionCentral implements BaseEspacial, PiezaAtacable, BaseDeposit
     private final Bodega bodega = new Bodega(obtenerCapacidad());
     private final List<Amarre> amarres = new LinkedList<>();
     private final Observadores observadores = new Observadores();
-    private Casillero casillero;
+    private final Referencia<Casillero> casillero = Referencia.conValorNulo();
 
     public EstacionCentral() {
 
         puntos.cuandoSeAgota(this::fueDestruido);
         puntos.cuandoCambia(this::notificarQueCambioElEstado);
         bodega.cuandoCambiaLaCarga(this::notificarQueCambioElEstado);
+        casillero.siEsNuloAlObtener(this::lanzarExcepcionPorqueEstaEnUnCasillero);
     }
 
     private void fueDestruido() {
 
-        casillero.desocupar();
+        casillero.obtener().desocupar();
         notificarQueFueDestruido();
     }
 
@@ -47,10 +50,15 @@ public class EstacionCentral implements BaseEspacial, PiezaAtacable, BaseDeposit
         observadores.cambioElEstadoDe(this);
     }
 
+    private Casillero lanzarExcepcionPorqueEstaEnUnCasillero() {
+
+        throw new LaBaseNoEstaEnUnCasillero();
+    }
+
     @Override
-    public void fueColocadaEn(Casillero casillero) {
+    public void fueColocadaEn(Casillero unCasillero) {
      
-        this.casillero = casillero;
+        casillero.cambiar(unCasillero);
     }
 
     @Override
@@ -157,7 +165,7 @@ public class EstacionCentral implements BaseEspacial, PiezaAtacable, BaseDeposit
 
             if (amarres.remove(this)) {
 
-                casillero.ocuparCon(pieza);
+                casillero.obtener().ocuparCon(pieza);
             }
         }
     }

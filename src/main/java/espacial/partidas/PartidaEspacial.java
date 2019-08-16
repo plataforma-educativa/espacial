@@ -13,7 +13,7 @@ public abstract class PartidaEspacial implements espacial.Partida {
 
     private static Opcional<PartidaEspacial> instancia = Opcional.sinValor();
 
-    private final Tablero tablero;
+    protected final Tablero tablero;
     private final List<Participante> participantes = new LinkedList<>();
 
     public PartidaEspacial(Tablero unTablero) {
@@ -33,7 +33,7 @@ public abstract class PartidaEspacial implements espacial.Partida {
         return participantes.toArray(new Participante[0]);
     }
 
-    protected NaveEspacial crearNaveEspacialPara(Participante unParticipante) {
+    protected NaveEspacial crearNavePara(Participante unParticipante) {
 
         participantes.add(unParticipante);
 

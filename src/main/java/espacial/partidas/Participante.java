@@ -13,6 +13,6 @@ public abstract class Participante {
 
     protected NaveEspacial crearNaveEspacial() {
 
-        return partida.crearNaveEspacialPara(this);
+        return partida.crearNavePara(this);
     }
 }

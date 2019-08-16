@@ -163,7 +163,7 @@ class FabricaDePiezasTest implements TestDeContrato {
 
         dadoQue(fueCreadaUnaFabricaDePiezas());
 
-        piezaCreada = unaFabrica.crearAsteoride();
+        piezaCreada = unaFabrica.crearAsteroide();
 
         comprobarQue(unaPiezasEsUnAsteoride());
     }
@@ -192,7 +192,7 @@ class FabricaDePiezasTest implements TestDeContrato {
 
         for (int i = 0; i < 10_000; i++) {
 
-            Pieza asteroide = unaFabrica.crearAsteoride();
+            Pieza asteroide = unaFabrica.crearAsteroide();
 
             int puntosIniciales = asteroide.obtenerPuntos();
             asteroide.fueAtacadoCon(Atacable::atacadoConLaser);
@@ -236,7 +236,7 @@ class FabricaDePiezasTest implements TestDeContrato {
 
         dadoQue(fueCreadaUnaFabricaDePiezas());
 
-        piezaCreada = unaFabrica.crearNaveEspacial();
+        piezaCreada = unaFabrica.crearNave();
 
         comprobarQue(laPiezaCreadaEsUnaNave());
     }
@@ -258,7 +258,7 @@ class FabricaDePiezasTest implements TestDeContrato {
 
         dadoQue(fueCreadaUnaFabricaDePiezas());
 
-        piezaCreada = unaFabrica.crearBaseEspacial();
+        piezaCreada = unaFabrica.crearBase();
 
         comprobarQue(laPiezaCreadaEsUnaBase());
 

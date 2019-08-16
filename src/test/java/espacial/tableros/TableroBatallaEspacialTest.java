@@ -104,7 +104,7 @@ class TableroBatallaEspacialTest implements TestDeContrato {
 
         dadoQue(fueCreadoUnTablero());
 
-        unaBase = unTablero.colocarBaseEnCasillero(1, 4);
+        unaBase = unTablero.enCasillero(1, 4).crearBase();
 
         comprobarQue(unaBaseFueColocadaEnLaPosicion(1, 4));
     }

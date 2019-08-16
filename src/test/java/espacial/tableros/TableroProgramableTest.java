@@ -106,4 +106,5 @@ class TableroProgramableTest implements TestDeContrato {
 
         return post(condicion -> assertThat(casillerosIterados).hasSize(cantidadDeCasilleros));
     }
+
 }

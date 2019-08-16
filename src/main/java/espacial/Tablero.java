@@ -49,7 +49,22 @@ public interface Tablero {
         }
     }
 
-    BaseEspacial colocarBaseEnCasillero(int fila, int columna);
+    default void conCadaCasilleroEnRango(int filaInicial, int columnaInicial,
+                                         int filaFinal, int columnaFinal,
+                                         ConsumidorDeCasilleros unConsumidor) {
+
+        for (int fila = filaInicial; fila < filaFinal; fila++) {
+
+            for (int columa = columnaInicial; columa < columnaFinal; columa++) {
+
+                obtenerCasilleroEn(fila, columa).aceptar(unConsumidor);
+            }
+        }
+    }
+
+    AccionSingular enCasillero(int fila, int columna);
+
+    Accion enCasilleros(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal);
 
     NaveEspacial crearNave();
 
@@ -59,4 +74,27 @@ public interface Tablero {
 
         void fueAgregadaEn(Casillero casillero, Pieza unaPieza);
     }
+
+    interface Accion {
+
+        void crearAsteroide();
+
+        void crearContenedorDeAntimateria();
+
+        void crearContenedorDeMetal();
+
+        void crearContenedorDeCristal();
+
+        void crearAgujeroNegro();
+
+        void crearBaseDesconocida();
+    }
+
+    interface AccionSingular extends Accion {
+
+        BaseEspacial crearBase();
+
+        NaveEspacial crearNave();
+    }
+
 }
