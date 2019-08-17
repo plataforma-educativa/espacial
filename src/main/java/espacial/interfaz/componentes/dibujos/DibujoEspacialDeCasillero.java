@@ -1,17 +1,15 @@
 package espacial.interfaz.componentes.dibujos;
 
 import espacial.Casillero;
-import espacial.VisitanteDeCasilleros;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 
-public class DibujoEspacialDeCasillero extends Rectangle implements DibujoEspacial, VisitanteDeCasilleros {
+public class DibujoEspacialDeCasillero extends Rectangle implements DibujoEspacial, Casillero.Visitante {
 
     private static final Paint COLOR_BORDE = Color.web("4e4d50");
     private static final Paint COLOR_CASILLERO_PAR = Color.web("dddddd");
     private static final Paint COLOR_CASILLERO_IMPAR = Color.web("888888");
-
 
     public DibujoEspacialDeCasillero(Casillero casillero) {
 

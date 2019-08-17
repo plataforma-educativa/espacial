@@ -7,7 +7,6 @@ import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
-import espacial.VisitanteDeCasilleros;
 
 public class CasilleroInterior extends CasilleroDelTablero {
 
@@ -102,13 +101,13 @@ public class CasilleroInterior extends CasilleroDelTablero {
     }
 
     @Override
-    public void aceptar(Casillero.Consumidor unConsumidor) {
+    public void aceptar(Consumidor unConsumidor) {
 
         estado.alAceptar(unConsumidor);
     }
 
     @Override
-    public void aceptar(VisitanteDeCasilleros unVistante) {
+    public void aceptar(Visitante unVistante) {
 
         unVistante.siEsInterior(this);
     }

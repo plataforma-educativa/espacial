@@ -77,11 +77,22 @@ public interface Casillero extends Objetivo, Partidario {
 
     void aceptar(Casillero.Consumidor unConsumidor);
 
-    void aceptar(VisitanteDeCasilleros unVisitante);
+    void aceptar(Visitante unVisitante);
 
     @FunctionalInterface
     interface Consumidor {
 
         void aceptar(Casillero casillero, Pieza... piezas);
+    }
+
+    interface Visitante {
+
+        default void siEsBorde(Casillero casillero) {
+
+        }
+
+        default void siEsInterior(Casillero casillero) {
+
+        }
     }
 }

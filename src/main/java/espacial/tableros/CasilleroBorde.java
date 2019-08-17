@@ -9,7 +9,6 @@ import espacial.EspectroEspacial;
 import espacial.Obstaculo;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
-import espacial.VisitanteDeCasilleros;
 import espacial.excepciones.LaOperacionNoEstaSoportada;
 import espacial.excepciones.NoPuedeEntregarUnaCarga;
 import espacial.excepciones.NoPuedeRecibirUnaCarga;
@@ -99,13 +98,13 @@ public class CasilleroBorde extends CasilleroDelTablero implements Obstaculo {
     }
 
     @Override
-    public void aceptar(Casillero.Consumidor unConsumidor) {
+    public void aceptar(Consumidor unConsumidor) {
 
         unConsumidor.aceptar(this);
     }
 
     @Override
-    public void aceptar(VisitanteDeCasilleros unVistante) {
+    public void aceptar(Visitante unVistante) {
 
         unVistante.siEsBorde(this);
     }
