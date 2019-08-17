@@ -363,4 +363,17 @@ class TableroEspacialTest implements TestDeContrato {
         comprobarQue(fueNotificadoPorAgregarUnaNaveEspacialA(UN_OBSERVADOR));
         comprobarQue(fueNotificadoPorAgregarUnaNaveEspacialA(OTRO_OBSERVADOR));
     }
+
+    @Test
+    void tieneToString() {
+
+        dadoQue(unTableroFueCreadoConLimites(-10, 10, -26, 26));
+
+        comprobarQue(unTableroEsDescriptivo());
+    }
+
+    private Postcondicion unTableroEsDescriptivo() {
+
+        return post(condicion -> assertThat(unTablero).hasToString("Tablero[-10..10][-26..26]"));
+    }
 }

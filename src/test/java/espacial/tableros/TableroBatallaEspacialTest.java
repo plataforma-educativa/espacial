@@ -97,17 +97,4 @@ class TableroBatallaEspacialTest implements TestDeContrato {
             assertThat(unTablero.obtenerCasilleroEn(fila, columna).obtenerPieza()).isSameAs(unaBase);
         });
     }
-
-    @Test
-    void tieneToString() {
-
-        dadoQue(fueCreadoUnTablero());
-
-        comprobarQue(unTableroEsDescriptivo());
-    }
-
-    private Postcondicion unTableroEsDescriptivo() {
-
-        return post(condicion -> assertThat(unTablero).hasToString("Tablero[-10..10][-26..26]"));
-    }
 }
