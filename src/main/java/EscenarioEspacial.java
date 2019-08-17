@@ -91,4 +91,9 @@ public class EscenarioEspacial extends PartidaEspacial {
 
         tablero.enCasillero(fila, columna).ocuparConNave();
     }
+
+    public void colocar(Espacial espacial, int fila, int columna) {
+
+        espacial.colocarEn(tablero, fila, columna);
+    }
 }
