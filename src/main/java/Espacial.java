@@ -7,7 +7,7 @@ public enum Espacial {
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
-            tablero.enCasillero(fila, columna).ocuparConBase();
+            tablero.enCasillero(fila, columna).colocarBase();
         }
     },
     NAVE {
@@ -15,7 +15,7 @@ public enum Espacial {
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
-            tablero.enCasillero(fila, columna).ocuparConNave();
+            tablero.enCasillero(fila, columna).colocarNave();
         }
     },
     ASTEROIDE {
@@ -23,7 +23,7 @@ public enum Espacial {
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
-            tablero.enCasillero(fila, columna).ocuparConAsteroide();
+            tablero.enCasillero(fila, columna).colocarAsteroide();
         }
     },
     CONTENEDOR_ANTIMATERIA {
@@ -31,7 +31,7 @@ public enum Espacial {
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
-            tablero.enCasillero(fila, columna).ocuparConContenedorDeAntimateria();
+            tablero.enCasillero(fila, columna).colocarContenedorDeAntimateria();
         }
     },
     CONTENEDOR_CRISTAL {
@@ -39,7 +39,7 @@ public enum Espacial {
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
-            tablero.enCasillero(fila, columna).ocuparConContenedorDeCristal();
+            tablero.enCasillero(fila, columna).colocarContenedorDeCristal();
         }
     },
     CONTENEDOR_METAL {
@@ -47,7 +47,7 @@ public enum Espacial {
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
-            tablero.enCasillero(fila, columna).ocuparConContenedorDeMetal();
+            tablero.enCasillero(fila, columna).colocarContenedorDeMetal();
         }
     },
     AGUJERO_NEGRO {
@@ -55,7 +55,7 @@ public enum Espacial {
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
-            tablero.enCasillero(fila, columna).ocuparConAgujeroNegro();
+            tablero.enCasillero(fila, columna).colocarAgujeroNegro();
         }
     },
     BASE_DESCONOCIDA {
@@ -63,7 +63,7 @@ public enum Espacial {
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
-            tablero.enCasillero(fila, columna).ocuparConBaseDesconocida();
+            tablero.enCasillero(fila, columna).colocarBaseDesconocida();
         }
     };
 

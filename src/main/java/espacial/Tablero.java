@@ -45,24 +45,24 @@ public interface Tablero {
 
     interface EnCasilleros {
 
-        void ocuparConAsteroide();
+        void colocarAsteroide();
 
-        void ocuparConContenedorDeAntimateria();
+        void colocarContenedorDeAntimateria();
 
-        void ocuparConContenedorDeMetal();
+        void colocarContenedorDeMetal();
 
-        void ocuparConContenedorDeCristal();
+        void colocarContenedorDeCristal();
 
-        void ocuparConAgujeroNegro();
+        void colocarAgujeroNegro();
 
-        void ocuparConBaseDesconocida();
+        void colocarBaseDesconocida();
     }
 
     interface EnCasillero extends EnCasilleros {
 
-        BaseEspacial ocuparConBase();
+        BaseEspacial colocarBase();
 
-        NaveEspacial ocuparConNave();
+        NaveEspacial colocarNave();
     }
 
     interface EnBase {

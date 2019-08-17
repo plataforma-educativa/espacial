@@ -16,7 +16,7 @@ public abstract class PartidaEspacialConBaseCentral extends PartidaEspacial {
     @Override
     public void inicializar() {
 
-        base = tablero.enCasillero(0, 0).ocuparConBase();
+        base = tablero.enCasillero(0, 0).colocarBase();
 
         super.inicializar();
     }

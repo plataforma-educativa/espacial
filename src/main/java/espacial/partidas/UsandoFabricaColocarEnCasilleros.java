@@ -6,17 +6,17 @@ import espacial.utiles.Proveedor;
 
 import java.util.List;
 
-public class UsandoFabricaOcuparEnCasilleros extends UsandoFabricaOcupar {
+public class UsandoFabricaColocarEnCasilleros extends UsandoFabricaColocar {
 
     private final List<Casillero> casilleros;
 
-    public UsandoFabricaOcuparEnCasilleros(FabricaDePiezas unaFabrica, List<Casillero> variosCasilleros) {
+    public UsandoFabricaColocarEnCasilleros(FabricaDePiezas unaFabrica, List<Casillero> variosCasilleros) {
 
         super(unaFabrica);
         casilleros = variosCasilleros;
     }
 
-    protected void ocuparCon(final Proveedor<Pieza> proveedor) {
+    protected void colocar(final Proveedor<Pieza> proveedor) {
 
         casilleros.forEach(casillero -> casillero.ocuparCon(proveedor.obtener()));
     }

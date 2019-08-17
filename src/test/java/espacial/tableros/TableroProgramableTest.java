@@ -119,7 +119,7 @@ class TableroProgramableTest implements TestDeContrato {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
 
-        unTablero.enCasillero(1, 2).ocuparConAsteroide();
+        unTablero.enCasillero(1, 2).colocarAsteroide();
 
         comprobarQue(unTableroTieneUnAsteroideEn(1, 2));
     }
@@ -134,7 +134,7 @@ class TableroProgramableTest implements TestDeContrato {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
 
-        unTablero.enCasillero(1, 1).ocuparConContenedorDeAntimateria();
+        unTablero.enCasillero(1, 1).colocarContenedorDeAntimateria();
 
         comprobarQue(unTableroTieneUnContenedorDeAntimateriaEn(1, 1));
     }
@@ -149,7 +149,7 @@ class TableroProgramableTest implements TestDeContrato {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
 
-        unTablero.enCasillero(1, 1).ocuparConContenedorDeCristal();
+        unTablero.enCasillero(1, 1).colocarContenedorDeCristal();
 
         comprobarQue(unTableroTieneUnContenedorDeCristalEn(1, 1));
     }
@@ -164,7 +164,7 @@ class TableroProgramableTest implements TestDeContrato {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
 
-        unTablero.enCasillero(1, 1).ocuparConContenedorDeMetal();
+        unTablero.enCasillero(1, 1).colocarContenedorDeMetal();
 
         comprobarQue(unTableroTieneUnContenedorDeMetalEn(1, 1));
     }
@@ -179,7 +179,7 @@ class TableroProgramableTest implements TestDeContrato {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
 
-        unTablero.enCasillero(2, 2).ocuparConAgujeroNegro();
+        unTablero.enCasillero(2, 2).colocarAgujeroNegro();
 
         comprobarQue(unTableroTieneUnAgujeroNegroEn(2, 2));
     }
@@ -194,7 +194,7 @@ class TableroProgramableTest implements TestDeContrato {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
 
-        unTablero.enCasillero(3, 2).ocuparConBaseDesconocida();
+        unTablero.enCasillero(3, 2).colocarBaseDesconocida();
 
         comprobarQue(unTableroTieneUnaBaseDesiertaEn(3, 2));
     }
@@ -209,7 +209,7 @@ class TableroProgramableTest implements TestDeContrato {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
 
-        unaNaveEspacial = unTablero.enCasillero(3, 1).ocuparConNave();
+        unaNaveEspacial = unTablero.enCasillero(3, 1).colocarNave();
 
         comprobarQue(unTableroTieneUnaNaveEn(3, 1));
         comprobarQue(unaNaveEspacialEstaEn(3, 1));
@@ -233,7 +233,7 @@ class TableroProgramableTest implements TestDeContrato {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
 
-        unaBaseEspacial = unTablero.enCasillero(1, 3).ocuparConBase();
+        unaBaseEspacial = unTablero.enCasillero(1, 3).colocarBase();
 
         comprobarQue(unTableroTieneUnaBaseEn(1, 3));
         comprobarQue(unaBaseEspacialEstaEn(1, 3));

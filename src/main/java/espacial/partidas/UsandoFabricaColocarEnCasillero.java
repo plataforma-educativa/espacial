@@ -7,17 +7,17 @@ import espacial.Pieza;
 import espacial.Tablero;
 import espacial.utiles.Proveedor;
 
-public class UsandoFabricaOcuparEnCasillero extends UsandoFabricaOcupar implements Tablero.EnCasillero {
+public class UsandoFabricaColocarEnCasillero extends UsandoFabricaColocar implements Tablero.EnCasillero {
 
     private final Casillero casillero;
 
-    public UsandoFabricaOcuparEnCasillero(FabricaDePiezas unaFabrica, Casillero unCasillero) {
+    public UsandoFabricaColocarEnCasillero(FabricaDePiezas unaFabrica, Casillero unCasillero) {
 
         super(unaFabrica);
         casillero = unCasillero;
     }
 
-    protected void ocuparCon(final Proveedor<Pieza> proveedor) {
+    protected void colocar(final Proveedor<Pieza> proveedor) {
 
         ocuparCon(proveedor.obtener());
     }
@@ -30,13 +30,13 @@ public class UsandoFabricaOcuparEnCasillero extends UsandoFabricaOcupar implemen
     }
 
     @Override
-    public BaseEspacial ocuparConBase() {
+    public BaseEspacial colocarBase() {
 
         return ocuparCon(fabrica.crearBase());
     }
 
     @Override
-    public NaveEspacial ocuparConNave() {
+    public NaveEspacial colocarNave() {
 
         return ocuparCon(fabrica.crearNave());
     }

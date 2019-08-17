@@ -5,9 +5,9 @@ import espacial.Casillero;
 import espacial.Coordenadas;
 import espacial.Pieza;
 import espacial.partidas.FabricaDePiezas;
+import espacial.partidas.UsandoFabricaColocarEnCasillero;
+import espacial.partidas.UsandoFabricaColocarEnCasilleros;
 import espacial.partidas.UsandoFabricaEnBase;
-import espacial.partidas.UsandoFabricaOcuparEnCasillero;
-import espacial.partidas.UsandoFabricaOcuparEnCasilleros;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -147,7 +147,7 @@ public abstract class TableroEspacial implements TableroContenedor {
 
         Casillero casillero = obtenerCasilleroEn(fila, columna);
 
-        return new UsandoFabricaOcuparEnCasillero(fabrica, casillero);
+        return new UsandoFabricaColocarEnCasillero(fabrica, casillero);
     }
 
     @Override
@@ -161,7 +161,7 @@ public abstract class TableroEspacial implements TableroContenedor {
 
         List<Casillero> casilleros = obtenerCasillerosEnRango(filaInicial, columnaInicial, filaFinal, columnaFinal);
 
-        return new UsandoFabricaOcuparEnCasilleros(fabrica, casilleros);
+        return new UsandoFabricaColocarEnCasilleros(fabrica, casilleros);
     }
 
     @Override

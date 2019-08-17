@@ -54,42 +54,42 @@ public class EscenarioEspacial extends PartidaEspacial {
 
     public void colocarBaseEn(int fila, int columna) {
 
-        base.cambiar(tablero.enCasillero(fila, columna).ocuparConBase());
+        base.cambiar(tablero.enCasillero(fila, columna).colocarBase());
     }
 
     public void colocarAsteroideEn(int fila, int columna) {
 
-        tablero.enCasillero(fila, columna).ocuparConAsteroide();
+        tablero.enCasillero(fila, columna).colocarAsteroide();
     }
 
     public void colocarContenedorDeAntimateriaEn(int fila, int columna) {
 
-        tablero.enCasillero(fila, columna).ocuparConContenedorDeAntimateria();
+        tablero.enCasillero(fila, columna).colocarContenedorDeAntimateria();
     }
 
     public void colocarContenedorDeCristalEn(int fila, int columna) {
 
-        tablero.enCasillero(fila, columna).ocuparConContenedorDeCristal();
+        tablero.enCasillero(fila, columna).colocarContenedorDeCristal();
     }
 
     public void colocarContenedorDeMetalEn(int fila, int columna) {
 
-        tablero.enCasillero(fila, columna).ocuparConContenedorDeMetal();
+        tablero.enCasillero(fila, columna).colocarContenedorDeMetal();
     }
 
     public void colocarAgujeroNegroEn(int fila, int columna) {
 
-        tablero.enCasillero(fila, columna).ocuparConAgujeroNegro();
+        tablero.enCasillero(fila, columna).colocarAgujeroNegro();
     }
 
     public void colocarBaseDesconocidaEn(int fila, int columna) {
 
-        tablero.enCasillero(fila, columna).ocuparConBaseDesconocida();
+        tablero.enCasillero(fila, columna).colocarBaseDesconocida();
     }
 
     public void colocarNaveEn(int fila, int columna) {
 
-        tablero.enCasillero(fila, columna).ocuparConNave();
+        tablero.enCasillero(fila, columna).colocarNave();
     }
 
     public void colocar(Espacial espacial, int fila, int columna) {
