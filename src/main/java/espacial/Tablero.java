@@ -29,39 +29,6 @@ public interface Tablero {
 
     void conCadaCasillero(ConsumidorDeCasilleros unConsumidor);
 
-    default void conCadaCoordenada(ConsumidorDeCoordenadas consumidor) {
-
-        conCadaCoordenadaEnRango(obtenerFilaMinima(), obtenerColumnaMinima(),
-                obtenerFilaMaxima(), obtenerColumnaMaxima(),
-                consumidor);
-    }
-
-    default void conCadaCoordenadaEnRango(int filaInicial, int columnaInicial,
-                                          int filaFinal, int columnaFinal,
-                                          ConsumidorDeCoordenadas consumidor) {
-
-        for (int fila = filaInicial; fila <= filaFinal; fila++) {
-
-            for (int columna = columnaInicial; columna <= columnaFinal; columna++) {
-
-                consumidor.aceptar(fila, columna);
-            }
-        }
-    }
-
-    default void conCadaCasilleroEnRango(int filaInicial, int columnaInicial,
-                                         int filaFinal, int columnaFinal,
-                                         ConsumidorDeCasilleros unConsumidor) {
-
-        for (int fila = filaInicial; fila < filaFinal; fila++) {
-
-            for (int columa = columnaInicial; columa < columnaFinal; columa++) {
-
-                obtenerCasilleroEn(fila, columa).aceptar(unConsumidor);
-            }
-        }
-    }
-
     AccionSingular enCasillero(int fila, int columna);
 
     Accion enCasilleros(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal);
@@ -70,6 +37,7 @@ public interface Tablero {
 
     void registrar(Observador unObservador);
 
+    @FunctionalInterface
     interface Observador {
 
         void fueAgregadaEn(Casillero casillero, Pieza unaPieza);

@@ -49,6 +49,16 @@ class TableroDesiertoTest implements TestDeContrato {
 
     private Postcondicion noTieneNingunaPieza() {
 
-        return post(condicion -> assertThat(unTableroDesierto).yTieneVacioEnElResto());
+        return post(condicion ->
+
+                assertThat(unTableroDesierto)
+                        .tieneBorde()
+                        .entre(11, -11, 11, 11)
+                        .entre(-11, -11, -11, 11)
+                        .entre(-11, -11, 11, -11)
+                        .entre(-11, 11, 11, 11)
+                        .yTieneVacioEnElResto()
+
+        );
     }
 }

@@ -49,14 +49,6 @@ public abstract class TableroEspacial implements TableroContenedor {
         casilleros[indiceFila(fila)][indiceColumna(columna)] = new CasilleroBorde(this, fila, columna);
     }
 
-    protected void colocarEntreCoordenadas(int filaInicial, int columnaInicial,
-                                         int filaFinal, int columnaFinal,
-                                         Proveedor<? extends Pieza> proveedorDePieza) {
-
-        conCadaCoordenadaEnRango(filaInicial, columnaInicial, filaFinal, columnaFinal,
-                (fila, columna) -> colocarEnCoordenada(fila, columna, proveedorDePieza));
-    }
-
     protected void colocarEnCoordenada(int fila, int columna, Proveedor<? extends Pieza> proveedorDePieza) {
 
         colocarEnCoordenada(fila, columna, proveedorDePieza.obtener());
@@ -99,6 +91,26 @@ public abstract class TableroEspacial implements TableroContenedor {
             for (int columa = 0; columa < casilleros[fila].length; columa++) {
 
                 casilleros[fila][columa].aceptar(unConsumidor);
+            }
+        }
+    }
+
+    private void conCadaCoordenada(ConsumidorDeCoordenadas consumidor) {
+
+        conCadaCoordenadaEnRango(obtenerFilaMinima(), obtenerColumnaMinima(),
+                obtenerFilaMaxima(), obtenerColumnaMaxima(),
+                consumidor);
+    }
+
+    private void conCadaCoordenadaEnRango(int filaInicial, int columnaInicial,
+                                          int filaFinal, int columnaFinal,
+                                          ConsumidorDeCoordenadas consumidor) {
+
+        for (int fila = filaInicial; fila <= filaFinal; fila++) {
+
+            for (int columna = columnaInicial; columna <= columnaFinal; columna++) {
+
+                consumidor.aceptar(fila, columna);
             }
         }
     }

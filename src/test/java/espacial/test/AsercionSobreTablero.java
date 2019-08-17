@@ -4,6 +4,7 @@ import espacial.Casillero;
 import espacial.Coordenadas;
 import espacial.EspectroEspacial;
 import espacial.Partidario;
+import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.Tablero;
 import org.assertj.core.api.AbstractAssert;
@@ -53,6 +54,16 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
     public AsercionSobreTablero tieneNave() {
 
         return tiene(EspectroEspacial.NAVE);
+    }
+
+    public AsercionSobreTablero tieneAgujeroNegro() {
+
+        return tiene(EspectroEspacial.DESCONOCIDO);
+    }
+
+    public AsercionSobreTablero tieneBorde() {
+
+        return tiene(EspectroEspacial.DESCONOCIDO);
     }
 
     private AsercionSobreTablero tiene(EspectroEspacial espectro) {
@@ -128,25 +139,20 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
         return this;
     }
 
-    public AsercionSobreTablero tieneAgujeroNegro() {
-
-        espectroEsperado = EspectroEspacial.DESCONOCIDO;
-
-        return this;
-    }
-
     public void yTieneVacioEnElResto() {
 
         tieneVacio();
 
-        actual.conCadaCoordenada(this::comprobarEspectroEsperadoSiNoFueAsertada);
+        actual.conCadaCasillero(this::comprobarEspectroEsperadoSiNoFueAsertada);
     }
 
-    private void comprobarEspectroEsperadoSiNoFueAsertada(int fila, int columna) {
+    private void comprobarEspectroEsperadoSiNoFueAsertada(Casillero casillero, Pieza... piezas) {
 
-        if (!coordenadasAsertadas.contains(Coordenadas.con(fila, columna))) {
+        Coordenadas coordenadas = casillero.obtenerCoordenadas();
 
-            comprobarCasilleroEn(fila, columna);
+        if (!coordenadasAsertadas.contains(coordenadas)) {
+
+            comprobar(casillero);
         }
     }
 
@@ -179,7 +185,10 @@ public class AsercionSobreTablero extends AbstractAssert<AsercionSobreTablero, T
 
         isNotNull();
 
-        Casillero casillero = actual.obtenerCasilleroEn(fila, columna);
+        return comprobar(actual.obtenerCasilleroEn(fila, columna));
+    }
+
+    private AsercionSobreTablero comprobar(Casillero casillero) {
 
         comprobarEspectroEsperadoEn(casillero);
         comprobarSustanciaEsperadaEn(casillero);

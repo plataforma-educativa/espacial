@@ -54,8 +54,8 @@ class BatallaEspacialTest extends TestDeBatallaEspacial implements TestDeContrat
             condicion.es("fue inicializado el tablero con las dimensiones correctas");
 
             assertThat(tablero.contarFilas()).as("filas del Tablero").isEqualTo(21);
-            assertThat(tablero.obtenerFilaMaxima()).as("fila máxima").isEqualTo(10);
             assertThat(tablero.obtenerFilaMinima()).as("fila mínima").isEqualTo(-10);
+            assertThat(tablero.obtenerFilaMaxima()).as("fila máxima").isEqualTo(10);
 
             assertThat(tablero.contarColumnas()).as("columnas del Tablero").isEqualTo(53);
             assertThat(tablero.obtenerColumnaMaxima()).as("columna máxima").isEqualTo(26);
@@ -93,6 +93,11 @@ class BatallaEspacialTest extends TestDeBatallaEspacial implements TestDeContrat
                     .en(1, -7)
                     .tieneBase().esNeutral()
                     .en(-10, 14)
+                    .tieneBorde()
+                    .entre(11, -27, 11, 27)
+                    .entre(-11, -27, -11, 27)
+                    .entre(-11, -27, 11, -27)
+                    .entre(-11, 27, 11, 27)
                     .yTieneVacioEnElResto();
         });
     }

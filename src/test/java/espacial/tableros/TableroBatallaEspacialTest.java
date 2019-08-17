@@ -49,26 +49,6 @@ class TableroBatallaEspacialTest implements TestDeContrato {
     }
 
     @Test
-    void conCadaCoordenada() {
-
-        dadoQue(fueCreadoUnTablero());
-
-        unTablero.conCadaCoordenada((fila, columna) -> coordenadasIteradas.add(Coordenadas.con(fila, columna)));
-
-        comprobarQue(fueronIteradasTodasLasCoordenadas());
-    }
-
-    private Postcondicion fueronIteradasTodasLasCoordenadas() {
-
-        return post(condicion ->
-
-                assertThat(coordenadasIteradas)
-                        .as("conjunto con las coordenadas iteradas")
-                        .hasSize(unTablero.contarFilas() * unTablero.contarColumnas())
-        );
-    }
-
-    @Test
     void obtenerCasilleroEnFilaColumna() {
 
         dadoQue(fueCreadoUnTablero());
