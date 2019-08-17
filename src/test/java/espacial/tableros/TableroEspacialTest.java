@@ -19,12 +19,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class TableroProgramableTest implements TestDeContrato {
+class TableroEspacialTest implements TestDeContrato {
 
     private final Tablero.Observador UN_OBSERVADOR = mock(Tablero.Observador.class, "UN_OBSERVADOR");
     private final Tablero.Observador OTRO_OBSERVADOR = mock(Tablero.Observador.class, "OTRO_OBSERVADOR");
 
-    private TableroProgramable unTablero;
+    private TableroEspacial unTablero;
 
     private NaveEspacial unaNaveEspacial;
     private BaseEspacial unaBaseEspacial;
@@ -42,7 +42,7 @@ class TableroProgramableTest implements TestDeContrato {
 
     private Precondicion unTableroFueCreadoConDimensiones(int filas, int columnas) {
 
-        return pre(condicion -> unTablero = new TableroProgramable(filas, columnas));
+        return pre(condicion -> unTablero = new TableroEspacial(filas, columnas));
     }
 
     private Postcondicion unTableroTieneDimensiones(int filas, int columnas) {
@@ -68,19 +68,19 @@ class TableroProgramableTest implements TestDeContrato {
     @Test
     void crearConDimensionesInvalidas() {
 
-        comprobarQue(generaUnaExcepcionPorqueElParametroEsInvalido(() -> new TableroProgramable(-4, 5)));
-        comprobarQue(generaUnaExcepcionPorqueElParametroEsInvalido(() -> new TableroProgramable(10, 0)));
+        comprobarQue(generaUnaExcepcionPorqueElParametroEsInvalido(() -> new TableroEspacial(-4, 5)));
+        comprobarQue(generaUnaExcepcionPorqueElParametroEsInvalido(() -> new TableroEspacial(10, 0)));
     }
 
     private Postcondicion generaUnaExcepcionPorqueElParametroEsInvalido(Operacion operacion) {
 
-        return post(condicion -> {
+        return post(condicion ->
 
-            assertThatThrownBy(operacion::ejecutar)
-                    .as("excepción lanzada")
-                    .isInstanceOf(ParametroInvalido.class);
+                assertThatThrownBy(operacion::ejecutar)
+                        .as("excepción lanzada")
+                        .isInstanceOf(ParametroInvalido.class)
 
-        });
+        );
     }
 
     @Test
@@ -94,14 +94,14 @@ class TableroProgramableTest implements TestDeContrato {
 
     private Precondicion unTableroFueCreadoConLimites(int filaDesde, int filaHasta, int columnaDesde, int columnaHasta) {
 
-        return pre(condicion -> unTablero = new TableroProgramable(filaDesde, filaHasta, columnaDesde, columnaHasta));
+        return pre(condicion -> unTablero = new TableroEspacial(filaDesde, filaHasta, columnaDesde, columnaHasta));
     }
 
     @Test
     void crearConLimitesInvalidos() {
 
-        comprobarQue(generaUnaExcepcionPorqueElParametroEsInvalido(() -> new TableroProgramable(9, 5, 1, 10)));
-        comprobarQue(generaUnaExcepcionPorqueElParametroEsInvalido(() -> new TableroProgramable(1, 9, 10, 0)));
+        comprobarQue(generaUnaExcepcionPorqueElParametroEsInvalido(() -> new TableroEspacial(9, 5, 1, 10)));
+        comprobarQue(generaUnaExcepcionPorqueElParametroEsInvalido(() -> new TableroEspacial(1, 9, 10, 0)));
     }
 
     @Test

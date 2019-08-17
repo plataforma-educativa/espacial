@@ -12,7 +12,7 @@ import espacial.partidas.UsandoFabricaEnBase;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class TableroEspacial implements TableroContenedor {
+public class TableroEspacial implements TableroContenedor {
 
     protected final FabricaDePiezas fabrica = FabricaDePiezas.crear();
     private final Observadores observadores = new Observadores();
@@ -27,6 +27,16 @@ public abstract class TableroEspacial implements TableroContenedor {
         inicializarPiezas();
     }
 
+    public TableroEspacial(int filas, int columnas) {
+
+        this(new Dimensiones(filas, columnas));
+    }
+
+    public TableroEspacial(int filaDesde, int filaHasta, int columnaDesde, int columnaHasta) {
+
+        this(new Dimensiones(filaDesde, filaHasta, columnaDesde, columnaHasta));
+    }
+
     private void inicializarCasilleros() {
 
         borde = new CasilleroBorde(this, Integer.MAX_VALUE, Integer.MAX_VALUE);
@@ -36,7 +46,9 @@ public abstract class TableroEspacial implements TableroContenedor {
         conCadaCoordenadaDelBorde(this::crearCasilleroBorde);
     }
 
-    protected abstract void inicializarPiezas();
+    protected void inicializarPiezas() {
+
+    }
 
     private void crearCasilleroInterior(int fila, int columna) {
 
