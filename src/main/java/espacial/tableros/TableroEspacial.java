@@ -52,22 +52,17 @@ public class TableroEspacial implements TableroContenedor {
 
     private void crearCasilleroInterior(int fila, int columna) {
 
-        casilleros[indiceFila(fila)][indiceColumna(columna)] = new CasilleroInterior(this, fila, columna);
+        asignar(fila, columna, new CasilleroInterior(this, fila, columna));
     }
 
     private void crearCasilleroBorde(int fila, int columna) {
 
-        casilleros[indiceFila(fila)][indiceColumna(columna)] = new CasilleroBorde(this, fila, columna);
+        asignar(fila, columna, new CasilleroBorde(this, fila, columna));
     }
 
-    private int indiceColumna(int columna) {
+    private void asignar(int fila, int columna, Casillero casillero) {
 
-        return columna - obtenerColumnaMinima() + 1;
-    }
-
-    private int indiceFila(int fila) {
-
-        return fila - obtenerFilaMinima() + 1;
+        casilleros[dimensiones.indexarFila(fila)][dimensiones.indexarColumna(columna)] = casillero;
     }
 
     @Override
@@ -84,11 +79,11 @@ public class TableroEspacial implements TableroContenedor {
     @Override
     public void conCadaCasillero(Casillero.Consumidor unConsumidor) {
 
-        for (int fila = 0; fila < casilleros.length; fila++) {
+        for (int indiceFila = 0; indiceFila < casilleros.length; indiceFila++) {
 
-            for (int columa = 0; columa < casilleros[fila].length; columa++) {
+            for (int indiceColumna = 0; indiceColumna < casilleros[indiceFila].length; indiceColumna++) {
 
-                casilleros[fila][columa].aceptar(unConsumidor);
+                casilleros[indiceFila][indiceColumna].aceptar(unConsumidor);
             }
         }
     }
@@ -129,7 +124,7 @@ public class TableroEspacial implements TableroContenedor {
     public Casillero obtenerCasilleroEn(int fila, int columna) {
 
         return estaEnElBorde(fila, columna) ?
-                borde : casilleros[indiceFila(fila)][indiceColumna(columna)];
+                borde :casilleros[dimensiones.indexarFila(fila)][dimensiones.indexarColumna(columna)];
     }
 
 

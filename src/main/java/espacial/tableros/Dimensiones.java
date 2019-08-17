@@ -80,4 +80,14 @@ public class Dimensiones {
 
         return filaMaxima - filaMinima + 1;
     }
+
+    int indexarColumna(int columna) {
+
+        return columna - columnaMinima + 1;
+    }
+
+    int indexarFila(int fila) {
+
+        return fila - filaMinima + 1;
+    }
 }
