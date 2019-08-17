@@ -3,7 +3,6 @@ package espacial.interfaz;
 import espacial.BaseEspacial;
 import espacial.NaveEspacial;
 import espacial.Pieza;
-import espacial.Visitante;
 import espacial.utiles.AccionSobre;
 import espacial.utiles.Proveedor;
 import javafx.scene.layout.Pane;
@@ -11,7 +10,7 @@ import javafx.scene.layout.Pane;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VistaListaInformes implements Visitante {
+public class VistaListaInformes implements Pieza.Visitante {
 
     private final Pane panel;
     private final AccionSobre<VistaInforme> alAgregar;

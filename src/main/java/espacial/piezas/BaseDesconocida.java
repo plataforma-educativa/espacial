@@ -7,7 +7,6 @@ import espacial.Casillero;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
-import espacial.Visitante;
 import espacial.excepciones.ErrorEspacial;
 import espacial.piezas.rasgos.BaseDeposito;
 import espacial.piezas.rasgos.Neutral;

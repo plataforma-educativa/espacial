@@ -1,13 +1,10 @@
 package espacial.piezas;
 
 import espacial.Ataque;
-import espacial.Casillero;
-import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
 import espacial.Partidario;
 import espacial.Pieza;
-import espacial.Visitante;
 import espacial.test.Postcondicion;
 import espacial.test.TestDeContrato;
 import org.junit.jupiter.api.Test;
@@ -19,7 +16,7 @@ abstract class TestDeContratoSobrePieza<T extends Pieza> implements TestDeContra
 
     final NaveEspacial NAVE_ESPACIAL = mock(NaveEspacial.class, "NAVE_ESPACIAL");
     final Ataque UN_ATAQUE = mock(Ataque.class, "UN_ATAQUE");
-    final Visitante UN_VISITANTE = mock(Visitante.class, "UN_VISITANTE");
+    final Pieza.Visitante UN_VISITANTE = mock(Pieza.Visitante.class, "UN_VISITANTE");
     final Partidario.Condicional SEGUN_ES_PARTIDARIO = mock(Partidario.Condicional.class, "SEGUN_ES_PARTIDARIO");
 
     abstract T piezaCreada();
@@ -53,17 +50,6 @@ abstract class TestDeContratoSobrePieza<T extends Pieza> implements TestDeContra
         pieza.fueChocadaPor(NAVE_ESPACIAL);
 
         comprobarQue(laNaveEspacialFueNotificadaDelChoque());
-    }
-
-    protected Casillero mockCasillero() {
-
-        Casillero casillero = mock(Casillero.class);
-        when(casillero.obtenerContiguoEn(Direccion.NORTE)).thenReturn(mock(Casillero.class, "CASILLERO_NORTE"));
-        when(casillero.obtenerContiguoEn(Direccion.SUR)).thenReturn(mock(Casillero.class, "CASILLERO_SUR"));
-        when(casillero.obtenerContiguoEn(Direccion.OESTE)).thenReturn(mock(Casillero.class, "CASILLERO_OESTE"));
-        when(casillero.obtenerContiguoEn(Direccion.ESTE)).thenReturn(mock(Casillero.class, "CASILLERO_ESTE"));
-
-        return casillero;
     }
 
     @Test

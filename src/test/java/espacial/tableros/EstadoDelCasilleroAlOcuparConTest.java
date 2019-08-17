@@ -2,7 +2,7 @@ package espacial.tableros;
 
 import espacial.BaseEspacial;
 import espacial.NaveEspacial;
-import espacial.Visitante;
+import espacial.Pieza;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import org.junit.jupiter.api.Test;
@@ -34,10 +34,10 @@ class EstadoDelCasilleroAlOcuparConTest extends EstadoDelCasilleroTest {
         return pre(condicion ->
                 doAnswer(invocation -> {
 
-                    invocation.getArgument(0, Visitante.class).siEsNave((NaveEspacial) PIEZA);
+                    invocation.getArgument(0, Pieza.Visitante.class).siEsNave((NaveEspacial) PIEZA);
                     return null;
 
-                }).when(PIEZA).aceptar(any(Visitante.class)));
+                }).when(PIEZA).aceptar(any(Pieza.Visitante.class)));
     }
 
     @Test
@@ -58,10 +58,10 @@ class EstadoDelCasilleroAlOcuparConTest extends EstadoDelCasilleroTest {
         return pre(condicion ->
                 doAnswer(invocation -> {
 
-                    invocation.getArgument(0, Visitante.class).siEsBase((BaseEspacial) BASE);
+                    invocation.getArgument(0, Pieza.Visitante.class).siEsBase((BaseEspacial) BASE);
                     return null;
 
-                }).when(BASE).aceptar(any(Visitante.class))
+                }).when(BASE).aceptar(any(Pieza.Visitante.class))
         );
     }
 

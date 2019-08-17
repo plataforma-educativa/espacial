@@ -6,7 +6,6 @@ import espacial.NaveEspacial;
 import espacial.Obstaculo;
 import espacial.Partidario;
 import espacial.Pieza;
-import espacial.Visitante;
 import espacial.interfaz.ControladorDePartida;
 import javafx.animation.Animation;
 import javafx.animation.FadeTransition;
@@ -33,7 +32,7 @@ public class PanelConPieza extends Group implements Pieza.Observador, Partidario
 
     private final RotacionSegunDireccion rotacion = new RotacionSegunDireccion();
 
-    private final Visitante actualizarEstado = new Visitante() {
+    private final Pieza.Visitante actualizarEstado = new Pieza.Visitante() {
 
         @Override
         public void siEsNave(NaveEspacial pieza) {

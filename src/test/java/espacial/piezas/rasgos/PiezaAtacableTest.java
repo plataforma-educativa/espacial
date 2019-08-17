@@ -2,7 +2,6 @@ package espacial.piezas.rasgos;
 
 import espacial.Chocable;
 import espacial.EspectroEspacial;
-import espacial.Visitante;
 import espacial.excepciones.LaOperacionNoEstaSoportada;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;

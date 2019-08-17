@@ -5,10 +5,9 @@ import espacial.Casillero;
 import espacial.Partidario;
 import espacial.Pieza;
 import espacial.Tablero;
-import espacial.Visitante;
 import espacial.utiles.Referencia;
 
-public class CambiarReferenciaAlSerAgregadaUnaBase implements Tablero.Observador, Visitante {
+public class CambiarReferenciaAlSerAgregadaUnaBase implements Tablero.Observador, Pieza.Visitante {
 
     private final Referencia<BaseEspacial> baseReferenciada;
 

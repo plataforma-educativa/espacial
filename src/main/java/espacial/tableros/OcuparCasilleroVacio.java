@@ -3,9 +3,8 @@ package espacial.tableros;
 import espacial.BaseEspacial;
 import espacial.NaveEspacial;
 import espacial.Pieza;
-import espacial.Visitante;
 
-public class OcuparCasilleroVacio implements Visitante {
+public class OcuparCasilleroVacio implements Pieza.Visitante {
 
     private final CasilleroInterior casillero;
     private EstadoDelCasillero estado;

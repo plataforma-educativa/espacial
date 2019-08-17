@@ -11,7 +11,6 @@ import espacial.NaveEspacial;
 import espacial.Obstaculo;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
-import espacial.Visitante;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.piezas.rasgos.Aliado;

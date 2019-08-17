@@ -8,7 +8,6 @@ import espacial.Casillero;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
 import espacial.NaveEspacial;
-import espacial.Visitante;
 import espacial.excepciones.LaBaseNoEstaEnUnCasillero;
 import espacial.piezas.rasgos.Aliado;
 import espacial.piezas.rasgos.BaseDeposito;

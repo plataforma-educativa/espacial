@@ -5,7 +5,6 @@ import espacial.BaseEspacial;
 import espacial.Casillero;
 import espacial.NaveEspacial;
 import espacial.Pieza;
-import espacial.Visitante;
 import espacial.interfaz.componentes.dibujos.DibujoDeAgujeroNegro;
 import espacial.interfaz.componentes.dibujos.DibujoEspacialDeAsteroide;
 import espacial.interfaz.componentes.dibujos.DibujoEspacialDeBase;
@@ -14,7 +13,7 @@ import espacial.interfaz.componentes.dibujos.DibujoEspacialDeContenedor;
 import espacial.interfaz.componentes.dibujos.DibujoEspacialDeNave;
 import javafx.scene.Node;
 
-public class Dibujante implements Visitante {
+public class Dibujante implements Pieza.Visitante {
 
     private Node dibujo;
 

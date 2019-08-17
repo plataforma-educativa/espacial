@@ -5,7 +5,6 @@ import espacial.Casillero;
 import espacial.Chocable;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
-import espacial.Visitante;
 import espacial.piezas.rasgos.AsteroideAtacable;
 import espacial.piezas.rasgos.Neutral;
 
