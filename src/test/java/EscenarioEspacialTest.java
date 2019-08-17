@@ -117,4 +117,106 @@ public class EscenarioEspacialTest extends TestDeBatallaEspacial implements Test
 
         return post(condicion -> assertThat(unEscenario.obtenerTablero()).tieneAsteroide().en(fila, columna));
     }
+
+    @Test
+    void colocarContenedorDeAntimateriaEn() {
+
+        dadoQue(unEscenarioFueCreadoCon(5, 5));
+
+        unEscenario.colocarContenedorDeAntimateriaEn(2, 2);
+
+        comprobarQue(unEscenarioTieneContenedorDeAntimateriaEn(2, 2));
+    }
+
+    private Postcondicion unEscenarioTieneContenedorDeAntimateriaEn(int fila, int columna) {
+
+        return post(condicion ->
+                assertThat(unEscenario.obtenerTablero()).tieneContenedor().conAntimateria().en(fila, columna)
+        );
+    }
+
+    @Test
+    void colocarContenedorDeCristalEn() {
+
+        dadoQue(unEscenarioFueCreadoCon(5, 5));
+
+        unEscenario.colocarContenedorDeCristalEn(2, 2);
+
+        comprobarQue(unEscenarioTieneContenedorDeCristalEn(2, 2));
+    }
+
+    private Postcondicion unEscenarioTieneContenedorDeCristalEn(int fila, int columna) {
+
+        return post(condicion ->
+                assertThat(unEscenario.obtenerTablero()).tieneContenedor().conCristal().en(fila, columna)
+        );
+    }
+
+    @Test
+    void colocarContenedorDeMetalEn() {
+
+        dadoQue(unEscenarioFueCreadoCon(5, 5));
+
+        unEscenario.colocarContenedorDeMetalEn(2, 2);
+
+        comprobarQue(unEscenarioTieneContenedorDeMetalEn(2, 2));
+    }
+
+    private Postcondicion unEscenarioTieneContenedorDeMetalEn(int fila, int columna) {
+
+        return post(condicion ->
+                assertThat(unEscenario.obtenerTablero()).tieneContenedor().conMetal().en(fila, columna)
+        );
+    }
+
+    @Test
+    void colocarAgujeroNegroEn() {
+
+        dadoQue(unEscenarioFueCreadoCon(5, 5));
+
+        unEscenario.colocarAgujeroNegroEn(3, 3);
+
+        comprobarQue(unEscenarioTieneAgujeroNegroEn(3, 3));
+    }
+
+    private Postcondicion unEscenarioTieneAgujeroNegroEn(int fila, int columna) {
+
+        return post(condicion ->
+                assertThat(unEscenario.obtenerTablero()).tieneAgujeroNegro().en(fila, columna)
+        );
+    }
+
+    @Test
+    void colocarBaseDesconocidaEn() {
+
+        dadoQue(unEscenarioFueCreadoCon(5, 5));
+
+        unEscenario.colocarBaseDesconocidaEn(5, 5);
+
+        comprobarQue(unEscenarioTieneBaseDesconocidaEn(5, 5));
+    }
+
+    private Postcondicion unEscenarioTieneBaseDesconocidaEn(int fila, int columna) {
+
+        return post(condicion ->
+                assertThat(unEscenario.obtenerTablero()).tieneBase().esNeutral().en(fila, columna)
+        );
+    }
+
+    @Test
+    void colocarNaveEn() {
+
+        dadoQue(unEscenarioFueCreadoCon(7, 7));
+
+        unEscenario.colocarNaveEn(5, 5);
+
+        comprobarQue(unEscenarioTieneNaveEn(5, 5));
+    }
+
+    private Postcondicion unEscenarioTieneNaveEn(int fila, int columna) {
+
+        return post(condicion ->
+                assertThat(unEscenario.obtenerTablero()).tieneNave().esAliado().en(fila, columna)
+        );
+    }
 }

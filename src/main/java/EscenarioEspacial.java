@@ -61,4 +61,34 @@ public class EscenarioEspacial extends PartidaEspacial {
 
         tablero.enCasillero(fila, columna).ocuparConAsteroide();
     }
+
+    public void colocarContenedorDeAntimateriaEn(int fila, int columna) {
+
+        tablero.enCasillero(fila, columna).ocuparConContenedorDeAntimateria();
+    }
+
+    public void colocarContenedorDeCristalEn(int fila, int columna) {
+
+        tablero.enCasillero(fila, columna).ocuparConContenedorDeCristal();
+    }
+
+    public void colocarContenedorDeMetalEn(int fila, int columna) {
+
+        tablero.enCasillero(fila, columna).ocuparConContenedorDeMetal();
+    }
+
+    public void colocarAgujeroNegroEn(int fila, int columna) {
+
+        tablero.enCasillero(fila, columna).ocuparConAgujeroNegro();
+    }
+
+    public void colocarBaseDesconocidaEn(int fila, int columna) {
+
+        tablero.enCasillero(fila, columna).ocuparConBaseDesconocida();
+    }
+
+    public void colocarNaveEn(int fila, int columna) {
+
+        tablero.enCasillero(fila, columna).ocuparConNave();
+    }
 }
