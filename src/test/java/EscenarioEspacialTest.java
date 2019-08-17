@@ -38,6 +38,19 @@ public class EscenarioEspacialTest extends TestDeBatallaEspacial implements Test
     }
 
     @Test
+    void obtenerNombre() {
+
+        dadoQue(unEscenarioFueCreadoCon(10, 20));
+
+        comprobarQue(unEscenarioTieneNombre());
+    }
+
+    private Postcondicion unEscenarioTieneNombre() {
+
+        return post(condicion -> assertThat(unEscenario.obtenerNombre()).isEqualTo("Escenario Espacial"));
+    }
+
+    @Test
     void colocarBaseEn() {
 
         dadoQue(unEscenarioFueCreadoCon(5, 5));

@@ -25,7 +25,7 @@ public class EscenarioEspacial extends PartidaEspacial {
     @Override
     public String obtenerNombre() {
 
-        return null;
+        return "Escenario Espacial";
     }
 
     @Override
