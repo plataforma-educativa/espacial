@@ -3,7 +3,6 @@ import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static espacial.test.Aserciones.assertThat;
@@ -72,7 +71,6 @@ public class EscenarioEspacialTest extends TestDeBatallaEspacial implements Test
     }
 
     @Test
-    @Disabled
     void colocarBaseConEspacial() {
 
         dadoQue(unEscenarioFueCreadoCon(9, 9));

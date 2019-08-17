@@ -2,6 +2,7 @@ import espacial.BaseEspacial;
 import espacial.NaveEspacial;
 import espacial.excepciones.ErrorEspacial;
 import espacial.partidas.PartidaEspacial;
+import espacial.tableros.CambiarReferenciaAlSerAgregadaUnaBase;
 import espacial.tableros.TableroEspacial;
 import espacial.utiles.Referencia;
 
@@ -13,6 +14,7 @@ public class EscenarioEspacial extends PartidaEspacial {
 
         super(new TableroEspacial(filas, columnas));
         base.siEsNuloAlObtener(this::lanzarExcepcionPorqueNoExisteUnaBase);
+        tablero.registrar(new CambiarReferenciaAlSerAgregadaUnaBase(base));
     }
 
     private BaseEspacial lanzarExcepcionPorqueNoExisteUnaBase() {
