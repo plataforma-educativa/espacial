@@ -101,4 +101,10 @@ public class Coordenadas {
 
         return nivel * (4 * nivel + coeficiente) + desplazamiento;
     }
+
+    @FunctionalInterface
+    public interface Consumidor {
+
+        void aceptar(int fila, int columna);
+    }
 }

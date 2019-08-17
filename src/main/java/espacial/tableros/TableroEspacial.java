@@ -1,7 +1,7 @@
 package espacial.tableros;
 
 import espacial.Casillero;
-import espacial.ConsumidorDeCoordenadas;
+import espacial.Coordenadas;
 import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.partidas.AccionConFabricaEnCasillero;
@@ -94,7 +94,7 @@ public abstract class TableroEspacial implements TableroContenedor {
         }
     }
 
-    private void conCadaCoordenada(ConsumidorDeCoordenadas consumidor) {
+    private void conCadaCoordenada(Coordenadas.Consumidor consumidor) {
 
         conCadaCoordenadaEnRango(obtenerFilaMinima(), obtenerColumnaMinima(),
                 obtenerFilaMaxima(), obtenerColumnaMaxima(),
@@ -103,7 +103,7 @@ public abstract class TableroEspacial implements TableroContenedor {
 
     private void conCadaCoordenadaEnRango(int filaInicial, int columnaInicial,
                                           int filaFinal, int columnaFinal,
-                                          ConsumidorDeCoordenadas consumidor) {
+                                          Coordenadas.Consumidor consumidor) {
 
         for (int fila = filaInicial; fila <= filaFinal; fila++) {
 
@@ -114,7 +114,7 @@ public abstract class TableroEspacial implements TableroContenedor {
         }
     }
 
-    private void conCadaCoordenadaDelBorde(ConsumidorDeCoordenadas consumidor) {
+    private void conCadaCoordenadaDelBorde(Coordenadas.Consumidor consumidor) {
 
         final int filaMinima = obtenerFilaMinima();
         final int filaMaxima = obtenerFilaMaxima();
