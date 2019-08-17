@@ -1,13 +1,13 @@
 package espacial.tableros;
 
+import espacial.BaseEspacial;
 import espacial.Casillero;
 import espacial.Coordenadas;
-import espacial.NaveEspacial;
 import espacial.Pieza;
-import espacial.partidas.AccionConFabricaEnCasillero;
-import espacial.partidas.AccionConFabricaEnCasilleros;
 import espacial.partidas.FabricaDePiezas;
-import espacial.utiles.Proveedor;
+import espacial.partidas.UsandoFabricaEnBase;
+import espacial.partidas.UsandoFabricaOcuparEnCasillero;
+import espacial.partidas.UsandoFabricaOcuparEnCasilleros;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -46,16 +46,6 @@ public abstract class TableroEspacial implements TableroContenedor {
     private void crearCasilleroBorde(int fila, int columna) {
 
         casilleros[indiceFila(fila)][indiceColumna(columna)] = new CasilleroBorde(this, fila, columna);
-    }
-
-    protected void colocarEnCoordenada(int fila, int columna, Proveedor<? extends Pieza> proveedorDePieza) {
-
-        colocarEnCoordenada(fila, columna, proveedorDePieza.obtener());
-    }
-
-    protected void colocarEnCoordenada(int fila, int columna, Pieza pieza) {
-
-        casilleros[indiceFila(fila)][indiceColumna(columna)].ocuparCon(pieza);
     }
 
     private int indiceColumna(int columna) {
@@ -153,25 +143,25 @@ public abstract class TableroEspacial implements TableroContenedor {
     }
 
     @Override
-    public AccionSingular enCasillero(int fila, int columna) {
+    public EnCasillero enCasillero(int fila, int columna) {
 
         Casillero casillero = obtenerCasilleroEn(fila, columna);
 
-        return new AccionConFabricaEnCasillero(fabrica, casillero);
+        return new UsandoFabricaOcuparEnCasillero(fabrica, casillero);
     }
 
     @Override
-    public Accion enCasilleros(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal) {
+    public EnBase enBase(BaseEspacial base) {
+
+        return new UsandoFabricaEnBase(fabrica, base);
+    }
+
+    @Override
+    public EnCasilleros enCasilleros(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal) {
 
         List<Casillero> casilleros = obtenerCasillerosEnRango(filaInicial, columnaInicial, filaFinal, columnaFinal);
 
-        return new AccionConFabricaEnCasilleros(fabrica, casilleros);
-    }
-
-    @Override
-    public NaveEspacial crearNave() {
-
-        return fabrica.crearNave();
+        return new UsandoFabricaOcuparEnCasilleros(fabrica, casilleros);
     }
 
     @Override

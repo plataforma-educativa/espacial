@@ -7,11 +7,11 @@ import espacial.Pieza;
 import espacial.Tablero;
 import espacial.utiles.Proveedor;
 
-public class AccionConFabricaEnCasillero extends AccionConFabrica implements Tablero.AccionSingular {
+public class UsandoFabricaOcuparEnCasillero extends UsandoFabricaOcupar implements Tablero.EnCasillero {
 
     private final Casillero casillero;
 
-    public AccionConFabricaEnCasillero(FabricaDePiezas unaFabrica, Casillero unCasillero) {
+    public UsandoFabricaOcuparEnCasillero(FabricaDePiezas unaFabrica, Casillero unCasillero) {
 
         super(unaFabrica);
         casillero = unCasillero;
@@ -30,13 +30,13 @@ public class AccionConFabricaEnCasillero extends AccionConFabrica implements Tab
     }
 
     @Override
-    public BaseEspacial crearBase() {
+    public BaseEspacial ocuparConBase() {
 
         return ocuparCon(fabrica.crearBase());
     }
 
     @Override
-    public NaveEspacial crearNave() {
+    public NaveEspacial ocuparConNave() {
 
         return ocuparCon(fabrica.crearNave());
     }

@@ -37,10 +37,12 @@ public abstract class PartidaEspacial implements espacial.Partida {
 
         participantes.add(unParticipante);
 
-        NaveEspacial naveEspacial = tablero.crearNave();
+        NaveEspacial naveEspacial = crearNave();
 
         return naveEspacial;
     }
+
+    protected abstract NaveEspacial crearNave();
 
     @Override
     public String toString() {

@@ -29,11 +29,11 @@ public interface Tablero {
 
     void conCadaCasillero(Casillero.Consumidor unConsumidor);
 
-    AccionSingular enCasillero(int fila, int columna);
+    EnCasillero enCasillero(int fila, int columna);
 
-    Accion enCasilleros(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal);
+    EnBase enBase(BaseEspacial base);
 
-    NaveEspacial crearNave();
+    EnCasilleros enCasilleros(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal);
 
     void registrar(Observador unObservador);
 
@@ -43,26 +43,30 @@ public interface Tablero {
         void fueAgregadaEn(Casillero casillero, Pieza unaPieza);
     }
 
-    interface Accion {
+    interface EnCasilleros {
 
-        void crearAsteroide();
+        void ocuparConAsteroide();
 
-        void crearContenedorDeAntimateria();
+        void ocuparConContenedorDeAntimateria();
 
-        void crearContenedorDeMetal();
+        void ocuparConContenedorDeMetal();
 
-        void crearContenedorDeCristal();
+        void ocuparConContenedorDeCristal();
 
-        void crearAgujeroNegro();
+        void ocuparConAgujeroNegro();
 
-        void crearBaseDesconocida();
+        void ocuparConBaseDesconocida();
     }
 
-    interface AccionSingular extends Accion {
+    interface EnCasillero extends EnCasilleros {
 
-        BaseEspacial crearBase();
+        BaseEspacial ocuparConBase();
 
-        NaveEspacial crearNave();
+        NaveEspacial ocuparConNave();
     }
 
+    interface EnBase {
+
+        NaveEspacial amarrarNave();
+    }
 }

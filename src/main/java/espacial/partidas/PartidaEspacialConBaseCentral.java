@@ -16,18 +16,14 @@ public abstract class PartidaEspacialConBaseCentral extends PartidaEspacial {
     @Override
     public void inicializar() {
 
-        base = tablero.enCasillero(0, 0).crearBase();
+        base = tablero.enCasillero(0, 0).ocuparConBase();
 
         super.inicializar();
     }
 
     @Override
-    protected NaveEspacial crearNavePara(Participante unParticipante) {
+    protected NaveEspacial crearNave() {
 
-        NaveEspacial naveEspacial = super.crearNavePara(unParticipante);
-
-        base.amarrar(naveEspacial);
-
-        return naveEspacial;
+        return tablero.enBase(base).amarrarNave();
     }
 }

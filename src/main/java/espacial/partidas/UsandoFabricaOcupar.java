@@ -4,43 +4,41 @@ import espacial.Pieza;
 import espacial.Tablero;
 import espacial.utiles.Proveedor;
 
-public abstract class AccionConFabrica implements Tablero.Accion {
+public abstract class UsandoFabricaOcupar extends UsandoFabrica implements Tablero.EnCasilleros {
 
-    protected final FabricaDePiezas fabrica;
+    public UsandoFabricaOcupar(FabricaDePiezas unaFabrica) {
 
-    public AccionConFabrica(FabricaDePiezas unaFabrica) {
-
-        fabrica = unaFabrica;
+        super(unaFabrica);
     }
 
     protected abstract void ocuparCon(final Proveedor<Pieza> proveedor);
 
-    public void crearContenedorDeAntimateria() {
+    public void ocuparConContenedorDeAntimateria() {
 
         ocuparCon(fabrica::crearContenedorDeAntimateria);
     }
 
-    public void crearContenedorDeMetal() {
+    public void ocuparConContenedorDeMetal() {
 
         ocuparCon(fabrica::crearContenedorDeMetal);
     }
 
-    public void crearContenedorDeCristal() {
+    public void ocuparConContenedorDeCristal() {
 
         ocuparCon(fabrica::crearContenedorDeCristal);
     }
 
-    public void crearAsteroide() {
+    public void ocuparConAsteroide() {
 
         ocuparCon(fabrica::crearAsteroide);
     }
 
-    public void crearAgujeroNegro() {
+    public void ocuparConAgujeroNegro() {
 
         ocuparCon(fabrica::crearAgujeroNegro);
     }
 
-    public void crearBaseDesconocida() {
+    public void ocuparConBaseDesconocida() {
 
         ocuparCon(fabrica::crearBaseDesconocida);
     }

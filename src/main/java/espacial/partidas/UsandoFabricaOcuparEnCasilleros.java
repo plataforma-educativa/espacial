@@ -6,11 +6,11 @@ import espacial.utiles.Proveedor;
 
 import java.util.List;
 
-public class AccionConFabricaEnCasilleros extends AccionConFabrica {
+public class UsandoFabricaOcuparEnCasilleros extends UsandoFabricaOcupar {
 
     private final List<Casillero> casilleros;
 
-    public AccionConFabricaEnCasilleros(FabricaDePiezas unaFabrica, List<Casillero> variosCasilleros) {
+    public UsandoFabricaOcuparEnCasilleros(FabricaDePiezas unaFabrica, List<Casillero> variosCasilleros) {
 
         super(unaFabrica);
         casilleros = variosCasilleros;

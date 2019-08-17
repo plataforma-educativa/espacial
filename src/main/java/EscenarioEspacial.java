@@ -1,7 +1,6 @@
 import espacial.BaseEspacial;
 import espacial.NaveEspacial;
 import espacial.excepciones.ErrorEspacial;
-import espacial.partidas.Participante;
 import espacial.partidas.PartidaEspacial;
 import espacial.tableros.TableroProgramable;
 import espacial.utiles.Referencia;
@@ -28,13 +27,9 @@ public class EscenarioEspacial extends PartidaEspacial {
     }
 
     @Override
-    protected NaveEspacial crearNavePara(Participante unParticipante) {
+    protected NaveEspacial crearNave() {
 
-        NaveEspacial naveEspacial = super.crearNavePara(unParticipante);
-
-        base.obtener().amarrar(naveEspacial);
-
-        return naveEspacial;
+        return tablero.enBase(base.obtener()).amarrarNave();
     }
 
     public int obtenerFilaMinima() {
@@ -59,11 +54,11 @@ public class EscenarioEspacial extends PartidaEspacial {
 
     public void colocarBaseEn(int fila, int columna) {
 
-        base.cambiar(tablero.enCasillero(fila, columna).crearBase());
+        base.cambiar(tablero.enCasillero(fila, columna).ocuparConBase());
     }
 
     public void colocarAsteroideEn(int fila, int columna) {
 
-        tablero.enCasillero(fila, columna).crearAsteroide();
+        tablero.enCasillero(fila, columna).ocuparConAsteroide();
     }
 }

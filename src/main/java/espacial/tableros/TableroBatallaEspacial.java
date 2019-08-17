@@ -15,22 +15,22 @@ public class TableroBatallaEspacial extends TableroEspacial {
     @Override
     protected void inicializarPiezas() {
 
-        enCasillero(-2, -2).crearContenedorDeAntimateria();
-        enCasillero(4, 2).crearContenedorDeAntimateria();
-        enCasillero(2, -7).crearContenedorDeCristal();
-        enCasillero(10, -24).crearContenedorDeMetal();
-        enCasillero(-10, 14).crearBaseDesconocida();
-        enCasillero(1, -3).crearAsteroide();
-        enCasilleros(7, -1, 7, 0).crearAsteroide();
-        enCasilleros(8, -3, 8, 3).crearAsteroide();
-        enCasillero(-6, 0).crearAsteroide();
-        enCasillero(-9, 0).crearAsteroide();
-        enCasillero(-2, 4).crearAsteroide();
-        enCasillero(2, 6).crearAsteroide();
-        enCasillero(2, -5).crearAsteroide();
-        enCasillero(3, -6).crearAgujeroNegro();
-        enCasillero(2, -6).crearAgujeroNegro();
-        enCasillero(1, -6).crearAgujeroNegro();
-        enCasillero(1, -7).crearAgujeroNegro();
+        enCasillero(-2, -2).ocuparConContenedorDeAntimateria();
+        enCasillero(4, 2).ocuparConContenedorDeAntimateria();
+        enCasillero(2, -7).ocuparConContenedorDeCristal();
+        enCasillero(10, -24).ocuparConContenedorDeMetal();
+        enCasillero(-10, 14).ocuparConBaseDesconocida();
+        enCasillero(1, -3).ocuparConAsteroide();
+        enCasilleros(7, -1, 7, 0).ocuparConAsteroide();
+        enCasilleros(8, -3, 8, 3).ocuparConAsteroide();
+        enCasillero(-6, 0).ocuparConAsteroide();
+        enCasillero(-9, 0).ocuparConAsteroide();
+        enCasillero(-2, 4).ocuparConAsteroide();
+        enCasillero(2, 6).ocuparConAsteroide();
+        enCasillero(2, -5).ocuparConAsteroide();
+        enCasillero(3, -6).ocuparConAgujeroNegro();
+        enCasillero(2, -6).ocuparConAgujeroNegro();
+        enCasillero(1, -6).ocuparConAgujeroNegro();
+        enCasillero(1, -7).ocuparConAgujeroNegro();
     }
 }
