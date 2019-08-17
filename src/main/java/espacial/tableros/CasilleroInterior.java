@@ -3,7 +3,6 @@ package espacial.tableros;
 import espacial.Ataque;
 import espacial.Carga;
 import espacial.Casillero;
-import espacial.ConsumidorDeCasilleros;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Pieza;
@@ -103,7 +102,7 @@ public class CasilleroInterior extends CasilleroDelTablero {
     }
 
     @Override
-    public void aceptar(ConsumidorDeCasilleros unConsumidor) {
+    public void aceptar(Casillero.Consumidor unConsumidor) {
 
         estado.alAceptar(unConsumidor);
     }

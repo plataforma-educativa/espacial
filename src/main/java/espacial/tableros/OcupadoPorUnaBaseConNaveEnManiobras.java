@@ -3,7 +3,6 @@ package espacial.tableros;
 import espacial.Ataque;
 import espacial.Carga;
 import espacial.Casillero;
-import espacial.ConsumidorDeCasilleros;
 import espacial.EspectroEspacial;
 import espacial.Partidario;
 import espacial.Pieza;
@@ -90,7 +89,7 @@ public class OcupadoPorUnaBaseConNaveEnManiobras extends EstadoDelCasillero {
     }
 
     @Override
-    public void alAceptar(ConsumidorDeCasilleros unConsumidor) {
+    public void alAceptar(Casillero.Consumidor unConsumidor) {
 
         unConsumidor.aceptar(contexto, base, nave);
     }

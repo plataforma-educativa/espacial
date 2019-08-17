@@ -4,7 +4,6 @@ import espacial.Ataque;
 import espacial.Carga;
 import espacial.Casillero;
 import espacial.Chocable;
-import espacial.ConsumidorDeCasilleros;
 import espacial.Direccion;
 import espacial.EspectroEspacial;
 import espacial.Obstaculo;
@@ -100,7 +99,7 @@ public class CasilleroBorde extends CasilleroDelTablero implements Obstaculo {
     }
 
     @Override
-    public void aceptar(ConsumidorDeCasilleros unConsumidor) {
+    public void aceptar(Casillero.Consumidor unConsumidor) {
 
         unConsumidor.aceptar(this);
     }

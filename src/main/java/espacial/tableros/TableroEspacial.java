@@ -1,7 +1,6 @@
 package espacial.tableros;
 
 import espacial.Casillero;
-import espacial.ConsumidorDeCasilleros;
 import espacial.ConsumidorDeCoordenadas;
 import espacial.NaveEspacial;
 import espacial.Pieza;
@@ -84,7 +83,7 @@ public abstract class TableroEspacial implements TableroContenedor {
     }
 
     @Override
-    public void conCadaCasillero(ConsumidorDeCasilleros unConsumidor) {
+    public void conCadaCasillero(Casillero.Consumidor unConsumidor) {
 
         for (int fila = 0; fila < casilleros.length; fila++) {
 
