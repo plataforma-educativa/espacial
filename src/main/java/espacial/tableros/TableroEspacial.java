@@ -15,10 +15,10 @@ import java.util.List;
 public abstract class TableroEspacial implements TableroContenedor {
 
     protected final FabricaDePiezas fabrica = FabricaDePiezas.crear();
+    private final Observadores observadores = new Observadores();
     private final Dimensiones dimensiones;
     private Casillero borde;
     private Casillero[][] casilleros;
-    private Observador observador;
 
     public TableroEspacial(Dimensiones dimensionesDelTablero) {
 
@@ -61,15 +61,12 @@ public abstract class TableroEspacial implements TableroContenedor {
     @Override
     public void registrar(Observador unObservador) {
 
-        observador = unObservador;
+        observadores.agregar(unObservador);
     }
 
     public void fueAgregadaEn(Casillero casillero, Pieza unaPieza) {
 
-        if (observador != null) {
-
-            observador.fueAgregadaEn(casillero, unaPieza);
-        }
+        observadores.fueAgregadaEn(casillero, unaPieza);
     }
 
     @Override

@@ -3,6 +3,7 @@ package espacial.tableros;
 import espacial.BaseEspacial;
 import espacial.Casillero;
 import espacial.NaveEspacial;
+import espacial.Tablero;
 import espacial.excepciones.ParametroInvalido;
 import espacial.test.Operacion;
 import espacial.test.Postcondicion;
@@ -16,8 +17,12 @@ import java.util.List;
 import static espacial.test.Aserciones.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 class TableroProgramableTest implements TestDeContrato {
+
+    private final Tablero.Observador UN_OBSERVADOR = mock(Tablero.Observador.class, "UN_OBSERVADOR");
+    private final Tablero.Observador OTRO_OBSERVADOR = mock(Tablero.Observador.class, "OTRO_OBSERVADOR");
 
     private TableroProgramable unTablero;
 
@@ -323,5 +328,39 @@ class TableroProgramableTest implements TestDeContrato {
                 assertThat(unTablero.obtenerCasilleroEn(fila, columna).obtenerPieza())
                         .isSameAs(unaBaseEspacial)
         );
+    }
+
+    @Test
+    void registrar() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(10, 5));
+        dadoQue(fueRegistrado(UN_OBSERVADOR));
+
+        unaNaveEspacial = unTablero.enCasillero(1, 1).colocarNave();
+
+        comprobarQue(fueNotificadoPorAgregarUnaNaveEspacialA(UN_OBSERVADOR));
+    }
+
+    private Precondicion fueRegistrado(Tablero.Observador observador) {
+
+        return pre(condicion -> unTablero.registrar(observador));
+    }
+
+    private Postcondicion fueNotificadoPorAgregarUnaNaveEspacialA(Tablero.Observador observador) {
+
+        return post(condicion -> verify(observador).fueAgregadaEn(any(Casillero.class), same(unaNaveEspacial)));
+    }
+
+    @Test
+    void registrarMultiplesObservadores() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(10, 5));
+        dadoQue(fueRegistrado(UN_OBSERVADOR));
+        dadoQue(fueRegistrado(OTRO_OBSERVADOR));
+
+        unaNaveEspacial = unTablero.enCasillero(1, 1).colocarNave();
+
+        comprobarQue(fueNotificadoPorAgregarUnaNaveEspacialA(UN_OBSERVADOR));
+        comprobarQue(fueNotificadoPorAgregarUnaNaveEspacialA(OTRO_OBSERVADOR));
     }
 }
