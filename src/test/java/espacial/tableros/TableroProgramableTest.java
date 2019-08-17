@@ -1,6 +1,8 @@
 package espacial.tableros;
 
+import espacial.BaseEspacial;
 import espacial.Casillero;
+import espacial.NaveEspacial;
 import espacial.excepciones.ParametroInvalido;
 import espacial.test.Operacion;
 import espacial.test.Postcondicion;
@@ -11,12 +13,17 @@ import org.junit.jupiter.api.Test;
 import java.util.LinkedList;
 import java.util.List;
 
+import static espacial.test.Aserciones.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.*;
 
 class TableroProgramableTest implements TestDeContrato {
 
     private TableroProgramable unTablero;
-    
+
+    private NaveEspacial unaNaveEspacial;
+    private BaseEspacial unaBaseEspacial;
+
     private List<Casillero> casillerosIterados = new LinkedList<>();
 
     @Test
@@ -91,12 +98,12 @@ class TableroProgramableTest implements TestDeContrato {
         comprobarQue(generaUnaExcepcionPorqueElParametroEsInvalido(() -> new TableroProgramable(9, 5, 1, 10)));
         comprobarQue(generaUnaExcepcionPorqueElParametroEsInvalido(() -> new TableroProgramable(1, 9, 10, 0)));
     }
-    
+
     @Test
     void iterar() {
-        
+
         dadoQue(unTableroFueCreadoConDimensiones(10, 10));
-  
+
         unTablero.conCadaCasillero((casillero, piezas) -> casillerosIterados.add(casillero));
 
         comprobarQue(losCasillerosIteradosSon(144));
@@ -107,4 +114,141 @@ class TableroProgramableTest implements TestDeContrato {
         return post(condicion -> assertThat(casillerosIterados).hasSize(cantidadDeCasilleros));
     }
 
+    @Test
+    void enCasilleroColocarAsteroide() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(3, 3));
+
+        unTablero.enCasillero(1, 2).ocuparConAsteroide();
+
+        comprobarQue(unTableroTieneUnAsteroideEn(1, 2));
+    }
+
+    private Postcondicion unTableroTieneUnAsteroideEn(int fila, int columna) {
+
+        return post(condicion -> assertThat(unTablero).tieneAsteroide().en(fila, columna));
+    }
+
+    @Test
+    void enCasilleroColocarContenedorDeAntimateria() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(3, 3));
+
+        unTablero.enCasillero(1, 1).ocuparConContenedorDeAntimateria();
+
+        comprobarQue(unTableroTieneUnContenedorDeAntimateriaEn(1, 1));
+    }
+
+    private Postcondicion unTableroTieneUnContenedorDeAntimateriaEn(int fila, int columna) {
+
+        return post(condicion -> assertThat(unTablero).tieneContenedor().conAntimateria().en(fila, columna));
+    }
+
+    @Test
+    void enCasilleroColocarContenedorDeCristal() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(3, 3));
+
+        unTablero.enCasillero(1, 1).ocuparConContenedorDeCristal();
+
+        comprobarQue(unTableroTieneUnContenedorDeCristalEn(1, 1));
+    }
+
+    private Postcondicion unTableroTieneUnContenedorDeCristalEn(int fila, int columna) {
+
+        return post(condicion -> assertThat(unTablero).tieneContenedor().conCristal().en(fila, columna));
+    }
+
+    @Test
+    void enCasilleroColocarContenedorDeMetal() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(3, 3));
+
+        unTablero.enCasillero(1, 1).ocuparConContenedorDeMetal();
+
+        comprobarQue(unTableroTieneUnContenedorDeMetalEn(1, 1));
+    }
+
+    private Postcondicion unTableroTieneUnContenedorDeMetalEn(int fila, int columna) {
+
+        return post(condicion -> assertThat(unTablero).tieneContenedor().conMetal().en(fila, columna));
+    }
+
+    @Test
+    void enCasilleroColocarAgujeroNegro() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(3, 3));
+
+        unTablero.enCasillero(2, 2).ocuparConAgujeroNegro();
+
+        comprobarQue(unTableroTieneUnAgujeroNegroEn(2, 2));
+    }
+
+    private Postcondicion unTableroTieneUnAgujeroNegroEn(int fila, int columna) {
+
+        return post(condicion -> assertThat(unTablero).tieneAgujeroNegro().en(fila, columna));
+    }
+
+    @Test
+    void enCasilleroColocarBaseDesierta() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(3, 3));
+
+        unTablero.enCasillero(3, 2).ocuparConBaseDesconocida();
+
+        comprobarQue(unTableroTieneUnaBaseDesiertaEn(3, 2));
+    }
+
+    private Postcondicion unTableroTieneUnaBaseDesiertaEn(int fila, int columna) {
+
+        return post(condicion -> assertThat(unTablero).tieneBase().esNeutral().en(fila, columna));
+    }
+
+    @Test
+    void enCasilleroColocarNave() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(3, 3));
+
+        unaNaveEspacial = unTablero.enCasillero(3, 1).ocuparConNave();
+
+        comprobarQue(unTableroTieneUnaNaveEn(3, 1));
+        comprobarQue(unaNaveEspacialEstaEn(3, 1));
+    }
+
+    private Postcondicion unTableroTieneUnaNaveEn(int fila, int columna) {
+
+        return post(condicion -> assertThat(unTablero).tieneNave().esAliado().en(fila, columna));
+    }
+
+    private Postcondicion unaNaveEspacialEstaEn(int fila, int columna) {
+
+        return post(condicion ->
+                assertThat(unTablero.obtenerCasilleroEn(fila, columna).obtenerPieza())
+                        .isSameAs(unaNaveEspacial)
+        );
+    }
+
+    @Test
+    void enCasilleroColocarBase() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(3, 3));
+
+        unaBaseEspacial = unTablero.enCasillero(1, 3).ocuparConBase();
+
+        comprobarQue(unTableroTieneUnaBaseEn(1, 3));
+        comprobarQue(unaBaseEspacialEstaEn(1, 3));
+    }
+
+    private Postcondicion unTableroTieneUnaBaseEn(int fila, int columna) {
+
+        return post(condicion -> assertThat(unTablero).tieneBase().esAliado().en(fila, columna));
+    }
+
+    private Postcondicion unaBaseEspacialEstaEn(int fila, int columna) {
+
+        return post(condicion ->
+                assertThat(unTablero.obtenerCasilleroEn(fila, columna).obtenerPieza())
+                        .isSameAs(unaBaseEspacial)
+        );
+    }
 }
