@@ -130,6 +130,18 @@ class TableroProgramableTest implements TestDeContrato {
     }
 
     @Test
+    void enCasillerosColocarAsteroide() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(3, 3));
+
+        unTablero.enCasilleros(1, 1, 1, 3).colocarAsteroide();
+
+        comprobarQue(unTableroTieneUnAsteroideEn(1, 1));
+        comprobarQue(unTableroTieneUnAsteroideEn(1, 2));
+        comprobarQue(unTableroTieneUnAsteroideEn(1, 3));
+    }
+
+    @Test
     void enCasilleroColocarContenedorDeAntimateria() {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
@@ -142,6 +154,18 @@ class TableroProgramableTest implements TestDeContrato {
     private Postcondicion unTableroTieneUnContenedorDeAntimateriaEn(int fila, int columna) {
 
         return post(condicion -> assertThat(unTablero).tieneContenedor().conAntimateria().en(fila, columna));
+    }
+
+    @Test
+    void enCasillerosColocarContenedorDeAntimateria() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(3, 3));
+
+        unTablero.enCasilleros(1, 1, 1, 3).colocarContenedorDeAntimateria();
+
+        comprobarQue(unTableroTieneUnContenedorDeAntimateriaEn(1, 1));
+        comprobarQue(unTableroTieneUnContenedorDeAntimateriaEn(1, 2));
+        comprobarQue(unTableroTieneUnContenedorDeAntimateriaEn(1, 3));
     }
 
     @Test
@@ -160,6 +184,18 @@ class TableroProgramableTest implements TestDeContrato {
     }
 
     @Test
+    void enCasillerosColocarContenedorDeCristal() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(3, 3));
+
+        unTablero.enCasilleros(3, 1, 3, 3).colocarContenedorDeCristal();
+
+        comprobarQue(unTableroTieneUnContenedorDeCristalEn(3, 1));
+        comprobarQue(unTableroTieneUnContenedorDeCristalEn(3, 2));
+        comprobarQue(unTableroTieneUnContenedorDeCristalEn(3, 3));
+    }
+
+    @Test
     void enCasilleroColocarContenedorDeMetal() {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
@@ -172,6 +208,21 @@ class TableroProgramableTest implements TestDeContrato {
     private Postcondicion unTableroTieneUnContenedorDeMetalEn(int fila, int columna) {
 
         return post(condicion -> assertThat(unTablero).tieneContenedor().conMetal().en(fila, columna));
+    }
+
+    @Test
+    void enCasillerosColocarContenedorDeMetal() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(3, 3));
+
+        unTablero.enCasilleros(2, 1, 3, 3).colocarContenedorDeMetal();
+
+        comprobarQue(unTableroTieneUnContenedorDeMetalEn(2, 1));
+        comprobarQue(unTableroTieneUnContenedorDeMetalEn(2, 2));
+        comprobarQue(unTableroTieneUnContenedorDeMetalEn(2, 3));
+        comprobarQue(unTableroTieneUnContenedorDeMetalEn(3, 1));
+        comprobarQue(unTableroTieneUnContenedorDeMetalEn(3, 2));
+        comprobarQue(unTableroTieneUnContenedorDeMetalEn(3, 3));
     }
 
     @Test
@@ -190,6 +241,17 @@ class TableroProgramableTest implements TestDeContrato {
     }
 
     @Test
+    void enCasillerosColocarAgujeroNegro() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(3, 3));
+
+        unTablero.enCasilleros(2, 1, 2, 2).colocarAgujeroNegro();
+
+        comprobarQue(unTableroTieneUnAgujeroNegroEn(2, 1));
+        comprobarQue(unTableroTieneUnAgujeroNegroEn(2, 2));
+    }
+
+    @Test
     void enCasilleroColocarBaseDesierta() {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
@@ -202,6 +264,17 @@ class TableroProgramableTest implements TestDeContrato {
     private Postcondicion unTableroTieneUnaBaseDesiertaEn(int fila, int columna) {
 
         return post(condicion -> assertThat(unTablero).tieneBase().esNeutral().en(fila, columna));
+    }
+
+    @Test
+    void enCasillerosColocarBaseDesierta() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(3, 3));
+
+        unTablero.enCasilleros(3, 2, 3, 3).colocarBaseDesconocida();
+
+        comprobarQue(unTableroTieneUnaBaseDesiertaEn(3, 2));
+        comprobarQue(unTableroTieneUnaBaseDesiertaEn(3, 3));
     }
 
     @Test
