@@ -24,7 +24,7 @@ import org.mockito.InOrder;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
+abstract class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private final Amarre AMARRE = mock(Amarre.class, "AMARRE");
     private final Casillero UN_CASILLERO = mock(Casillero.class, "UN_CASILLERO");
@@ -35,7 +35,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private final Pieza OTRA_PIEZA = mock(Pieza.class, "OTRA_PIEZA");
 
-    private CazaEspacial unCazaEspacial;
+    protected CazaEspacial unCazaEspacial;
 
     @BeforeEach
     void simularCasillero() {
@@ -46,22 +46,12 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
         when(UN_CASILLERO.obtenerContiguoEn(Direccion.OESTE)).thenReturn(CASILLERO_OESTE);
     }
 
-    @Override
-    CazaEspacial piezaCreada() {
-
-        return new CazaEspacial();
-    }
+    abstract CazaEspacial piezaCreada(Nombre nombre);
 
     @Override
     EspectroEspacial espectroEsperado() {
 
         return EspectroEspacial.NAVE;
-    }
-
-    @Override
-    Postcondicion evaluoLaCondicionDePartidarioEsperada() {
-
-        return evaluoQueEsAliado();
     }
 
     @Override
@@ -153,7 +143,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     private Precondicion fueCreadoUnCazaEspacialColocadoEnUnCasillero() {
 
         return pre(condicion -> {
-            unCazaEspacial = new CazaEspacial();
+            unCazaEspacial = piezaCreada();
             unCazaEspacial.fueColocadaEn(UN_CASILLERO);
         });
     }
@@ -175,7 +165,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Precondicion fueCreadoUnCazaEspacial() {
 
-        return pre(condicion -> unCazaEspacial = new CazaEspacial());
+        return pre(condicion -> unCazaEspacial = piezaCreada());
     }
 
     private Postcondicion elNivelDeEscudosBajoHasta(int nivelDeEscudoEsperado) {
@@ -298,7 +288,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
         return pre(condicion -> {
 
-            unCazaEspacial = new CazaEspacial();
+            unCazaEspacial = piezaCreada();
             unCazaEspacial.fueColocadaEn(UN_CASILLERO);
 
             when(CASILLERO_OESTE.obtenerPieza()).thenReturn(OTRA_PIEZA);
@@ -333,7 +323,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
         return pre(condicion -> {
 
-            unCazaEspacial = new CazaEspacial();
+            unCazaEspacial = piezaCreada();
             unCazaEspacial.fueColocadaEn(UN_CASILLERO);
         });
     }
@@ -368,7 +358,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
         return pre(condicion -> {
 
-            unCazaEspacial = new CazaEspacial();
+            unCazaEspacial = piezaCreada();
             unCazaEspacial.fueColocadaEn(UN_CASILLERO);
 
             when(CASILLERO_NORTE.escanear()).thenReturn(EspectroEspacial.ASTEROIDE);
@@ -402,7 +392,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Precondicion fueCreadoUnCazaEspacialQueNoSeColocoEnNingunCasillero() {
 
-        return pre(condicion -> unCazaEspacial = new CazaEspacial());
+        return pre(condicion -> unCazaEspacial = piezaCreada());
     }
 
     @Test
@@ -446,7 +436,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
         return pre(condicion ->  {
 
-            unCazaEspacial = new CazaEspacial();
+            unCazaEspacial = piezaCreada();
             unCazaEspacial.fueColocadaEn(UN_CASILLERO);
 
             when(CASILLERO_NORTE.buscar(SustanciaEspacial.ANTIMATERIA)).thenReturn(alNorte);
@@ -510,7 +500,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
         return pre(condicion ->  {
 
-            unCazaEspacial = new CazaEspacial();
+            unCazaEspacial = piezaCreada();
             unCazaEspacial.recibir(unaCarga);
         });
     }
@@ -647,7 +637,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
         return pre(condicion ->  {
 
-            unCazaEspacial = new CazaEspacial();
+            unCazaEspacial = piezaCreada();
             unCazaEspacial.fueColocadaEn(UN_CASILLERO);
 
         });
@@ -689,7 +679,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
 
     private Precondicion fueCreadoUnCazaEspacialConElNombre(String nombre) {
 
-        return pre(condicion ->  unCazaEspacial = new CazaEspacial(Nombre.sera(nombre).obtener()));
+        return pre(condicion ->  unCazaEspacial = piezaCreada(Nombre.sera(nombre).obtener()));
     }
 
     private Postcondicion elNombreEs(String nombreEsperado) {
@@ -705,7 +695,7 @@ class CazaEspacialTest extends TestDeContratoSobrePieza<CazaEspacial> {
     @Test
     void crearSinEspecificarElNombre() {
 
-        unCazaEspacial = new CazaEspacial();
+        unCazaEspacial = piezaCreada();
 
         comprobarQue(elNombreEs("Algoritmico I"));
     }

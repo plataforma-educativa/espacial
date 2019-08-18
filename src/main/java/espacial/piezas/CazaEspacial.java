@@ -13,14 +13,13 @@ import espacial.Pieza;
 import espacial.SustanciaEspacial;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
-import espacial.piezas.rasgos.Aliado;
 import espacial.piezas.rasgos.NaveChocable;
 import espacial.piezas.rasgos.NaveDeCarga;
 import espacial.piezas.rasgos.PiezaAtacable;
 import espacial.utiles.Nombre;
 import espacial.utiles.Referencia;
 
-public class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, PiezaAtacable, Aliado {
+public abstract class CazaEspacial implements NaveEspacial, NaveChocable, NaveDeCarga, PiezaAtacable {
 
     private final Nombre nombre;
     private final Indicador escudos = new Indicador(100);

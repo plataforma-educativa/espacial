@@ -7,12 +7,22 @@ import org.junit.jupiter.api.Nested;
 class PiezaAtacableEnPartidaTest implements TestDeContrato {
 
     @Nested
-    class SiEsUnCazaEspacial extends TestDePiezaAtacableEnPartida<CazaEspacial> {
+    class SiEsUnCazaEspacialAliado extends TestDePiezaAtacableEnPartida<CazaEspacialAliado> {
 
         @Override
         protected Precondicion fueCreadaLaPieza() {
 
-            return pre(condicion ->  unaPiezaAtacable = new CazaEspacial());
+            return pre(condicion ->  unaPiezaAtacable = new CazaEspacialAliado());
+        }
+    }
+
+    @Nested
+    class SiEsUnCazaEspacialRival extends TestDePiezaAtacableEnPartida<CazaEspacialRival> {
+
+        @Override
+        protected Precondicion fueCreadaLaPieza() {
+
+            return pre(condicion ->  unaPiezaAtacable = new CazaEspacialRival());
         }
     }
 

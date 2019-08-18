@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.*;
 
-class CazaEspacialObservadoTest extends TestDePiezaObservada {
+abstract class CazaEspacialObservadoTest extends TestDePiezaObservada {
 
     private final Casillero CASILLERO_NORTE = mock(Casillero.class, "CASILLERO_NORTE");
     private final Casillero CASILLERO_SUR = mock(Casillero.class, "CASILLERO_SUR");
@@ -20,6 +20,8 @@ class CazaEspacialObservadoTest extends TestDePiezaObservada {
     private final Casillero CASILLERO_OESTE = mock(Casillero.class, "CASILLERO_OESTE");
 
     private NaveEspacial unCazaEspacial;
+
+    protected abstract CazaEspacial crear();
 
     @Override
     protected Pieza unaPieza() {
@@ -51,7 +53,7 @@ class CazaEspacialObservadoTest extends TestDePiezaObservada {
 
         return pre(condicion -> {
 
-            unCazaEspacial = new CazaEspacial();
+            unCazaEspacial = crear();
             unCazaEspacial.fueColocadaEn(UN_CASILLERO);
         });
     }

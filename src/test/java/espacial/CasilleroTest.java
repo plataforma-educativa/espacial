@@ -1,7 +1,7 @@
 package espacial;
 
 import espacial.piezas.Asteroide;
-import espacial.piezas.CazaEspacial;
+import espacial.piezas.CazaEspacialAliado;
 import espacial.piezas.ContenedorDeAntimateria;
 import espacial.tableros.TableroBatallaEspacial;
 import espacial.test.Postcondicion;
@@ -25,7 +25,7 @@ class CasilleroTest implements TestDeContrato {
 
     private final Pieza ASTEROIDE = new Asteroide(100);
 
-    private final Pieza NAVE = new CazaEspacial();
+    private final Pieza NAVE = new CazaEspacialAliado();
 
     @BeforeEach
     void crearTablero() {
