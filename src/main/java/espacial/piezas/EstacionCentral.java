@@ -80,6 +80,7 @@ public class EstacionCentral implements BaseEspacial, PiezaAtacable, BaseDeposit
         pieza.fueAmarradaCon(amarre);
     }
 
+    @Override
     public Amarre[] obtenerAmarres() {
 
         return amarres.toArray(new Amarre[0]);

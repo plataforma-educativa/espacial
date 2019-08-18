@@ -1,6 +1,11 @@
 package espacial.tableros;
 
+import espacial.BaseEspacial;
 import espacial.Coordenadas;
+import espacial.Pieza;
+import espacial.partidas.batalla.DefensaDeBaseRival;
+
+import java.util.List;
 
 /**
  * Implementación del Tablero usado por defecto en la BatallaEspacial.
@@ -51,7 +56,10 @@ public class TableroBatallaEspacial extends TableroEspacial {
                 .entre(5, -25, 7, -25)
                 .entre(5, -21, 7, -21);
 
-        enCasillero(6, -23).colocarBaseRival();
-        enCasilleros(delPerimetro).colocarAsteroide();
+        BaseEspacial baseRival = enCasillero(6, -23).colocarBaseRival();
+        final DefensaDeBaseRival defensa = new DefensaDeBaseRival(this, baseRival);
+
+        List<Pieza> asteroides = enCasilleros(delPerimetro).colocarAsteroide();
+        asteroides.forEach(asteroide -> asteroide.registrar(defensa));
     }
 }

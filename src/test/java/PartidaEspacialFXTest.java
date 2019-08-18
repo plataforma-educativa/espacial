@@ -8,6 +8,22 @@ class PartidaEspacialFXTest {
 
         TimeUnit.SECONDS.sleep(5);
 
+        Nave gamma = new Nave();
+        gamma.despegar();
+        for (int i = 0; i < 23; i++) {
+            gamma.avanzarAlOeste();
+        }
+        for (int i = 0; i < 3; i++) {
+            gamma.avanzarAlNorte();
+        }
+        while (gamma.obtenerRadar().escanearNorte() == Espectro.ASTEROIDE) {
+            gamma.atacarAlNorte();
+        }
+        gamma.avanzarAlOeste();
+        while (gamma.obtenerRadar().escanearNorte() == Espectro.ASTEROIDE) {
+            gamma.atacarAlNorte();
+        }
+
         Nave alfa = new Nave();
         alfa.despegar();
         alfa.avanzarAlNorte();

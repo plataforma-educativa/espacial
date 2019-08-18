@@ -76,6 +76,7 @@ public class BaseRival implements BaseEspacial, PiezaAtacable, Rival {
         pieza.fueAmarradaCon(amarre);
     }
 
+    @Override
     public Amarre[] obtenerAmarres() {
 
         return amarres.toArray(new Amarre[0]);

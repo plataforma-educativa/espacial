@@ -8,7 +8,6 @@ import espacial.excepciones.NoPuedeRecibirUnaCarga;
  * Una Pieza es un elemento que participa de una Partida.
  *
  * @author Mariano Tugnarelli
- *
  */
 public interface Pieza extends Obstaculo, Objetivo, Partidario {
 
@@ -17,7 +16,7 @@ public interface Pieza extends Obstaculo, Objetivo, Partidario {
 
     /**
      * @return el EspectroEspacial que la Pieza refleja en el Radar de los
-     *         participantes.
+     * participantes.
      */
     EspectroEspacial escanear();
 
@@ -31,9 +30,9 @@ public interface Pieza extends Obstaculo, Objetivo, Partidario {
     }
 
     /**
-     * @pre la Pieza fue colocada (inicialmente o luego de ser movida) en el
-     *      {@code casillero} de un Tablero.
      * @param casillero
+     * @pre la Pieza fue colocada (inicialmente o luego de ser movida) en el
+     * {@code casillero} de un Tablero.
      */
     default void fueColocadaEn(Casillero casillero) {
 
@@ -52,9 +51,9 @@ public interface Pieza extends Obstaculo, Objetivo, Partidario {
     int obtenerPuntos();
 
     /**
-     * @pre  la Pieza sera capaz de recibir una Carga de SustanciaEspacial.
-     * @post toma la Carga indicada.
      * @param unaCarga Carga de Sustancia Espacial.
+     * @pre la Pieza sera capaz de recibir una Carga de SustanciaEspacial.
+     * @post toma la Carga indicada.
      */
     default void recibir(Carga unaCarga) {
 
@@ -62,9 +61,9 @@ public interface Pieza extends Obstaculo, Objetivo, Partidario {
     }
 
     /**
-     * @pre  la Pieza sera capaz de entregar una Carga de SustanciaEspacial.
-     * @post entrega la Carga indicada.
      * @param unaCarga Carga de Sustancia Espacial a entregar.
+     * @pre la Pieza sera capaz de entregar una Carga de SustanciaEspacial.
+     * @post entrega la Carga indicada.
      */
     default void entregar(Carga unaCarga) {
 
@@ -82,37 +81,37 @@ public interface Pieza extends Obstaculo, Objetivo, Partidario {
 
     interface Observador {
 
-        void cambioElEstadoDe(Pieza unaPieza);
+        default void cambioElEstadoDe(Pieza unaPieza) {
+        }
 
-        void fueMovida(Pieza unaPieza, Casillero aCasillero);
+        default void fueMovida(Pieza unaPieza, Casillero aCasillero) {
+        }
 
-        void fueAtacada(Pieza unaPieza, Ataque conAtaque);
+        default void fueAtacada(Pieza unaPieza, Ataque conAtaque) {
+        }
 
-        void fueChocada(Pieza unaPieza, Obstaculo contraObstaculo);
+        default void fueChocada(Pieza unaPieza, Obstaculo contraObstaculo) {
+        }
 
-        void fueDestruida(Pieza unaPieza);
+        default void fueDestruida(Pieza unaPieza) {
+        }
     }
 
     interface Visitante {
 
         default void siEsBase(BaseEspacial pieza) {
-
         }
 
         default void siEsNave(NaveEspacial pieza) {
-
         }
 
         default void siEsContenedor(Pieza pieza) {
-
         }
 
         default void siEsAsteroide(Pieza pieza) {
-
         }
 
         default void siEsAgujeroNegro(Pieza pieza) {
-
         }
     }
 }

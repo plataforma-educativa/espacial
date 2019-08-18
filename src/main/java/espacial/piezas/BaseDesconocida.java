@@ -1,5 +1,6 @@
 package espacial.piezas;
 
+import espacial.Amarre;
 import espacial.Ataque;
 import espacial.BaseEspacial;
 import espacial.Cargamento;
@@ -14,9 +15,18 @@ import espacial.piezas.rasgos.PiezaAtacable;
 
 public class BaseDesconocida implements BaseEspacial, PiezaAtacable, BaseDeposito, Neutral {
 
+    private static final Amarre[] SIN_AMARRES = new Amarre[0];
+
     private final Indicador puntos = new Indicador(200);
+
     private final Bodega bodega = new Bodega(obtenerCapacidad());
     private final Observadores observadores = new Observadores();
+
+    @Override
+    public Amarre[] obtenerAmarres() {
+
+        return SIN_AMARRES;
+    }
 
     @Override
     public void decrementarPuntosEn(int decremento) {
