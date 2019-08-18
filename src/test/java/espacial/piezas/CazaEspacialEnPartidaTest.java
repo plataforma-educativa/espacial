@@ -1,47 +1,27 @@
 package espacial.piezas;
 
-import espacial.Casillero;
-import espacial.test.Postcondicion;
-import espacial.test.Precondicion;
 import espacial.test.TestDeContrato;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Nested;
 
-import static org.mockito.Mockito.*;
+class CazaEspacialEnPartidaTest implements TestDeContrato {
 
-abstract class CazaEspacialEnPartidaTest implements TestDeContrato {
+    @Nested
+    class CazaEspacialRivalEnPartidaTest extends TestDeCazaEspacialEnPartida {
 
-    private final Casillero UN_CASILLERO = mock(Casillero.class, "UN_CASILLERO");
+        @Override
+        protected CazaEspacial crear() {
 
-    private CazaEspacial unCazaEspacial;
-
-    protected abstract CazaEspacial crear();
-
-    @Test
-    void cuandoSeQuedaSinPuntosSeSacaDelTablero() {
-
-        dadoQue(fueCreadoUnCazaEspacialColocandoloEnUnCasillero());
-
-        cuandoUnCazaSeQuedaSinPuntos();
-
-        comprobarQue(seDesocupoElCasilleroQueOcupaba());
+            return new CazaEspacialRival();
+        }
     }
 
-    private Precondicion fueCreadoUnCazaEspacialColocandoloEnUnCasillero() {
+    @Nested
+    class CazaEspacialAliadoEnPartidaTest extends TestDeCazaEspacialEnPartida {
 
-        return pre(condicion -> {
+        @Override
+        protected CazaEspacial crear() {
 
-            unCazaEspacial = crear();
-            unCazaEspacial.fueColocadaEn(UN_CASILLERO);
-        });
-    }
-
-    private void cuandoUnCazaSeQuedaSinPuntos() {
-
-        unCazaEspacial.disminuirNivelDeEscudosEn(100);
-    }
-
-    private Postcondicion seDesocupoElCasilleroQueOcupaba() {
-
-        return  post(condicion -> verify(UN_CASILLERO).desocupar());
+            return new CazaEspacialAliado();
+        }
     }
 }
