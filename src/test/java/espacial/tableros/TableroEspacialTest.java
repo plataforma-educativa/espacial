@@ -2,6 +2,7 @@ package espacial.tableros;
 
 import espacial.BaseEspacial;
 import espacial.Casillero;
+import espacial.Coordenadas;
 import espacial.NaveEspacial;
 import espacial.Pieza;
 import espacial.Tablero;
@@ -147,7 +148,7 @@ class TableroEspacialTest implements TestDeContrato {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
 
-        piezasColocadas = unTablero.enCasilleros(1, 1, 1, 3).colocarAsteroide();
+        piezasColocadas = unTablero.enCasilleros(Coordenadas.entre(1, 1, 1, 3)).colocarAsteroide();
 
         comprobarQue(unTableroTieneUnAsteroideEn(1, 1));
         comprobarQue(unTableroTieneUnAsteroideEn(1, 2));
@@ -176,7 +177,7 @@ class TableroEspacialTest implements TestDeContrato {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
 
-        piezasColocadas = unTablero.enCasilleros(1, 1, 1, 3).colocarContenedorDeAntimateria();
+        piezasColocadas = unTablero.enCasilleros(Coordenadas.entre(1, 1, 1, 3)).colocarContenedorDeAntimateria();
 
         comprobarQue(unTableroTieneUnContenedorDeAntimateriaEn(1, 1));
         comprobarQue(unTableroTieneUnContenedorDeAntimateriaEn(1, 2));
@@ -205,7 +206,7 @@ class TableroEspacialTest implements TestDeContrato {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
 
-        piezasColocadas = unTablero.enCasilleros(3, 1, 3, 3).colocarContenedorDeCristal();
+        piezasColocadas = unTablero.enCasilleros(Coordenadas.entre(3, 1, 3, 3)).colocarContenedorDeCristal();
 
         comprobarQue(unTableroTieneUnContenedorDeCristalEn(3, 1));
         comprobarQue(unTableroTieneUnContenedorDeCristalEn(3, 2));
@@ -234,7 +235,7 @@ class TableroEspacialTest implements TestDeContrato {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
 
-        piezasColocadas = unTablero.enCasilleros(2, 1, 3, 3).colocarContenedorDeMetal();
+        piezasColocadas = unTablero.enCasilleros(Coordenadas.entre(2, 1, 3, 3)).colocarContenedorDeMetal();
 
         comprobarQue(unTableroTieneUnContenedorDeMetalEn(2, 1));
         comprobarQue(unTableroTieneUnContenedorDeMetalEn(2, 2));
@@ -266,7 +267,7 @@ class TableroEspacialTest implements TestDeContrato {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
 
-        piezasColocadas = unTablero.enCasilleros(2, 1, 2, 2).colocarAgujeroNegro();
+        piezasColocadas = unTablero.enCasilleros(Coordenadas.entre(2, 1, 2, 2)).colocarAgujeroNegro();
 
         comprobarQue(unTableroTieneUnAgujeroNegroEn(2, 1));
         comprobarQue(unTableroTieneUnAgujeroNegroEn(2, 2));
@@ -310,7 +311,7 @@ class TableroEspacialTest implements TestDeContrato {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));
 
-        piezasColocadas = unTablero.enCasilleros(3, 2, 3, 3).colocarBaseDesconocida();
+        piezasColocadas = unTablero.enCasilleros(Coordenadas.entre(3, 2, 3, 3)).colocarBaseDesconocida();
 
         comprobarQue(unTableroTieneUnaBaseDesiertaEn(3, 2));
         comprobarQue(unTableroTieneUnaBaseDesiertaEn(3, 3));

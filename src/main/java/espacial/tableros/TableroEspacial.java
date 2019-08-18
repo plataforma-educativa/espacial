@@ -167,9 +167,11 @@ public class TableroEspacial implements TableroContenedor {
     }
 
     @Override
-    public EnCasilleros enCasilleros(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal) {
+    public EnCasilleros enCasilleros(Coordenadas.Lista listaDeCoordenadas) {
 
-        List<Casillero> casilleros = obtenerCasillerosEnRango(filaInicial, columnaInicial, filaFinal, columnaFinal);
+        List<Casillero> casilleros = new LinkedList<>();
+
+        listaDeCoordenadas.conCadaUno(((fila, columna) -> casilleros.add(obtenerCasilleroEn(fila, columna))));
 
         return new UsandoFabricaColocarEnCasilleros(fabrica, casilleros);
     }

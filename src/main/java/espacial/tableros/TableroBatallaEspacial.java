@@ -1,5 +1,7 @@
 package espacial.tableros;
 
+import espacial.Coordenadas;
+
 /**
  * Implementación del Tablero usado por defecto en la BatallaEspacial.
  *
@@ -21,8 +23,13 @@ public class TableroBatallaEspacial extends TableroEspacial {
         enCasillero(10, -24).colocarContenedorDeMetal();
         enCasillero(-10, 14).colocarBaseDesconocida();
         enCasillero(1, -3).colocarAsteroide();
-        enCasilleros(7, -1, 7, 0).colocarAsteroide();
-        enCasilleros(8, -3, 8, 3).colocarAsteroide();
+
+        Coordenadas.Lista deBarreNorte = Coordenadas
+                .entre(7, -1, 7, 0)
+                .entre(8, -3, 8, 3);
+
+        enCasilleros(deBarreNorte).colocarAsteroide();
+
         enCasillero(-6, 0).colocarAsteroide();
         enCasillero(-9, 0).colocarAsteroide();
         enCasillero(-2, 4).colocarAsteroide();
@@ -38,10 +45,13 @@ public class TableroBatallaEspacial extends TableroEspacial {
 
     private void colocarBaseRival() {
 
+        Coordenadas.Lista delPerimetro = Coordenadas
+                .entre(8, -25, 8, -21)
+                .entre(4, -25, 4, -21)
+                .entre(5, -25, 7, -25)
+                .entre(5, -21, 7, -21);
+
         enCasillero(6, -23).colocarBaseRival();
-        enCasilleros(8, -25, 8, -21).colocarAsteroide();
-        enCasilleros(4, -25, 4, -21).colocarAsteroide();
-        enCasilleros(5, -25, 7, -25).colocarAsteroide();
-        enCasilleros(5, -21, 7, -21).colocarAsteroide();
+        enCasilleros(delPerimetro).colocarAsteroide();
     }
 }

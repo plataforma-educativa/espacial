@@ -1,5 +1,7 @@
 package espacial;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class Coordenadas {
@@ -10,6 +12,11 @@ public class Coordenadas {
     public static Coordenadas con(int fila, int columna) {
 
         return new Coordenadas(fila, columna);
+    }
+
+    public static Lista entre(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal) {
+
+        return new Contiguas(filaInicial, columnaInicial, filaFinal, columnaFinal);
     }
 
     private Coordenadas(int fila, int columna) {
@@ -106,5 +113,69 @@ public class Coordenadas {
     public interface Consumidor {
 
         void aceptar(int fila, int columna);
+    }
+
+    public interface Lista {
+
+        Lista entre(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal);
+
+        void conCadaUno(Coordenadas.Consumidor consumidor);
+    }
+
+    private static class Contiguas implements Lista {
+
+        private final int filaInicial;
+        private final int columnaInicial;
+        private final int filaFinal;
+        private final int columnaFinal;
+
+        private Contiguas(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal) {
+
+            this.filaInicial = filaInicial;
+            this.columnaInicial = columnaInicial;
+            this.filaFinal = filaFinal;
+            this.columnaFinal = columnaFinal;
+        }
+
+        @Override
+        public Lista entre(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal) {
+
+            return new Compuestas(this).entre(filaInicial, columnaInicial, filaFinal, columnaFinal);
+        }
+
+        @Override
+        public void conCadaUno(Coordenadas.Consumidor consumidor) {
+
+            for (int fila = filaInicial; fila <= filaFinal; fila++) {
+                for (int columna = columnaInicial; columna <= columnaFinal; columna++) {
+
+                    consumidor.aceptar(fila, columna);
+                }
+            }
+        }
+    }
+
+    private static class Compuestas implements Lista {
+
+        private final List<Lista> particiones = new LinkedList<>();
+
+        private Compuestas(Lista unaLista) {
+
+            particiones.add(unaLista);
+        }
+
+        @Override
+        public Lista entre(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal) {
+
+            particiones.add(new Coordenadas.Contiguas(filaInicial, columnaInicial, filaFinal, columnaFinal));
+
+            return this;
+        }
+
+        @Override
+        public void conCadaUno(Coordenadas.Consumidor consumidor) {
+
+            particiones.forEach(lista -> lista.conCadaUno(consumidor));
+        }
     }
 }

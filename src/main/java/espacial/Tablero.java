@@ -35,7 +35,7 @@ public interface Tablero {
 
     EnBase enBase(BaseEspacial base);
 
-    EnCasilleros enCasilleros(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal);
+    EnCasilleros enCasilleros(Coordenadas.Lista listaDeCoordenadas);
 
     void registrar(Observador unObservador);
 
