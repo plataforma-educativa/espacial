@@ -75,5 +75,7 @@ public interface Tablero {
     interface EnBase {
 
         NaveEspacial amarrarNave();
+
+        NaveEspacial amarrarNaveRival();
     }
 }

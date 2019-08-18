@@ -1,5 +1,6 @@
 package espacial.tableros;
 
+import espacial.Amarre;
 import espacial.BaseEspacial;
 import espacial.Casillero;
 import espacial.Coordenadas;
@@ -380,6 +381,42 @@ class TableroEspacialTest implements TestDeContrato {
                 assertThat(unTablero.obtenerCasilleroEn(fila, columna).obtenerPieza())
                         .isSameAs(unaBaseEspacial)
         );
+    }
+
+    @Test
+    void enBaseAmarrarNave() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(4, 4));
+        dadoQue(unaBaseEspacialFueColocadaEn(1, 1));
+
+        unaNaveEspacial = unTablero.enBase(unaBaseEspacial).amarrarNave();
+
+        comprobarQue(unaNaveEspacialEstaAmarradaEnUnaBaseEspacial());
+    }
+
+    private Precondicion unaBaseEspacialFueColocadaEn(int fila, int columna) {
+
+        return pre(condicion -> unaBaseEspacial = unTablero.enCasillero(fila, columna).colocarBase());
+    }
+
+    private Postcondicion unaNaveEspacialEstaAmarradaEnUnaBaseEspacial() {
+
+        return post(condicion ->
+
+                assertThat(unaBaseEspacial.obtenerAmarres())
+                        .extracting(Amarre::obtenerPieza).contains(unaNaveEspacial)
+        );
+    }
+
+    @Test
+    void enBaseAmarrarNaveRival() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(4, 4));
+        dadoQue(unaBaseEspacialFueColocadaEn(2, 2));
+
+        unaNaveEspacial = unTablero.enBase(unaBaseEspacial).amarrarNaveRival();
+
+        comprobarQue(unaNaveEspacialEstaAmarradaEnUnaBaseEspacial());
     }
 
     @Test

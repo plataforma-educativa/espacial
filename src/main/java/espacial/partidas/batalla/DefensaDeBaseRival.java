@@ -33,7 +33,7 @@ public class DefensaDeBaseRival implements Pieza.Observador {
 
     private NaveEspacial amararDefensor() {
 
-        return tablero.enBase(baseRival).amarrarNave();
+        return tablero.enBase(baseRival).amarrarNaveRival();
     }
 
     @Override

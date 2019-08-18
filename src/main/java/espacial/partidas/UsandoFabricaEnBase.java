@@ -17,7 +17,16 @@ public class UsandoFabricaEnBase extends UsandoFabrica implements Tablero.EnBase
     @Override
     public NaveEspacial amarrarNave() {
 
-        NaveEspacial nave = fabrica.crearNave();
+        return amarrar(fabrica.crearNave());
+    }
+
+    @Override
+    public NaveEspacial amarrarNaveRival() {
+
+        return amarrar(fabrica.crearNaveRival());
+    }
+
+    private NaveEspacial amarrar(NaveEspacial nave) {
 
         base.amarrar(nave);
 
