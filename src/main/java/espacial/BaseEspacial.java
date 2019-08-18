@@ -8,8 +8,5 @@ public interface BaseEspacial extends Pieza {
 
     Amarre[] obtenerAmarres();
 
-    default boolean tieneNavesAmarradas() {
-
-        return obtenerAmarres().length > 0;
-    }
+    boolean tieneNavesAmarradas();
 }

@@ -29,6 +29,12 @@ public class BaseDesconocida implements BaseEspacial, PiezaAtacable, BaseDeposit
     }
 
     @Override
+    public boolean tieneNavesAmarradas() {
+
+        return false;
+    }
+
+    @Override
     public void decrementarPuntosEn(int decremento) {
 
         puntos.decrementarEn(decremento);

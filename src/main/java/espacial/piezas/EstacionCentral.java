@@ -87,6 +87,12 @@ public class EstacionCentral implements BaseEspacial, PiezaAtacable, BaseDeposit
     }
 
     @Override
+    public boolean tieneNavesAmarradas() {
+
+        return ! amarres.isEmpty();
+    }
+
+    @Override
     public void aceptar(Visitante visitante) {
 
         visitante.siEsBase(this);

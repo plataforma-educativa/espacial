@@ -1,5 +1,6 @@
 package espacial.partidas.batalla;
 
+import espacial.Ataque;
 import espacial.BaseEspacial;
 import espacial.Direccion;
 import espacial.NaveEspacial;
@@ -37,7 +38,7 @@ public class DefensaDeBaseRival implements Pieza.Observador {
     }
 
     @Override
-    public void fueDestruida(Pieza unaPieza) {
+    public void fueAtacada(Pieza unaPieza, Ataque conAtaque) {
 
         if (baseRival.tieneNavesAmarradas()) {
 

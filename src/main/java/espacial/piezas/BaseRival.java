@@ -83,6 +83,12 @@ public class BaseRival implements BaseEspacial, PiezaAtacable, Rival {
     }
 
     @Override
+    public boolean tieneNavesAmarradas() {
+
+        return !amarres.isEmpty();
+    }
+
+    @Override
     public void aceptar(Visitante visitante) {
 
         visitante.siEsBase(this);
