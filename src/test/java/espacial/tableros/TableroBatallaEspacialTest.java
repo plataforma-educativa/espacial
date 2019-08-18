@@ -113,8 +113,8 @@ class TableroBatallaEspacialTest implements TestDeContrato {
                 assertThat(unTablero)
                         .tieneBase().esRival().en(5,-22)
                         .tieneAsteroide()
-                        .entre(8, -25, 8, -19)
-                        .entre(2, -25, 2, -19)
+                        .entre(8, -24, 8, -20)
+                        .entre(2, -24, 2, -20)
                         .entre(3, -25, 7, -25)
                         .entre(3, -19, 7, -19)
         );
