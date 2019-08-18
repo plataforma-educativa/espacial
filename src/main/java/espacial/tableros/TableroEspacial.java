@@ -161,17 +161,17 @@ public class TableroEspacial implements TableroContenedor {
     }
 
     @Override
+    public int contarFilas() {
+
+        return dimensiones.contarFilas();
+    }
+
+    @Override
     public EnCasilleros enCasilleros(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal) {
 
         List<Casillero> casilleros = obtenerCasillerosEnRango(filaInicial, columnaInicial, filaFinal, columnaFinal);
 
         return new UsandoFabricaColocarEnCasilleros(fabrica, casilleros);
-    }
-
-    @Override
-    public int contarFilas() {
-
-        return dimensiones.contarFilas();
     }
 
     @Override

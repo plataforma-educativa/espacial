@@ -4,6 +4,8 @@ import espacial.Pieza;
 import espacial.Tablero;
 import espacial.utiles.Proveedor;
 
+import java.util.List;
+
 public abstract class UsandoFabricaColocar extends UsandoFabrica implements Tablero.EnCasilleros {
 
     public UsandoFabricaColocar(FabricaDePiezas unaFabrica) {
@@ -11,47 +13,41 @@ public abstract class UsandoFabricaColocar extends UsandoFabrica implements Tabl
         super(unaFabrica);
     }
 
-    protected abstract void colocar(final Proveedor<Pieza> proveedor);
+    protected abstract List<Pieza> colocar(final Proveedor<Pieza> proveedor);
 
     @Override
-    public void colocarContenedorDeAntimateria() {
+    public List<Pieza> colocarContenedorDeAntimateria() {
 
-        colocar(fabrica::crearContenedorDeAntimateria);
+        return colocar(fabrica::crearContenedorDeAntimateria);
     }
 
     @Override
-    public void colocarContenedorDeMetal() {
+    public List<Pieza> colocarContenedorDeMetal() {
 
-        colocar(fabrica::crearContenedorDeMetal);
+        return colocar(fabrica::crearContenedorDeMetal);
     }
 
     @Override
-    public void colocarContenedorDeCristal() {
+    public List<Pieza> colocarContenedorDeCristal() {
 
-        colocar(fabrica::crearContenedorDeCristal);
+        return colocar(fabrica::crearContenedorDeCristal);
     }
 
     @Override
-    public void colocarAsteroide() {
+    public List<Pieza> colocarAsteroide() {
 
-        colocar(fabrica::crearAsteroide);
+        return colocar(fabrica::crearAsteroide);
     }
 
     @Override
-    public void colocarAgujeroNegro() {
+    public List<Pieza> colocarAgujeroNegro() {
 
-        colocar(fabrica::crearAgujeroNegro);
+        return colocar(fabrica::crearAgujeroNegro);
     }
 
     @Override
-    public void colocarBaseDesconocida() {
+    public List<Pieza> colocarBaseDesconocida() {
 
-        colocar(fabrica::crearBaseDesconocida);
-    }
-
-    @Override
-    public void colocarBaseRival() {
-
-        colocar(fabrica::crearBaseRival);
+        return colocar(fabrica::crearBaseDesconocida);
     }
 }

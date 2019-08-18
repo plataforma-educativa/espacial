@@ -81,6 +81,11 @@ public class FabricaDePiezas {
         return new EstacionCentral();
     }
 
+    public BaseEspacial crearBaseRival() {
+
+        return new BaseRival();
+    }
+
     public Pieza crearBaseDesconocida() {
 
         BaseDesconocida base = new BaseDesconocida();
@@ -89,10 +94,5 @@ public class FabricaDePiezas {
         base.recibir(sustanciaEspacialAleatoria.obtener().por(cargaAleatoria.obtener()));
 
         return base;
-    }
-
-    public Pieza crearBaseRival() {
-
-        return new BaseRival();
     }
 }

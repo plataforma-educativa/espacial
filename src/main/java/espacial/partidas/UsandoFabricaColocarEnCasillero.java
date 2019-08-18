@@ -7,6 +7,9 @@ import espacial.Pieza;
 import espacial.Tablero;
 import espacial.utiles.Proveedor;
 
+import java.util.Collections;
+import java.util.List;
+
 public class UsandoFabricaColocarEnCasillero extends UsandoFabricaColocar implements Tablero.EnCasillero {
 
     private final Casillero casillero;
@@ -17,9 +20,9 @@ public class UsandoFabricaColocarEnCasillero extends UsandoFabricaColocar implem
         casillero = unCasillero;
     }
 
-    protected void colocar(final Proveedor<Pieza> proveedor) {
+    protected List<Pieza> colocar(final Proveedor<Pieza> proveedor) {
 
-        ocuparCon(proveedor.obtener());
+        return Collections.singletonList(ocuparCon(proveedor.obtener()));
     }
 
     private <T extends Pieza> T ocuparCon(final T pieza) {
@@ -33,6 +36,12 @@ public class UsandoFabricaColocarEnCasillero extends UsandoFabricaColocar implem
     public BaseEspacial colocarBase() {
 
         return ocuparCon(fabrica.crearBase());
+    }
+
+    @Override
+    public BaseEspacial colocarBaseRival() {
+
+        return ocuparCon(fabrica.crearBaseRival());
     }
 
     @Override

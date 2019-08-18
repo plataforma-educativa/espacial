@@ -1,5 +1,7 @@
 package espacial;
 
+import java.util.List;
+
 /**
  * El Tablero mantiene el ordenamiento relativo de las Piezas en una Partida.
  * Cada Casillero está ocupado exclusivamente por una Pieza.
@@ -45,24 +47,25 @@ public interface Tablero {
 
     interface EnCasilleros {
 
-        void colocarAsteroide();
+        List<Pieza> colocarAsteroide();
 
-        void colocarContenedorDeAntimateria();
+        List<Pieza> colocarContenedorDeAntimateria();
 
-        void colocarContenedorDeMetal();
+        List<Pieza> colocarContenedorDeMetal();
 
-        void colocarContenedorDeCristal();
+        List<Pieza> colocarContenedorDeCristal();
 
-        void colocarAgujeroNegro();
+        List<Pieza> colocarAgujeroNegro();
 
-        void colocarBaseDesconocida();
+        List<Pieza> colocarBaseDesconocida();
 
-        void colocarBaseRival();
     }
 
     interface EnCasillero extends EnCasilleros {
 
         BaseEspacial colocarBase();
+
+        BaseEspacial colocarBaseRival();
 
         NaveEspacial colocarNave();
 
