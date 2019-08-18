@@ -20,6 +20,7 @@ public class TableroBatallaEspacial extends TableroEspacial {
         enCasillero(2, -7).colocarContenedorDeCristal();
         enCasillero(10, -24).colocarContenedorDeMetal();
         enCasillero(-10, 14).colocarBaseDesconocida();
+        enCasillero(7, -23).colocarBaseRival();
         enCasillero(1, -3).colocarAsteroide();
         enCasilleros(7, -1, 7, 0).colocarAsteroide();
         enCasilleros(8, -3, 8, 3).colocarAsteroide();

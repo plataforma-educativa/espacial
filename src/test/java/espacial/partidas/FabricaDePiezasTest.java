@@ -305,4 +305,24 @@ class FabricaDePiezasTest implements TestDeContrato {
                         .isGreaterThan(0)
         );
     }
+
+    @Test
+    void crearBaseRival() {
+
+        dadoQue(fueCreadaUnaFabricaDePiezas());
+
+        piezaCreada = unaFabrica.crearBaseRival();
+
+        comprobarQue(laPiezaCreadaEsUnaBaseRival());
+    }
+
+    private Postcondicion laPiezaCreadaEsUnaBaseRival() {
+
+        return post(condicion ->
+
+                assertThat(piezaCreada).as("pieza creada").isNotNull()
+                        .extracting(Pieza::escanear).isEqualTo(EspectroEspacial.BASE)
+        );
+    }
+
 }

@@ -17,7 +17,7 @@ class PiezaAtacableEnPartidaTest implements TestDeContrato {
     }
 
     @Nested
-    class SiEsUnaBaseEspcial extends TestDePiezaAtacableEnPartida<EstacionCentral> {
+    class SiEsUnaBaseEspacial extends TestDePiezaAtacableEnPartida<EstacionCentral> {
 
         @Override
         protected Precondicion fueCreadaLaPieza() {
@@ -33,6 +33,16 @@ class PiezaAtacableEnPartidaTest implements TestDeContrato {
         protected Precondicion fueCreadaLaPieza() {
 
             return pre(condicion ->  unaPiezaAtacable = new BaseDesconocida());
+        }
+    }
+
+    @Nested
+    class SiEsUnaBaseRival extends TestDePiezaAtacableEnPartida<BaseRival> {
+
+        @Override
+        protected Precondicion fueCreadaLaPieza() {
+
+            return pre(condicion ->  unaPiezaAtacable = new BaseRival());
         }
     }
 

@@ -7,6 +7,7 @@ import espacial.SustanciaEspacial;
 import espacial.piezas.AgujeroNegro;
 import espacial.piezas.Asteroide;
 import espacial.piezas.BaseDesconocida;
+import espacial.piezas.BaseRival;
 import espacial.piezas.CazaEspacial;
 import espacial.piezas.ContenedorDeAntimateria;
 import espacial.piezas.ContenedorDeCristal;
@@ -82,5 +83,10 @@ public class FabricaDePiezas {
         base.recibir(sustanciaEspacialAleatoria.obtener().por(cargaAleatoria.obtener()));
 
         return base;
+    }
+
+    public Pieza crearBaseRival() {
+
+        return new BaseRival();
     }
 }

@@ -272,6 +272,21 @@ class TableroEspacialTest implements TestDeContrato {
     }
 
     @Test
+    void enCasilleroColocarBaseRival() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(5, 3));
+
+        unTablero.enCasillero(3, 1).colocarBaseRival();
+
+        comprobarQue(unTableroTieneUnaBaseRivalEn(3, 1));
+    }
+
+    private Postcondicion unTableroTieneUnaBaseRivalEn(int fila, int columna) {
+
+        return post(condicion -> assertThat(unTablero).tieneBase().esRival().en(fila, columna));
+    }
+
+    @Test
     void enCasillerosColocarBaseDesierta() {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));

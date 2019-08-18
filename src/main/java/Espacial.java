@@ -10,6 +10,22 @@ public enum Espacial {
             tablero.enCasillero(fila, columna).colocarBase();
         }
     },
+    BASE_DESCONOCIDA {
+
+        @Override
+        public void colocarEn(Tablero tablero, int fila, int columna) {
+
+            tablero.enCasillero(fila, columna).colocarBaseDesconocida();
+        }
+    },
+    BASE_RIVAL {
+
+        @Override
+        public void colocarEn(Tablero tablero, int fila, int columna) {
+
+            tablero.enCasillero(fila, columna).colocarBaseRival();
+        }
+    },
     NAVE {
 
         @Override
@@ -56,14 +72,6 @@ public enum Espacial {
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
             tablero.enCasillero(fila, columna).colocarAgujeroNegro();
-        }
-    },
-    BASE_DESCONOCIDA {
-
-        @Override
-        public void colocarEn(Tablero tablero, int fila, int columna) {
-
-            tablero.enCasillero(fila, columna).colocarBaseDesconocida();
         }
     };
 

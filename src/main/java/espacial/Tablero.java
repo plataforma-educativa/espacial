@@ -56,6 +56,8 @@ public interface Tablero {
         void colocarAgujeroNegro();
 
         void colocarBaseDesconocida();
+
+        void colocarBaseRival();
     }
 
     interface EnCasillero extends EnCasilleros {
