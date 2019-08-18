@@ -40,4 +40,10 @@ public class UsandoFabricaColocarEnCasillero extends UsandoFabricaColocar implem
 
         return ocuparCon(fabrica.crearNave());
     }
+
+    @Override
+    public NaveEspacial colocarNaveRival() {
+
+        return ocuparCon(fabrica.crearNaveRival());
+    }
 }

@@ -232,7 +232,7 @@ class FabricaDePiezasTest implements TestDeContrato {
     }
 
     @Test
-    void crearNaveEspacial() {
+    void crearNave() {
 
         dadoQue(fueCreadaUnaFabricaDePiezas());
 
@@ -242,6 +242,28 @@ class FabricaDePiezasTest implements TestDeContrato {
     }
 
     private Postcondicion laPiezaCreadaEsUnaNave() {
+
+        return post(condicion -> {
+
+            assertThat(piezaCreada).as("pieza creada").isNotNull()
+                    .extracting(Pieza::escanear).isEqualTo(EspectroEspacial.NAVE);
+
+            assertThat(NaveEspacial.class.cast(piezaCreada)).as("nave")
+                    .extracting(NaveEspacial::nombrar).isNotNull();
+        });
+    }
+
+    @Test
+    void crearNaveRival() {
+
+        dadoQue(fueCreadaUnaFabricaDePiezas());
+
+        piezaCreada = unaFabrica.crearNaveRival();
+
+        comprobarQue(laPiezaCreadaEsUnaNaveRival());
+    }
+
+    private Postcondicion laPiezaCreadaEsUnaNaveRival() {
 
         return post(condicion -> {
 
@@ -324,5 +346,4 @@ class FabricaDePiezasTest implements TestDeContrato {
                         .extracting(Pieza::escanear).isEqualTo(EspectroEspacial.BASE)
         );
     }
-
 }

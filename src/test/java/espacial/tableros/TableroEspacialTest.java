@@ -322,6 +322,22 @@ class TableroEspacialTest implements TestDeContrato {
     }
 
     @Test
+    void enCasilleroColocarNaveRival() {
+
+        dadoQue(unTableroFueCreadoConDimensiones(7, 7));
+
+        unaNaveEspacial = unTablero.enCasillero(1, 5).colocarNaveRival();
+
+        comprobarQue(unTableroTieneUnaNaveRivalEn(1, 5));
+        comprobarQue(unaNaveEspacialEstaEn(1, 5));
+    }
+
+    private Postcondicion unTableroTieneUnaNaveRivalEn(int fila, int columna) {
+
+        return post(condicion -> assertThat(unTablero).tieneNave().esRival().en(fila, columna));
+    }
+
+    @Test
     void enCasilleroColocarBase() {
 
         dadoQue(unTableroFueCreadoConDimensiones(3, 3));

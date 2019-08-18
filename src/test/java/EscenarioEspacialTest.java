@@ -341,4 +341,32 @@ public class EscenarioEspacialTest extends TestDeBatallaEspacial implements Test
         comprobarQue(unEscenarioTieneNaveEn(2, 1));
     }
 
+    @Test
+    void colocarNaveRivalEn() {
+
+        dadoQue(unEscenarioFueCreadoCon(4, 5));
+
+        unEscenario.colocarNaveRivalEn(3, 1);
+
+        comprobarQue(unEscenarioTieneNaveRivalEn(3, 1));
+    }
+
+    private Postcondicion unEscenarioTieneNaveRivalEn(int fila, int columna) {
+
+        return post(condicion ->
+                assertThat(unEscenario.obtenerTablero()).tieneNave().esRival().en(fila, columna)
+        );
+    }
+
+    @Test
+    void colocarNaveRivalConEspacial() {
+
+        dadoQue(unEscenarioFueCreadoCon(2, 5));
+
+        unEscenario.colocar(Espacial.NAVE_RIVAL,2, 1);
+
+        comprobarQue(unEscenarioTieneNaveRivalEn(2, 1));
+    }
+
+
 }

@@ -73,6 +73,14 @@ public enum Espacial {
 
             tablero.enCasillero(fila, columna).colocarAgujeroNegro();
         }
+    },
+    NAVE_RIVAL {
+
+        @Override
+        public void colocarEn(Tablero tablero, int fila, int columna) {
+
+            tablero.enCasillero(fila, columna).colocarNaveRival();
+        }
     };
 
     public abstract void colocarEn(Tablero tablero, int fila, int columna);

@@ -9,6 +9,7 @@ import espacial.piezas.Asteroide;
 import espacial.piezas.BaseDesconocida;
 import espacial.piezas.BaseRival;
 import espacial.piezas.CazaEspacialAliado;
+import espacial.piezas.CazaEspacialRival;
 import espacial.piezas.ContenedorDeAntimateria;
 import espacial.piezas.ContenedorDeCristal;
 import espacial.piezas.ContenedorDeMetal;
@@ -68,6 +69,11 @@ public class FabricaDePiezas {
     public NaveEspacial crearNave() {
 
         return new CazaEspacialAliado(nomenclador.nombrarNave());
+    }
+
+    public NaveEspacial crearNaveRival() {
+
+        return new CazaEspacialRival(nomenclador.nombrarNave());
     }
 
     public BaseEspacial crearBase() {

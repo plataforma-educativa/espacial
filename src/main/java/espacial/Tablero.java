@@ -65,6 +65,8 @@ public interface Tablero {
         BaseEspacial colocarBase();
 
         NaveEspacial colocarNave();
+
+        NaveEspacial colocarNaveRival();
     }
 
     interface EnBase {

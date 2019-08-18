@@ -99,6 +99,11 @@ public class EscenarioEspacial extends PartidaEspacial {
         tablero.enCasillero(fila, columna).colocarNave();
     }
 
+    public void colocarNaveRivalEn(int fila, int columna) {
+
+        tablero.enCasillero(fila, columna).colocarNaveRival();
+    }
+
     public void colocar(Espacial espacial, int fila, int columna) {
 
         espacial.colocarEn(tablero, fila, columna);
