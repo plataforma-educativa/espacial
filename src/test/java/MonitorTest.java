@@ -193,8 +193,10 @@ class MonitorTest extends TestDeBatallaEspacial implements TestDeContrato {
 
             unMonitor = nave.obtenerMonitor();
 
-            repetir(24, i -> nave.avanzarAlOeste());
+            repetir(26, i -> nave.avanzarAlOeste());
             repetir(9, i -> nave.avanzarAlNorte());
+            repetir(2, i -> nave.avanzarAlEste());
+
             nave.cargarDesdeNorte(Sustancia.METAL, CARGA_MINIMA);
         });
     }

@@ -12,7 +12,8 @@ import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.assertj.core.api.Assertions.*;
+import static espacial.test.Aserciones.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class TableroBatallaEspacialTest implements TestDeContrato {
 
@@ -96,5 +97,26 @@ class TableroBatallaEspacialTest implements TestDeContrato {
             assertThat(unaBase.escanear()).as("escanear pieza obtenida").isEqualTo(EspectroEspacial.BASE);
             assertThat(unTablero.obtenerCasilleroEn(fila, columna).obtenerPieza()).isSameAs(unaBase);
         });
+    }
+
+    @Test
+    void estadoInicial() {
+
+        dadoQue(fueCreadoUnTablero());
+
+        comprobarQue(tieneUnaBaseRivalDefendida());
+    }
+
+    private Postcondicion tieneUnaBaseRivalDefendida() {
+
+        return post(condicion ->
+                assertThat(unTablero)
+                        .tieneBase().esRival().en(6,-23)
+                        .tieneAsteroide()
+                        .entre(8, -25, 8, -21)
+                        .entre(4, -25, 4, -21)
+                        .entre(5, -25, 7, -25)
+                        .entre(5, -21, 7, -21)
+        );
     }
 }

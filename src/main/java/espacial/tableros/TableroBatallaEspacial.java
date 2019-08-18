@@ -20,7 +20,6 @@ public class TableroBatallaEspacial extends TableroEspacial {
         enCasillero(2, -7).colocarContenedorDeCristal();
         enCasillero(10, -24).colocarContenedorDeMetal();
         enCasillero(-10, 14).colocarBaseDesconocida();
-        enCasillero(7, -23).colocarBaseRival();
         enCasillero(1, -3).colocarAsteroide();
         enCasilleros(7, -1, 7, 0).colocarAsteroide();
         enCasilleros(8, -3, 8, 3).colocarAsteroide();
@@ -33,5 +32,16 @@ public class TableroBatallaEspacial extends TableroEspacial {
         enCasillero(2, -6).colocarAgujeroNegro();
         enCasillero(1, -6).colocarAgujeroNegro();
         enCasillero(1, -7).colocarAgujeroNegro();
+
+        colocarBaseRival();
+    }
+
+    private void colocarBaseRival() {
+
+        enCasillero(6, -23).colocarBaseRival();
+        enCasilleros(8, -25, 8, -21).colocarAsteroide();
+        enCasilleros(4, -25, 4, -21).colocarAsteroide();
+        enCasilleros(5, -25, 7, -25).colocarAsteroide();
+        enCasilleros(5, -21, 7, -21).colocarAsteroide();
     }
 }

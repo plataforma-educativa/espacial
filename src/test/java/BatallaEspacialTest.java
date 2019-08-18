@@ -94,13 +94,12 @@ class BatallaEspacialTest extends TestDeBatallaEspacial implements TestDeContrat
                     .tieneBase().esNeutral()
                     .en(-10, 14)
                     .tieneBase().esRival()
-                    .en(7, -23)
+                    .en(6, -23)
                     .tieneBorde()
                     .entre(11, -27, 11, 27)
                     .entre(-11, -27, -11, 27)
                     .entre(-11, -27, 11, -27)
-                    .entre(-11, 27, 11, 27)
-                    .yTieneVacioEnElResto();
+                    .entre(-11, 27, 11, 27);
         });
     }
 
