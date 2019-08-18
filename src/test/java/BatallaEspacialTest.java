@@ -94,7 +94,7 @@ class BatallaEspacialTest extends TestDeBatallaEspacial implements TestDeContrat
                     .tieneBase().esNeutral()
                     .en(-10, 14)
                     .tieneBase().esRival()
-                    .en(6, -23)
+                    .en(5, -22)
                     .tieneBorde()
                     .entre(11, -27, 11, 27)
                     .entre(-11, -27, -11, 27)

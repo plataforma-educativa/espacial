@@ -51,12 +51,12 @@ public class TableroBatallaEspacial extends TableroEspacial {
     private void colocarBaseRival() {
 
         Coordenadas.Lista delPerimetro = Coordenadas
-                .entre(8, -25, 8, -21)
-                .entre(4, -25, 4, -21)
-                .entre(5, -25, 7, -25)
-                .entre(5, -21, 7, -21);
+                .entre(8, -25, 8, -19)
+                .entre(2, -25, 2, -19)
+                .entre(3, -25, 7, -25)
+                .entre(3, -19, 7, -19);
 
-        BaseEspacial baseRival = enCasillero(6, -23).colocarBaseRival();
+        BaseEspacial baseRival = enCasillero(5, -22).colocarBaseRival();
         final DefensaDeBaseRival defensa = new DefensaDeBaseRival(this, baseRival);
 
         List<Pieza> asteroides = enCasilleros(delPerimetro).colocarAsteroide();

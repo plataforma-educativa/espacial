@@ -52,6 +52,9 @@ public class DefensaDeBaseRival implements Pieza.Observador {
     private void movilizar(NaveEspacial defensor, Direccion direccion) {
 
         defensor.despegar();
-        defensor.moverEn(direccion);
+
+        for (int casilleros = 0; casilleros < 2; casilleros++) {
+            defensor.moverEn(direccion);
+        }
     }
 }
