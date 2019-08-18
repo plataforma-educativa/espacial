@@ -154,6 +154,21 @@ abstract class TestDeContratoSobreCazaEspacial extends TestDeContratoSobrePieza<
     }
 
     @Test
+    void moverEnDireccionMultiplesVeces() {
+
+        dadoQue(fueCreadoUnCazaEspacialColocadoEnUnCasillero());
+
+        unCazaEspacial.moverEn(Direccion.NORTE, 3);
+
+        comprobarQue(unCazaEspacialSeMovioUnCasilleroEnDireccionNorte(3));
+    }
+
+    private Postcondicion unCazaEspacialSeMovioUnCasilleroEnDireccionNorte(int veces) {
+
+        return post(condicion -> verify(UN_CASILLERO, times(veces)).moverPiezaA(CASILLERO_NORTE));
+    }
+
+    @Test
     void chocoContraUnAsteroide() {
 
         dadoQue(fueCreadoUnCazaEspacial());

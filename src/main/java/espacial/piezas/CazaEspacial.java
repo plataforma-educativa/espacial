@@ -87,6 +87,15 @@ public abstract class CazaEspacial implements NaveEspacial, NaveChocable, NaveDe
     }
 
     @Override
+    public void moverEn(Direccion direccionElegida, int veces) {
+
+        for (int vez = 0; vez < veces; vez++) {
+
+            moverEn(direccionElegida);
+        }
+    }
+
+    @Override
     public int obtenerNivelDeEscudos() {
 
         return escudos.obtenerNivel();

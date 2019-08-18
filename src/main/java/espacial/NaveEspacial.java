@@ -20,6 +20,8 @@ public interface NaveEspacial extends Pieza, Chocable {
 
     void descargarEn(Direccion direccionElegida, Carga unaCarga);
 
+    void moverEn(Direccion direccionElegida, int veces);
+
     int obtenerNivelDeEscudos();
 
     Direccion obtenerRumbo();
