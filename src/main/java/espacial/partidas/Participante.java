@@ -1,5 +1,6 @@
 package espacial.partidas;
 
+import espacial.Coordenadas;
 import espacial.NaveEspacial;
 
 public abstract class Participante {
@@ -15,4 +16,10 @@ public abstract class Participante {
 
         return partida.crearNavePara(this);
     }
+
+    protected NaveEspacial crearNaveEspacial(Coordenadas enCoordenadas) {
+
+        return partida.crearNavePara(this, enCoordenadas);
+    }
+
 }

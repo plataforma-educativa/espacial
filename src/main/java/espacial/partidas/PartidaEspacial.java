@@ -1,5 +1,6 @@
 package espacial.partidas;
 
+import espacial.Coordenadas;
 import espacial.Espacial;
 import espacial.NaveEspacial;
 import espacial.Tablero;
@@ -37,12 +38,22 @@ public abstract class PartidaEspacial implements espacial.Partida {
 
         participantes.add(unParticipante);
 
-        NaveEspacial naveEspacial = crearNave();
+        return crearNave();
+    }
 
-        return naveEspacial;
+    protected NaveEspacial crearNavePara(Participante unParticipante, Coordenadas enCoordenadas) {
+
+        participantes.add(unParticipante);
+
+        return crearNave(enCoordenadas);
     }
 
     protected abstract NaveEspacial crearNave();
+
+    protected NaveEspacial crearNave(Coordenadas coordenadas) {
+
+        return tablero.enCasillero(coordenadas.obtenerFila(), coordenadas.obtenerColumna()).colocarNave();
+    }
 
     @Override
     public String toString() {

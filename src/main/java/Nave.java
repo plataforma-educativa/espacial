@@ -1,3 +1,4 @@
+import espacial.Coordenadas;
 import espacial.Direccion;
 import espacial.NaveEspacial;
 import espacial.SustanciaEspacial;
@@ -12,6 +13,13 @@ public class Nave extends Participante {
     public Nave() {
 
         pieza = crearNaveEspacial();
+        radar = new Radar(pieza);
+        monitor = new Monitor(pieza);
+    }
+
+    public Nave(int fila, int columna) {
+
+        pieza = crearNaveEspacial(Coordenadas.con(fila, columna));
         radar = new Radar(pieza);
         monitor = new Monitor(pieza);
     }

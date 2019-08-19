@@ -87,6 +87,21 @@ class NaveTest extends TestDeBatallaEspacial implements TestDeContrato {
     }
 
     @Test
+    void crearUnObjetoDeTipoNaveDejandoloEnLaPosicionIndicada() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+
+        Nave unaNave = new  Nave(1, 1);
+
+        comprobarQue(unaNaveEstaAlNoresteDeLaBase());
+    }
+
+    private Postcondicion unaNaveEstaAlNoresteDeLaBase() {
+
+        return post(condicion -> assertThat(batallaEspacial.obtenerTablero()).tieneNave().en(1, 1));
+    }
+
+    @Test
     void noPuedeAvanzarAlNorteSiNoDespegoAntes() {
 
         dadoQue(fueCreadaLaBatallaEspacial());
