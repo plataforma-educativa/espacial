@@ -3,10 +3,13 @@ package espacial.tableros;
 import espacial.BaseEspacial;
 import espacial.NaveEspacial;
 import espacial.Pieza;
+import espacial.excepciones.ElCasilleroEstaOcupado;
+import espacial.test.Operacion;
 import espacial.test.Postcondicion;
 import espacial.test.Precondicion;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class EstadoDelCasilleroAlOcuparConTest extends EstadoDelCasilleroTest {
@@ -75,9 +78,18 @@ class EstadoDelCasilleroAlOcuparConTest extends EstadoDelCasilleroTest {
 
         estado = new Ocupado(CASILLERO, PIEZA);
 
-        comprobarQue(generaUnDefecto(() -> estado.alOcuparCon(OTRA_PIEZA)));
-
+        comprobarQue(generaUnaExcepcionPorqueElCasilleroEstaOcupado(() -> estado.alOcuparCon(OTRA_PIEZA)));
         comprobarQue(noCambioElEstadoDelCasillero());
+    }
+
+    private Postcondicion generaUnaExcepcionPorqueElCasilleroEstaOcupado(Operacion operacion) {
+
+        return post(condicion ->
+
+                assertThatThrownBy(operacion::ejecutar)
+                        .as("excepción generada")
+                        .isInstanceOf(ElCasilleroEstaOcupado.class)
+        );
     }
 
     @Test

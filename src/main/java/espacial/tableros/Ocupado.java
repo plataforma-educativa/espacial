@@ -7,7 +7,7 @@ import espacial.EspectroEspacial;
 import espacial.Partidario;
 import espacial.Pieza;
 import espacial.SustanciaEspacial;
-import espacial.excepciones.Defecto;
+import espacial.excepciones.ElCasilleroEstaOcupado;
 
 public class Ocupado extends EstadoDelCasillero {
 
@@ -40,7 +40,7 @@ public class Ocupado extends EstadoDelCasillero {
     @Override
     public void alOcuparCon(Pieza unaPieza) {
 
-        throw new Defecto("No se pude ocupar un Casillero ocupado");
+        throw new ElCasilleroEstaOcupado(contexto);
     }
 
     @Override

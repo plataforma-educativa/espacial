@@ -1,6 +1,7 @@
 import espacial.Casillero;
 import espacial.Coordenadas;
 import espacial.Pieza;
+import espacial.excepciones.ElCasilleroEstaOcupado;
 import espacial.excepciones.LaNaveNoEstaEnLaBase;
 import espacial.excepciones.LaNaveNoEstaEnUnCasillero;
 import espacial.test.Operacion;
@@ -91,7 +92,7 @@ class NaveTest extends TestDeBatallaEspacial implements TestDeContrato {
 
         dadoQue(fueCreadaLaBatallaEspacial());
 
-        Nave unaNave = new  Nave(1, 1);
+        Nave unaNave = new Nave(1, 1);
 
         comprobarQue(unaNaveEstaAlNoresteDeLaBase());
     }
@@ -99,6 +100,23 @@ class NaveTest extends TestDeBatallaEspacial implements TestDeContrato {
     private Postcondicion unaNaveEstaAlNoresteDeLaBase() {
 
         return post(condicion -> assertThat(batallaEspacial.obtenerTablero()).tieneNave().en(1, 1));
+    }
+
+    @Test
+    void crearUnObjetoDeTipoNaveIndicandoUnaPosicionOcupada() {
+
+        dadoQue(fueCreadaLaBatallaEspacial());
+
+        comprobarQue(generaExcepcionPorqueElCasilleroEstaOcupado(() -> new Nave(1, -3)));
+    }
+
+    private Postcondicion generaExcepcionPorqueElCasilleroEstaOcupado(Operacion operacion) {
+
+        return post(condicion ->
+            assertThatThrownBy(operacion::ejecutar)
+                .as("excepción generada")
+                .isInstanceOf(ElCasilleroEstaOcupado.class)
+        );
     }
 
     @Test
@@ -944,8 +962,8 @@ class NaveTest extends TestDeBatallaEspacial implements TestDeContrato {
         return post(condicion ->
 
                 assertThat(unaNave.obtenerRadar().escanearSur())
-                    .as("escanearSur()")
-                    .isEqualTo(Espectro.VACIO)
+                        .as("escanearSur()")
+                        .isEqualTo(Espectro.VACIO)
         );
     }
 
