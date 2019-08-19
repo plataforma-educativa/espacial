@@ -24,7 +24,7 @@ public interface DibujoEspacial {
         sombra.setWidth(3.0);
         sombra.setHeight(3.0);
         sombra.setColor(Color.BLACK);
-        sombra.setRadius(4.0);
+        sombra.setRadius(6.0);
 
         dibujo.setEffect(sombra);
     }
