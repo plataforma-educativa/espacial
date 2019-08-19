@@ -25,6 +25,7 @@ class PartidaEspacialFXTest {
         }
 
         Nave theta = new Nave(10, 10);
+        theta.avanzarAlSur();
 
         Nave alfa = new Nave();
         alfa.despegar();

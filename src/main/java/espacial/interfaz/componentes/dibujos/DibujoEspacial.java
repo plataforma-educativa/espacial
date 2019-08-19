@@ -12,19 +12,19 @@ public interface DibujoEspacial {
 
     default void aplicarBorde(Shape dibujo) {
 
-        dibujo.setStroke(Color.DARKGRAY);
+        dibujo.setStroke(Color.DARKSLATEGRAY);
         dibujo.setStrokeWidth(1);
     }
 
     default void aplicarSombraExteriorEn(Node dibujo) {
 
         DropShadow sombra = new DropShadow();
-        sombra.setOffsetY(1.0);
-        sombra.setOffsetX(1.0);
+        sombra.setOffsetY(2.0);
+        sombra.setOffsetX(2.0);
         sombra.setWidth(3.0);
         sombra.setHeight(3.0);
         sombra.setColor(Color.BLACK);
-        sombra.setRadius(2.0);
+        sombra.setRadius(4.0);
 
         dibujo.setEffect(sombra);
     }
