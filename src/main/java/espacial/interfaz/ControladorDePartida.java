@@ -8,6 +8,7 @@ import espacial.interfaz.componentes.PanelConTablero;
 import espacial.interfaz.rasgos.Controlador;
 import javafx.animation.Animation;
 import javafx.animation.SequentialTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
@@ -56,6 +57,12 @@ public class ControladorDePartida implements Controlador {
     private void mostrarInformes(VistaInforme vistaInforme) {
 
         panelMarco.setRight(panelMarcoInformes);
+    }
+
+    public void salir() {
+
+        Platform.exit();
+        System.exit(0);
     }
 
     public void mostrarDocumentacion() {
