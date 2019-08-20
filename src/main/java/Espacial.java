@@ -1,9 +1,14 @@
 import espacial.Tablero;
 
+/**
+ * Tipo de elemento a colocar en una Casillero del Tablero de una Partida Espacial.
+ *
+ * @author Mariano Tugnarelli
+ * @prioridad 7
+ */
 public enum Espacial {
 
     BASE {
-
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
@@ -11,7 +16,6 @@ public enum Espacial {
         }
     },
     BASE_DESCONOCIDA {
-
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
@@ -19,7 +23,6 @@ public enum Espacial {
         }
     },
     BASE_RIVAL {
-
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
@@ -27,7 +30,6 @@ public enum Espacial {
         }
     },
     NAVE {
-
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
@@ -35,7 +37,6 @@ public enum Espacial {
         }
     },
     ASTEROIDE {
-
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
@@ -43,7 +44,6 @@ public enum Espacial {
         }
     },
     CONTENEDOR_ANTIMATERIA {
-
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
@@ -51,7 +51,6 @@ public enum Espacial {
         }
     },
     CONTENEDOR_CRISTAL {
-
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
@@ -59,7 +58,6 @@ public enum Espacial {
         }
     },
     CONTENEDOR_METAL {
-
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
@@ -67,7 +65,6 @@ public enum Espacial {
         }
     },
     AGUJERO_NEGRO {
-
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 
@@ -75,7 +72,6 @@ public enum Espacial {
         }
     },
     NAVE_RIVAL {
-
         @Override
         public void colocarEn(Tablero tablero, int fila, int columna) {
 

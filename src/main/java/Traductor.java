@@ -4,7 +4,7 @@ import espacial.SustanciaEspacial;
 import java.util.EnumMap;
 import java.util.Map;
 
-public interface Traductor<E,S> {
+interface Traductor<E,S> {
 
     Traductor<Sustancia, SustanciaEspacial> DE_SUSTANCIAS = new TraductorDeSustancias();
 
