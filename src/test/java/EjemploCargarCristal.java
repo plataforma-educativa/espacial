@@ -2,7 +2,7 @@ import espacial.test.Paso;
 
 import java.util.concurrent.TimeUnit;
 
-public class CargarCristalFXTest {
+public class EjemploCargarCristal {
 
     public static void main(String[] args) throws InterruptedException {
 

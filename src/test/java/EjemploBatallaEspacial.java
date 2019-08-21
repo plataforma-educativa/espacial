@@ -1,6 +1,6 @@
 import java.util.concurrent.TimeUnit;
 
-class PartidaEspacialFXTest {
+class EjemploBatallaEspacial {
 
     public static void main(String[] args) throws InterruptedException {
 

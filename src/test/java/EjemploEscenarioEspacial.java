@@ -1,6 +1,6 @@
 import java.util.concurrent.TimeUnit;
 
-class EscenarioEspacialFXTest {
+class EjemploEscenarioEspacial {
 
     public static void main(String[] args) throws InterruptedException {
 
