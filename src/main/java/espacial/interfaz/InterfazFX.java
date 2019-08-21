@@ -2,20 +2,19 @@ package espacial.interfaz;
 
 import espacial.Interfaz;
 import espacial.Partida;
+import espacial.utiles.Expectativa;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.stage.Stage;
 
-import java.util.concurrent.CountDownLatch;
-
 public class InterfazFX extends Application implements Interfaz {
 
-    private static final CountDownLatch cuentaRegresiva = new CountDownLatch(1);
+    private static final Expectativa fxIniciado = new Expectativa();
 
     @Override
     public void start(Stage escenario) {
 
-        fueLanzada();
+        fxIniciado.cumplir();
     }
 
     @Override
@@ -27,47 +26,19 @@ public class InterfazFX extends Application implements Interfaz {
 
     private void crearVistaPara(Partida partida) {
 
-        final CountDownLatch espera = new CountDownLatch(1);
-        Platform.runLater(() -> {
-            new VistaPartida(partida).iniciar(); espera.countDown();
-        });
-        try {
-            espera.await();
-        } catch (InterruptedException e) {
+        final Expectativa vistaIniciada = new Expectativa();
 
-        }
+        Platform.runLater(() -> {
+            new VistaPartida(partida).iniciar();
+            vistaIniciada.cumplir();
+        });
+
+        vistaIniciada.esperar();
     }
 
     private void iniciar() {
 
-        synchronized(InterfazFX.class) {
-
-            if (noFueLanzadaPreviamente()) {
-
-                lanzar();
-                esperarLanzamiento();
-            }
-        }
-    }
-
-    private void fueLanzada() {
-
-        cuentaRegresiva.countDown();
-    }
-
-    private boolean noFueLanzadaPreviamente() {
-
-        return cuentaRegresiva.getCount() > 0;
-    }
-
-    private void esperarLanzamiento() {
-
-        try {
-
-            cuentaRegresiva.await();
-
-        } catch (InterruptedException ignorada) {
-        }
+        fxIniciado.esperar(this::lanzar);
     }
 
     private void lanzar() {
