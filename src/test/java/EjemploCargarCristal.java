@@ -1,14 +1,10 @@
 import espacial.test.Paso;
 
-import java.util.concurrent.TimeUnit;
-
 public class EjemploCargarCristal {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         new BatallaEspacial();
-
-        TimeUnit.SECONDS.sleep(2);
 
         Nave nave = new Nave();
         nave.despegar();
@@ -27,8 +23,6 @@ public class EjemploCargarCristal {
 
 
         new BatallaEspacial();
-
-        TimeUnit.SECONDS.sleep(2);
 
         Nave nave2 = new Nave();
         nave2.despegar();

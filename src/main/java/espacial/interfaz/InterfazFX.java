@@ -27,7 +27,15 @@ public class InterfazFX extends Application implements Interfaz {
 
     private void crearVistaPara(Partida partida) {
 
-        Platform.runLater(() -> new VistaPartida(partida).iniciar());
+        final CountDownLatch espera = new CountDownLatch(1);
+        Platform.runLater(() -> {
+            new VistaPartida(partida).iniciar(); espera.countDown();
+        });
+        try {
+            espera.await();
+        } catch (InterruptedException e) {
+
+        }
     }
 
     private void iniciar() {

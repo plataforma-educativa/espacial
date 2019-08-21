@@ -1,12 +1,8 @@
-import java.util.concurrent.TimeUnit;
-
 class EjemploBatallaEspacial {
 
     public static void main(String[] args) throws InterruptedException {
 
         new BatallaEspacial();
-
-        TimeUnit.SECONDS.sleep(5);
 
         Nave gamma = new Nave();
         gamma.despegar();
@@ -24,7 +20,7 @@ class EjemploBatallaEspacial {
             gamma.atacarAlNorte();
         }
 
-        Nave theta = new Nave(10, 10);
+        Nave theta = new Nave(10, 9);
         theta.avanzarAlSur();
 
         Nave alfa = new Nave();

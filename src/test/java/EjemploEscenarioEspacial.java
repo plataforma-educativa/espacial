@@ -1,12 +1,8 @@
-import java.util.concurrent.TimeUnit;
-
 class EjemploEscenarioEspacial {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         EscenarioEspacial escenario = new EscenarioEspacial(-2, 10, -3, 10);
-
-        TimeUnit.SECONDS.sleep(5);
 
         escenario.colocarBaseEn(1, 1);
         escenario.colocarNaveRivalEn(4, 4);
@@ -23,7 +19,6 @@ class EjemploEscenarioEspacial {
         nave.avanzarAlNorte();
 
         escenario.colocarAsteroideEn(4, 4);
-
 
         Nave nave2 = new Nave();
         nave2.despegar();
@@ -66,15 +61,11 @@ class EjemploEscenarioEspacial {
             nave.atacarAlNorte();
         }
 
-
         for (int i = 0; i < 10; i++) {
 
             nave.avanzarAlEste();
             nave.avanzarAlSur();
         }
-
-
-
     }
 
 }
