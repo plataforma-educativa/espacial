@@ -193,8 +193,10 @@ class MonitorTest extends TestDeBatallaEspacial implements TestDeContrato {
 
             unMonitor = nave.obtenerMonitor();
 
-            repetir(26, i -> nave.avanzarAlOeste());
-            repetir(9, i -> nave.avanzarAlNorte());
+            repetir(25, i -> nave.avanzarAlOeste());
+            repetir(2, i -> nave.avanzarAlNorte());
+            repetir(1, i -> nave.avanzarAlOeste());
+            repetir(7, i -> nave.avanzarAlNorte());
             repetir(2, i -> nave.avanzarAlEste());
 
             nave.cargarDesdeNorte(Sustancia.METAL, CARGA_MINIMA);
@@ -232,7 +234,7 @@ class MonitorTest extends TestDeBatallaEspacial implements TestDeContrato {
             repetir(9, i -> nave.avanzarAlOeste());
             repetir(2, i -> nave.avanzarAlNorte());
 
-            while (nave.obtenerRadar().escanearOeste() == Espectro.ASTEROIDE) {
+            while (nave.obtenerRadar().escanearEste() == Espectro.ASTEROIDE) {
                 nave.atacarAlEste();
             }
             nave.avanzarAlEste();

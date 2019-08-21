@@ -4,11 +4,12 @@ class EscenarioEspacialFXTest {
 
     public static void main(String[] args) throws InterruptedException {
 
-        EscenarioEspacial escenario = new EscenarioEspacial(10, 10);
+        EscenarioEspacial escenario = new EscenarioEspacial(-2, 10, -3, 10);
 
         TimeUnit.SECONDS.sleep(5);
 
         escenario.colocarBaseEn(1, 1);
+        escenario.colocarNaveRivalEn(4, 4);
 
         Nave alfa = new Nave();
         alfa.despegar();

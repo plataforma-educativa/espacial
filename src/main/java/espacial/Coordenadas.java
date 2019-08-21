@@ -19,6 +19,11 @@ public class Coordenadas {
         return new Contiguas(filaInicial, columnaInicial, filaFinal, columnaFinal);
     }
 
+    public static Lista en(int fila, int columna) {
+
+        return new Contiguas(fila, columna, fila, columna);
+    }
+
     private Coordenadas(int fila, int columna) {
 
         this.fila = fila;
@@ -119,6 +124,8 @@ public class Coordenadas {
 
         Lista entre(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal);
 
+        Lista en(int fila, int columna);
+
         void conCadaUno(Coordenadas.Consumidor consumidor);
     }
 
@@ -141,6 +148,12 @@ public class Coordenadas {
         public Lista entre(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal) {
 
             return new Compuestas(this).entre(filaInicial, columnaInicial, filaFinal, columnaFinal);
+        }
+
+        @Override
+        public Lista en(int fila, int columna) {
+
+            return new Compuestas(this).en(fila, columna);
         }
 
         @Override
@@ -167,7 +180,15 @@ public class Coordenadas {
         @Override
         public Lista entre(int filaInicial, int columnaInicial, int filaFinal, int columnaFinal) {
 
-            particiones.add(new Coordenadas.Contiguas(filaInicial, columnaInicial, filaFinal, columnaFinal));
+            particiones.add(Coordenadas.entre(filaInicial, columnaInicial, filaFinal, columnaFinal));
+
+            return this;
+        }
+
+        @Override
+        public Lista en(int fila, int columna) {
+
+            particiones.add(Coordenadas.en(fila, columna));
 
             return this;
         }
