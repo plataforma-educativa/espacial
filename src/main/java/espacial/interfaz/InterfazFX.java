@@ -43,7 +43,9 @@ public class InterfazFX extends Application implements Interfaz {
 
     private void lanzar() {
 
-        new Thread(() -> launch()).start();
+        Thread procesador = new Thread(() -> launch());
+        procesador.setContextClassLoader(this.getClass().getClassLoader());
+        procesador.start();
     }
 
 }
